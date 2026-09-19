@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
-<meta name="build" content="1789838909722">
+<meta name="build" content="1789839045678">
 <meta name="theme-color" content="#161210">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>창천 · 쿠키런 크럼블 정보</title>
@@ -345,7 +345,12 @@ footer{font-size:19px;padding:34px 24px}
  .srcs{padding:18px 18px 0}
  a.foot{font-size:20px;padding:20px 18px}
  .ostep{width:88px;flex:0 0 88px}.onum{width:32px;height:32px;font-size:17px}
-}</style>
+}
+.cntline{display:flex;justify-content:flex-end;margin-top:24px;margin-bottom:-8px}
+.cnt{font-size:20px;color:var(--dim2)}
+.subtabs{margin-top:14px;margin-bottom:6px}
+.grid{margin-top:26px}
+</style>
 </head><body>
 <header class="hero"><div class="hero-in">
 <div class="logo"><img src="assets/ui/logo.webp" alt="쿠키런 크럼블"></div>
@@ -354,11 +359,11 @@ footer{font-size:19px;padding:34px 24px}
 </div></header>
 <div class="bar"><div class="bar-in">
 <input type="search" id="q" placeholder="검색: 비겁이, 경던, 토벌전, 아레나, 마일리지...">
-<div class="tabs" id="tabs"><div class="tab on" data-t="deck"><div class="ti"><img src="assets/merc/mercenaryband_flagicon5.webp" alt=""></div><div><div class="tn">덱 모음</div><div class="td">편성 · 세팅</div></div></div><div class="tab" data-t="order"><div class="ti"><img src="assets/stat/icon_passive_attack.webp" alt=""></div><div><div class="tn">순서</div><div class="td">뭘 먼저 올리나</div></div></div><div class="tab" data-t="now"><div class="ti"><img src="assets/shop/icon_shop_stellarpoint_003.webp" alt=""></div><div><div class="tn">이번 주</div><div class="td">공식 패치 · 공지</div></div></div><div class="tab" data-t="new"><div class="ti"><img src="assets/badge/tssr.webp" alt=""></div><div><div class="tn">신규·루머</div><div class="td">확정 아님</div></div></div></div>
+<div class="tabs" id="tabs"><div class="tab on" data-t="deck"><div class="ti"><img src="assets/ck/c4013.webp" alt=""></div><div><div class="tn">덱 모음</div><div class="td">편성 · 세팅</div></div></div><div class="tab" data-t="order"><div class="ti"><img src="assets/stat/icon_passive_attack.webp" alt=""></div><div><div class="tn">순서</div><div class="td">뭘 먼저 올리나</div></div></div><div class="tab" data-t="now"><div class="ti"><img src="assets/shop/icon_shop_stellarpoint_003.webp" alt=""></div><div><div class="tn">이번 주</div><div class="td">공식 패치 · 공지</div></div></div><div class="tab" data-t="new"><div class="ti"><img src="assets/badge/tssr.webp" alt=""></div><div><div class="tn">신규·루머</div><div class="td">확정 아님</div></div></div></div>
 </div></div>
 <div class="wrap">
+<div class="cntline"><span class="cnt" id="cnt"></span></div>
 <div class="subtabs" id="subtabs"><div class="subtab on" data-s="stage">스테이지</div><div class="subtab" data-s="exp">경험치던전</div><div class="subtab" data-s="daily">일일던전</div><div class="subtab" data-s="crumble">크럼블던전</div><div class="subtab" data-s="raid">토벌전</div><div class="subtab" data-s="arena">아레나</div></div>
-<div class="headline"><h2 id="htitle">덱 모음</h2><span class="cnt" id="cnt"></span></div>
 <div class="grid" id="grid"><article class="lc" data-tab="deck" data-sub="stage" data-id="d1" data-q="체리콜라 연타 방치덱 스테이지 자동 클리어 / 방치 우유 브시커 피노누아 체콜 마카롱 석류 피겨 치케 호밀 딸크 허브 들개 갓방울 핫도그 전지멜로우 피노누아(연타 시너지 주는 쪽) + 체리콜라(받는 쪽) 조합이 핵심 메론소다 대신 호밀을 쓴 이유 — 메소는 붙어야 딜이 나오고 호밀은 멀어도 맞음. 오토 비중이 높으면 호밀 비겁이에서 막히면 딸기크레페 → 이온맛, 연타펫 → 피감펫 쫄몹 맵에선 체리콜라가 잡몹을 때려 딜을 버림 → 전갈로 교체 브라이트시커 5성 아니어도 굴러감">
 <div class="lt"><span class="pill c">스테이지</span><span class="pill s">ND러너</span><span class="pill">09-11</span></div>
 <h3>체리콜라 연타 방치덱</h3><div class="lboss">스테이지 자동 클리어 / 방치</div>
@@ -709,7 +714,6 @@ function apply(){
     var ok = k.dataset.tab===T && (T!=='deck'||k.dataset.sub===S) && (!Q||k.dataset.q.toLowerCase().indexOf(Q)>=0);
     k.style.display = ok?'':'none'; if(ok) n++; }
   document.getElementById('cnt').textContent=n+'장';
-  document.getElementById('htitle').textContent=TN[T];
   document.getElementById('empty').style.display=n?'none':'block';
   document.getElementById('subtabs').style.display = T==='deck'?'flex':'none';
 }
