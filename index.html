@@ -141,7 +141,27 @@ footer b{color:var(--dim)}
  .mini{grid-template-columns:repeat(6,1fr)}
  .dt h2{font-size:24px}
  #ovbody{padding:16px 12px 80px}
-}</style>
+}
+@media(max-width:620px){
+ .sect{flex-wrap:wrap;align-items:center;gap:8px}
+ .sect h2{font-size:22px;flex:1 1 auto;white-space:nowrap}
+ .sect .cnt{font-size:14px}
+ .nav{gap:6px}
+ .bar{padding:11px 0 9px}
+ input[type=search]{padding:13px 15px;font-size:16.5px}
+}
+@media(max-width:400px){ .sect h2{font-size:20px} .mini{gap:4px} }
+
+@media(max-width:620px){
+ .sect{flex-wrap:wrap;align-items:center;gap:8px}
+ .sect h2{font-size:22px;flex:1 1 auto;white-space:nowrap}
+ .sect .cnt{font-size:14px}
+ .nav{gap:6px}
+ .bar{padding:11px 0 9px}
+ input[type=search]{padding:13px 15px;font-size:16.5px}
+}
+@media(max-width:400px){ .sect h2{font-size:20px} .mini{gap:4px} }
+</style>
 </head><body>
 <header class="hero"><div class="hero-in">
 <h1>🍪 <span class="g">창천</span> 크럼블 정보</h1>
