@@ -4,8 +4,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta name="build" content="1789914274613">
-<meta name="theme-color" content="#141029">
+<meta name="build" content="1789914485264">
+<meta name="theme-color" content="#170f26">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>창천 · 쿠키런 크럼블 정보</title>
 <style>
@@ -15,12 +15,13 @@
 
 /* ============ 색상 (딥 퍼플 야간) ============ */
 :root{
- --bg:#141029;        --bg2:#1c1740;
- --card:#211b४a;      --card:#211b4a;      --card2:#2b2360;
- --line:#3a2f74;      --line2:#4d3f96;
- --txt:#eef0ff;       --dim:#b6b3e0;       --dim2:#8681b8;
- --acc:#7de3ff;       --acc2:#c9f5ff;      --gold:#ffd54a;
- --yt:#ff7b8a;        --cafe:#6ee7a8;      --dc:#ffd54a;  --off:#6ee7a8; --dm:#c9a6ff;
+ --bg:#170f26;        --bg2:#1f1533;
+ --card:#251a3d;      --card2:#31234f;
+ --line:#42305e;      --line2:#5a4080;
+ --txt:#f6eefc;       --dim:#c3b0d8;       --dim2:#8f7aad;
+ --acc:#ffcf5c;       --acc2:#ffe8ae;      --gold:#ffcf5c;
+ --mag:#e8709e;
+ --yt:#ff8a9c;        --cafe:#7ee0a8;      --dc:#ffcf5c;  --off:#7ee0a8; --dm:#c9a6ff;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth}
@@ -28,23 +29,23 @@ body{background:var(--bg);color:var(--txt);line-height:1.7;font-weight:450;
  font-family:'SUIT','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;
  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 img{image-rendering:auto}
-a.ln{color:var(--acc);text-decoration:none;border-bottom:1px dotted #4a7f96}
+a.ln{color:var(--acc);text-decoration:none;border-bottom:1px dotted #8a6b2e}
 
 /* ============ 레이아웃 ============ */
 .wrap{max-width:1700px;margin:0 auto;padding:0 24px 120px}
-header.hero{background:linear-gradient(165deg,#3a2470 0%,#231a50 45%,var(--bg) 100%);
+header.hero{background:linear-gradient(165deg,#4a2a6e 0%,#2a1c45 48%,var(--bg) 100%);
  border-bottom:1px solid var(--line);padding:40px 0 34px}
 .hero-in{max-width:1700px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:28px}
 .hero-in .logo img{object-fit:contain;filter:drop-shadow(0 6px 18px rgba(0,0,0,.6))}
 h1{font-family:'CookieRun',sans-serif;letter-spacing:-1.5px;line-height:1.05;margin-bottom:10px}
-h1 .g{color:var(--acc);text-shadow:0 0 28px rgba(125,227,255,.45)}
+h1 .g{color:var(--acc);text-shadow:0 0 28px rgba(255,207,92,.45)}
 .sub{color:var(--dim)}
 .bar{position:sticky;top:0;z-index:40;background:rgba(20,16,41,.97);backdrop-filter:blur(12px);
  border-bottom:1px solid var(--line);padding:18px 0 0}
 .bar-in{max-width:1700px;margin:0 auto;padding:0 24px}
 input[type=search]{width:100%;background:var(--card);border:2px solid var(--line2);color:var(--txt);
  outline:none;font-family:inherit}
-input[type=search]:focus{border-color:var(--acc);box-shadow:0 0 0 4px rgba(125,227,255,.15)}
+input[type=search]:focus{border-color:var(--acc);box-shadow:0 0 0 4px rgba(255,207,92,.15)}
 input[type=search]::placeholder{color:var(--dim2)}
 
 /* ============ 탭 ============ */
@@ -55,7 +56,7 @@ input[type=search]::placeholder{color:var(--dim2)}
  background-size:cover;background-position:center;opacity:.14}
 .tab::after{content:'';position:absolute;inset:0;z-index:-1;
  background:linear-gradient(120deg,rgba(33,27,74,.9),rgba(27,22,60,.78))}
-.tab.on{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc),0 6px 22px rgba(125,227,255,.2)}
+.tab.on{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc),0 6px 22px rgba(255,207,92,.2)}
 .tab.on::before{opacity:.3}
 .tab.on::after{background:linear-gradient(120deg,rgba(61,46,128,.88),rgba(40,31,90,.8))}
 .tab .ti{border-radius:20%;position:relative;overflow:hidden;flex-shrink:0;
@@ -66,13 +67,13 @@ input[type=search]::placeholder{color:var(--dim2)}
  white-space:normal;word-break:keep-all}
 .tab.on .tn{color:var(--acc2)}
 .tab .td{color:var(--dim2);line-height:1.25;white-space:normal;word-break:keep-all}
-.tab.on .td{color:#9fd8ea}
+.tab.on .td{color:#e8c88a}
 
 /* ============ 서브탭 ============ */
 .subtabs{display:flex;flex-wrap:wrap}
 .subtab{font-family:'CookieRun',sans-serif;background:var(--card);border:2px solid var(--line2);
  color:var(--dim);border-radius:999px;cursor:pointer;white-space:nowrap}
-.subtab.on{background:var(--acc);border-color:var(--acc);color:#0d2733}
+.subtab.on{background:var(--acc);border-color:var(--acc);color:#3a2405}
 .cntline{display:flex;justify-content:flex-end}
 .cnt{color:var(--dim2)}
 
@@ -95,8 +96,8 @@ input[type=search]::placeholder{color:var(--dim2)}
 
 /* ============ 뱃지 ============ */
 .pill{border-radius:999px;background:var(--card2);color:var(--dim);border:1px solid var(--line2);font-weight:600}
-.pill.c{color:var(--acc);border-color:#3f6b80;background:#123642}
-.pill.s{color:var(--gold);border-color:#6b5a1e;background:#3a3010}
+.pill.c{color:var(--acc);border-color:#7a5a1e;background:#3d2c0d}
+.pill.s{color:var(--mag);border-color:#7a3d58;background:#3d1b2a}
 .pill.ok{background:#14402c;color:#6ee7a8;border-color:#2b6b4c}
 .datebadge{background:#2b2360;color:#c9b6ff;border-color:#4d3f96;font-weight:700}
 
@@ -162,7 +163,7 @@ ul.prev li:before{content:'';position:absolute;border-radius:50%;background:#6a5
 .dhd{display:flex;flex-wrap:wrap;position:relative;z-index:1}
 .dtop{display:flex;align-items:center;position:relative;z-index:1}
 .boss{background:#1b1540;color:var(--acc2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.ans,.lead{background:linear-gradient(90deg,#2a3f52,#1e2740);border-left:solid var(--acc);
+.ans,.lead{background:linear-gradient(90deg,#4a3618,#2c2038);border-left:solid var(--acc);
  font-family:'CookieRun',sans-serif;line-height:1.45}
 .sec{}
 .lbl{color:var(--dim2)}
@@ -179,21 +180,21 @@ ul.notes li b{color:var(--acc2)}
 .warn{background:#3d2a52;border:1px solid #6b4a8c;color:#f0cfff;line-height:1.55}
 .steps{display:grid}
 .step{background:var(--bg2);border:1px solid var(--line2);text-align:center;position:relative}
-.step .sn{position:absolute;background:var(--acc);color:#0d2733;border-radius:50%;
+.step .sn{position:absolute;background:var(--acc);color:#3a2405;border-radius:50%;
  display:flex;align-items:center;justify-content:center;font-family:'CookieRun',sans-serif;z-index:3}
 .step .stile{margin:0 auto}
 .step .sl{font-family:'CookieRun',sans-serif;color:var(--acc2)}
 .step .sw{color:var(--dim);line-height:1.45}
 .orow{display:flex;flex-wrap:wrap;align-items:flex-start}
 .ostep{position:relative;flex-shrink:0}
-.onum{position:absolute;background:var(--acc);color:#0d2733;border-radius:50%;
+.onum{position:absolute;background:var(--acc);color:#3a2405;border-radius:50%;
  font-family:'CookieRun',sans-serif;display:flex;align-items:center;justify-content:center;z-index:6;
  box-shadow:0 2px 6px rgba(0,0,0,.5)}
 /* 룬세공 */
 .rtile{flex-shrink:0}
 .optrow{display:flex;flex-wrap:wrap}
 .oc{position:relative;background:linear-gradient(180deg,#2b2360,#1e1848);border:2px solid var(--line2);text-align:center}
-.oc .on{position:absolute;background:var(--acc);color:#0d2733;border-radius:50%;
+.oc .on{position:absolute;background:var(--acc);color:#3a2405;border-radius:50%;
  font-family:'CookieRun',sans-serif;display:flex;align-items:center;justify-content:center}
 .oc img{object-fit:contain;display:block;margin:0 auto}
 .oc .ono{display:flex;align-items:center;justify-content:center;margin:0 auto;
@@ -227,7 +228,7 @@ ul.notes li b{color:var(--acc2)}
 a.srcbtn.foot2{display:flex;width:100%;background:linear-gradient(180deg,#332a72,#241d58)}
 a.srcbtn.foot2 .ba{margin-left:auto}
 footer{border-top:2px solid var(--line);color:var(--dim2);line-height:1.9}
-#top{position:fixed;z-index:50;background:var(--acc);color:#0d2733;border:none;border-radius:50%;
+#top{position:fixed;z-index:50;background:var(--acc);color:#3a2405;border:none;border-radius:50%;
  cursor:pointer;box-shadow:0 6px 22px rgba(0,0,0,.6);display:none}
 #empty{text-align:center;color:var(--dim2)}
 
@@ -239,14 +240,14 @@ footer{border-top:2px solid var(--line);color:var(--dim2);line-height:1.9}
   grid-template-rows:auto 1fr;min-height:100vh;font-size:17px}
  /* 좌측 사이드바 */
  header.hero{grid-column:1;grid-row:1;padding:32px 28px 24px;border-bottom:none;
-  background:linear-gradient(170deg,#3a2470,#231a50 60%,#1c1740)}
+  background:linear-gradient(170deg,#4a2a6e,#2a1c45 60%,#1f1533)}
  .hero-in{display:block;padding:0;max-width:none;margin:0;width:100%}
  .hero-in .logo{margin-bottom:14px}
  .hero-in .logo img{width:min(100%,260px)}
  h1{font-size:clamp(46px,3.4vw,68px);margin-bottom:8px}
  .sub{font-size:14px;line-height:1.55}
  .bar{grid-column:1;grid-row:2;position:sticky;top:0;align-self:start;
-  background:linear-gradient(180deg,#1c1740,#161230);border-bottom:none;border-right:1px solid var(--line);
+  background:linear-gradient(180deg,#1f1533,#180f28);border-bottom:none;border-right:1px solid var(--line);
   padding:22px 28px 30px;height:calc(100vh - 0px);overflow-y:auto}
  .bar-in{padding:0;max-width:none;margin:0;width:100%}
  input[type=search]{font-size:17px;padding:14px 18px;border-radius:14px}
@@ -566,7 +567,7 @@ ul.notes li,ul.prev li,.warn,.step .sw,footer,.srcbtn .bl{
 </div></header>
 <div class="bar"><div class="bar-in">
 <input type="search" id="q" placeholder="검색: 비겁이, 경던, 토벌전, 치케덱, 마일리지...">
-<div class="tabs" id="tabs"><div class="tab on" data-t="deck" style="--tbg:url('assets/bg/adventurenote_cookie4020_001.webp')"><div class="ti"><img src="assets/ck/c4013.webp" alt=""></div><div><div class="tn">덱 모음</div><div class="td">편성과 세팅</div></div></div><div class="tab" data-t="tip" style="--tbg:url('assets/bg/adventurenote_cookie4013_002.webp')"><div class="ti"><img src="assets/stat/icon_passive_focus.webp" alt=""></div><div><div class="tn">팁</div><div class="td">알아두면 좋은 것</div></div></div><div class="tab" data-t="rune" style="--tbg:url('assets/bg/adventurenote_cookie4010_002.webp')"><div class="ti"><img src="assets/stat/icon_passive_damagemultiplier.webp" alt=""></div><div><div class="tn">룬세공</div><div class="td">쿠키별 추천 옵션</div></div></div><div class="tab" data-t="order" style="--tbg:url('assets/bg/adventurenote_cookie4013_001.webp')"><div class="ti"><img src="assets/stat/icon_passive_attack.webp" alt=""></div><div><div class="tn">순서</div><div class="td">뭘 먼저 올리나</div></div></div><div class="tab" data-t="now" style="--tbg:url('assets/bg/adventurenote_normal_001.webp')"><div class="ti"><img src="assets/shop/icon_shop_stellarpoint_003.webp" alt=""></div><div><div class="tn">이번 주</div><div class="td">공식 패치·공지</div></div></div><div class="tab" data-t="new" style="--tbg:url('assets/bg/adventurenote_cookie4012_001.webp')"><div class="ti"><img src="assets/badge/tssr.webp" alt=""></div><div><div class="tn">신규·루머</div><div class="td">확정 아님</div></div></div></div>
+<div class="tabs" id="tabs"><div class="tab on" data-t="new" style="--tbg:url('assets/bg/adventurenote_cookie4012_001.webp')"><div class="ti"><img src="assets/badge/tssr.webp" alt=""></div><div><div class="tn">신규·루머</div><div class="td">확정 아님</div></div></div><div class="tab" data-t="now" style="--tbg:url('assets/bg/adventurenote_normal_001.webp')"><div class="ti"><img src="assets/shop/icon_shop_stellarpoint_003.webp" alt=""></div><div><div class="tn">이번 주</div><div class="td">공식 패치·공지</div></div></div><div class="tab" data-t="deck" style="--tbg:url('assets/bg/adventurenote_cookie4020_001.webp')"><div class="ti"><img src="assets/ck/c4013.webp" alt=""></div><div><div class="tn">덱 모음</div><div class="td">편성과 세팅</div></div></div><div class="tab" data-t="tip" style="--tbg:url('assets/bg/adventurenote_cookie4013_002.webp')"><div class="ti"><img src="assets/stat/icon_passive_focus.webp" alt=""></div><div><div class="tn">팁</div><div class="td">알아두면 좋은 것</div></div></div><div class="tab" data-t="rune" style="--tbg:url('assets/bg/adventurenote_cookie4010_002.webp')"><div class="ti"><img src="assets/stat/icon_passive_damagemultiplier.webp" alt=""></div><div><div class="tn">룬세공</div><div class="td">쿠키별 추천 옵션</div></div></div><div class="tab" data-t="order" style="--tbg:url('assets/bg/adventurenote_cookie4013_001.webp')"><div class="ti"><img src="assets/stat/icon_passive_attack.webp" alt=""></div><div><div class="tn">순서</div><div class="td">뭘 먼저 올리나</div></div></div></div>
 </div></div>
 <div class="wrap">
 <div class="subtabs" id="dsub"><div class="subtab on" data-s="stage">스테이지</div><div class="subtab" data-s="exp">경험치던전</div><div class="subtab" data-s="daily">일일던전</div><div class="subtab" data-s="crumble">크럼블던전</div><div class="subtab" data-s="raid">토벌전</div><div class="subtab" data-s="arena">아레나</div></div>
@@ -915,6 +916,7 @@ ul.notes li,ul.prev li,.warn,.step .sw,footer,.srcbtn .bl{
 <div class="lt"><span class="pill datebadge">09-20</span><span class="pill">공식 티저</span><span class="pill">성능 미공개</span></div>
 <div class="hrow"><div class="bossic"><img loading="lazy" src="assets/badge/tssr.webp" alt=""></div><div><h3>신규 쿠키 — 바리공주맛 (TSSR, 티저 공개)</h3></div></div>
 <div class="lans">→ 9/20 공식 티저로 유출이 사실상 확인됐습니다</div>
+<div class="shotbox"><img loading="lazy" src="img/teaser_0920.webp" alt="9월 20일 공식 티저"></div>
 <div class="pics"><div class="pi"><img loading="lazy" src="assets/badge/tssr.webp" alt=""><span>TSSR 표기</span></div><div class="pi"><img loading="lazy" src="assets/ck/c4012.webp" alt=""><span>오방이 동반 상승설</span></div></div>
 <ul class="prev"><li>9월 20일(일) 공식 X 티저 — "오늘따라 영혼들의 흐느낌이 크게 들리네." 해시태그 #신규쿠키</li><li>9/18 유출 이미지의 스킬명이 「영혼 인도」였는데 티저 문구가 정확히 이를 가리킴</li><li>유출 이미지 표기 — 바리공주맛 쿠키 [TSSR], 나뭇가지를 휘둘러 피해를 주고 돌격형 아군을 강화</li></ul><div class="lsrc"><a class="srcbtn bdc" href="https://gall.dcinside.com/mgallery/board/view/?id=projectcc&no=70948" target="_blank" rel="noopener"><img src="assets/logo/dc.webp" alt=""><span class="bl">유저 검증</span><span class="ba">원문 →</span></a></div><div class="more">자세히 보기 →</div></article>
 <article class="lc" data-tab="new" data-sub="all" data-id="c12" data-q="추석 신규 쿠키 — 달토끼 (SSR 추정) 바리공주 티저가 맞았으니 같은 출처인 달토끼도 신뢰도가 올랐습니다 9/17 유출 정리글에서 추석 SSR은 달토끼로 언급된 쿠키 9/20 바리공주 티저가 사실로 확인되면서 같은 출처의 달토끼도 신빙성이 크게 올랐습니다 갤 추측 — 광역 공격력 감소(공깎) 디버프 계열 달토끼 디버프 = 공깎보다 좋음이라는 반응이 다수 명랑한 쿠키를 대체할 수 있다는 의견도 있음 전작 이력상 달토끼는 쿠키런 시리즈에서 여러 번 등장한 캐릭터 성능·등급·출시일 전부 미공개">
@@ -1421,6 +1423,7 @@ ul.notes li,ul.prev li,.warn,.step .sw,footer,.srcbtn .bl{
 <div class="dt" id="d-c5"><div class="dhd"><span class="pill datebadge">09-20</span><span class="pill">공식 티저</span><span class="pill">성능 미공개</span></div>
 <div class="dtop"><div class="bossic big"><img src="assets/badge/tssr.webp" alt=""></div><h2>신규 쿠키 — 바리공주맛 (TSSR, 티저 공개)</h2></div>
 <div class="ans">→ 9/20 공식 티저로 유출이 사실상 확인됐습니다</div>
+<div class="sec"><div class="shotbox"><img loading="lazy" src="img/teaser_0920.webp" alt="9월 20일 공식 티저"></div><div class="lbl" style="margin-top:10px">9월 20일 공식 티저</div></div>
 <div class="setup"><div class="stg" style="display:flex;align-items:center;gap:14px"><img src="assets/badge/tssr.webp" style="width:62px;height:62px;object-fit:contain">TSSR 표기</div><div class="stg" style="display:flex;align-items:center;gap:14px"><img src="assets/ck/c4012.webp" style="width:62px;height:62px;object-fit:contain">오방이 동반 상승설</div></div>
 <ul class="notes"><li><b>9월 20일(일) 공식 X 티저</b> — "오늘따라 <b>영혼들의 흐느낌</b>이 크게 들리네." 해시태그 #신규쿠키</li><li>9/18 유출 이미지의 스킬명이 <b>「영혼 인도」</b>였는데 티저 문구가 정확히 이를 가리킴</li><li>유출 이미지 표기 — <b>바리공주맛 쿠키 [TSSR]</b>, 나뭇가지를 휘둘러 피해를 주고 <b>돌격형 아군을 강화</b></li><li>티저 이미지는 실루엣 + 초코왕방울 배경</li><li>갤 여론 — 딜러가 아니라 <b>돌격형 버퍼</b>로 추정. <span class="ic"><img loading="lazy" src="assets/ck/c4012.webp" alt="">오븐방랑자</span>가 두 번째 버프를 받아 같이 뜬다는 제보</li><li><b>다만 돌격 메타가 당장 오진 않을 것</b>이라는 의견이 다수. <span class="ic"><img loading="lazy" src="assets/ck/c4019.webp" alt="">우유맛</span> 버프량을 넘어야 의미가 있다는 지적</li><li>공식 성능·출시일은 아직 미공개. 패치노트는 9/22 새벽 예상</li></ul>
 <div class="warn">티저로 존재가 확인된 것이지 성능·스킬 수치는 전혀 공개되지 않았습니다. 유출 이미지 기준 추정입니다.</div>
@@ -1511,7 +1514,7 @@ ul.notes li,ul.prev li,.warn,.step .sw,footer,.srcbtn .bl{
 <div class="srcs"><a class="srcbtn bdc" href="https://gall.dcinside.com/mgallery/board/view/?id=projectcc&no=63339" target="_blank" rel="noopener"><img src="assets/logo/dc.webp" alt=""><span class="bl">유저 검증</span><span class="ba">원문 →</span></a><a class="srcbtn bdc" href="https://gall.dcinside.com/mgallery/board/view/?id=projectcc&no=63443" target="_blank" rel="noopener"><img src="assets/logo/dc.webp" alt=""><span class="bl">유저 검증</span><span class="ba">원문 →</span></a></div></div></div></div>
 <button id="top" onclick="window.scrollTo({top:0})">↑</button>
 <script>
-var T='deck', S='stage', ST='stage', SR='지원', Q='';
+var T='new', S='stage', ST='stage', SR='지원', Q='';
 function apply(){ var cs=document.querySelectorAll('#grid .lc'), n=0;
   var searching = Q.length>0;
   var TN={deck:'덱 모음',tip:'팁',rune:'룬세공',order:'순서',now:'이번 주',new:'신규·루머'};
