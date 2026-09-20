@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta name="build" content="1789914177167">
+<meta name="build" content="1789914274613">
 <meta name="theme-color" content="#141029">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>창천 · 쿠키런 크럼블 정보</title>
@@ -477,10 +477,10 @@ ul.notes li,ul.prev li,.warn,.step .sw,footer,.srcbtn .bl{
 
 
 /* ============ PC 카드 열 수 ============ */
-@media(min-width:1100px){ .grid{grid-template-columns:repeat(2,1fr);gap:20px} }
-@media(min-width:1500px){ .grid{grid-template-columns:repeat(3,1fr);gap:20px} }
-@media(min-width:2000px){ .grid{grid-template-columns:repeat(4,1fr);gap:22px} }
-@media(min-width:2600px){ .grid{grid-template-columns:repeat(5,1fr)} }
+
+
+
+
 /* 좁은 열에 맞춘 카드 내부 축소 */
 @media(min-width:1100px){
  .lc{padding:20px 20px 15px;border-radius:22px}
@@ -532,6 +532,30 @@ ul.notes li,ul.prev li,.warn,.step .sw,footer,.srcbtn .bl{
 @media(max-width:1099px){
  .lc .shotbox img{aspect-ratio:16/11;border-radius:13px}
  .dt .shotbox img{max-height:70vh}
+}
+
+/* ============ 카드 자동 열: 최소 폭 보장 ============ */
+@media(min-width:1100px){
+ .grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,490px),1fr));gap:20px}
+ /* 카드 여백 줄여 내부 그림 키우기 */
+ .lc{padding:18px 18px 14px}
+ .deckbox{padding:11px}
+ .ckgrid{gap:5px}
+ .ctile .cn{font-size:clamp(11px,21cqw,26px)!important}
+ .ptile .pn{font-size:clamp(9px,18cqw,20px)!important}
+ .petrow{gap:5px}
+ .ptile{width:58px}
+ .bossic{width:66px;height:66px}
+ /* 스샷 여백 제거 → 이미지 최대 */
+ .lc .shotbox{margin-left:-18px;margin-right:-18px;width:calc(100% + 36px)}
+ .lc .shotbox img{border-radius:14px;border-width:1px}
+ /* 재화 아이콘 */
+ .pi{min-width:100px;padding:11px 11px 9px}
+ .pi img{width:60px;height:60px} .pi span{font-size:13px}
+ /* 슈가룬 옵션 */
+ .oc{min-width:76px;padding:10px 10px 8px}
+ .oc img,.oc .ono{width:44px;height:44px} .oc .ol{font-size:16px}
+ .rtile{width:70px} .ostep{width:74px}
 }
 </style>
 </head><body>
