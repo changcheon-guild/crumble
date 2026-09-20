@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta name="build" content="1789912553173">
+<meta name="build" content="1789912773506">
 <meta name="theme-color" content="#141029">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>창천 · 쿠키런 크럼블 정보</title>
@@ -218,8 +218,8 @@ ul.notes li b{color:var(--acc2)}
 .srcbtn .bl{font-family:'CookieRun',sans-serif;color:#efeaff;line-height:1.2}
 .srcbtn .bd{color:var(--dim2)}
 .srcbtn .ba{font-family:'CookieRun',sans-serif;color:var(--acc)}
-
-
+.srcbtn .ba.off{color:#6a5fae}
+.srcbtn.dis{opacity:.55}
 .srcbtn.byt{border-color:#8c3a48}.srcbtn.byt:hover{border-color:#ff7b8a}
 .srcbtn.bcafe,.srcbtn.boff{border-color:#2c6b4c}.srcbtn.bcafe:hover,.srcbtn.boff:hover{border-color:#6ee7a8}
 .srcbtn.bdc{border-color:#6b5a1e}.srcbtn.bdc:hover{border-color:#ffd54a}
@@ -419,6 +419,18 @@ footer{border-top:2px solid var(--line);color:var(--dim2);line-height:1.9}
  .lc h3{font-size:23px}
  h1{font-size:38px} .hero-in .logo img{width:120px}
 }
+
+/* ============ 한글 줄바꿈 (단어 단위) ============ */
+h1,h2,h3,.sub,.lans,.lboss,.ans,.lead,.boss,.nvt,.nvs,
+ul.prev li,ul.notes li,.stg,.warn,.step .sw,.step .sl,
+.pi span,.oc .ol,.tab .tn,.tab .td,.subtab,.pill,.more,
+.srcbtn .bl,.srcbtn .ba,.cn,.pn,footer,#empty,.lbl,.plabel{
+ word-break:keep-all;overflow-wrap:break-word;
+}
+/* 아주 긴 영문·숫자는 예외적으로 끊기 허용 */
+ul.notes li,ul.prev li,.stg,.warn{overflow-wrap:anywhere}
+/* 쿠키 이름표는 한 줄 유지 */
+.ctile .cn,.ptile .pn{word-break:keep-all;overflow-wrap:normal}
 </style>
 </head><body>
 <header class="hero"><div class="hero-in">
