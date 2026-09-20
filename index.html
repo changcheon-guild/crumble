@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta name="build" content="1789912773506">
+<meta name="build" content="1789912861908">
 <meta name="theme-color" content="#141029">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>창천 · 쿠키런 크럼블 정보</title>
@@ -431,6 +431,22 @@ ul.prev li,ul.notes li,.stg,.warn,.step .sw,.step .sl,
 ul.notes li,ul.prev li,.stg,.warn{overflow-wrap:anywhere}
 /* 쿠키 이름표는 한 줄 유지 */
 .ctile .cn,.ptile .pn{word-break:keep-all;overflow-wrap:normal}
+
+/* ============ 줄바꿈 균등 배분 ============ */
+/* 짧은 문장: 줄 길이를 고르게 (한 글자만 떨어지는 것 방지) */
+h1,h2,h3,.lc h3,.dt h2,.lans,.ans,.lead,.lboss,.boss,
+.nvt,.nvs,.sub,.step .sl,.pi span,.oc .ol,.tab .tn,.tab .td,
+.stg,.lbl,.plabel,#empty{
+ text-wrap:balance;
+}
+/* 긴 문단: 마지막 줄에 고아 단어 방지 */
+ul.notes li,ul.prev li,.warn,.step .sw,footer,.srcbtn .bl{
+ text-wrap:pretty;
+}
+/* balance 미지원 브라우저 대비 */
+@supports not (text-wrap:balance){
+ .lc h3,.dt h2,.lans,.ans,.lead{max-width:22em}
+}
 </style>
 </head><body>
 <header class="hero"><div class="hero-in">
