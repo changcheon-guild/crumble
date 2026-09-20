@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta name="build" content="1789912995771">
+<meta name="build" content="1789913194921">
 <meta name="theme-color" content="#141029">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>창천 · 쿠키런 크럼블 정보</title>
@@ -468,6 +468,70 @@ ul.notes li,ul.prev li,.warn,.step .sw,footer,.srcbtn .bl{
 /* 그림 영역을 이름표 높이에 맞춰 조정 */
 .ctile>img.p{height:70%}
 .ptile img{inset:2% 5% 30% 5%;height:68%}
+
+/* ============ 넓은 화면 대응: 폭에 비례해 확대 ============ */
+@media(min-width:821px){
+ .wrap,.hero-in,.bar-in{max-width:none;padding-left:clamp(24px,3vw,80px);padding-right:clamp(24px,3vw,80px)}
+ .wrap{padding-bottom:140px}
+ body{font-size:clamp(26px,1.55vw,42px)}
+ h1{font-size:clamp(108px,6.6vw,190px)}
+ .sub{font-size:clamp(24px,1.45vw,38px)}
+ input[type=search]{font-size:clamp(30px,1.8vw,48px);padding:clamp(22px,1.3vw,34px) clamp(28px,1.7vw,44px)}
+ .tab{min-width:clamp(300px,25vw,640px);padding:clamp(20px,1.25vw,34px) clamp(26px,1.6vw,44px)}
+ .tab .ti{width:clamp(84px,5vw,140px);height:clamp(84px,5vw,140px)}
+ .tab .tn{font-size:clamp(34px,2.05vw,54px)}
+ .tab .td{font-size:clamp(21px,1.25vw,33px)}
+ .subtab{font-size:clamp(28px,1.7vw,44px);padding:clamp(15px,.9vw,24px) clamp(32px,2vw,52px)}
+ .grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,780px),1fr));gap:clamp(32px,2vw,56px)}
+ .lc{padding:clamp(40px,2.4vw,64px) clamp(40px,2.4vw,64px) clamp(30px,1.8vw,48px)}
+ .lc h3{font-size:clamp(50px,3vw,82px)}
+ .lboss{font-size:clamp(31px,1.85vw,50px)}
+ .lans{font-size:clamp(38px,2.25vw,60px)}
+ .pill{font-size:clamp(24px,1.45vw,38px);padding:clamp(9px,.55vw,15px) clamp(24px,1.45vw,38px)}
+ ul.prev li{font-size:clamp(27px,1.6vw,43px);padding-left:clamp(32px,1.9vw,50px)}
+ .more{font-size:clamp(33px,2vw,52px)}
+ .bossic{width:clamp(140px,8.5vw,230px);height:clamp(140px,8.5vw,230px)}
+ .bossic.big{width:clamp(180px,11vw,300px);height:clamp(180px,11vw,300px)}
+ .deckbox{padding:clamp(24px,1.5vw,40px)}
+ .petrow .plabel{font-size:clamp(28px,1.7vw,45px)}
+ .ptile{width:clamp(124px,7.6vw,210px)}
+ .pi{min-width:clamp(226px,14vw,380px);padding:clamp(24px,1.5vw,40px)}
+ .pi img{width:clamp(130px,8vw,220px);height:clamp(130px,8vw,220px)}
+ .pi span{font-size:clamp(25px,1.5vw,40px)}
+ .oc{min-width:clamp(140px,8.8vw,240px);padding:clamp(18px,1.15vw,30px) clamp(22px,1.4vw,36px) clamp(14px,.9vw,24px)}
+ .oc img,.oc .ono{width:clamp(74px,4.6vw,124px);height:clamp(74px,4.6vw,124px)}
+ .oc .ol{font-size:clamp(29px,1.75vw,46px)}
+ .rtile{width:clamp(136px,8.3vw,225px)} .rtile.big{width:clamp(186px,11.4vw,310px)}
+ .ostep{width:clamp(145px,8.9vw,240px)}
+ .srcbtn{padding:clamp(14px,.9vw,24px) clamp(24px,1.45vw,38px) clamp(14px,.9vw,24px) clamp(16px,1vw,26px)}
+ .srcbtn img{width:clamp(50px,3vw,82px);height:clamp(50px,3vw,82px)}
+ .srcbtn .bl{font-size:clamp(27px,1.6vw,43px)}
+ .srcbtn .bd{font-size:clamp(22px,1.35vw,36px)}
+ .srcbtn .ba{font-size:clamp(25px,1.5vw,40px)}
+ /* 상세 */
+ #ovbody{max-width:min(1900px,88vw);padding:clamp(40px,2.4vw,64px) clamp(28px,1.8vw,56px) 160px}
+ .dt h2{font-size:clamp(62px,3.7vw,100px);padding-left:clamp(40px,2.4vw,64px);padding-right:clamp(40px,2.4vw,64px)}
+ .dhd,.dtop,.sec,.setup,ul.notes,.srcs,.steps{padding-left:clamp(40px,2.4vw,64px);padding-right:clamp(40px,2.4vw,64px)}
+ .boss{font-size:clamp(33px,2vw,52px);padding:clamp(24px,1.5vw,40px) clamp(40px,2.4vw,64px)}
+ .ans,.lead{font-size:clamp(42px,2.5vw,66px);margin-left:clamp(40px,2.4vw,64px);margin-right:clamp(40px,2.4vw,64px);padding:clamp(30px,1.9vw,48px) clamp(34px,2.1vw,54px)}
+ ul.notes li{font-size:clamp(33px,2vw,52px);padding-left:clamp(40px,2.4vw,62px)}
+ .ic{font-size:clamp(30px,1.8vw,48px)}
+ .ic img{width:clamp(56px,3.4vw,90px);height:clamp(56px,3.4vw,90px)}
+ .stg{font-size:clamp(31px,1.85vw,49px);padding:clamp(24px,1.5vw,38px) clamp(30px,1.8vw,46px)}
+ .stg b{font-size:clamp(22px,1.35vw,36px)}
+ .warn{font-size:clamp(30px,1.8vw,47px);margin-left:clamp(40px,2.4vw,64px);margin-right:clamp(40px,2.4vw,64px);padding:clamp(30px,1.85vw,46px)}
+ .steps{grid-template-columns:repeat(auto-fit,minmax(clamp(200px,12vw,320px),1fr))}
+ .step .stile{width:clamp(180px,11vw,290px)}
+ .step .sl{font-size:clamp(31px,1.85vw,49px)}
+ .step .sw{font-size:clamp(23px,1.4vw,37px)}
+ a.srcbtn.foot2 .bl{font-size:clamp(34px,2.1vw,55px)}
+ a.srcbtn.foot2 .ba{font-size:clamp(29px,1.75vw,46px)}
+ a.srcbtn.foot2 img{width:clamp(70px,4.3vw,115px);height:clamp(70px,4.3vw,115px)}
+ #ovbar button{font-size:clamp(29px,1.75vw,46px)}
+ footer{font-size:clamp(23px,1.4vw,37px)}
+ #top{width:clamp(78px,4.8vw,130px);height:clamp(78px,4.8vw,130px);font-size:clamp(35px,2.1vw,56px)}
+ #empty{font-size:clamp(28px,1.7vw,44px)}
+}
 </style>
 </head><body>
 <header class="hero"><div class="hero-in">
