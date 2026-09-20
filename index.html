@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta name="build" content="1789914046930">
+<meta name="build" content="1789914177167">
 <meta name="theme-color" content="#141029">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>창천 · 쿠키런 크럼블 정보</title>
@@ -516,6 +516,22 @@ ul.notes li,ul.prev li,.warn,.step .sw,footer,.srcbtn .bl{
 @media(min-width:2000px){
  .lc h3{font-size:26px} .lans{font-size:20px} ul.prev li{font-size:16px}
  .bossic{width:68px;height:68px} .ptile{width:58px}
+}
+
+/* ============ 이미지 크롭 ============ */
+/* 목록 카드: 16:10으로 잘라서 보여줌 */
+.lc .shotbox{padding:0;border:none;background:none}
+.lc .shotbox img{
+ width:100%;aspect-ratio:16/10;object-fit:cover;object-position:center 38%;
+ border-radius:16px;border:2px solid var(--line2);display:block}
+/* 상세: 전체 보이되 화면을 넘지 않게 */
+.dt .shotbox img{
+ width:auto;max-width:100%;max-height:78vh;object-fit:contain;margin:0 auto;
+ border-radius:14px;border:1px solid var(--line2);display:block;background:#0d0a1c}
+.dt .shotbox{align-items:center}
+@media(max-width:1099px){
+ .lc .shotbox img{aspect-ratio:16/11;border-radius:13px}
+ .dt .shotbox img{max-height:70vh}
 }
 </style>
 </head><body>
