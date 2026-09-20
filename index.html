@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta name="build" content="1789879978691">
+<meta name="build" content="1789880116004">
 <meta name="theme-color" content="#161210">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>창천 · 쿠키런 크럼블 정보</title>
@@ -2014,17 +2014,28 @@ h1 .g{color:var(--acc);text-shadow:0 4px 18px rgba(249,173,80,.35)}
 <script>
 var T='deck', S='stage', ST='stage', SR='지원', Q='';
 function apply(){ var cs=document.querySelectorAll('#grid .lc'), n=0;
+  var searching = Q.length>0;
+  var TN={deck:'덱 모음',tip:'팁',rune:'룬세공',order:'순서',now:'이번 주',new:'신규·루머'};
+  var hits={};
   for(var i=0;i<cs.length;i++){ var k=cs[i];
-    var sb = T==='deck'?S:(T==='tip'?ST:(T==='rune'?SR:null));
-    var ok = k.dataset.tab===T && (sb===null||k.dataset.sub===sb) && (!Q||k.dataset.q.toLowerCase().indexOf(Q)>=0);
+    var ok;
+    if(searching){ ok = k.dataset.q.toLowerCase().indexOf(Q)>=0 || TN[k.dataset.tab].toLowerCase().indexOf(Q)>=0;
+      if(ok) hits[k.dataset.tab]=(hits[k.dataset.tab]||0)+1; }
+    else { var sb = T==='deck'?S:(T==='tip'?ST:(T==='rune'?SR:null));
+      ok = k.dataset.tab===T && (sb===null||k.dataset.sub===sb); }
     k.style.display=ok?'':'none'; if(ok) n++; }
-  document.getElementById('cnt').textContent=n+'장';
+  var cnt=document.getElementById('cnt');
+  if(searching){
+    var parts=[]; for(var t in TN){ if(hits[t]) parts.push(TN[t]+' '+hits[t]); }
+    cnt.innerHTML = '<b style="color:var(--acc)">전체 탭 검색</b> · 총 '+n+'장' + (parts.length?' <span style="color:var(--dim2)">('+parts.join(' · ')+')</span>':'');
+  } else cnt.textContent=n+'장';
   document.getElementById('empty').style.display=n?'none':'block';
-  document.getElementById('dsub').style.display = T==='deck'?'flex':'none';
-  document.getElementById('tsub').style.display = T==='tip'?'flex':'none';
-  document.getElementById('rsub').style.display = T==='rune'?'flex':'none'; }
+  document.getElementById('dsub').style.display = (!searching&&T==='deck')?'flex':'none';
+  document.getElementById('tsub').style.display = (!searching&&T==='tip')?'flex':'none';
+  document.getElementById('rsub').style.display = (!searching&&T==='rune')?'flex':'none';
+  var tb=document.getElementById('tabs'); tb.style.opacity = searching? '.45' : '1'; }
 document.getElementById('tabs').addEventListener('click',function(e){ var t=e.target.closest('.tab'); if(!t)return;
-  this.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')}); t.classList.add('on'); T=t.dataset.t; S='stage'; ST='stage'; SR='지원';
+  this.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')}); t.classList.add('on'); T=t.dataset.t; S='stage'; ST='stage'; SR='지원'; Q=''; document.getElementById('q').value='';
   document.querySelectorAll('#dsub .subtab,#tsub .subtab').forEach(function(x){ x.classList.toggle('on', x.dataset.s==='stage'); });
   document.querySelectorAll('#rsub .subtab').forEach(function(x){ x.classList.toggle('on', x.dataset.s==='지원'); });
   apply(); window.scrollTo(0,0); });
