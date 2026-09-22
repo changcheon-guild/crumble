@@ -4,14 +4,13 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta name="build" content="1790091181340">
+<meta name="build" content="1790093173159">
 <meta name="theme-color" content="#c98a44">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="icon" type="image/webp" href="assets/ck/c4013.webp">
 <link rel="apple-touch-icon" href="assets/ck/c4013.webp">
 <title>창천 · 쿠키런 크럼블 정보</title>
-<style>
-/* ============ 폰트 ============ */
+<style>/* ============ 폰트 ============ */
 @font-face{font-family:'CookieRun';src:url('font/CookieRun-Regular.woff') format('woff');font-display:swap}
 @font-face{font-family:'SUIT';src:url('font/SUIT-Variable.woff2') format('woff2-variations');font-weight:100 900;font-display:swap}
 
@@ -968,6 +967,39 @@ footer::after{
  .ftrib{font-size:15px;left:16px} .ftrib span{padding:5px 17px}
  .ftchip{font-size:13px}
 }
+
+/* ============ 장비창 배치 ============ */
+.eqwrap{margin:18px 0}
+.eqgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.eqcell{background:linear-gradient(180deg,#fff6e4,#ffe2b2);border:3px solid var(--ink);border-radius:14px;
+ padding:13px 12px 14px;box-shadow:inset 0 2px 0 rgba(255,255,255,.95),0 4px 0 var(--ink2);
+ display:flex;flex-direction:column;gap:9px;min-width:0}
+.eqpos{font-size:12px;font-weight:800;color:var(--dim);letter-spacing:.3px;
+ display:flex;align-items:center;gap:6px;word-break:keep-all}
+.eqpos::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--acc);
+ border:2px solid var(--ink);flex:none}
+.eqhead{display:flex;align-items:center;gap:9px;flex-wrap:wrap;min-width:0}
+.eqics{display:flex;gap:3px;flex:none}
+.eqics img{width:38px;height:38px;object-fit:contain;filter:drop-shadow(0 2px 0 rgba(74,36,16,.3))}
+.eqnm{font-family:CookieRun,sans-serif;font-size:17px;color:var(--ink);word-break:keep-all;
+ text-wrap:balance;line-height:1.2}
+.eqopt{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.eqo{background:var(--gold);border:2.5px solid var(--ink);border-radius:9px;padding:5px 10px;
+ font-size:14px;font-weight:800;color:var(--ink);white-space:nowrap;
+ box-shadow:inset 0 2px 0 rgba(255,255,255,.7),0 3px 0 var(--goldsh)}
+.eqo.alt{background:var(--card2)}
+.eqo.no{background:#e3cdb4;color:var(--dim);text-decoration:line-through;box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 3px 0 #b08c66}
+.eqplus{font-weight:900;color:var(--ink2);font-size:15px;flex:none}
+.eqnote{font-size:13px;color:var(--dim);line-height:1.5;word-break:keep-all;text-wrap:pretty}
+.eqcap{font-family:CookieRun,sans-serif;font-size:15px;color:var(--ink);margin:0 0 10px;
+ display:flex;align-items:center;gap:8px;word-break:keep-all}
+.eqcap img{width:26px;height:26px;object-fit:contain}
+@media(max-width:600px){
+ .eqgrid{grid-template-columns:1fr;gap:10px}
+ .eqics img{width:33px;height:33px}
+ .eqnm{font-size:16px}
+ .eqo{font-size:13px;padding:4px 9px}
+}
 </style>
 </head><body>
 <header class="hero"><div class="hero-in">
@@ -988,7 +1020,7 @@ footer::after{
 <div class="subtabs" id="tsub" style="display:none"><div class="subtab on" data-s="stage" style="--sc:#f2851a;--sc2:#ffbb6e"><img src="assets/icon/item/icon_crumble_level_exp.webp" alt="">스테이지</div><div class="subtab" data-s="exp" style="--sc:#4fb81f;--sc2:#a6e878"><img src="assets/icon/item/icon_cookie_exp.webp" alt="">경험치던전</div><div class="subtab" data-s="crumble" style="--sc:#1f9ad6;--sc2:#8fd9f5"><img src="assets/icon/item/icon_ticket_crumbledungeon.webp" alt="">크럼블던전</div><div class="subtab" data-s="daily" style="--sc:#f2a415;--sc2:#ffe07a"><img src="assets/icon/item/icon_ticket_dailydungeon_coin.webp" alt="">일일던전</div><div class="subtab" data-s="raid" style="--sc:#8a5fe0;--sc2:#c9a6ff"><img src="assets/icon/item/icon_guild_medal.webp" alt="">토벌전</div><div class="subtab" data-s="arena" style="--sc:#e0455f;--sc2:#ff9aa6"><img src="assets/icon/item/icon_arena_trophy.webp" alt="">아레나</div><div class="subtab" data-s="set" style="--sc:#3f7ad6;--sc2:#9dc2f5"><img src="assets/icon/plate/icon_plate_sword.webp" alt="">세팅</div><div class="subtab" data-s="pay" style="--sc:#d6249a;--sc2:#ff9ade"><img src="assets/icon/item/icon_crystal.webp" alt="">과금</div></div>
 <div class="cntline"><span class="cnt" id="cnt"></span></div>
 <div class="grid" id="grid">
-<article class="lc" data-tab="gear" data-sub="all" data-id="g1" data-q="프리셋은 2개만 만드세요 스테이지 전용 프리셋은 만들 필요가 없습니다 토벌전 프리셋 하나, 아레나 프리셋 하나. 이 둘이면 끝입니다 스테이지는 토벌셋으로 그대로 밀립니다. 따로 맞추면 반죽만 낭비합니다 카페 공략 원문 — 스테용 프리셋을 맞출 필요가 전혀 없다가 결론입니다. 명중이 낮아도 토벌용 장비로 충분히 다 밀어집니다 해당 글쓴이는 명중 장비가 하나도 없이 스테이지를 밀고 있습니다 아레나용으로 잘 뽑아두면 나중에 토벌용으로 넘어갑니다. 오븐 레벨이 오르면 어차피 다시 뽑아야 하니, 아레나부터 맞추고 그걸 토벌로 내리는 순서가 효율적입니다">
+<article class="lc" data-tab="gear" data-sub="all" data-id="g1" data-q="프리셋은 2개만 만드세요 스테이지 전용 프리셋은 만들 필요가 없습니다 토벌전 프리셋 하나, 아레나 프리셋 하나. 이 둘이면 끝입니다 스테이지는 토벌셋으로 그대로 밀립니다. 따로 맞추면 반죽만 낭비합니다 카페 공략 원문 — 스테용 프리셋을 맞출 필요가 전혀 없다가 결론입니다. 명중이 낮아도 토벌용 장비로 충분히 다 밀어집니다 해당 글쓴이는 명중 장비가 하나도 없이 스테이지를 밀고 있습니다 아레나용으로 잘 뽑아두면 나중에 토벌용으로 넘어갑니다. 오븐 레벨이 오르면 어차피 다시 뽑아야 하니, 아레나부터 맞추고 그걸 토벌로 내리는 순서가 효율적입니다 ">
 <div class="lt"><span class="pill datebadge">09-23</span><span class="pill">장비</span><span class="pill">핵심</span></div>
 <div class="hrow"><div class="bossic"><img loading="lazy" src="assets/stat/icon_passive_gb_equipmentsellitem.webp" alt=""></div><div><h3>프리셋은 2개만 만드세요</h3></div></div>
 <div class="lans">→ 스테이지 전용 프리셋은 만들 필요가 없습니다</div>
@@ -996,23 +1028,23 @@ footer::after{
 <ul class="prev"><li>토벌전 프리셋 하나, 아레나 프리셋 하나. 이 둘이면 끝입니다</li><li>스테이지는 토벌셋으로 그대로 밀립니다. 따로 맞추면 반죽만 낭비합니다</li><li>카페 공략 원문 — "스테용 프리셋을 맞출 필요가 전혀 없다가 결론입니다. 명중이 낮아도 토벌용 장비로 충분히 다 밀어집니다"</li></ul>
 <div class="lsrc"><a class="srcbtn bcafe" href="https://cafe.naver.com/ccrumble/44711" target="_blank" rel="noopener"><img src="assets/logo/cafe.webp" alt=""><span class="bl">카페 공략</span><span class="ba">원문 →</span></a><a class="srcbtn bdc" href="https://gall.dcinside.com/mgallery/board/view/?id=projectcc&no=71651" target="_blank" rel="noopener"><img src="assets/logo/dc.webp" alt=""><span class="bl">유저 검증</span><span class="ba">원문 →</span></a></div>
 <div class="more">자세히 보기 →</div></article>
-<article class="lc" data-tab="gear" data-sub="all" data-id="g2" data-q="토벌전·스테이지 겸용 세팅 무기는 스킬증폭과 치명피해, 장신구는 스킬가속 위주입니다 무기 (검·활·지팡이) — 스킬증폭 + 치명피해 장신구 윗줄 — 스킬가속 + 스킬증폭 장신구 아랫줄 — 스킬가속 + 피해감소 방어구 — 피해감소 + 체력 명중·집중은 넣지 마세요. 투력만 깎아먹습니다 토벌전 265배를 찍은 유저 세팅도 같은 구조입니다 — 왼쪽위 스증/치피, 오른쪽위 스가/스증, 왼쪽아래 피감/체력, 오른쪽아래 스가/피감 치명피해를 쓰는 이유 — 치명확률은 상대 치명저항에 상쇄되지만, 치명피해는 터지기만 하면 배율이 그대로 들어갑니다">
+<article class="lc" data-tab="gear" data-sub="all" data-id="g2" data-q="토벌전·스테이지 겸용 세팅 무기는 스킬증폭과 치명피해, 장신구는 스킬가속 위주입니다 장비창 위치 그대로 위 배치를 따라가면 됩니다 명중·집중은 넣지 마세요. 투력만 깎아먹습니다 토벌전 265배를 찍은 유저도 같은 구조입니다 치명피해를 쓰는 이유 — 치명확률은 상대 치명저항에 상쇄되지만, 치명피해는 터지기만 하면 배율이 그대로 들어갑니다 몬스터는 치명저항을 두르지 않으므로 토벌·스테이지만 볼 거면 치명확률도 괜찮습니다 왼쪽 위 무기 스킬증폭 + 치명피해 치명확률도 가능하지만 아레나와 겸용할 거면 치명피해로 통일하세요 오른쪽 위 장신구 윗줄 스킬가속 + 스킬증폭 스킬가속이 실전 딜 1위입니다 왼쪽 아래 방어구 치명저항 + 피해감소 토벌전은 체력도 가능합니다 오른쪽 아래 장신구 아랫줄 스킬가속 + 피해감소 ">
 <div class="lt"><span class="pill datebadge">09-23</span><span class="pill">장비</span><span class="pill">토벌전</span></div>
 <div class="hrow"><div class="bossic"><img loading="lazy" src="assets/equip/icon_equip_sword_09.webp" alt=""></div><div><h3>토벌전·스테이지 겸용 세팅</h3></div></div>
 <div class="lans">→ 무기는 스킬증폭과 치명피해, 장신구는 스킬가속 위주입니다</div>
-<div class="pics"><div class="pi"><img loading="lazy" src="assets/stat/icon_passive_damagemultiplier.webp" alt=""><span>스킬증폭</span></div><div class="pi"><img loading="lazy" src="assets/stat/icon_passive_critdamage.webp" alt=""><span>치명피해</span></div><div class="pi"><img loading="lazy" src="assets/stat/icon_passive_skillcooldown.webp" alt=""><span>스킬가속</span></div></div>
-<ul class="prev"><li>무기 (검·활·지팡이) — 스킬증폭 + 치명피해</li><li>장신구 윗줄 — 스킬가속 + 스킬증폭</li><li>장신구 아랫줄 — 스킬가속 + 피해감소</li></ul>
+<div class="pics"><div class="pi"><span style="font-size:12px;line-height:1.35">무기<br><b>스킬증폭 · 치명피해</b></span></div><div class="pi"><span style="font-size:12px;line-height:1.35">장신구 윗줄<br><b>스킬가속 · 스킬증폭</b></span></div><div class="pi"><span style="font-size:12px;line-height:1.35">방어구<br><b>치명저항 · 피해감소</b></span></div><div class="pi"><span style="font-size:12px;line-height:1.35">장신구 아랫줄<br><b>스킬가속 · 피해감소</b></span></div></div>
+<ul class="prev"><li>장비창 위치 그대로 위 배치를 따라가면 됩니다</li><li>명중·집중은 넣지 마세요. 투력만 깎아먹습니다</li><li>토벌전 265배를 찍은 유저도 같은 구조입니다</li></ul>
 <div class="lsrc"><a class="srcbtn bdc" href="https://gall.dcinside.com/mgallery/board/view/?id=projectcc&no=70802" target="_blank" rel="noopener"><img src="assets/logo/dc.webp" alt=""><span class="bl">유저 검증</span><span class="ba">원문 →</span></a><a class="srcbtn bdc" href="https://gall.dcinside.com/mgallery/board/view/?id=projectcc&no=71166" target="_blank" rel="noopener"><img src="assets/logo/dc.webp" alt=""><span class="bl">유저 검증</span><span class="ba">원문 →</span></a></div>
 <div class="more">자세히 보기 →</div></article>
-<article class="lc" data-tab="gear" data-sub="all" data-id="g3" data-q="아레나 세팅 — 방어구가 갈립니다 토벌셋에서 방어구 체력을 치명저항으로 바꾸고 명중 한 줄을 챙깁니다 무기 — 스킬증폭 + 치명피해 + 명중 한 줄 방어구 — 피해감소 + 치명저항 (토벌셋의 체력 자리) 장신구 — 스킬가속 + 스킬증폭 / 스킬가속 + 피해감소 피해야 할 옵션 — 깡스탯, 저항, 집중 명중은 무기에서만 챙기세요. 장신구는 스킬증폭·스킬가속을 뽑아야 하는 자리입니다 전 서버 통합 와글와글 아레나가 열리면서 회피 세팅이 늘어날 전망입니다. 명중 한 줄의 가치가 올라갑니다 난 치명저항 다 달려있고 장신구 아랫줄 하나만 피해감소, 나머지는 싹 다 치명저항 → 토벌 종결세팅이라는 평가를 받은 구성입니다">
+<article class="lc" data-tab="gear" data-sub="all" data-id="g3" data-q="아레나 세팅 — 방어구가 갈립니다 토벌셋에서 방어구 체력을 치명저항으로 바꾸고 명중 한 줄을 챙깁니다 토벌셋에서 딱 두 가지만 바꿉니다 — 방어구 체력을 치명저항으로, 무기에 명중 한 줄 명중은 무기에서만 챙기세요. 장신구는 스킬증폭·스킬가속을 뽑아야 하는 자리입니다 전 서버 통합 와글와글 아레나가 열리면서 회피 세팅이 늘어날 전망입니다. 명중 한 줄의 가치가 올라갑니다 치명저항 다 달려있고 장신구 아랫줄 하나만 피해감소, 나머지는 싹 다 치명저항 → 토벌 종결세팅이라는 평가를 받은 구성입니다 아레나용으로 잘 뽑아두면 그대로 토벌용이 됩니다. 아레나부터 맞추는 편이 효율적입니다 왼쪽 위 무기 스킬증폭 + 치명피해 + 명중 한 줄 명중은 여기서만 챙기세요 오른쪽 위 장신구 윗줄 스킬가속 + 스킬증폭 왼쪽 아래 방어구 치명저항 + 피해감소 토벌셋의 체력 자리를 치명저항으로 바꿉니다 오른쪽 아래 장신구 아랫줄 스킬가속 + 피해감소 아레나에서 피할 옵션 깡스탯 저항 집중 ">
 <div class="lt"><span class="pill datebadge">09-23</span><span class="pill">장비</span><span class="pill">아레나</span></div>
 <div class="hrow"><div class="bossic"><img loading="lazy" src="assets/prof/contentsshop_arena_0001.webp" alt=""></div><div><h3>아레나 세팅 — 방어구가 갈립니다</h3></div></div>
 <div class="lans">→ 토벌셋에서 방어구 체력을 치명저항으로 바꾸고 명중 한 줄을 챙깁니다</div>
-<div class="pics"><div class="pi"><img loading="lazy" src="assets/stat/icon_passive_critdefense.webp" alt=""><span>치명저항</span></div><div class="pi"><img loading="lazy" src="assets/icon/research/icon_passive_accuracy.webp" alt=""><span>명중 한 줄</span></div><div class="pi"><img loading="lazy" src="assets/stat/icon_passive_avoidance.webp" alt=""><span>회피 대응</span></div></div>
-<ul class="prev"><li>무기 — 스킬증폭 + 치명피해 + 명중 한 줄</li><li>방어구 — 피해감소 + 치명저항 (토벌셋의 체력 자리)</li><li>장신구 — 스킬가속 + 스킬증폭 / 스킬가속 + 피해감소</li></ul>
+<div class="pics"><div class="pi"><span style="font-size:12px;line-height:1.35">무기<br><b>스킬증폭 · 치명피해 · 명중 한 줄</b></span></div><div class="pi"><span style="font-size:12px;line-height:1.35">장신구 윗줄<br><b>스킬가속 · 스킬증폭</b></span></div><div class="pi"><span style="font-size:12px;line-height:1.35">방어구<br><b>치명저항 · 피해감소</b></span></div><div class="pi"><span style="font-size:12px;line-height:1.35">장신구 아랫줄<br><b>스킬가속 · 피해감소</b></span></div></div>
+<ul class="prev"><li>토벌셋에서 딱 두 가지만 바꿉니다 — 방어구 체력을 치명저항으로, 무기에 명중 한 줄</li><li>명중은 무기에서만 챙기세요. 장신구는 스킬증폭·스킬가속을 뽑아야 하는 자리입니다</li><li>전 서버 통합 와글와글 아레나가 열리면서 회피 세팅이 늘어날 전망입니다. 명중 한 줄의 가치가 올라갑니다</li></ul>
 <div class="lsrc"><a class="srcbtn bdc" href="https://gall.dcinside.com/mgallery/board/view/?id=projectcc&no=71166" target="_blank" rel="noopener"><img src="assets/logo/dc.webp" alt=""><span class="bl">유저 검증</span><span class="ba">원문 →</span></a><a class="srcbtn bdc" href="https://gall.dcinside.com/mgallery/board/view/?id=projectcc&no=67526" target="_blank" rel="noopener"><img src="assets/logo/dc.webp" alt=""><span class="bl">유저 검증</span><span class="ba">원문 →</span></a><a class="srcbtn bdc" href="https://gall.dcinside.com/mgallery/board/view/?id=projectcc&no=71228" target="_blank" rel="noopener"><img src="assets/logo/dc.webp" alt=""><span class="bl">유저 검증</span><span class="ba">원문 →</span></a></div>
 <div class="more">자세히 보기 →</div></article>
-<article class="lc" data-tab="gear" data-sub="all" data-id="g4" data-q="치명 계열 3종 구분 치확·치피·치저는 완전히 다른 능력치입니다 치확 = 치명확률 — 치명타가 터질 확률. 상대 치명저항에 상쇄됩니다 치피 = 치명피해 — 치명타 배율. 상쇄되지 않습니다 치저 = 치명저항 — 상대의 치명확률을 깎습니다. 아레나 방어 핵심 피감 = 피해감소 — 받는 피해 자체를 줄입니다 공략에서 그냥 치명이라고 쓰면 대부분 치명피해를 뜻합니다 안 그래도 치명저항 때문에 치명확률이 힘 빠지는데 — 아레나에서 치명확률 대신 치명피해를 택하는 이유입니다 몬스터는 치명저항을 두르지 않으므로 토벌·스테이지에서는 치명확률도 쓸 만합니다. 다만 아레나와 겸용할 거면 치명피해로 통일하는 편이 낫습니다">
+<article class="lc" data-tab="gear" data-sub="all" data-id="g4" data-q="치명 계열 3종 구분 치확·치피·치저는 완전히 다른 능력치입니다 치확 = 치명확률 — 치명타가 터질 확률. 상대 치명저항에 상쇄됩니다 치피 = 치명피해 — 치명타 배율. 상쇄되지 않습니다 치저 = 치명저항 — 상대의 치명확률을 깎습니다. 아레나 방어 핵심 피감 = 피해감소 — 받는 피해 자체를 줄입니다 공략에서 그냥 치명이라고 쓰면 대부분 치명피해를 뜻합니다 안 그래도 치명저항 때문에 치명확률이 힘 빠지는데 — 아레나에서 치명확률 대신 치명피해를 택하는 이유입니다 몬스터는 치명저항을 두르지 않으므로 토벌·스테이지에서는 치명확률도 쓸 만합니다. 다만 아레나와 겸용할 거면 치명피해로 통일하는 편이 낫습니다 ">
 <div class="lt"><span class="pill datebadge">09-23</span><span class="pill">장비</span><span class="pill">용어</span></div>
 <div class="hrow"><div class="bossic"><img loading="lazy" src="assets/stat/icon_passive_critrate.webp" alt=""></div><div><h3>치명 계열 3종 구분</h3></div></div>
 <div class="lans">→ 치확·치피·치저는 완전히 다른 능력치입니다</div>
@@ -1020,7 +1052,7 @@ footer::after{
 <ul class="prev"><li>치확 = 치명확률 — 치명타가 터질 확률. 상대 치명저항에 상쇄됩니다</li><li>치피 = 치명피해 — 치명타 배율. 상쇄되지 않습니다</li><li>치저 = 치명저항 — 상대의 치명확률을 깎습니다. 아레나 방어 핵심</li></ul>
 <div class="lsrc"><a class="srcbtn bdc" href="https://gall.dcinside.com/mgallery/board/view/?id=projectcc&no=71228" target="_blank" rel="noopener"><img src="assets/logo/dc.webp" alt=""><span class="bl">유저 검증</span><span class="ba">원문 →</span></a><a class="srcbtn bdc" href="https://gall.dcinside.com/mgallery/board/view/?id=projectcc&no=67526" target="_blank" rel="noopener"><img src="assets/logo/dc.webp" alt=""><span class="bl">유저 검증</span><span class="ba">원문 →</span></a></div>
 <div class="more">자세히 보기 →</div></article>
-<article class="lc" data-tab="gear" data-sub="all" data-id="g5" data-q="명중은 콘텐츠마다 다릅니다 메인 스테이지는 700대로도 충분하고, 아레나만 한 줄 필요합니다 메인 스테이지 — 거의 필요 없습니다. 실전 증언이 일치합니다 ㄴ 명중 700으로 263 미는 중 / 678로 270대 미는 중 / 800으로 230~260 미는 중 ㄴ 6~700에 55% 좀 넘는 투력으로 235 잘 밀림 토벌전 — 불필요합니다. 스킬증폭·치명피해가 압도적입니다 아레나 — 한 줄은 챙기세요. 회피 세팅 상대가 늘고 있습니다 판단 기준 — 명중 자체는 700이어도 충분해서, 명중이 투력을 오히려 떨구는 시점부터 안 찍으면 됩니다 요구치가 1,100이라는 얘기가 돌지만 실측과 맞지 않습니다. 클라이언트의 회피 수치는 내부값이고, 실제 적중 공식은 아직 밝혀지지 않았습니다 단 하나의 반례 — 잡몹 구간이 너무 느려서 678에서 명중을 올렸더니 빨라졌다. 이게 해골물인지는 모르겠음. 본인도 확신하지 못했고 표본이 하나뿐입니다">
+<article class="lc" data-tab="gear" data-sub="all" data-id="g5" data-q="명중은 콘텐츠마다 다릅니다 메인 스테이지는 700대로도 충분하고, 아레나만 한 줄 필요합니다 메인 스테이지 — 거의 필요 없습니다. 실전 증언이 일치합니다 ㄴ 명중 700으로 263 미는 중 / 678로 270대 미는 중 / 800으로 230~260 미는 중 ㄴ 6~700에 55% 좀 넘는 투력으로 235 잘 밀림 토벌전 — 불필요합니다. 스킬증폭·치명피해가 압도적입니다 아레나 — 한 줄은 챙기세요. 회피 세팅 상대가 늘고 있습니다 판단 기준 — 명중 자체는 700이어도 충분해서, 명중이 투력을 오히려 떨구는 시점부터 안 찍으면 됩니다 요구치가 1,100이라는 얘기가 돌지만 실측과 맞지 않습니다. 클라이언트의 회피 수치는 내부값이고, 실제 적중 공식은 아직 밝혀지지 않았습니다 단 하나의 반례 — 잡몹 구간이 너무 느려서 678에서 명중을 올렸더니 빨라졌다. 이게 해골물인지는 모르겠음. 본인도 확신하지 못했고 표본이 하나뿐입니다 ">
 <div class="lt"><span class="pill datebadge">09-23</span><span class="pill">장비</span><span class="pill">명중</span></div>
 <div class="hrow"><div class="bossic"><img loading="lazy" src="assets/icon/research/icon_passive_accuracy.webp" alt=""></div><div><h3>명중은 콘텐츠마다 다릅니다</h3></div></div>
 <div class="lans">→ 메인 스테이지는 700대로도 충분하고, 아레나만 한 줄 필요합니다</div>
@@ -1028,7 +1060,7 @@ footer::after{
 <ul class="prev"><li>메인 스테이지 — 거의 필요 없습니다. 실전 증언이 일치합니다</li><li>ㄴ "명중 700으로 263 미는 중" / "678로 270대 미는 중" / "800으로 230~260 미는 중"</li><li>ㄴ "6~700에 55% 좀 넘는 투력으로 235 잘 밀림"</li></ul>
 <div class="lsrc"><a class="srcbtn bcafe" href="https://cafe.naver.com/ccrumble/44711" target="_blank" rel="noopener"><img src="assets/logo/cafe.webp" alt=""><span class="bl">카페 공략</span><span class="ba">원문 →</span></a><a class="srcbtn bdc" href="https://gall.dcinside.com/mgallery/board/view/?id=projectcc&no=72647" target="_blank" rel="noopener"><img src="assets/logo/dc.webp" alt=""><span class="bl">유저 검증</span><span class="ba">원문 →</span></a><a class="srcbtn bdc" href="https://gall.dcinside.com/mgallery/board/view/?id=projectcc&no=71799" target="_blank" rel="noopener"><img src="assets/logo/dc.webp" alt=""><span class="bl">유저 검증</span><span class="ba">원문 →</span></a></div>
 <div class="more">자세히 보기 →</div></article>
-<article class="lc" data-tab="gear" data-sub="all" data-id="g6" data-q="스킬가속은 스테이지에서도 최상위입니다 투력 수치는 낮아 보여도 실전 딜은 가장 높습니다 스테이지에서 스킬가속은 무옵션 아니냐는 의문이 있지만, 실전 평가는 정반대입니다 딜 측면에서는 스테이지에서도 최고다. 힐·보호막을 줄 때도 타이밍이 한 템포 빨라져서 결과가 달라진다 스킬을 한 번 더 쓸 수 있다는 게 핵심 스킬가속 6줄에 명중·집중 안 챙기고 35%로 248-30 비겁한 쿠키를 민 사람이 있다 치명저항이 주는 투력이 커서 수치상 밀려 보이지만, 표시 투력과 실전 딜은 다릅니다 정글전사 슈가룬을 스킬가속 14줄로 맞춰 토벌전 265배를 찍은 사례 — 그동안 스킬가속이 없어서 150G를 못 넘었다">
+<article class="lc" data-tab="gear" data-sub="all" data-id="g6" data-q="스킬가속은 스테이지에서도 최상위입니다 투력 수치는 낮아 보여도 실전 딜은 가장 높습니다 스테이지에서 스킬가속은 무옵션 아니냐는 의문이 있지만, 실전 평가는 정반대입니다 딜 측면에서는 스테이지에서도 최고다. 힐·보호막을 줄 때도 타이밍이 한 템포 빨라져서 결과가 달라진다 스킬을 한 번 더 쓸 수 있다는 게 핵심 스킬가속 6줄에 명중·집중 안 챙기고 35%로 248-30 비겁한 쿠키를 민 사람이 있다 치명저항이 주는 투력이 커서 수치상 밀려 보이지만, 표시 투력과 실전 딜은 다릅니다 정글전사 슈가룬을 스킬가속 14줄로 맞춰 토벌전 265배를 찍은 사례 — 그동안 스킬가속이 없어서 150G를 못 넘었다 ">
 <div class="lt"><span class="pill datebadge">09-23</span><span class="pill">장비</span><span class="pill">스킬가속</span></div>
 <div class="hrow"><div class="bossic"><img loading="lazy" src="assets/stat/icon_passive_skillcooldown.webp" alt=""></div><div><h3>스킬가속은 스테이지에서도 최상위입니다</h3></div></div>
 <div class="lans">→ 투력 수치는 낮아 보여도 실전 딜은 가장 높습니다</div>
@@ -1036,7 +1068,7 @@ footer::after{
 <ul class="prev"><li>"스테이지에서 스킬가속은 무옵션 아니냐"는 의문이 있지만, 실전 평가는 정반대입니다</li><li>"딜 측면에서는 스테이지에서도 최고다. 힐·보호막을 줄 때도 타이밍이 한 템포 빨라져서 결과가 달라진다"</li><li>"스킬을 한 번 더 쓸 수 있다는 게 핵심"</li></ul>
 <div class="lsrc"><a class="srcbtn bdc" href="https://gall.dcinside.com/mgallery/board/view/?id=projectcc&no=71380" target="_blank" rel="noopener"><img src="assets/logo/dc.webp" alt=""><span class="bl">유저 검증</span><span class="ba">원문 →</span></a><a class="srcbtn bdc" href="https://gall.dcinside.com/mgallery/board/view/?id=projectcc&no=70802" target="_blank" rel="noopener"><img src="assets/logo/dc.webp" alt=""><span class="bl">유저 검증</span><span class="ba">원문 →</span></a></div>
 <div class="more">자세히 보기 →</div></article>
-<article class="lc" data-tab="gear" data-sub="all" data-id="g7" data-q="깡공격력은 부위마다 가치가 다릅니다 부옵션 공격력은 약하지만 무기 주옵션은 다릅니다 깡공은 쓸모없다는 말은 절반만 맞습니다 깡공이 별로인 건 부옵션에 붙는 수치가 쥐꼬리라서 그런 거지, 무기 주옵션의 공격력은 큽니다 부옵션 공격력과 스킬증폭을 비교하면 스킬증폭이 이깁니다. 부옵 자리에서는 스킬증폭을 챙기세요 무기 강화는 계속 하세요. 주옵션 공격력은 별개입니다 책(지팡이)은 스킬증폭에 스킬가속까지 붙어서 스테이지 효율이 좋다는 평가가 있습니다">
+<article class="lc" data-tab="gear" data-sub="all" data-id="g7" data-q="깡공격력은 부위마다 가치가 다릅니다 부옵션 공격력은 약하지만 무기 주옵션은 다릅니다 깡공은 쓸모없다는 말은 절반만 맞습니다 깡공이 별로인 건 부옵션에 붙는 수치가 쥐꼬리라서 그런 거지, 무기 주옵션의 공격력은 큽니다 부옵션 공격력과 스킬증폭을 비교하면 스킬증폭이 이깁니다. 부옵 자리에서는 스킬증폭을 챙기세요 무기 강화는 계속 하세요. 주옵션 공격력은 별개입니다 책(지팡이)은 스킬증폭에 스킬가속까지 붙어서 스테이지 효율이 좋다는 평가가 있습니다 ">
 <div class="lt"><span class="pill datebadge">09-23</span><span class="pill">장비</span><span class="pill">오해</span></div>
 <div class="hrow"><div class="bossic"><img loading="lazy" src="assets/stat/icon_passive_attack.webp" alt=""></div><div><h3>깡공격력은 부위마다 가치가 다릅니다</h3></div></div>
 <div class="lans">→ 부옵션 공격력은 약하지만 무기 주옵션은 다릅니다</div>
@@ -1044,7 +1076,7 @@ footer::after{
 <ul class="prev"><li>"깡공은 쓸모없다"는 말은 절반만 맞습니다</li><li>"깡공이 별로인 건 부옵션에 붙는 수치가 쥐꼬리라서 그런 거지, 무기 주옵션의 공격력은 큽니다"</li><li>부옵션 공격력과 스킬증폭을 비교하면 스킬증폭이 이깁니다. 부옵 자리에서는 스킬증폭을 챙기세요</li></ul>
 <div class="lsrc"><a class="srcbtn bdc" href="https://gall.dcinside.com/mgallery/board/view/?id=projectcc&no=72391" target="_blank" rel="noopener"><img src="assets/logo/dc.webp" alt=""><span class="bl">유저 검증</span><span class="ba">원문 →</span></a></div>
 <div class="more">자세히 보기 →</div></article>
-<article class="lc" data-tab="gear" data-sub="all" data-id="g8" data-q="오븐 보조 옵션 5개 · 프리셋 변경 개선 장비가 뽑힌 상태에서도 프리셋을 바꿀 수 있게 됩니다 오븐 장비가 뽑힌 상태에서도 프리셋 변경이 가능해집니다. 업데이트 이전에 획득한 장비도 적용됩니다 오븐 장비 열기 시 보조 옵션을 최대 5개까지 선택할 수 있습니다 프리셋 슬롯이 늘어나는 것은 아닙니다. 프리셋 개선 이걸로 끝일 줄은 상상도 못했다는 반응이 나왔습니다 보조 옵션을 5개 다 채울지는 고민해볼 문제입니다. 선택지를 늘리면 원하는 옵션이 나올 확률은 오르지만 다른 옵션에 자리를 뺏길 수 있습니다 오븐은 점검이 끝난 15시 이후에 까세요.">
+<article class="lc" data-tab="gear" data-sub="all" data-id="g8" data-q="오븐 보조 옵션 5개 · 프리셋 변경 개선 장비가 뽑힌 상태에서도 프리셋을 바꿀 수 있게 됩니다 오븐 장비가 뽑힌 상태에서도 프리셋 변경이 가능해집니다. 업데이트 이전에 획득한 장비도 적용됩니다 오븐 장비 열기 시 보조 옵션을 최대 5개까지 선택할 수 있습니다 프리셋 슬롯이 늘어나는 것은 아닙니다. 프리셋 개선 이걸로 끝일 줄은 상상도 못했다는 반응이 나왔습니다 보조 옵션을 5개 다 채울지는 고민해볼 문제입니다. 선택지를 늘리면 원하는 옵션이 나올 확률은 오르지만 다른 옵션에 자리를 뺏길 수 있습니다 오븐은 점검이 끝난 15시 이후에 까세요. ">
 <div class="lt"><span class="pill datebadge">09-23</span><span class="pill">장비</span><span class="pill">9/23 패치</span></div>
 <div class="hrow"><div class="bossic"><img loading="lazy" src="assets/shop/icon_shop_ad_003.webp" alt=""></div><div><h3>오븐 보조 옵션 5개 · 프리셋 변경 개선</h3></div></div>
 <div class="lans">→ 장비가 뽑힌 상태에서도 프리셋을 바꿀 수 있게 됩니다</div>
@@ -1567,15 +1599,48 @@ footer::after{
 <div class="dhd"><span class="pill datebadge">09-23</span><span class="pill">장비</span><span class="pill">토벌전</span></div>
 <div class="dtop"><div class="bossic big"><img src="assets/equip/icon_equip_sword_09.webp" alt=""></div><h2>토벌전·스테이지 겸용 세팅</h2></div>
 <div class="ans">→ 무기는 스킬증폭과 치명피해, 장신구는 스킬가속 위주입니다</div>
-<div class="setup"><div class="stg" style="display:flex;align-items:center;gap:14px"><img src="assets/stat/icon_passive_damagemultiplier.webp" style="width:62px;height:62px;object-fit:contain">스킬증폭</div><div class="stg" style="display:flex;align-items:center;gap:14px"><img src="assets/stat/icon_passive_critdamage.webp" style="width:62px;height:62px;object-fit:contain">치명피해</div><div class="stg" style="display:flex;align-items:center;gap:14px"><img src="assets/stat/icon_passive_skillcooldown.webp" style="width:62px;height:62px;object-fit:contain">스킬가속</div></div>
-<ul class="notes"><li><b>무기 (검·활·지팡이)</b> — 스킬증폭 + <b>치명피해</b></li><li><b>장신구 윗줄</b> — 스킬가속 + 스킬증폭</li><li><b>장신구 아랫줄</b> — 스킬가속 + 피해감소</li><li><b>방어구</b> — 피해감소 + 체력</li><li><b>명중·집중은 넣지 마세요.</b> 투력만 깎아먹습니다</li><li>토벌전 <b>265배</b>를 찍은 유저 세팅도 같은 구조입니다 — 왼쪽위 스증/치피, 오른쪽위 스가/스증, 왼쪽아래 피감/체력, 오른쪽아래 스가/피감</li><li><b>치명피해를 쓰는 이유</b> — 치명확률은 상대 치명저항에 상쇄되지만, 치명피해는 터지기만 하면 배율이 그대로 들어갑니다</li></ul>
+<div class="eqwrap"><div class="eqgrid"><div class="eqcell">
+<div class="eqpos">왼쪽 위</div>
+<div class="eqhead"><div class="eqics"><img loading="lazy" src="assets/equip/icon_equip_sword_10.webp" alt=""><img loading="lazy" src="assets/equip/icon_equip_bow_10.webp" alt=""><img loading="lazy" src="assets/equip/icon_equip_staff_10.webp" alt=""></div><div class="eqnm">무기</div></div>
+<div class="eqopt"><span class="eqo">스킬증폭</span><span class="eqplus">+</span><span class="eqo">치명피해</span></div>
+<div class="eqnote">치명확률도 가능하지만 아레나와 겸용할 거면 치명피해로 통일하세요</div></div><div class="eqcell">
+<div class="eqpos">오른쪽 위</div>
+<div class="eqhead"><div class="eqics"><img loading="lazy" src="assets/equip/icon_equip_necklace_10.webp" alt=""><img loading="lazy" src="assets/equip/icon_equip_ring_10.webp" alt=""><img loading="lazy" src="assets/equip/icon_equip_brooch_10.webp" alt=""></div><div class="eqnm">장신구 윗줄</div></div>
+<div class="eqopt"><span class="eqo">스킬가속</span><span class="eqplus">+</span><span class="eqo">스킬증폭</span></div>
+<div class="eqnote">스킬가속이 실전 딜 1위입니다</div></div><div class="eqcell">
+<div class="eqpos">왼쪽 아래</div>
+<div class="eqhead"><div class="eqics"><img loading="lazy" src="assets/equip/icon_equip_helmet_10.webp" alt=""><img loading="lazy" src="assets/equip/icon_equip_armor_10.webp" alt=""><img loading="lazy" src="assets/equip/icon_equip_shield_10.webp" alt=""></div><div class="eqnm">방어구</div></div>
+<div class="eqopt"><span class="eqo">치명저항</span><span class="eqplus">+</span><span class="eqo">피해감소</span></div>
+<div class="eqnote">토벌전은 체력도 가능합니다</div></div><div class="eqcell">
+<div class="eqpos">오른쪽 아래</div>
+<div class="eqhead"><div class="eqics"><img loading="lazy" src="assets/equip/icon_equip_artifact_10.webp" alt=""><img loading="lazy" src="assets/equip/icon_equip_food_10.webp" alt=""><img loading="lazy" src="assets/equip/icon_equip_book_10.webp" alt=""></div><div class="eqnm">장신구 아랫줄</div></div>
+<div class="eqopt"><span class="eqo">스킬가속</span><span class="eqplus">+</span><span class="eqo">피해감소</span></div>
+</div></div></div>
+<ul class="notes"><li><b>장비창 위치 그대로</b> 위 배치를 따라가면 됩니다</li><li><b>명중·집중은 넣지 마세요.</b> 투력만 깎아먹습니다</li><li>토벌전 <b>265배</b>를 찍은 유저도 같은 구조입니다</li><li><b>치명피해를 쓰는 이유</b> — 치명확률은 상대 치명저항에 상쇄되지만, 치명피해는 터지기만 하면 배율이 그대로 들어갑니다</li><li>몬스터는 치명저항을 두르지 않으므로 토벌·스테이지만 볼 거면 치명확률도 괜찮습니다</li></ul>
 <div class="srcs"><a class="srcbtn bdc" href="https://gall.dcinside.com/mgallery/board/view/?id=projectcc&no=70802" target="_blank" rel="noopener"><img src="assets/logo/dc.webp" alt=""><span class="bl">유저 검증</span><span class="ba">원문 →</span></a><a class="srcbtn bdc" href="https://gall.dcinside.com/mgallery/board/view/?id=projectcc&no=71166" target="_blank" rel="noopener"><img src="assets/logo/dc.webp" alt=""><span class="bl">유저 검증</span><span class="ba">원문 →</span></a></div></div>
 <div class="dt" id="d-g3">
 <div class="dhd"><span class="pill datebadge">09-23</span><span class="pill">장비</span><span class="pill">아레나</span></div>
 <div class="dtop"><div class="bossic big"><img src="assets/prof/contentsshop_arena_0001.webp" alt=""></div><h2>아레나 세팅 — 방어구가 갈립니다</h2></div>
 <div class="ans">→ 토벌셋에서 방어구 체력을 치명저항으로 바꾸고 명중 한 줄을 챙깁니다</div>
-<div class="setup"><div class="stg" style="display:flex;align-items:center;gap:14px"><img src="assets/stat/icon_passive_critdefense.webp" style="width:62px;height:62px;object-fit:contain">치명저항</div><div class="stg" style="display:flex;align-items:center;gap:14px"><img src="assets/icon/research/icon_passive_accuracy.webp" style="width:62px;height:62px;object-fit:contain">명중 한 줄</div><div class="stg" style="display:flex;align-items:center;gap:14px"><img src="assets/stat/icon_passive_avoidance.webp" style="width:62px;height:62px;object-fit:contain">회피 대응</div></div>
-<ul class="notes"><li><b>무기</b> — 스킬증폭 + 치명피해 + <b>명중 한 줄</b></li><li><b>방어구</b> — 피해감소 + <b>치명저항</b> (토벌셋의 체력 자리)</li><li><b>장신구</b> — 스킬가속 + 스킬증폭 / 스킬가속 + 피해감소</li><li><b>피해야 할 옵션</b> — 깡스탯, 저항, 집중</li><li><b>명중은 무기에서만</b> 챙기세요. 장신구는 스킬증폭·스킬가속을 뽑아야 하는 자리입니다</li><li>전 서버 통합 <b>와글와글 아레나</b>가 열리면서 회피 세팅이 늘어날 전망입니다. 명중 한 줄의 가치가 올라갑니다</li><li>"난 치명저항 다 달려있고 장신구 아랫줄 하나만 피해감소, 나머지는 싹 다 치명저항" → <b>"토벌 종결세팅"</b>이라는 평가를 받은 구성입니다</li></ul>
+<div class="eqwrap"><div class="eqgrid"><div class="eqcell">
+<div class="eqpos">왼쪽 위</div>
+<div class="eqhead"><div class="eqics"><img loading="lazy" src="assets/equip/icon_equip_sword_10.webp" alt=""><img loading="lazy" src="assets/equip/icon_equip_bow_10.webp" alt=""><img loading="lazy" src="assets/equip/icon_equip_staff_10.webp" alt=""></div><div class="eqnm">무기</div></div>
+<div class="eqopt"><span class="eqo">스킬증폭</span><span class="eqplus">+</span><span class="eqo">치명피해</span><span class="eqplus">+</span><span class="eqo  alt">명중 한 줄</span></div>
+<div class="eqnote">명중은 여기서만 챙기세요</div></div><div class="eqcell">
+<div class="eqpos">오른쪽 위</div>
+<div class="eqhead"><div class="eqics"><img loading="lazy" src="assets/equip/icon_equip_necklace_10.webp" alt=""><img loading="lazy" src="assets/equip/icon_equip_ring_10.webp" alt=""><img loading="lazy" src="assets/equip/icon_equip_brooch_10.webp" alt=""></div><div class="eqnm">장신구 윗줄</div></div>
+<div class="eqopt"><span class="eqo">스킬가속</span><span class="eqplus">+</span><span class="eqo">스킬증폭</span></div>
+</div><div class="eqcell">
+<div class="eqpos">왼쪽 아래</div>
+<div class="eqhead"><div class="eqics"><img loading="lazy" src="assets/equip/icon_equip_helmet_10.webp" alt=""><img loading="lazy" src="assets/equip/icon_equip_armor_10.webp" alt=""><img loading="lazy" src="assets/equip/icon_equip_shield_10.webp" alt=""></div><div class="eqnm">방어구</div></div>
+<div class="eqopt"><span class="eqo">치명저항</span><span class="eqplus">+</span><span class="eqo">피해감소</span></div>
+<div class="eqnote">토벌셋의 체력 자리를 치명저항으로 바꿉니다</div></div><div class="eqcell">
+<div class="eqpos">오른쪽 아래</div>
+<div class="eqhead"><div class="eqics"><img loading="lazy" src="assets/equip/icon_equip_artifact_10.webp" alt=""><img loading="lazy" src="assets/equip/icon_equip_food_10.webp" alt=""><img loading="lazy" src="assets/equip/icon_equip_book_10.webp" alt=""></div><div class="eqnm">장신구 아랫줄</div></div>
+<div class="eqopt"><span class="eqo">스킬가속</span><span class="eqplus">+</span><span class="eqo">피해감소</span></div>
+</div></div></div><div class="eqwrap"><div class="eqcap"><img src="assets/stat/icon_passive_critdefense.webp" alt="">아레나에서 피할 옵션</div>
+<div class="eqopt"><span class="eqo no">깡스탯</span><span class="eqo no">저항</span><span class="eqo no">집중</span></div></div>
+<ul class="notes"><li><b>토벌셋에서 딱 두 가지만 바꿉니다</b> — 방어구 체력을 치명저항으로, 무기에 명중 한 줄</li><li><b>명중은 무기에서만</b> 챙기세요. 장신구는 스킬증폭·스킬가속을 뽑아야 하는 자리입니다</li><li>전 서버 통합 <b>와글와글 아레나</b>가 열리면서 회피 세팅이 늘어날 전망입니다. 명중 한 줄의 가치가 올라갑니다</li><li>"치명저항 다 달려있고 장신구 아랫줄 하나만 피해감소, 나머지는 싹 다 치명저항" → <b>"토벌 종결세팅"</b>이라는 평가를 받은 구성입니다</li><li><b>아레나용으로 잘 뽑아두면 그대로 토벌용이 됩니다.</b> 아레나부터 맞추는 편이 효율적입니다</li></ul>
 <div class="srcs"><a class="srcbtn bdc" href="https://gall.dcinside.com/mgallery/board/view/?id=projectcc&no=71166" target="_blank" rel="noopener"><img src="assets/logo/dc.webp" alt=""><span class="bl">유저 검증</span><span class="ba">원문 →</span></a><a class="srcbtn bdc" href="https://gall.dcinside.com/mgallery/board/view/?id=projectcc&no=67526" target="_blank" rel="noopener"><img src="assets/logo/dc.webp" alt=""><span class="bl">유저 검증</span><span class="ba">원문 →</span></a><a class="srcbtn bdc" href="https://gall.dcinside.com/mgallery/board/view/?id=projectcc&no=71228" target="_blank" rel="noopener"><img src="assets/logo/dc.webp" alt=""><span class="bl">유저 검증</span><span class="ba">원문 →</span></a></div></div>
 <div class="dt" id="d-g4">
 <div class="dhd"><span class="pill datebadge">09-23</span><span class="pill">장비</span><span class="pill">용어</span></div>
