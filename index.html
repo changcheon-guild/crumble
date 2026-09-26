@@ -277,6 +277,7 @@ h1 .g{
   box-shadow:inset 0 0 0 2px var(--sc),0 6px 14px -10px var(--sc);
 }
 .subtab.on img{background:#fff}
+.subtab:not(:has(img)){padding-left:16px}   /* no icon: even side padding */
 
 /* search status */
 .cntline{display:flex;justify-content:flex-end;margin-bottom:12px}
@@ -478,6 +479,10 @@ h1 .g{
 .pics:not(:has(img)) .pi{align-items:flex-start;justify-content:flex-start;padding:12px 14px;text-align:left}
 .pi span[style]{font-size:13.5px!important;line-height:1.45!important;color:var(--ink-3)} /* the one !important: beats inline font-size:12px */
 .pics:not(:has(img)) .pi span b{display:inline-block;margin-top:2px;font-size:15px;font-weight:900;color:var(--td)}
+/* list: like the deck box, the picture set sits in a sunken panel that takes the card's
+   leftover row height and centres its tiles (no blank band above 자세히 보기) */
+.lc>.pics{flex:1 1 auto;align-content:center;padding:12px;border-radius:var(--r-md);background:var(--sunken);box-shadow:inset 0 0 0 1px var(--line)}
+.lc>.pics .pi{background:var(--surface)}
 
 /* 10.2 rune option order */
 .optrow{display:grid;grid-template-columns:repeat(5,minmax(0,76px));gap:8px}
@@ -533,18 +538,29 @@ h1 .g{
   box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--tc) 30%,transparent);
 }
 .ckgrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
-@container deck (width < 400px){
+@container deck (width < 340px){
   .ckgrid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .dt .ckgrid:has(>:nth-child(13)){grid-template-columns:repeat(5,minmax(0,1fr))}   /* 40-cookie lineup: 5 across, not 10 rows */
 }
+/* list: the deck panel fills leftover row height; a short lineup (≤4) centres 4 large tiles */
+.lc>.deckbox{flex:1 1 auto;display:flex;flex-direction:column;justify-content:center}
+.lc .ckgrid:not(:has(>:nth-child(5))){grid-template-columns:repeat(4,minmax(0,1fr));max-width:420px;width:100%;margin-inline:auto}
+/* list: a pet row with no known pet (all '?') is noise at a glance — the detail still shows it */
+.lc .petrow:not(:has(.ptile:not(.empty))){display:none}
 
 /* 10.5 screenshots */
 .shotbox{display:flex;flex-direction:column;gap:14px}
 .shotbox img{width:100%;border-radius:16px;box-shadow:0 0 0 1px var(--line)}
 .lc .shotbox img{aspect-ratio:16/10;max-height:320px;object-fit:cover;object-position:center 38%}
+/* equal-height rows: the screenshot / no-video box takes the card's leftover height
+   (base size = the 16:10 of the card's content width, capped at 320) */
+.lc>.shotbox,.lc>.novideo{flex:1 1 auto}
+.lc .shotbox img:first-child{flex:1 1 auto;height:min(320px,62.5cqw);max-height:none;aspect-ratio:auto}
+.lc .shotbox img.wide{height:auto;object-fit:contain;background:var(--sunken)}   /* banner-shaped image (JS): shown whole, at its own ratio (grows only to fill a row) */
 
 /* 10.6 no-video notice (with a red "play" plate) */
 .novideo{
-  display:flex;flex-direction:column;align-items:center;gap:4px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
   padding:24px 16px;border-radius:16px;text-align:center;
   background:var(--sunken);border:1.5px dashed var(--line-2);
 }
@@ -809,6 +825,7 @@ ul.notes li b{font-weight:800;color:var(--td)}
 .ick.r-SR{background:linear-gradient(170deg,var(--r-sr-1),var(--r-sr-2))}
 .ick.r-SSR{background:linear-gradient(170deg,var(--r-ssr-1),var(--r-ssr-2))}
 .ick.r-TSSR{background:var(--r-tssr)}
+.ick.r-N{background:linear-gradient(170deg,#eee7dc,#bfb3a3)}   /* grade unknown: neutral */
 
 /* Rhythm: a paragraph holding cards sets EVERY line to --ick-line (card + 8), so text
    lines and card lines share one even beat and every card is centred in its row.
@@ -900,13 +917,14 @@ a.srcbtn.foot2 .ba{margin-left:auto;font-size:15px;color:var(--gold)}
 
 /* ===== 25. Phone only (<700) ===== */
 @media (max-width:699.98px){
-  .tabs>.tab:last-child:nth-child(odd){grid-column:1/-1}   /* 7th tab spans both columns */
-  /* compact masthead: tab names only, so the first card shows above the fold */
-  .tab{padding:7px 10px}
-  .tab .ti{width:34px;height:34px;border-radius:10px}
-  .tab .td{display:none}
-  /* searching: the tab grid gives its room to the results (clearing the field brings it back) */
-  .bar-in:has(#q:not(:placeholder-shown)) .tabs{display:none}
+  /* compact masthead: 11 tabs as 3-column text tabs (hue kept as a bottom stripe),
+     so the first card shows above the fold */
+  .tabs{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 6px}
+  .tab{justify-content:center;gap:0;padding:10px 6px;min-height:44px;text-align:center}
+  .tab .ti,.tab .td{display:none}
+  .tab .tn{font-size:15px;white-space:nowrap}
+  .tabs>.tab:last-child:nth-child(3n+2){grid-column:span 2}   /* 11 tabs: 3 + 3 + 3 + 2, the last fills its row */
+  .tab:not(.on){box-shadow:inset 0 -3px 0 color-mix(in srgb,var(--tc) 70%,transparent)}
   /* subtab scroller: soft fade at the edges so a cut pill reads as "scroll", not a bug */
   .subtabs{
     -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 var(--gutter),#000 calc(100% - 32px),transparent);
@@ -927,6 +945,12 @@ a.srcbtn.foot2 .ba{margin-left:auto;font-size:15px;color:var(--gold)}
   .srcs .srcbtn .ba{margin-left:auto}
 }
 
+/* phones + tablets: while searching the tab grid gives its room to the results
+   (clearing the field brings it back) */
+@media (max-width:1099.98px){
+  .bar-in:has(#q:not(:placeholder-shown)) .tabs{display:none}
+}
+
 /* ===== 26. Tablet ≥700 ===== */
 @media (min-width:700px){
   header.hero{padding:26px var(--gr) 18px var(--gl)}
@@ -943,6 +967,10 @@ a.srcbtn.foot2 .ba{margin-left:auto;font-size:15px;color:var(--gold)}
 
   .wrap{padding-top:28px;padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
   .subtabs{flex-wrap:wrap;overflow:visible;margin:0 0 20px;padding:0;gap:10px}
+  /* the long subtab rows (10 bosses, 8 tip topics) become even, aligned rows instead of a
+     wrap that leaves one pill dangling: 4 + 4 (+ 2), then 5 + 5 / one row of 8 where they fit
+     (column widths = the widest pill in each column; the block stays left-aligned) */
+  #ssub,#tsub{display:grid;grid-template-columns:repeat(4,auto);justify-content:start}
   .grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:20px}   /* 2 columns from ~740px */
 
   .hrow{gap:16px}
@@ -992,7 +1020,7 @@ a.srcbtn.foot2 .ba{margin-left:auto;font-size:15px;color:var(--gold)}
     background:linear-gradient(90deg,var(--cocoa) 0 var(--side),var(--paper) var(--side));
   }
 
-  header.hero{grid-column:1;grid-row:1;padding:30px 26px 20px;background:transparent}
+  header.hero{padding:30px 26px 20px;background:transparent}
   header.hero::before{opacity:.18}
   .hero-in{
     grid-template-columns:minmax(0,1fr) auto;
@@ -1004,11 +1032,25 @@ a.srcbtn.foot2 .ba{margin-left:auto;font-size:15px;color:var(--gold)}
   .mascot{width:96px;align-self:center}
   .sign .sub{font-size:13px}
 
+  /* fixed sidebar: the masthead stays on top, the tab list scrolls on its own below it
+     (--heroH = masthead height, set by the script), so every tab is reachable at any height */
+  header.hero{position:fixed;top:0;left:0;width:var(--side);z-index:2}
   .bar{
-    grid-column:1;grid-row:2;align-self:start;position:sticky;top:0;
-    max-height:100vh;overflow-y:auto;background:transparent;padding:8px 26px 32px;
+    position:fixed;top:var(--heroH,260px);bottom:0;left:0;width:var(--side);z-index:2;
+    align-self:stretch;overflow-y:auto;overscroll-behavior:contain;
+    background:transparent;padding:8px 26px 32px;
     scrollbar-width:thin;scrollbar-color:var(--cocoa-3) transparent;
+    /* a tab cut by the screen edge fades out (reads as "scroll for more"); at the end of
+       the list the fade falls on the bottom padding only */
+    -webkit-mask-image:linear-gradient(180deg,#000 calc(100% - 28px),transparent);
+            mask-image:linear-gradient(180deg,#000 calc(100% - 28px),transparent);
   }
+  .bar #q{position:sticky;top:0;z-index:1;background-color:#392a22;box-shadow:0 0 0 8px var(--cocoa)}
+  .bar #q:focus{background-color:#41332a;box-shadow:0 0 0 3px rgba(255,201,60,.22),0 0 0 8px var(--cocoa)}
+  /* tab list scrolled (.st, set by the script): a soft ledge under the search box hides the
+     tab sliding under it and hints that there is more above */
+  .bar.st #q{box-shadow:0 0 0 8px var(--cocoa),0 20px 8px 6px var(--cocoa)}
+  .bar.st #q:focus{box-shadow:0 0 0 3px rgba(255,201,60,.22),0 0 0 8px var(--cocoa),0 20px 8px 6px var(--cocoa)}
   .bar-in{max-width:none}
   .tabs{grid-template-columns:minmax(0,1fr);gap:8px;margin-top:18px}
   .tab{padding:12px 14px;gap:14px;border-radius:18px;background:transparent}
@@ -1050,18 +1092,29 @@ a.srcbtn.foot2 .ba{margin-left:auto;font-size:15px;color:var(--gold)}
   .srcs{margin-top:36px}
 }
 
-/* ===== 27b. Tablet only (700–1099): 7 tabs in 4 columns → the last one fills its row ===== */
+/* ===== 27a. Subtab rows: more columns where the pills fit (5 × 160 + gaps ≈ 770; 8 tips ≈ 940) ===== */
+@media (min-width:860px) and (max-width:1099.98px),(min-width:1170px){ #ssub{grid-template-columns:repeat(5,auto)} }
+@media (min-width:1030px) and (max-width:1099.98px),(min-width:1340px){ #tsub{grid-template-columns:repeat(8,auto)} }
+
+/* ===== 27b. Tablet only (700–1099): 11 tabs in 4 columns → the last one fills its row ===== */
 @media (min-width:700px) and (max-width:1099.98px){
   .tabs>.tab:last-child:nth-child(4n+3){grid-column:span 2}
 }
-/* narrow tablets: a slimmer tab chrome leaves every caption room for one full line */
-@media (min-width:700px) and (max-width:759.98px){
+/* narrow tablets: a slimmer tab chrome keeps every tab name on one line ('크럼블던전 덱') */
+@media (min-width:700px) and (max-width:819.98px){
   .tab{padding:10px;gap:10px}
   .tab .ti{width:38px;height:38px}
+  .tab .tn{white-space:nowrap}
+}
+@media (min-width:700px) and (max-width:759.98px){
+  .tab{gap:8px}
+  .tab .ti{width:34px;height:34px}
+  .tab .tn{font-size:16px}
   .setup:has(>.stg[style*="display:flex"]:nth-child(3):last-child)>.stg{padding-inline:12px}
 }
 
-/* ===== 27c. PC on short screens (1366×768, 1280×720): compact sidebar so all 7 tabs fit ===== */
+/* ===== 27c. PC on short screens (1366×768, 1280×720): compact sidebar, so more tabs show
+   before the tab list scrolls ===== */
 @media (min-width:1100px) and (max-height:940px){
   header.hero{padding:22px 26px 12px}
   .hero-in{row-gap:8px}
@@ -1097,8 +1150,23 @@ a.srcbtn.foot2 .ba{margin-left:auto;font-size:15px;color:var(--gold)}
   .tab{padding:6px 10px}
   .tab .ti{width:34px;height:34px}
   .tab .td{display:none}
+  /* tab names only, 6 across: the first card shows on the first screen */
+  .sign .sub{display:none}
+  .tabs{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .tab{justify-content:center;text-align:center;padding-inline:6px}
+  .tab .ti{display:none}
+  .tabs>.tab:last-child{grid-column:span 2}
   #ovbar{padding-top:6px;padding-bottom:6px}
   #ovbar button{height:40px}
+  /* 10 bosses / 8 tip topics: one scrolling row (as on phones), not a 3-row grid that
+     pushes the first card below the fold */
+  #ssub,#tsub{display:flex}
+  .subtabs{
+    flex-wrap:nowrap;overflow-x:auto;margin:0 calc(var(--gutter) * -1) 14px;padding:2px var(--gutter) 6px;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 var(--gutter),#000 calc(100% - 32px),transparent);
+            mask-image:linear-gradient(90deg,transparent 0,#000 var(--gutter),#000 calc(100% - 32px),transparent);
+    scroll-padding-inline:var(--gutter);
+  }
 }
 
 /* ===== 28. Small phones ≤380 — sizes only (padding and gaps never shrink) ===== */
@@ -1107,8 +1175,13 @@ a.srcbtn.foot2 .ba{margin-left:auto;font-size:15px;color:var(--gold)}
   .wmcb{width:104px}
   .mascot{width:64px}
   .tab .ti{width:34px;height:34px}
-  .tab .tn{font-size:15.5px}
+  .tab .tn{font-size:14.5px}
   .tab .td{font-size:11.5px}
+  /* pill rows stay on one line (date + topic + two tags) */
+  :is(.lt,.dhd) .pill{padding-inline:8px}
+  :is(.lc,.dt)[data-topic]:not([data-topic="notice"],[data-topic="newc"]) :is(.lt,.dhd) .pill.topic{padding-left:5px}
+  /* 40-cookie lineup: 4 across, so every name keeps side room inside the rounded tile */
+  @container deck (width < 340px){ .dt .ckgrid:has(>:nth-child(13)){grid-template-columns:repeat(4,minmax(0,1fr))} }
 }
 
 /* ===== 29. No color-mix() (Safari < 16.2): plain fallbacks keep cards, pills and wells coloured ===== */
@@ -3139,13 +3212,18 @@ function apply(){ var cs=document.querySelectorAll('#grid .lc'), n=0;
   var cnt=document.getElementById('cnt');
   cnt.innerHTML = searching ? '<b style="color:var(--acc)">전체 탭에서 검색 중</b>' : '';
   document.getElementById('empty').style.display=n?'none':'block';
-  for(var bk in SUBS){ var el=document.getElementById(SUBS[bk].box); if(el) el.style.display=(!searching&&T===bk)?'flex':'none'; }
+  for(var bk in SUBS){ var el=document.getElementById(SUBS[bk].box); if(el) el.style.display=(!searching&&T===bk)?'':'none'; }
   var tb=document.getElementById('tabs'); tb.style.opacity = searching? '.45' : '1'; }
 function resetSubs(){ for(var bk in SUBS){ CUR[bk]=SUBS[bk].def; var el=document.getElementById(SUBS[bk].box); if(!el) continue;
-  el.querySelectorAll('.subtab').forEach(function(x){ x.classList.toggle('on', x.dataset.s===SUBS[bk].def); }); } }
+  el.querySelectorAll('.subtab').forEach(function(x){ x.classList.toggle('on', x.dataset.s===SUBS[bk].def); }); el.scrollLeft=0; } }
 document.getElementById('tabs').addEventListener('click',function(e){ var t=e.target.closest('.tab'); if(!t)return;
   this.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')}); t.classList.add('on'); T=t.dataset.t; Q=''; document.getElementById('q').value='';
-  resetSubs(); if(window.closeAllFolds) closeAllFolds(); apply(); window.scrollTo(0,0); });
+  resetSubs(); if(window.closeAllFolds) closeAllFolds(); apply(); window.scrollTo(0,0); keepTab(t); });
+/* PC 사이드바 탭 목록이 스크롤될 때: 고른 탭이 검색창 아래·아래쪽 흐림 위에 온전히 보이게 */
+function keepTab(t){ var bar=t.closest('.bar'); if(!bar||bar.scrollHeight<=bar.clientHeight+1) return;
+  var r=t.getBoundingClientRect(), b=bar.getBoundingClientRect(), q=document.getElementById('q');
+  var top=b.top+(q?q.offsetHeight:0)+16, bot=b.bottom-36;
+  if(r.bottom>bot) bar.scrollTop+=r.bottom-bot; else if(r.top<top) bar.scrollTop-=top-r.top; }
 Object.keys(SUBS).forEach(function(bk){ var el=document.getElementById(SUBS[bk].box); if(!el) return;
   el.addEventListener('click',function(e){ var t=e.target.closest('.subtab'); if(!t)return;
     this.querySelectorAll('.subtab').forEach(function(x){x.classList.remove('on')}); t.classList.add('on'); CUR[bk]=t.dataset.s; sview(t); apply(); }); });
@@ -3248,6 +3326,16 @@ window.addEventListener('scroll',function(){ document.getElementById('top').styl
     '돌격':['돌격형','#d6452a','#ffe0d8','#9a2a14'],
     '방어':['방어형','#3f7ad6','#dde8fb','#1f4f9c']
   };
+  /* 덱 탭 서브탭·메인 탭 색을 카드 주제색과 맞춤 (스테이지 보스 = 스테이지 주황, 일일던전 = 일일던전 금색·경험치던전 초록) */
+  var PAST={stage:'#ffbb6e',daily:'#ffe07a',exp:'#a6e878',crumble:'#8fd9f5',raid:'#c9a6ff',arena:'#ff9aa6',newc:'#8ee0d6'};
+  function tint(el,k){ el.style.setProperty('--sc',TP[k][1]); el.style.setProperty('--sc2',PAST[k]); }
+  document.querySelectorAll('#ssub .subtab').forEach(function(x){ tint(x,'stage'); });
+  document.querySelectorAll('#gsub .subtab').forEach(function(x){ tint(x, x.dataset.s==='exp'?'exp':'daily'); });
+  var TT={new:'newc',stg:'stage',dgn:'daily',raid:'raid',arena:'arena',crumble:'crumble'};
+  document.querySelectorAll('.tab').forEach(function(t){ var k=TT[t.dataset.t]; if(k) t.style.setProperty('--tc',PAST[k]); });
+  /* 덱이 아닌 탭은 서로 겹치지 않는 제 색 (세팅 파랑·공지 라테·지원 초록 등, 모두 연한 파스텔) */
+  var TX={gear:'#a9c4f7',now:'#e3cdb3',rune:'#9fe0a8',tip:'#f0b3e3',order:'#d8e67a'};
+  document.querySelectorAll('.tab').forEach(function(t){ if(TX[t.dataset.t]) t.style.setProperty('--tc',TX[t.dataset.t]); });
   var KW=[['raid',/토벌/],['arena',/아레나|PvP/],['stage',/스테이지/],['exp',/경험치/],
     ['daily',/일일던전|반죽던전/],['crumble',/크럼블\s?던전/],['pay',/과금|상점|마일리지|패키지|스텔라|교환소/],
     ['newc',/신규\s?쿠키|신규\s?콘텐츠|신규콘텐츠|신규 능력치|차원의 이면|출시|미출시|전작/],
@@ -3275,6 +3363,10 @@ window.addEventListener('scroll',function(){ document.getElementById('top').styl
   document.querySelectorAll('#grid .lc').forEach(function(c){
     var k=topic(c); paint(c,k);
     var d=document.getElementById('d-'+c.dataset.id); if(d) paint(d,k);
+    /* 스테이지·일일던전 덱: 주제 칩 + 서브탭 이름 칩('스테이지 공용'/보스, '반죽던전'/'코인던전') → 한 칩으로 (칩 줄이 두 줄로 넘치지 않게) */
+    if(c.dataset.tab==='stg'||c.dataset.tab==='dgn') [c,d].forEach(function(x){ if(!x) return;
+      var r=x.querySelector('.lt,.dhd'), cp=r&&r.querySelector('.pill.c'), ch=r&&r.querySelector('.pill.topic');
+      if(cp&&ch){ ch.textContent=cp.textContent.trim(); cp.remove(); } });
   });
 })();
 /* 줄바꿈 다듬기: ' · ', ' — ', ' › ' 같은 구분 기호가 줄 맨 앞에 오지 않게 앞 단어에 붙이고(뒤에서 끊김),
@@ -3299,6 +3391,23 @@ document.querySelectorAll('.lc h3,.dt h2,.lans,.lboss,.ans,.lead,.boss,ul.notes 
 });
 /* #ov 가 닫히지 않은 마크업이라 #top 이 오버레이 안에 들어감 → body 로 옮겨 목록에서도 보이게 */
 document.body.appendChild(document.getElementById('top'));
+/* 목록 덱 카드에 덱 그림·영상 칸이 없으면 안내 칸을 넣어 카드가 비어 보이지 않게 */
+document.querySelectorAll('#grid .lc.deckcard').forEach(function(c){
+  if(c.querySelector(':scope>.pics,:scope>.deckbox,:scope>.shotbox,:scope>.novideo,:scope>.optrow,:scope>.orow')) return;
+  var n=document.createElement('div'); n.className='novideo';
+  n.innerHTML='<div class="nvt">\uB371 \uAD6C\uC131\uC740 \uC601\uC0C1 \uD654\uBA74\uC5D0 \uB098\uC635\uB2C8\uB2E4</div><div class="nvs">\uC790\uC138\uD788 \uBCF4\uAE30\uC5D0\uC11C \uD655\uC778\uD558\uC138\uC694</div>';
+  c.insertBefore(n,c.querySelector(':scope>.more')); });
+/* 가로로 아주 긴 배너형 첫 스크린샷은 잘라 확대하지 않고 통째로 보여줌 (CSS img.wide) */
+document.querySelectorAll('.lc .shotbox img:first-child').forEach(function(im){
+  function f(){ if(im.naturalWidth>im.naturalHeight*2.2) im.classList.add('wide'); }
+  if(im.complete) f(); else im.addEventListener('load',f); });
+/* PC 사이드바: 탭 목록이 간판 아래에서 따로 스크롤되도록 간판 높이를 CSS에 알림 */
+(function(){ var h=document.querySelector('header.hero'); if(!h) return;
+  function s(){ document.documentElement.style.setProperty('--heroH',h.offsetHeight+'px'); }
+  s(); addEventListener('resize',s); if(window.ResizeObserver) new ResizeObserver(s).observe(h); })();
+/* PC 사이드바: 탭 목록이 스크롤되면 검색창 아래에 그늘(.st)을 깔아 밑으로 지나가는 탭 조각을 가림 */
+(function(){ var b=document.querySelector('.bar'); if(!b) return;
+  b.addEventListener('scroll',function(){ b.classList.toggle('st',b.scrollTop>2); },{passive:true}); })();
 apply(); route();
 </script>
 </body></html>
