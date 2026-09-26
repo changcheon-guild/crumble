@@ -1170,6 +1170,28 @@ ul.notes li:before{top:calc(.975em - 4px)!important}
 @media(min-width:1100px){
  body{background:linear-gradient(90deg,#95592a 0 calc(clamp(300px,21vw,400px) - 5px),var(--ink) 0 clamp(300px,21vw,400px),var(--bg2) 0)}
 }
+
+/* ============ v3.1 · 제목 크기 확대 (공간 대비 작던 제목) ============ */
+.lc h3{line-height:1.22;letter-spacing:-.04em}
+.dt h2{line-height:1.2;letter-spacing:-.04em}
+@media(min-width:1100px){
+ .lc h3{font-size:33px}
+ .lc .bossic{width:72px;height:72px}
+ .lc .lans{font-size:19px}
+ .dt h2{font-size:50px}
+ h1{font-size:clamp(50px,3.8vw,66px)}
+}
+@media(min-width:2000px){ .lc h3{font-size:36px} }
+@media(max-width:1099px){
+ .lc h3{font-size:28px}
+ .dt h2{font-size:36px}
+ h1{font-size:50px}
+}
+@media(max-width:420px){
+ .lc h3{font-size:26px}
+ .dt h2{font-size:32px}
+ h1{font-size:44px}
+}
 </style>
 </head><body>
 <header class="hero"><div class="hero-in">
