@@ -2628,7 +2628,7 @@ document.addEventListener('click',function(e){
 ov.addEventListener('click',function(e){ if(e.target.closest('.dt')||e.target.closest('#ovbar')) return; closeOv(); });
 document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&ov.classList.contains('on')) closeOv(); });
 window.addEventListener('hashchange',route);
-function route(){ var h=location.hash.replace('#',''); if(document.getElementById('d-'+h)) openOv(h);
+function route(){ var h=location.hash.replace('#',''); try{ h=decodeURIComponent(h); }catch(e){} if(document.getElementById('d-'+h)) openOv(h);
   else { ov.classList.remove('on'); document.body.style.overflow=''; } }
 window.addEventListener('scroll',function(){ document.getElementById('top').style.display=window.scrollY>600?'block':'none'; });
 /* ---- v2 · 목록 카드 본문 접기 ---- */
