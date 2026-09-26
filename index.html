@@ -1193,15 +1193,53 @@ ul.notes li:before{top:calc(.975em - 4px)!important}
  h1{font-size:44px}
 }
 
-/* ============ v3.2 · 본문 쿠키: 가로 이름표 대신 세로 카드 모음 ============ */
-.ckn{color:#b8500c;font-weight:800}
-.ckrow{display:flex;flex-wrap:wrap;gap:12px;position:relative;z-index:1}
-.ckrow .lbl{flex:0 0 100%;margin:0}
-.ckrow .ctile{flex:0 0 auto;width:86px}
-.ctile.r-N{background:linear-gradient(180deg,#f3d9ae,#c98a44 48%,#8f5424);box-shadow:inset 0 0 0 3px #6e3f18}
-@media(min-width:1100px){ .ckrow{padding:4px 36px 4px} }
-@media(max-width:1099px){ .ckrow{padding:4px 16px 4px;gap:10px} .ckrow .ctile{width:74px} }
-@media(max-width:1099px){ .dt .srcs{padding:0 16px} }
+/* ============ v3.2 · 본문 쿠키: 문장 속 세로 카드 ============ */
+/* 카드가 든 문단은 모든 줄 높이를 카드에 맞춰 통일 → 줄 간격이 들쭉날쭉하지 않음 */
+.ick{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;
+ margin:0 5px;padding:3px 3px 0;min-width:52px;border:2.5px solid var(--ink);border-radius:10px;
+ line-height:1;overflow:hidden;box-shadow:0 3px 0 var(--ink2);position:relative;top:-2px}
+.ick img{width:40px;height:40px;object-fit:contain;display:block;filter:drop-shadow(0 1px 1px rgba(0,0,0,.35))}
+.ick span{display:block;align-self:stretch;margin:3px -3px 0;padding:3px 7px 4px;background:#4a2410;
+ color:#ffe6bb;font-size:12px;font-weight:800;letter-spacing:-.02em;white-space:nowrap;text-align:center}
+.ick.r-C{background:linear-gradient(180deg,#b9cbe2,#4d7aa8)}
+.ick.r-U{background:linear-gradient(180deg,#b8f2f2,#25c0c0)}
+.ick.r-R{background:linear-gradient(180deg,#b6dff7,#3094e6)}
+.ick.r-SR{background:linear-gradient(180deg,#ffc2d8,#f04878)}
+.ick.r-SSR{background:linear-gradient(180deg,#fff3a8,#f5b41c)}
+.ick.r-TSSR{background:linear-gradient(140deg,#c9a6ff,#8ed9f5 30%,#7ef0e0 50%,#ffd98a 70%,#ffa8d8)}
+.ick.r-N{background:linear-gradient(180deg,#f3d9ae,#c98a44)}
+.dt .ans:has(.ick),.dt ul.notes li:has(.ick){line-height:76px}
+.dt ul.notes li:has(.ick):before{top:34px!important}
+.dt .ans:has(.ick){padding-top:8px!important;padding-bottom:8px!important}
+@media(max-width:1099px){
+ .ick{min-width:48px;margin:0 4px} .ick img{width:36px;height:36px} .ick span{font-size:11.5px;padding:3px 6px 4px}
+ .dt .ans:has(.ick),.dt ul.notes li:has(.ick){line-height:70px}
+ .dt ul.notes li:has(.ick):before{top:31px!important}
+ .dt .srcs{padding:0 16px}
+}
+/* ============ v4 · 주제별 색 + 목록 카드 정리 ============ */
+/* 목록은 핵심만: 원문·자세한 설명은 상세에서 */
+.lc>.lsrc,.lc>.foldbtn,.lc>ul.prev{display:none!important}
+/* 같은 줄 카드 높이 통일 */
+.grid{align-items:stretch!important}
+.lc>.more{margin-top:auto!important}
+/* 날짜는 무채색 — 색은 주제에만 쓴다 */
+.datebadge{background:#4a2410!important;color:#fff4e0!important}
+/* 주제 칩 */
+.pill.topic{background:var(--tc)!important;color:#fff!important;border-color:var(--ink)!important;
+ text-shadow:0 1px 0 rgba(0,0,0,.25)}
+/* 카드: 위쪽 색 띠 + 은은한 배경 */
+.lc[data-topic],.dt[data-topic]{
+ background:linear-gradient(180deg,var(--tl) 0,#fff8ea 62%,#ffedcf 100%);
+ box-shadow:inset 0 10px 0 var(--tc),inset 0 14px 0 rgba(255,255,255,.55),0 6px 0 var(--ink2),0 12px 22px rgba(90,50,20,.26)}
+.lc[data-topic]:hover{
+ box-shadow:inset 0 10px 0 var(--tc),inset 0 14px 0 rgba(255,255,255,.55),0 10px 0 var(--ink2),0 18px 30px rgba(90,50,20,.32)}
+.lc[data-topic]>.lt{margin-top:6px}
+.dt[data-topic] .dhd{padding-top:40px}
+.lc[data-topic] .bossic,.dt[data-topic] .bossic{background:radial-gradient(circle at 50% 35%,#fff,var(--tl) 70%,var(--tc))}
+.lc[data-topic] .lans{color:var(--td)}
+.lc[data-topic]>.more{color:var(--td);border-top-color:var(--tc);opacity:.95}
+.lc.deckcard[data-topic]::after{background:linear-gradient(180deg,rgba(255,248,234,.05) 0%,rgba(255,248,234,.8) 62%,rgba(255,248,234,0) 100%)}
 </style>
 </head><body>
 <header class="hero"><div class="hero-in">
@@ -2635,32 +2673,68 @@ window.addEventListener('scroll',function(){ document.getElementById('top').styl
   };
 })();
 
-/* ---- v3.2 · 본문 쿠키 이름표 → 세로 카드 모음 ---- */
+/* ---- v3.2 · 본문 쿠키 이름표 → 문장 속 세로 카드 ---- */
 (function(){
-  var tiles={};
+  var rar={};
   document.querySelectorAll('.ctile img.p').forEach(function(im){
-    var k=im.getAttribute('src'); if(!tiles[k]) tiles[k]=im.closest('.ctile'); });
-  document.querySelectorAll('.dt').forEach(function(dt){
-    var ics=dt.querySelectorAll('.ic'); if(!ics.length) return;
-    var seen={}, list=[];
-    ics.forEach(function(ic){
-      var im=ic.querySelector('img'), src=im?im.getAttribute('src'):'', nm=ic.textContent.trim();
-      if(src && !seen[src]){ seen[src]=1; list.push([src,nm]); }
-      var b=document.createElement('b'); b.className='ckn'; b.textContent=nm; ic.replaceWith(b);
-    });
-    var row=document.createElement('div'); row.className='ckrow';
-    row.innerHTML='<div class="lbl">등장 쿠키</div>';
-    list.forEach(function(x){
-      var t;
-      if(tiles[x[0]]){ t=tiles[x[0]].cloneNode(true); }
-      else { t=document.createElement('div'); t.className='ctile r-N';
-        t.innerHTML='<img class="p" loading="lazy" alt="">'+'<span class="cn"></span>';
-        t.querySelector('img').src=x[0]; }
-      t.querySelector('.cn').textContent=x[1];
-      row.appendChild(t);
-    });
-    var at=dt.querySelector('.ans,.lead')||dt.querySelector('.dtop');
-    at.after(row);
+    var k=im.getAttribute('src'); if(rar[k]) return;
+    var m=im.closest('.ctile').className.match(/\br-(\w+)/); if(m) rar[k]=m[1]; });
+  document.querySelectorAll('.dt .ic').forEach(function(ic){
+    var im=ic.querySelector('img'), src=im?im.getAttribute('src'):'', nm=ic.textContent.trim();
+    var c=document.createElement('span'); c.className='ick r-'+(rar[src]||'N'); c.title=nm;
+    c.innerHTML='<img loading="lazy" alt=""><span></span>';
+    c.querySelector('img').src=src; c.querySelector('span').textContent=nm;
+    ic.replaceWith(c);
+    /* 카드 뒤 조사·가운뎃점이 다음 줄로 혼자 떨어지지 않게 묶음 */
+    var nx=c.nextSibling;
+    if(nx && nx.nodeType===3){ var m=nx.nodeValue.match(/^[^\s]+/);
+      if(m){ var w=document.createElement('span'); w.style.whiteSpace='nowrap';
+        c.replaceWith(w); w.appendChild(c); w.appendChild(document.createTextNode(m[0]));
+        nx.nodeValue=nx.nodeValue.slice(m[0].length); } }
+  });
+})();
+/* ---- v4 · 글 주제 분류 → 색 ---- */
+(function(){
+  var TP={
+    stage:['스테이지','#f2851a','#ffe3c4','#a4500a'],
+    exp:['경험치던전','#4fb81f','#e0f5cf','#2f7a10'],
+    daily:['일일던전','#e8a010','#fff0c2','#8a5c04'],
+    crumble:['크럼블던전','#1f9ad6','#d6f0fb','#0f6694'],
+    raid:['토벌전','#8a5fe0','#ebe0ff','#5a36b0'],
+    arena:['아레나','#e0455f','#ffdde2','#a8203a'],
+    pay:['과금','#d6249a','#ffdcf1','#9c126e'],
+    newc:['신규','#12a39a','#d2f4f0','#0a6e68'],
+    set:['세팅','#3f7ad6','#dde8fb','#1f4f9c'],
+    notice:['공지','#8a6a4a','#f1e4d2','#5c4028'],
+    '지원':['지원형','#2aa564','#d8f3e4','#146b3e'],
+    '사격':['사격형','#d68f14','#fdecc8','#8a5a06'],
+    '돌격':['돌격형','#d6452a','#ffe0d8','#9a2a14'],
+    '방어':['방어형','#3f7ad6','#dde8fb','#1f4f9c']
+  };
+  var KW=[['raid',/토벌/],['arena',/아레나|PvP/],['stage',/스테이지/],['exp',/경험치/],
+    ['daily',/일일던전|반죽던전/],['crumble',/크럼블\s?던전/],['pay',/과금|상점|마일리지|패키지|스텔라|교환소/],
+    ['newc',/신규\s?쿠키|신규\s?콘텐츠|신규콘텐츠|신규 능력치|차원의 이면|출시|미출시|전작/],
+    ['set',/장비|세팅|옵션|플레이트|오븐|노움|레벨업|명중|치명|스킬가속|공격력/]];
+  function topic(c){
+    var sub=c.dataset.sub, tab=c.dataset.tab;
+    if(tab==='rune' && TP[sub]) return sub;
+    if(TP[sub] && sub!=='all') return sub;
+    var h=c.querySelector('h3,h2'), t=(h?h.textContent:'')+' ';
+    c.querySelectorAll('.lt .pill,.dhd .pill').forEach(function(p){ if(!p.classList.contains('datebadge')) t+=p.textContent+' '; });
+    for(var i=0;i<KW.length;i++) if(KW[i][1].test(t)) return KW[i][0];
+    return 'notice';
+  }
+  function paint(el,k){
+    var v=TP[k]; el.dataset.topic=k;
+    el.style.setProperty('--tc',v[1]); el.style.setProperty('--tl',v[2]); el.style.setProperty('--td',v[3]);
+    var row=el.querySelector('.lt,.dhd'); if(!row) return;
+    row.querySelectorAll('.pill:not(.datebadge)').forEach(function(p){ if(p.textContent.replace(/\s/g,'')===v[0]) p.remove(); });
+    var chip=document.createElement('span'); chip.className='pill topic'; chip.textContent=v[0];
+    var d=row.querySelector('.datebadge'); if(d) d.after(chip); else row.prepend(chip);
+  }
+  document.querySelectorAll('#grid .lc').forEach(function(c){
+    var k=topic(c); paint(c,k);
+    var d=document.getElementById('d-'+c.dataset.id); if(d) paint(d,k);
   });
 })();
 apply(); route();
