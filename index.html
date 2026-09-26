@@ -1192,6 +1192,16 @@ ul.notes li:before{top:calc(.975em - 4px)!important}
  .dt h2{font-size:32px}
  h1{font-size:44px}
 }
+
+/* ============ v3.2 · 본문 쿠키: 가로 이름표 대신 세로 카드 모음 ============ */
+.ckn{color:#b8500c;font-weight:800}
+.ckrow{display:flex;flex-wrap:wrap;gap:12px;position:relative;z-index:1}
+.ckrow .lbl{flex:0 0 100%;margin:0}
+.ckrow .ctile{flex:0 0 auto;width:86px}
+.ctile.r-N{background:linear-gradient(180deg,#f3d9ae,#c98a44 48%,#8f5424);box-shadow:inset 0 0 0 3px #6e3f18}
+@media(min-width:1100px){ .ckrow{padding:4px 36px 4px} }
+@media(max-width:1099px){ .ckrow{padding:4px 16px 4px;gap:10px} .ckrow .ctile{width:74px} }
+@media(max-width:1099px){ .dt .srcs{padding:0 16px} }
 </style>
 </head><body>
 <header class="hero"><div class="hero-in">
@@ -2623,6 +2633,35 @@ window.addEventListener('scroll',function(){ document.getElementById('top').styl
       if(u){ u.classList.remove('open'); b.querySelector('.fbt').textContent='\uC790\uC138\uD55C \uC124\uBA85 '+u.children.length+'\uC904'; }
     }
   };
+})();
+
+/* ---- v3.2 · 본문 쿠키 이름표 → 세로 카드 모음 ---- */
+(function(){
+  var tiles={};
+  document.querySelectorAll('.ctile img.p').forEach(function(im){
+    var k=im.getAttribute('src'); if(!tiles[k]) tiles[k]=im.closest('.ctile'); });
+  document.querySelectorAll('.dt').forEach(function(dt){
+    var ics=dt.querySelectorAll('.ic'); if(!ics.length) return;
+    var seen={}, list=[];
+    ics.forEach(function(ic){
+      var im=ic.querySelector('img'), src=im?im.getAttribute('src'):'', nm=ic.textContent.trim();
+      if(src && !seen[src]){ seen[src]=1; list.push([src,nm]); }
+      var b=document.createElement('b'); b.className='ckn'; b.textContent=nm; ic.replaceWith(b);
+    });
+    var row=document.createElement('div'); row.className='ckrow';
+    row.innerHTML='<div class="lbl">등장 쿠키</div>';
+    list.forEach(function(x){
+      var t;
+      if(tiles[x[0]]){ t=tiles[x[0]].cloneNode(true); }
+      else { t=document.createElement('div'); t.className='ctile r-N';
+        t.innerHTML='<img class="p" loading="lazy" alt="">'+'<span class="cn"></span>';
+        t.querySelector('img').src=x[0]; }
+      t.querySelector('.cn').textContent=x[1];
+      row.appendChild(t);
+    });
+    var at=dt.querySelector('.ans,.lead')||dt.querySelector('.dtop');
+    at.after(row);
+  });
 })();
 apply(); route();
 </script>
