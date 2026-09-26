@@ -346,6 +346,16 @@ h1 .g{
 
 /* 6.3 media blocks */
 .lc>.pics,.lc>.optrow,.lc>.orow,.lc>.deckbox,.lc>.shotbox,.lc>.novideo{margin-top:18px}
+/* text-only cards (title + answer, no media block): the answer becomes a topic-tinted callout —
+   the same callout as the detail's .ans — that takes the card's leftover row height and centres
+   its text, like the .pics / .deckbox panels do (no blank band above 자세히 보기).
+   (.lans is plain text, so the column flex keeps one anonymous line box) */
+.lc:not(:has(>:is(.pics,.optrow,.orow,.deckbox,.shotbox,.novideo)))>.lans{
+  flex:1 1 auto;display:flex;flex-direction:column;justify-content:center;
+  margin-top:18px;padding:16px 18px;border-radius:var(--r-md);
+  background:color-mix(in srgb,var(--tl) 60%,var(--surface));
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--tc) 24%,transparent);
+}
 
 /* 6.4 footer link, pinned to the card bottom */
 .more{
@@ -486,6 +496,16 @@ h1 .g{
 
 /* 10.2 rune option order */
 .optrow{display:grid;grid-template-columns:repeat(5,minmax(0,76px));gap:8px}
+/* list: the option row sits in a sunken panel that takes the card's leftover row height
+   (same as .pics); tiles keep their fixed width (identical across cards), centred in the panel */
+.lc>.optrow{
+  flex:1 1 auto;align-content:center;justify-content:center;padding:12px;border-radius:var(--r-md);
+  background:var(--sunken);box-shadow:inset 0 0 0 1px var(--line);
+  /* one track per option, each the width a 5-option row gets → 3-, 4- and 5-option rows centre
+     with identical tiles */
+  grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:min(76px,calc((100% - 4 * 8px) / 5));
+}
+.lc>.optrow .oc{background:var(--surface)}
 .oc{
   min-width:0;display:flex;flex-direction:column;align-items:center;gap:6px;
   padding:10px 4px;border-radius:16px;background:var(--sunken);
@@ -867,6 +887,17 @@ ul.notes:has(.ick)>li::before{left:17px}
     radial-gradient(farthest-side at 100% 50%,rgba(60,32,12,.24),transparent) right center/18px 100% no-repeat scroll,
     var(--surface);
 }
+/* phones: when the table is wider than its panel (script: .scrolls) a sticky hint row says so,
+   and the right edge fades until the last column is reached (.atend) */
+.acctblw.scrolls::before{
+  content:"← 옆으로 밀어서 더 보기 →";position:sticky;left:0;display:flex;align-items:center;justify-content:center;
+  width:100%;height:34px;font-size:13px;font-weight:800;letter-spacing:-.01em;color:var(--td);
+  background:color-mix(in srgb,var(--tl) 55%,var(--surface));border-bottom:1px solid var(--line);
+}
+.acctblw.scrolls:not(.atend){
+  -webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 48px),rgba(0,0,0,.2));
+          mask-image:linear-gradient(90deg,#000 calc(100% - 48px),rgba(0,0,0,.2));
+}
 .acctbl{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
 .acctbl th{
   padding:12px 8px;background:var(--sunken-2);color:var(--ink-2);
@@ -880,6 +911,9 @@ ul.notes:has(.ick)>li::before{left:17px}
 /* if a wide table still scrolls (≤360), its row labels stay put */
 .acctbl th:first-child,.acctbl td:first-child{position:sticky;left:0;z-index:1;background:var(--surface)}
 .acctbl th:first-child{background:var(--sunken-2)}
+.acctblw.moved .acctbl :is(th,td):first-child{   /* swiped: an edge so sliding cells don't read as stray values */
+  box-shadow:inset -1px 0 0 var(--line-2),8px 0 10px -6px rgba(60,32,12,.22);
+}
 .acctbl td.full{color:var(--good);font-weight:800}
 .acctbl td.low{color:#c81e4a;font-weight:800}
 .acctbl.opt td{text-align:left}
@@ -975,6 +1009,7 @@ a.srcbtn.foot2 .ba{margin-left:auto;font-size:15px;color:var(--gold)}
 
   .hrow{gap:16px}
   .optrow{grid-template-columns:repeat(5,minmax(0,84px));gap:10px}
+  .lc>.optrow{grid-template-columns:none;grid-auto-columns:min(84px,calc((100% - 4 * 10px) / 5))}
   .orow{gap:10px}
 
   #top{right:calc(24px + env(safe-area-inset-right,0px));bottom:calc(24px + env(safe-area-inset-bottom,0px));width:52px;height:52px;font-size:22px}
@@ -1066,6 +1101,7 @@ a.srcbtn.foot2 .ba{margin-left:auto;font-size:15px;color:var(--gold)}
   .lt{margin-bottom:18px}
   .lboss{margin-top:10px}
   .lc>.pics,.lc>.optrow,.lc>.orow,.lc>.deckbox,.lc>.shotbox,.lc>.novideo{margin-top:20px}
+  .lc:not(:has(>:is(.pics,.optrow,.orow,.deckbox,.shotbox,.novideo)))>.lans{margin-top:20px;padding:18px 22px}
   .more{font-size:15.5px}
   .bossic{border-radius:18px}
 
@@ -1137,25 +1173,42 @@ a.srcbtn.foot2 .ba{margin-left:auto;font-size:15px;color:var(--gold)}
   .tab .td{display:none}
 }
 
-/* ===== 27d. Landscape phones (short and not PC): lighter chrome ===== */
+/* ===== 27d. Landscape phones (short and not PC): one compact masthead row — the sign
+   (wordmark + name) on the left, search over a single scrolling row of tab names on the
+   right — so the first card shows on the first screen, subtab tabs included ===== */
 @media (max-height:500px) and (max-width:1099.98px){
-  header.hero{padding-top:12px;padding-bottom:10px}
-  .hero-in{row-gap:8px}
-  .wmcr{width:56px}
-  .wmcb{width:112px}
-  .mascot{width:68px}
-  h1 .g{font-size:42px}
-  .sign .sub{padding-top:8px}
-  .tabs{margin-top:10px}
-  .tab{padding:6px 10px}
-  .tab .ti{width:34px;height:34px}
-  .tab .td{display:none}
-  /* tab names only, 6 across: the first card shows on the first screen */
-  .sign .sub{display:none}
-  .tabs{grid-template-columns:repeat(6,minmax(0,1fr))}
-  .tab{justify-content:center;text-align:center;padding-inline:6px}
-  .tab .ti{display:none}
-  .tabs>.tab:last-child{grid-column:span 2}
+  body{display:grid;grid-template-columns:auto minmax(0,1fr)}
+  .wrap{grid-column:1 / -1;width:100%}   /* a grid item with auto margins would size to its (wide) subtab row */
+  header.hero{grid-column:1;grid-row:1;display:flex;align-items:center;padding:12px 18px 12px var(--gl)}
+  .hero-in{grid-template-columns:auto auto;grid-template-areas:"logo name";column-gap:12px;row-gap:0;margin:0}
+  .signtop{gap:4px}
+  .wmcr{width:44px}
+  .wmcb{width:92px}
+  h1 .g{font-size:34px}
+  .mascot,.sign .sub{display:none}
+  .bar{grid-column:2;grid-row:1;min-width:0;display:flex;align-items:center;padding:12px var(--gr) 12px 0}
+  .bar-in{width:100%;min-width:0;max-width:none;margin:0}
+  #q{height:40px;font-size:15px;background-position:14px center;background-size:18px;padding-left:42px}
+  .tabs{
+    display:flex;flex-wrap:nowrap;gap:8px;margin-top:10px;overflow-x:auto;
+    padding-right:28px;scrollbar-width:none;overscroll-behavior-x:contain;
+    -webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent);
+            mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent);
+  }
+  .tabs.sl{   /* scrolled: fade the left edge too, so a half-hidden tab reads as 'more this way' */
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 28px,#000 calc(100% - 28px),transparent);
+            mask-image:linear-gradient(90deg,transparent 0,#000 28px,#000 calc(100% - 28px),transparent);
+  }
+  .tabs{scroll-snap-type:x proximity;scroll-padding-inline:28px}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex:none;height:36px;padding:0 14px;border-radius:12px;scroll-snap-align:start}
+  header.hero::before{   /* the art stops at the hero column: fade it out instead of a hard seam */
+    -webkit-mask-image:linear-gradient(90deg,#000 45%,transparent 100%);
+            mask-image:linear-gradient(90deg,#000 45%,transparent 100%);
+  }
+  .tab .ti,.tab .td{display:none}
+  .tab .tn{font-size:15px;white-space:nowrap}
+  .wrap{padding-top:16px}
   #ovbar{padding-top:6px;padding-bottom:6px}
   #ovbar button{height:40px}
   /* 10 bosses / 8 tip topics: one scrolling row (as on phones), not a 3-row grid that
@@ -1192,7 +1245,8 @@ a.srcbtn.foot2 .ba{margin-left:auto;font-size:15px;color:var(--gold)}
   .subtab,.subtab img{background:var(--surface)}
   .subtab{box-shadow:inset 0 0 0 1.5px var(--sc)}
   .subtab.on{background:var(--sc2,var(--surface))}
-  .pill.topic,.plabel,.ans,.lead,.eqo.alt{background:var(--tl)}
+  .pill.topic,.plabel,.ans,.lead,.eqo.alt,.acctblw.scrolls::before{background:var(--tl)}
+  .lc:not(:has(>:is(.pics,.optrow,.orow,.deckbox,.shotbox,.novideo)))>.lans{background:var(--tl);box-shadow:inset 0 0 0 1px var(--line-2)}
   .tab .ti{background:rgba(255,245,230,.10)}
   ul.notes:has(.ick)>li{background:var(--sunken)}
   .bossic{box-shadow:inset 0 0 0 1px var(--line-2)}
@@ -3220,7 +3274,11 @@ document.getElementById('tabs').addEventListener('click',function(e){ var t=e.ta
   this.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')}); t.classList.add('on'); T=t.dataset.t; Q=''; document.getElementById('q').value='';
   resetSubs(); if(window.closeAllFolds) closeAllFolds(); apply(); window.scrollTo(0,0); keepTab(t); });
 /* PC 사이드바 탭 목록이 스크롤될 때: 고른 탭이 검색창 아래·아래쪽 흐림 위에 온전히 보이게 */
-function keepTab(t){ var bar=t.closest('.bar'); if(!bar||bar.scrollHeight<=bar.clientHeight+1) return;
+function keepTab(t){ var tb=t.parentElement; /* 가로로 스크롤되는 탭 줄(가로 모드 폰): 고른 탭을 줄 가운데로 */
+  if(tb&&tb.scrollWidth>tb.clientWidth+1){ var a=t.getBoundingClientRect(), c=tb.getBoundingClientRect(), dx=(a.left+a.width/2)-(c.left+c.width/2);
+    /* 이미 양끝 흐림(28px) 안쪽에 온전히 보이면 굳이 밀지 않음 */
+    if(a.left<c.left+28||a.right>c.right-28){ try{ tb.scrollBy({left:dx,behavior:'smooth'}); }catch(e){ tb.scrollLeft+=dx; } } }
+  var bar=t.closest('.bar'); if(!bar||bar.scrollHeight<=bar.clientHeight+1) return;
   var r=t.getBoundingClientRect(), b=bar.getBoundingClientRect(), q=document.getElementById('q');
   var top=b.top+(q?q.offsetHeight:0)+16, bot=b.bottom-36;
   if(r.bottom>bot) bar.scrollTop+=r.bottom-bot; else if(r.top<top) bar.scrollTop-=top-r.top; }
@@ -3231,7 +3289,7 @@ document.getElementById('q').addEventListener('input',function(e){ Q=e.target.va
 function sview(t){ try{ t.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'}); }catch(e){} }
 var ov=document.getElementById('ov');
 function openOv(id){ document.querySelectorAll('.dt').forEach(function(d){d.classList.remove('on')});
-  var t=document.getElementById('d-'+id); if(!t)return; t.classList.add('on'); ov.classList.add('on'); ov.scrollTop=0; document.body.style.overflow='hidden'; }
+  var t=document.getElementById('d-'+id); if(!t)return; t.classList.add('on'); ov.classList.add('on'); ov.scrollTop=0; document.body.style.overflow='hidden'; tblFit(); }
 function closeOv(){ ov.classList.remove('on'); document.body.style.overflow='';
   if(location.hash) history.pushState('',document.title,location.pathname+location.search); }
 document.addEventListener('click',function(e){
@@ -3408,6 +3466,16 @@ document.querySelectorAll('.lc .shotbox img:first-child').forEach(function(im){
 /* PC 사이드바: 탭 목록이 스크롤되면 검색창 아래에 그늘(.st)을 깔아 밑으로 지나가는 탭 조각을 가림 */
 (function(){ var b=document.querySelector('.bar'); if(!b) return;
   b.addEventListener('scroll',function(){ b.classList.toggle('st',b.scrollTop>2); },{passive:true}); })();
+/* 상세의 넓은 표: 칸보다 넓어 가로로 밀리면(폰) .scrolls → 안내 줄·오른쪽 흐림, 끝까지 밀면 .atend → 흐림 없앰 */
+function tblFit(){ document.querySelectorAll('.dt.on .acctblw').forEach(function(w){
+  var s=w.scrollWidth>w.clientWidth+1; w.classList.toggle('scrolls',s);
+  w.classList.toggle('atend',!s||w.scrollLeft+w.clientWidth>=w.scrollWidth-2); }); }
+document.querySelectorAll('.acctblw').forEach(function(w){
+  w.addEventListener('scroll',function(){ w.classList.toggle('atend',w.scrollLeft+w.clientWidth>=w.scrollWidth-2); w.classList.toggle('moved',w.scrollLeft>2); },{passive:true}); });
+/* 가로로 스크롤되는 메인 탭 줄(가로 모드 폰): 밀려 있으면 .sl → 왼쪽 끝도 흐리게 */
+(function(){ var tb=document.getElementById('tabs'); if(!tb) return;
+  function f(){ tb.classList.toggle('sl',tb.scrollLeft>2); } tb.addEventListener('scroll',f,{passive:true}); f(); })();
+addEventListener('resize',tblFit); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(tblFit);
 apply(); route();
 </script>
 </body></html>
