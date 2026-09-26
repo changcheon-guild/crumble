@@ -109,8 +109,8 @@
   --rthumb:60px;       /* list .rtile */
 
   /* inline cookie card — every card identical; rows = card + 8 */
-  --ick-w:44px; --ick-h:58px; --ick-img:34px; --ick-strip:17px;
-  --ick-line:66px;
+  --ick-w:46px; --ick-h:56px; --ick-img:33px; --ick-strip:16px;
+  --ick-line:64px;
   --ick-fs:12px;       /* name size cap; long names shrink to fit (--nw from the script) */
 }
 /* Side gutters never sit under a notch / rounded corner (viewport-fit=cover). */
@@ -334,6 +334,14 @@ h1 .g{
 
 /* a lone wide card (700–750px tablets) scales its title with the card */
 @container card (min-width:560px){ .lc h3{font-size:calc(var(--fs-h3) + 8px)} }
+/* narrow cards (1100–1250 laptops, tablets, phones): a slimmer thumbnail leaves the title
+   column room for long words (e.g. '249스테이지부터'), so a word never splits mid-syllable-run */
+@container card (width < 380px){
+  .hrow{gap:12px}
+  .hrow>.bossic{width:min(var(--thumb),52px);height:min(var(--thumb),52px)}
+}
+@media (min-width:1100px){ @container card (width < 310px){ .lc h3{font-size:33px} } }   /* 1100–1115 only */
+@container card (width < 262px){ .lc h3{font-size:26px} }                                  /* phones under 350 */
 
 /* 6.3 media blocks */
 .lc>.pics,.lc>.optrow,.lc>.orow,.lc>.deckbox,.lc>.shotbox,.lc>.novideo{margin-top:18px}
@@ -447,10 +455,12 @@ h1 .g{
 /* ===== 10. Card content blocks (shared base) ===== */
 /* 10.1 item pictures */
 .pics{display:grid;grid-template-columns:repeat(auto-fit,minmax(88px,1fr));gap:10px}
-/* short picture sets fill their row: 3 and 4 → one row (4 → 2 + 2 on the narrowest cards), 5 → one row when it fits */
+/* short picture sets fill their row: 3 and 4 → one row (4 → 2 + 2 on the narrowest cards),
+   5 → one row when every tile keeps its 68px (image + padding), else 3 + 2 — never 4 + 1 */
 .pics:has(img):has(>.pi:nth-child(3):last-child){grid-template-columns:repeat(3,minmax(0,1fr))}
 .pics:has(img):has(>.pi:nth-child(4):last-child){grid-template-columns:repeat(4,minmax(0,1fr))}
-@container card (min-width:420px){ .pics:has(img):has(>.pi:nth-child(5):last-child){grid-template-columns:repeat(5,minmax(0,1fr))} }
+.pics:has(img):has(>.pi:nth-child(5):last-child){grid-template-columns:repeat(3,minmax(0,1fr))}
+@container card (min-width:380px){ .pics:has(img):has(>.pi:nth-child(5):last-child){grid-template-columns:repeat(5,minmax(0,1fr))} }
 @container sheet (min-width:420px){ .pics:has(img):has(>.pi:nth-child(5):last-child){grid-template-columns:repeat(5,minmax(0,1fr))} }
 @container card (width < 300px){ .pics:has(img):has(>.pi:nth-child(4):last-child){grid-template-columns:repeat(2,minmax(0,1fr))} }
 @container sheet (width < 300px){ .pics:has(img):has(>.pi:nth-child(4):last-child){grid-template-columns:repeat(2,minmax(0,1fr))} }
@@ -495,10 +505,17 @@ h1 .g{
   display:grid;place-items:center;width:24px;height:24px;border-radius:50%;
   background:var(--ink);color:var(--cream);font-size:12.5px;font-weight:900;line-height:1;
 }
-@container card (width < 400px){   /* 5 steps stay one row, 6 split 3 + 3 */
-  .orow{grid-template-columns:repeat(3,minmax(0,1fr))}
+/* ≥400: every order card uses 1/6 tracks (identical tiles). Narrower cards: 4 and 5 steps
+   fill their row; 6 steps stay one row where cards sit side by side (≥700) so rows keep even
+   heights, and on phones (one column) split 3 + 3 on 5-step-sized tracks so tiles match. */
+@container card (width < 400px){
   .orow:has(>.ostep:nth-child(4):last-child){grid-template-columns:repeat(4,minmax(0,1fr))}
   .orow:has(>.ostep:nth-child(5):last-child){grid-template-columns:repeat(5,minmax(0,1fr))}
+}
+@media (max-width:699.98px){
+  @container card (width < 400px){
+    .orow:has(>.ostep:nth-child(6):last-child){grid-template-columns:repeat(3,calc((100% - 4 * 8px) / 5));justify-content:start}
+  }
 }
 
 /* 10.4 deck box: pets + 12 cookies */
@@ -669,6 +686,8 @@ footer{margin-top:48px;padding-top:28px;border-top:1px solid var(--line-2);color
 
 /* setup tiles */
 .setup{display:flex;flex-wrap:wrap;gap:12px}
+/* four icon tiles: a 2 × 2 grid (a flex wrap would leave 3 + one full-width bar) */
+.setup:has(>.stg[style*="display:flex"]:nth-child(4):last-child){display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
 .stg{
   flex:1 1 200px;min-width:0;padding:14px 18px;border-radius:var(--r-md);
   background:var(--sunken);box-shadow:inset 0 0 0 1px var(--line);
@@ -770,9 +789,10 @@ ul.notes li b{font-weight:800;color:var(--td)}
   display:flex;align-items:center;justify-content:center;align-self:stretch;flex:none;
   height:var(--ick-strip);padding:0 2px;
   background:rgba(30,16,8,.76);color:#fff;
-  /* same card for every name: long names shrink to fit (--nw = name width in em, set by the script) */
+  /* same card for every name: long names shrink to fit (--nw = name width in em at this
+     tracking, set by the script); tight tracking keeps 5-letter names ≥10px on phones */
   font-size:min(var(--ick-fs),calc((var(--ick-w) - 4px) / var(--nw,3.5)));
-  font-weight:800;letter-spacing:-.05em;white-space:nowrap;overflow:hidden;
+  font-weight:800;letter-spacing:-.07em;white-space:nowrap;overflow:hidden;
 }
 .ick.r-C{background:linear-gradient(170deg,var(--r-c-1),var(--r-c-2))}
 .ick.r-U{background:linear-gradient(170deg,var(--r-u-1),var(--r-u-2))}
@@ -2537,7 +2557,7 @@ window.addEventListener('scroll',function(){ document.getElementById('top').styl
     c.innerHTML='<img loading="lazy" alt=""><span></span>';
     c.querySelector('img').src=src; c.querySelector('span').textContent=nm;
     var n=nm.replace(/\s/g,'').length, sp=nm.length-n; c.style.setProperty('--nf', (n<=4?12:n==5?10.5:9.5)+'px');
-    c.style.setProperty('--nw', (n*.83+sp*.17+.08).toFixed(2)); /* 이름 폭(em) → CSS가 카드 폭에 맞춰 글자 크기 계산 */
+    c.style.setProperty('--nw', (n*.81+sp*.15+.08).toFixed(2)); /* 이름 폭(em, 자간 -.07em 기준) → CSS가 카드 폭에 맞춰 글자 크기 계산 */
     ic.replaceWith(c);
     /* 카드 뒤 조사·가운뎃점, 카드 앞 여는 괄호가 다음 줄로 혼자 떨어지지 않게 묶음 */
     var nx=c.nextSibling, pv=c.previousSibling, hd='', tl='';
@@ -2596,11 +2616,16 @@ window.addEventListener('scroll',function(){ document.getElementById('top').styl
 /* 줄바꿈 다듬기: ' · ', ' — ', ' › ' 같은 구분 기호가 줄 맨 앞에 오지 않게 앞 단어에 붙이고(뒤에서 끊김),
    붙어 쓴 '·' '+' 앞과 '%' ')' 뒤 한글 사이에서는 끊기지 않게 함 */
 document.querySelectorAll('.lc h3,.dt h2,.lans,.lboss,.ans,.lead,.boss,ul.notes li,.stg,.sw,.sl,.pi span,.eqnote,.warn').forEach(function(el){
-  var tw=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),n;
+  var tw=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),n, title=el.matches('.lc h3,.dt h2');
   while((n=tw.nextNode())){ n.nodeValue=n.nodeValue
     .replace(/ ([\u00b7\u2014\u2013\u203a\u2192>+\/~]) /g,'\u00a0$1 ').replace(/ %/g,'\u00a0%')
     .replace(/([^\s\u00a0])([\u00b7+])/g,'$1\u2060$2')
     .replace(/([%)\]\u300d\u300f])(?=[\uac00-\ud7a3])/g,'$1\u2060');
+    /* 제목: 한 음절 관형어(내·두·전·한·짤…)가 줄 끝에 혼자 남지 않게 뒤 낱말과 묶음 */
+    if(title) n.nodeValue=n.nodeValue.replace(/(^|\s)([\ub0b4\ub450\uc138\uc804\ud55c\uac01\uc0c8\uba87\uc9e4\ud560])\s(?=[\uac00-\ud7a3])/g,'$1$2\u00a0');
+    /* <b>…%</b>가 처럼 요소 경계를 사이에 둔 조사도 앞 기호에 붙임 */
+    var ps=n.previousSibling;
+    if(ps && ps.nodeType===1 && /^[\uac00-\ud7a3]/.test(n.nodeValue) && /[%)\]\u300d\u300f]$/.test(ps.textContent)) n.nodeValue='\u2060'+n.nodeValue;
     /* 앞이 쿠키 카드 묶음(nowrap)으로 끝나면 구분 기호를 그 묶음 안으로 옮김(경계에서 끊기지 않게) */
     var m=n.nodeValue.match(/^\u00a0[^\s]+/), t=n.previousSibling;
     while(t && t.nodeType===3 && !t.nodeValue) t=t.previousSibling;
