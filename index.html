@@ -337,7 +337,7 @@ h1 .g{
 /* narrow cards (1100–1250 laptops, tablets, phones): a slimmer thumbnail leaves the title
    column room for long words (e.g. '249스테이지부터'), so a word never splits mid-syllable-run */
 @container card (width < 380px){
-  .hrow{gap:12px}
+  .lc .hrow{gap:12px}   /* .lc: outranks the later tablet .hrow gap */
   .hrow>.bossic{width:min(var(--thumb),52px);height:min(var(--thumb),52px)}
 }
 @media (min-width:1100px){ @container card (width < 310px){ .lc h3{font-size:33px} } }   /* 1100–1115 only */
@@ -819,6 +819,8 @@ ul.notes:has(.ick)>li{
   background:color-mix(in srgb,var(--tl) 32%,var(--surface));
 }
 ul.notes:has(.ick)>li:has(.ick){--d-pt:8px;padding-top:8px;padding-bottom:8px}
+/* plain rows in such a list breathe a little more, so the two line pitches sit closer */
+ul.notes:has(.ick)>li:not(:has(.ick)){--lh:calc(var(--fs-body) * 1.9)}
 ul.notes:has(.ick)>li+li{margin-top:10px}
 ul.notes:has(.ick)>li::before{left:17px}
 
