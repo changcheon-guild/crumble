@@ -1195,12 +1195,12 @@ ul.notes li:before{top:calc(.975em - 4px)!important}
 
 /* ============ v3.2 · 본문 쿠키: 문장 속 세로 카드 ============ */
 /* 카드가 든 문단은 모든 줄 높이를 카드에 맞춰 통일 → 줄 간격이 들쭉날쭉하지 않음 */
-.ick{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;
- margin:0 5px;padding:3px 3px 0;min-width:52px;border:2.5px solid var(--ink);border-radius:10px;
+.ick{display:inline-flex;flex-direction:column;align-items:center;justify-content:space-between;vertical-align:middle;
+ margin:0 5px;width:62px;height:80px;flex:none;border:2.5px solid var(--ink);border-radius:10px;
  line-height:1;overflow:hidden;box-shadow:0 3px 0 var(--ink2);position:relative;top:-2px}
-.ick img{width:40px;height:40px;object-fit:contain;display:block;filter:drop-shadow(0 1px 1px rgba(0,0,0,.35))}
-.ick span{display:block;align-self:stretch;margin:3px -3px 0;padding:3px 7px 4px;background:#4a2410;
- color:#ffe6bb;font-size:12px;font-weight:800;letter-spacing:-.02em;white-space:nowrap;text-align:center}
+.ick img{width:48px;height:48px;margin-top:5px;object-fit:contain;display:block;filter:drop-shadow(0 1px 1px rgba(0,0,0,.35))}
+.ick span{display:flex;align-items:center;justify-content:center;align-self:stretch;height:21px;padding:0 2px;
+ background:#4a2410;color:#ffe6bb;font-size:var(--nf,12px);font-weight:800;letter-spacing:-.04em;white-space:nowrap;overflow:hidden}
 .ick.r-C{background:linear-gradient(180deg,#b9cbe2,#4d7aa8)}
 .ick.r-U{background:linear-gradient(180deg,#b8f2f2,#25c0c0)}
 .ick.r-R{background:linear-gradient(180deg,#b6dff7,#3094e6)}
@@ -1208,13 +1208,13 @@ ul.notes li:before{top:calc(.975em - 4px)!important}
 .ick.r-SSR{background:linear-gradient(180deg,#fff3a8,#f5b41c)}
 .ick.r-TSSR{background:linear-gradient(140deg,#c9a6ff,#8ed9f5 30%,#7ef0e0 50%,#ffd98a 70%,#ffa8d8)}
 .ick.r-N{background:linear-gradient(180deg,#f3d9ae,#c98a44)}
-.dt .ans:has(.ick),.dt ul.notes li:has(.ick){line-height:76px}
-.dt ul.notes li:has(.ick):before{top:34px!important}
+.dt .ans:has(.ick),.dt ul.notes li:has(.ick){line-height:88px}
+.dt ul.notes li:has(.ick):before{top:40px!important}
 .dt .ans:has(.ick){padding-top:8px!important;padding-bottom:8px!important}
 @media(max-width:1099px){
- .ick{min-width:48px;margin:0 4px} .ick img{width:36px;height:36px} .ick span{font-size:11.5px;padding:3px 6px 4px}
- .dt .ans:has(.ick),.dt ul.notes li:has(.ick){line-height:70px}
- .dt ul.notes li:has(.ick):before{top:31px!important}
+ .ick{width:56px;height:72px;margin:0 4px} .ick img{width:42px;height:42px;margin-top:4px} .ick span{height:19px}
+ .dt .ans:has(.ick),.dt ul.notes li:has(.ick){line-height:80px}
+ .dt ul.notes li:has(.ick):before{top:36px!important}
  .dt .srcs{padding:0 16px}
 }
 /* ============ v4 · 주제별 색 + 목록 카드 정리 ============ */
@@ -2684,6 +2684,7 @@ window.addEventListener('scroll',function(){ document.getElementById('top').styl
     var c=document.createElement('span'); c.className='ick r-'+(rar[src]||'N'); c.title=nm;
     c.innerHTML='<img loading="lazy" alt=""><span></span>';
     c.querySelector('img').src=src; c.querySelector('span').textContent=nm;
+    var n=nm.replace(/\s/g,'').length; c.style.setProperty('--nf', (n<=4?12:n==5?10.5:9.5)+'px');
     ic.replaceWith(c);
     /* 카드 뒤 조사·가운뎃점이 다음 줄로 혼자 떨어지지 않게 묶음 */
     var nx=c.nextSibling;
