@@ -1,4 +1,5 @@
 """첫 관문 상세 검산 (전부 자동 시뮬레이션, 수동 조작 없음). python3 gate1.py"""
+SPLIT='hp'   # 보스 피해 분배: 'hp'(추천안) 또는 'equal'(이전 초안)
 def fight(members, ehp, edps):
     """members: [(A,H,현재 생명력)]. 매초 생존 모험가가 공격하고, 적이 살아 있으면 반격(생존자에게 균등 분배)."""
     full=ehp; hp=[m[2] for m in members]; sec=0
@@ -8,7 +9,11 @@ def fight(members, ehp, edps):
             if hp[i]>0: ehp-=a
         if ehp<=0: return True,sec,hp,0
         alive=[i for i in range(len(hp)) if hp[i]>0]
-        for i in alive: hp[i]-=edps/len(alive)
+        if SPLIT=='equal':
+            for i in alive: hp[i]-=edps/len(alive)
+        else:   # 'hp': 최대 생명력에 비례해 나눔 (강한 사람이 더 많이 맞아 준다)
+            tot=sum(members[i][1] for i in alive)
+            for i in alive: hp[i]-=edps*members[i][1]/tot
         if all(x<=0 for x in hp): return False,sec,hp,ehp/full
     return False,sec,hp,ehp/full
 R=1000
