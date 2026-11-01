@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>집 화면 · PC</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1F5F99}a:hover{color:#16466F}
+</style>
+</helmet>
+<div style="min-height: 844px; box-sizing: border-box; background: #EEF3F8; font-family: 'Noto Sans KR', system-ui, sans-serif; color: #1B2735">
+
+  <header style="background: #FFFFFF; border-bottom: 1px solid #D9E2EC">
+    <div style="max-width: 1280px; margin: 0 auto; box-sizing: border-box; padding: 12px 24px; display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between">
+      <div style="display: flex; align-items: baseline; gap: 12px">
+        <span style="font-family: 'Gowun Batang', serif; font-size: 22px; font-weight: 700">[섬 이름]</span>
+        <span style="font-size: 13px; color: #4A5B6D">사냥꾼 · Lv 10 · 전투력 1,054</span>
+      </div>
+      <div style="display: flex; gap: 20px; font-size: 14px; font-weight: 500">
+        <span>골드 12,400</span>
+        <span>하늘돌 36</span>
+        <span>구름 수정 4</span>
+      </div>
+    </div>
+  </header>
+
+  <div style="max-width: 1280px; margin: 0 auto; box-sizing: border-box; padding: 24px; display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+
+    <nav aria-label="주 메뉴" style="flex: 1 1 180px; max-width: 220px; background: #FFFFFF; border-radius: 12px; padding: 8px; display: flex; flex-direction: column; gap: 2px">
+      <a href="#home" aria-current="page" style="min-height: 44px; display: flex; align-items: center; gap: 10px; padding: 0 12px; border-radius: 8px; background: #E3EEF8; color: #1F5F99; font-weight: 700; text-decoration: none">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11 L12 4 L21 11"></path><path d="M5 10 V20 H19 V10"></path></svg>집</a>
+      <a href="#expedition" style="min-height: 44px; display: flex; align-items: center; gap: 10px; padding: 0 12px; border-radius: 8px; color: #33465A; text-decoration: none">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 V15"></path><path d="M7 10 L12 15 L17 10"></path><path d="M4 20 H20"></path></svg>원정</a>
+      <a href="#gear" style="min-height: 44px; display: flex; align-items: center; gap: 10px; padding: 0 12px; border-radius: 8px; color: #33465A; text-decoration: none">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 L19 6 V12 C19 16 16 19 12 21 C8 19 5 16 5 12 V6 Z"></path></svg>장비</a>
+      <a href="#market" style="min-height: 44px; display: flex; align-items: center; gap: 10px; padding: 0 12px; border-radius: 8px; color: #33465A; text-decoration: none">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 8 H20 L18 20 H6 Z"></path><path d="M9 8 V6 A3 3 0 0 1 15 6 V8"></path></svg>거래소</a>
+      <a href="#dungeon" style="min-height: 44px; display: flex; align-items: center; gap: 10px; padding: 0 12px; border-radius: 8px; color: #33465A; text-decoration: none">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 14 C8 8 12 16 20 10"></path><path d="M4 19 C8 13 12 21 20 15"></path><path d="M4 9 C8 3 12 11 20 5"></path></svg>던전</a>
+      <a href="#settings" style="min-height: 44px; display: flex; align-items: center; gap: 10px; padding: 0 12px; border-radius: 8px; color: #33465A; text-decoration: none">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M12 3 V6 M12 18 V21 M3 12 H6 M18 12 H21"></path></svg>자동 관리</a>
+    </nav>
+
+    <main style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+      <section style="position: relative; border-radius: 12px; overflow: hidden; background: #CFE3F2">
+        <svg viewBox="0 0 760 320" width="100%" role="img" aria-label="작은 하늘섬. 집 앞 전송진에서 모험가가 막 귀환했다" style="display: block">
+          <rect width="760" height="320" fill="#CFE3F2"></rect>
+          <rect y="210" width="760" height="110" fill="#E4EEF7"></rect>
+          <ellipse cx="110" cy="70" rx="70" ry="18" fill="#FFFFFF" opacity="0.9"></ellipse>
+          <ellipse cx="640" cy="56" rx="80" ry="20" fill="#FFFFFF" opacity="0.9"></ellipse>
+          <ellipse cx="600" cy="280" rx="120" ry="22" fill="#FFFFFF" opacity="0.8"></ellipse>
+          <ellipse cx="130" cy="290" rx="100" ry="18" fill="#FFFFFF" opacity="0.8"></ellipse>
+          <path d="M200 178 L560 178 L510 238 L440 280 L340 286 L260 258 Z" fill="#8C7A6B"></path>
+          <ellipse cx="380" cy="178" rx="186" ry="24" fill="#7FB069"></ellipse>
+          <rect x="250" y="110" width="96" height="68" fill="#F3E3C8"></rect>
+          <path d="M240 112 L298 70 L356 112 Z" fill="#C2553A"></path>
+          <rect x="286" y="136" width="22" height="42" fill="#8A5A3B"></rect>
+          <rect x="262" y="126" width="16" height="16" fill="#FCE9A8"></rect>
+          <rect x="384" y="120" width="5" height="58" fill="#8A5A3B"></rect>
+          <path d="M389 126 C408 128 414 144 402 156 C405 142 397 134 389 134 Z" fill="#B8C4CF"></path>
+          <ellipse cx="462" cy="178" rx="46" ry="11" fill="none" stroke="#5FB4F0" stroke-width="4"></ellipse>
+          <ellipse cx="462" cy="178" rx="30" ry="7" fill="#BFE3FB" opacity="0.8"></ellipse>
+          <circle cx="462" cy="128" r="11" fill="#F1C7A1"></circle>
+          <path d="M448 142 L476 142 L481 174 L443 174 Z" fill="#3F6B4A"></path>
+          <path d="M484 118 Q500 146 484 172" fill="none" stroke="#8A5A3B" stroke-width="3"></path>
+          <line x1="484" y1="118" x2="484" y2="172" stroke="#4A5B6D" stroke-width="1.2"></line>
+        </svg>
+        <span style="position: absolute; left: 16px; bottom: 16px; background: #FFFFFF; border-radius: 999px; padding: 6px 14px; font-size: 14px; font-weight: 500">방금 귀환했어요</span>
+      </section>
+
+      <article style="background: #FFFFFF; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+        <span style="font-size: 13px; color: #4A5B6D">자리를 비운 3시간 동안 · 원정 18번</span>
+        <p style="margin: 0; font-size: 20px; font-weight: 700">처음으로 <span style="color: #1F5F99">[희귀]</span> 바람결 장궁을 찾았어요</p>
+        <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+          <div style="background: #F3F7FB; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 4px">
+            <span style="font-size: 12px; color: #4A5B6D">레벨</span><span style="font-size: 16px; font-weight: 700">7 → 10</span></div>
+          <div style="background: #F3F7FB; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 4px">
+            <span style="font-size: 12px; color: #4A5B6D">전투력</span><span style="font-size: 16px; font-weight: 700">1,054 <span style="font-size: 13px; color: #2F7A3E">+238</span></span></div>
+          <div style="background: #F3F7FB; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 4px">
+            <span style="font-size: 12px; color: #4A5B6D">골드</span><span style="font-size: 16px; font-weight: 700">+6,800</span></div>
+          <div style="background: #F3F7FB; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 4px">
+            <span style="font-size: 12px; color: #4A5B6D">바꿔 낀 장비</span><span style="font-size: 16px; font-weight: 700">2개</span></div>
+        </div>
+        <ul style="margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.8; color: #33465A">
+          <li>첫 번째 폭풍의 벽을 뚫고 21번째 구름층으로 내려갔어요</li>
+          <li>무기 칸이 +2로 강화됐어요 (자동 강화)</li>
+          <li>마법 계통 지팡이를 보관함에 넣었어요</li>
+        </ul>
+        <a href="#report" style="align-self: flex-start; min-height: 44px; display: flex; align-items: center; font-size: 14px; font-weight: 500">원정 기록 전체 보기</a>
+      </article>
+    </main>
+
+    <aside style="flex: 1 1 280px; max-width: 360px; display: flex; flex-direction: column; gap: 16px">
+      <article style="background: #FFFFFF; border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 8px">
+        <span style="font-size: 12px; color: #4A5B6D">지금 하는 일</span>
+        <span style="font-size: 16px; font-weight: 700">23번째 구름층 탐사 중</span>
+        <div style="height: 6px; background: #DCE6F0; border-radius: 3px"><div style="width: 42%; height: 6px; background: #3D86C6; border-radius: 3px"></div></div>
+        <span style="font-size: 13px; color: #4A5B6D">다음 귀환까지 4분 · 네뷸라 농도 1,033</span>
+      </article>
+
+      <article style="background: #FFFFFF; border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 8px">
+        <span style="font-size: 12px; color: #4A5B6D">다음 관문</span>
+        <span style="font-size: 16px; font-weight: 700">두 번째 폭풍의 벽</span>
+        <div style="height: 6px; background: #DCE6F0; border-radius: 3px"><div style="width: 57%; height: 6px; background: #6E6A93; border-radius: 3px"></div></div>
+        <span style="font-size: 13px; color: #4A5B6D">구름층 23 / 40 · 17개 남음</span>
+      </article>
+
+      <article style="background: #FFFFFF; border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+        <span style="font-size: 12px; color: #4A5B6D">자동 관리</span>
+        <label style="display: flex; justify-content: space-between; align-items: center; min-height: 44px; font-size: 14px">더 좋은 장비로 바꿔 끼기<input type="checkbox" checked style="width: 20px; height: 20px"></label>
+        <label style="display: flex; justify-content: space-between; align-items: center; min-height: 44px; font-size: 14px">하늘돌이 모이면 자동 강화<input type="checkbox" checked style="width: 20px; height: 20px"></label>
+        <label style="display: flex; justify-content: space-between; align-items: center; min-height: 44px; font-size: 14px">관문 자동매칭<input type="checkbox" style="width: 20px; height: 20px"></label>
+      </article>
+    </aside>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>
