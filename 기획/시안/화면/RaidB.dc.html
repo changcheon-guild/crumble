@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>B안 · 큰 토벌 (8인 매칭)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Galmuri11';src:url(/_blob/3d7d41766d6fe4ab874aa2af55b7545e) format('woff2');font-weight:400;font-display:swap}@font-face{font-family:'Galmuri11';src:url(/_blob/8457e27020c70d82c86e28af69c16a56) format('woff2');font-weight:700;font-display:swap}@font-face{font-family:'Galmuri14';src:url(/_blob/b67fdc63fa51b5e3d8ffaa0aa94ab0fc) format('woff2');font-weight:100 900;font-display:swap}body{-webkit-font-smoothing:none}button,input,select,textarea{font-family:inherit}
+
+body{margin:0}
+a{color:#8CC4F5}a:hover{color:#B8DBFA}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #10161F; font-family: 'Galmuri11', 'Noto Sans KR', system-ui, sans-serif; color: #E8EDF4; display: flex; flex-direction: column; overflow: hidden">
+  <header style="height: 52px; box-sizing: border-box; padding: 0 12px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #263243">
+    <a href="ExpeditionB.dc.html" aria-label="원정으로 돌아가기" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #E8EDF4">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5 L8 12 L15 19"></path></svg></a>
+    <div style="display: flex; flex-direction: column">
+      <span style="font-family: 'Galmuri14', 'Galmuri11', sans-serif; font-size: 18px; font-weight: 700">큰 토벌 · 8명</span>
+      <span style="font-size: 12px; color: #A7B3C2">파티 프리셋으로 나가요 · 오늘 보상 1 / 1</span>
+    </div>
+  </header>
+
+  <main style="flex: 1; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; overflow: hidden">
+    <article style="background: #1A1F33; border: 1px solid #3A3F66; border-radius: 12px; padding: 12px 14px; display: flex; gap: 12px; align-items: center">
+      <div style="width: 72px; height: 72px; flex-shrink: 0; border-radius: 12px; background: #262B48; display: flex; align-items: center; justify-content: center"><img src="/_blob/5919c11916a5b09d0838114c0b310e8f" alt="" width="64" height="64" style="image-rendering: pixelated"></div>
+      <div style="display: flex; flex-direction: column; gap: 3px; min-width: 0">
+        <span style="font-family: 'Galmuri14', 'Galmuri11', sans-serif; font-size: 17px; font-weight: 700">먹구름 날개 무리</span>
+        <span style="font-size: 12px; color: #C8D3E6">비구름 지대의 큰 우두머리 · 혼자서는 못 이겨요</span>
+        <span style="font-size: 13px">필요한 합계 전투력 <span style="font-weight: 700; color: #F3D08A">{{need}}</span></span>
+      </div>
+    </article>
+
+    <section aria-label="매칭 상태" style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline">
+        <span style="font-size: 15px; font-weight: 700">{{statusTitle}}</span>
+        <span style="font-size: 12px; color: #A7B3C2">{{count}}</span>
+      </div>
+      <span style="font-size: 12px; color: #A7B3C2">앞줄</span>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px">
+        <sc-for list="{{front}}" as="m" hint-placeholder-count="4">
+          <div style="height: 64px; box-sizing: border-box; border-radius: 8px; border: {{m.border}}; background: {{m.bg}}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px">
+            <sc-if value="{{m.filled}}" hint-placeholder-val="{{ true }}"><img src="{{m.img}}" alt="" width="32" height="32" style="image-rendering: pixelated"><span style="font-size: 11px; max-width: 76px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{m.name}}</span></sc-if>
+            <sc-if value="{{m.empty}}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; color: #5A6B82">찾는 중</span></sc-if>
+          </div>
+        </sc-for>
+      </div>
+      <span style="font-size: 12px; color: #A7B3C2">뒷줄</span>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px">
+        <sc-for list="{{back}}" as="m" hint-placeholder-count="4">
+          <div style="height: 64px; box-sizing: border-box; border-radius: 8px; border: {{m.border}}; background: {{m.bg}}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px">
+            <sc-if value="{{m.filled}}" hint-placeholder-val="{{ true }}"><img src="{{m.img}}" alt="" width="32" height="32" style="image-rendering: pixelated"><span style="font-size: 11px; max-width: 76px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{m.name}}</span></sc-if>
+            <sc-if value="{{m.empty}}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; color: #5A6B82">찾는 중</span></sc-if>
+          </div>
+        </sc-for>
+      </div>
+      <div style="background: #1B2433; border-radius: 8px; padding: 8px 10px; font-size: 13px">합계 전투력 <span style="font-weight: 700">{{sum}}</span> / {{need}}</div>
+      <button type="button" onClick="{{toggle}}" style="min-height: 48px; border-radius: 10px; border: {{btnBorder}}; background: {{btnBg}}; color: {{btnColor}}; font-size: 15px; font-weight: 700; cursor: pointer">{{btnText}}</button>
+      <span style="font-size: 12px; color: #A7B3C2; line-height: 1.6">걸어 두면 접속하지 않아도 돼요. 8명이 차면 바로 싸우고, 결과와 중계는 다음에 들어올 때 볼 수 있어요.</span>
+    </section>
+
+    <section aria-label="큰 토벌 보상" style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px">
+      <span style="font-size: 14px; font-weight: 700">보상 · 각자 받아요</span>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; text-align: center; font-size: 11px">
+        <sc-for list="{{rewards}}" as="r" hint-placeholder-count="4">
+          <button type="button" onClick="{{r.show}}" onMouseEnter="{{r.show}}" aria-expanded="{{r.on}}" aria-label="{{r.label}} 설명 보기" style="display: flex; flex-direction: column; align-items: center; gap: 4px; border: none; background: transparent; color: #E8EDF4; font-size: 11px; padding: 0; cursor: pointer">
+            <span style="width: 44px; height: 44px; box-sizing: border-box; border-radius: 8px; border: {{r.border}}; display: flex; align-items: center; justify-content: center"><img src="{{r.img}}" alt="" width="34" height="34" style="image-rendering: pixelated; filter: drop-shadow(1px 0 0 #0A0E14) drop-shadow(-1px 0 0 #0A0E14) drop-shadow(0 1px 0 #0A0E14) drop-shadow(0 -1px 0 #0A0E14)"></span>
+            <span>{{r.label}}</span>
+          </button>
+        </sc-for>
+      </div>
+      <sc-if value="{{tipOn}}" hint-placeholder-val="{{ false }}">
+        <div role="note" style="position: relative; margin-top: 4px; background: #1F2A3B; border: 1px solid #3A4E6A; border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 4px">
+          <span aria-hidden="true" style="position: absolute; top: -7px; left: {{tip.arrow}}; width: 12px; height: 12px; margin-left: -6px; background: #1F2A3B; border-left: 1px solid #3A4E6A; border-top: 1px solid #3A4E6A; transform: rotate(45deg)"></span>
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+            <span style="font-size: 14px; font-weight: 700; color: {{tip.color}}">{{tip.title}}</span>
+            <button type="button" onClick="{{closeTip}}" aria-label="설명 닫기" style="width: 32px; height: 32px; margin: -6px -6px -6px 0; border: none; background: transparent; color: #A7B3C2; font: inherit; font-size: 14px; cursor: pointer">✕</button>
+          </div>
+          <span style="font-size: 12px; color: #C8D3E6; line-height: 1.6">{{tip.body}}</span>
+          <sc-if value="{{tip.hasLink}}" hint-placeholder-val="{{ false }}"><a href="{{tip.href}}" style="font-size: 13px; font-weight: 700; align-self: flex-start; min-height: 32px; display: flex; align-items: center">{{tip.link}} ›</a></sc-if>
+        </div>
+      </sc-if>
+    </section>
+  </main>
+
+  <nav aria-label="주 메뉴" style="height: 64px; background: #151D29; border-top: 1px solid #263243; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr))">
+    <a href="HomeB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11 L12 4 L21 11"></path><path d="M5 10 V20 H19 V10"></path></svg>집</a>
+    <a href="ExpeditionB.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; font-weight: 700; color: #8CC4F5; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 V15"></path><path d="M7 10 L12 15 L17 10"></path><path d="M4 20 H20"></path></svg>원정</a>
+    <a href="GearB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 L19 6 V12 C19 16 16 19 12 21 C8 19 5 16 5 12 V6 Z"></path></svg>장비</a>
+    <a href="#market" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 8 H20 L18 20 H6 Z"></path><path d="M9 8 V6 A3 3 0 0 1 15 6 V8"></path></svg>거래소</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { on: true, tip: -1 }; }
+  renderVals() {
+    const K = '/_blob/05be44623edeece48a014d214caf38a7', R = '/_blob/c2e10fff92a559b32f281532a0025abb', W = '/_blob/65476abc18e3766f1b74c327719c3452';
+    const fmt = (n) => n.toLocaleString('ko-KR');
+    const others = [
+      { img: K, name: '바람막이', p: 1180, row: 0 }, { img: K, name: '섬돌', p: 990, row: 0 }, { img: K, name: '구름도우미', p: 1300, row: 0 },
+      { img: W, name: '이슬비', p: 1020, row: 1 }, { img: R, name: '솔', p: 1110, row: 1 }
+    ];
+    const me = { img: R, name: '나', p: 1031, row: 1, me: true };
+    const list = this.state.on ? others.concat([me]) : others.slice(0, 0);
+    const cell = (m) => m ? { filled: true, empty: false, img: m.img, name: m.name, border: m.me ? '2px solid #F2B33D' : '1px solid #3A4658', bg: '#1B2433' }
+                          : { filled: false, empty: true, img: '', name: '', border: '1px dashed #3A4658', bg: 'transparent' };
+    const fr = list.filter((m) => m.row === 0), bk = list.filter((m) => m.row === 1);
+    const pad = (a) => [0, 1, 2, 3].map((i) => cell(a[i]));
+    const sum = list.reduce((a, m) => a + m.p, 0);
+    const raw = [
+      { label: '구름 수정 6', img: '/_blob/7302eda7e37a9db3d859ef3a49cf94a1', title: '구름 수정 6개', body: '재련과 영웅 장비 제작에 써요. 하루 한 번 받는 몫이에요.' },
+      { label: '골드 4,000', img: '/_blob/f455ad14c4095214ee4a4ff7129ab42b', title: '골드 4,000', body: '강화, 재련, 제작, 거래에 쓰는 기본 돈이에요.' },
+      { label: '날개 장식', img: '/_blob/61bee62cdf8b6e2036870639fdb0af49', title: '먹구름 날개 · 섬 장식', body: '처음 이겼을 때 한 번만 받아요. 섬에 장식으로 둘 수 있어요.' },
+      { label: '희귀 장비', img: '/_blob/d61d6d3457eee15749230a4770741e37', title: '희귀 장비 1개 (아무 칸)', body: '파티 프리셋의 키울 기술이 붙을 가능성이 조금 높아요. 하루 한 번 받는 몫이에요.' }
+    ];
+    const i = this.state.tip;
+    const t = raw[i] || raw[0];
+    return {
+      need: fmt(7500), sum: fmt(sum), count: list.length + ' / 8',
+      statusTitle: this.state.on ? '매칭 중' : '매칭 걸어 두기',
+      front: pad(fr), back: pad(bk),
+      btnText: this.state.on ? '매칭 그만두기' : '큰 토벌 매칭 걸기',
+      btnBg: this.state.on ? 'transparent' : '#F2B33D', btnColor: this.state.on ? '#E8EDF4' : '#1B2735', btnBorder: this.state.on ? '1px solid #8FA3C4' : 'none',
+      toggle: () => this.setState({ on: !this.state.on }),
+      rewards: raw.map((r, k) => ({ label: r.label, img: r.img, on: i === k, border: i === k ? '2px solid #F2B33D' : '1px solid #263243', show: () => this.setState({ tip: k }) })),
+      tipOn: i >= 0, closeTip: () => this.setState({ tip: -1 }),
+      tip: { title: t.title, color: '#E8EDF4', body: t.body, hasLink: false, href: '', link: '', arrow: (12.5 + 25 * Math.max(i, 0)) + '%' }
+    };
+  }
+}
+</script>
+</body>
+</html>
