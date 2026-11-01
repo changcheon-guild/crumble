@@ -23,16 +23,11 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5 L8 12 L15 19"></path></svg></a>
     <div style="display: flex; flex-direction: column">
       <span style="font-family: 'Galmuri14', 'Galmuri11', sans-serif; font-size: 18px; font-weight: 700">큰 토벌 · 오늘의 기록</span>
-      <span style="font-size: 12px; color: #A7B3C2">하루 한 번 · 오늘 22:00에 모인 사람끼리 출발</span>
+      <span style="font-size: 12px; color: #A7B3C2; white-space: nowrap">노을의 섬 · 22:00에 모여 있는 사람이 출발</span>
     </div>
   </header>
 
   <main style="flex: 1; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; overflow: hidden">
-    <div role="tablist" aria-label="함께 갈 무리" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px">
-      <sc-for list="{{groups}}" as="g" hint-placeholder-count="2">
-        <button type="button" role="tab" aria-selected="{{g.on}}" onClick="{{g.pick}}" style="min-height: 44px; border-radius: 10px; border: 2px solid {{g.border}}; background: {{g.bg}}; color: #E8EDF4; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center">{{g.name}}<span style="font-size: 11px; font-weight: 400; color: #A7B3C2">{{g.sub}}</span></button>
-      </sc-for>
-    </div>
 
     <article style="background: #1A1F33; border: 1px solid #3A3F66; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px">
       <div style="display: flex; gap: 12px; align-items: center">
@@ -43,14 +38,14 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
         </div>
       </div>
       <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px">
-        <div style="background: #262B48; border-radius: 8px; padding: 8px 10px; display: flex; flex-direction: column"><span style="font-size: 11px; color: #A7B3C2">{{g.name}} 최고 기록</span><span style="font-size: 16px; font-weight: 700; color: #F3D08A">{{g.best}}</span></div>
+        <div style="background: #262B48; border-radius: 8px; padding: 8px 10px; display: flex; flex-direction: column"><span style="font-size: 11px; color: #A7B3C2">최고 기록</span><span style="font-size: 16px; font-weight: 700; color: #F3D08A">{{g.best}}</span></div>
         <div style="background: #262B48; border-radius: 8px; padding: 8px 10px; display: flex; flex-direction: column"><span style="font-size: 11px; color: #A7B3C2">오늘 예상</span><span style="font-size: 16px; font-weight: 700">{{g.expect}} <span style="font-size: 12px; color: {{g.diffColor}}">{{g.diff}}</span></span></div>
       </div>
     </article>
 
     <section aria-label="오늘 참가" style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 10px 14px; display: flex; flex-direction: column; gap: 8px">
       <div style="display: flex; justify-content: space-between; align-items: baseline">
-        <span style="font-size: 14px; font-weight: 700">오늘 참가</span>
+        <span style="font-size: 14px; font-weight: 700">지금 섬에 모인 사람</span>
         <span style="font-size: 12px; color: #A7B3C2">{{count}} · 최대 8명</span>
       </div>
       <div style="display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 4px">
@@ -61,7 +56,7 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
         </sc-for>
       </div>
       <button type="button" onClick="{{toggle}}" style="min-height: 46px; border-radius: 10px; border: {{btnBorder}}; background: {{btnBg}}; color: {{btnColor}}; font-size: 15px; font-weight: 700; cursor: pointer">{{btnText}}</button>
-      <span style="font-size: 12px; color: #A7B3C2; line-height: 1.5">걸어 두기만 하면 접속하지 않아도 돼요. 파티 프리셋으로 나가요.</span>
+      <span style="font-size: 12px; color: #A7B3C2; line-height: 1.5; white-space: nowrap">출발까지 2시간 14분 · 섬에 머물면 접속을 끊어도 돼요</span>
     </section>
 
     <section aria-label="기록 보상" style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 10px 14px; display: flex; flex-direction: column; gap: 8px">
@@ -104,13 +99,12 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
 class Component extends DCLogic {
-  constructor(props) { super(props); this.state = { g: 1, on: true, tip: -1 }; }
+  constructor(props) { super(props); this.state = { g: 0, on: true, tip: -1 }; }
   renderVals() {
     const K = '/_blob/05be44623edeece48a014d214caf38a7', R = '/_blob/c2e10fff92a559b32f281532a0025abb', W = '/_blob/65476abc18e3766f1b74c327719c3452';
     const fmt = (n) => n.toLocaleString('ko-KR');
     const G = [
-      { name: '길드', sub: '하늘등대 · 정해지면', best: 0, members: [], none: true },
-      { name: '섬 동행', sub: '노을의 섬 · 4명', best: 182400, members: [{ img: R, name: '노을' }, { img: K, name: '바위' }, { img: W, name: '레아' }] }
+            { name: '노을의 섬 모임', sub: '', best: 182400, members: [{ img: R, name: '노을' }, { img: K, name: '바위' }, { img: W, name: '레아' }] }
     ];
     const g = G[this.state.g];
     const list = g.members.concat(this.state.on ? [{ img: R, name: '나', me: true }] : []);
@@ -123,11 +117,10 @@ class Component extends DCLogic {
     ];
     const i = this.state.tip, t = raw[i] || raw[0];
     return {
-      groups: G.map((x, k) => ({ name: x.name, sub: x.sub, on: k === this.state.g, border: k === this.state.g ? '#E0A93B' : '#3A4658', bg: k === this.state.g ? '#2A2312' : '#151D29', pick: () => this.setState({ g: k }) })),
       g: { name: g.name, best: g.best ? fmt(g.best) : '아직 없음', expect: expect ? fmt(expect) : '—', diff: g.best ? ((d >= 0 ? '+' : '') + d + '%') : '', diffColor: d >= 0 ? '#6FD08C' : '#F08A8A' },
       count: list.length + ' / 8',
       seats: [0, 1, 2, 3, 4, 5, 6, 7].map((k) => list[k] ? { filled: true, img: list[k].img, name: list[k].name, border: list[k].me ? '2px solid #F2B33D' : '1px solid #3A4658', bg: '#1B2433' } : { filled: false, img: '', name: '빈자리', border: '1px dashed #3A4658', bg: 'transparent' }),
-      btnText: this.state.on ? '오늘 참가 중 · 빼기' : '오늘 참가 걸기',
+      btnText: this.state.on ? '섬에 머무는 중 · 모임에서 빠지기' : '노을의 섬으로 건너가기',
       btnBg: this.state.on ? 'transparent' : '#F2B33D', btnColor: this.state.on ? '#E8EDF4' : '#1B2735', btnBorder: this.state.on ? '1px solid #8FA3C4' : 'none',
       toggle: () => this.setState({ on: !this.state.on }),
       rewards: raw.map((r, k) => ({ label: r.label, img: r.img, on: i === k, border: i === k ? '2px solid #F2B33D' : '1px solid #263243', show: () => this.setState({ tip: k }) })),

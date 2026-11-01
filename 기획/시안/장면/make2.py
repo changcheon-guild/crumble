@@ -90,8 +90,10 @@ feather=Image.open('dl/496_RPG_icons/I_Feather01.png').convert('RGBA').resize((1
 s.save(OUT+'s_result.png')
 # 6 섬 손님 (이름표 포함)
 s=base(); home_island(s)
-for name,sp,x,fl in (('노을 · 주인','ranger',60,False),('바위','knight',90,False),('레아','wizard',120,False),('솔','ranger',140,True)):
-    stand(s,spr(sp),x,G,fl); tag(s,name,x+8,{'노을 · 주인':62,'바위':48,'레아':62,'솔':48}[name])
+for name,sp,x,fl,y,host in (('노을','ranger',60,False,62,True),('바위','knight',90,False,62,False),('레아','wizard',120,False,62,False),('솔','ranger',140,True,48,False)):
+    stand(s,spr(sp),x,G,fl)
+    if host: tag(s,name,x+8,y,bg=(46,110,190,235))
+    else: tag(s,name,x+8,y)
 s.save(OUT+'s_guests.png')
 # 7 프로필 (마법사)
 s=base(); home_island(s); stand(s,spr('wizard'),104,G); s.save(OUT+'s_profile.png')
