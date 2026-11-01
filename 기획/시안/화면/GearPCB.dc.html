@@ -196,7 +196,7 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
           </sc-for>
         </div>
         <div style="display: flex; flex-wrap: wrap; gap: 16px; font-size: 12px; color: #A7B3C2">
-          <span><span style="color: #6FD08C">▲</span> 장착하면 전투력이 올라요</span>
+          <span><span style="color: #6FD08C">▲</span> 키우는 기술(연사) 기준으로 더 좋아요 · <a href="#skills">바꾸기</a></span>
           <span>테두리 색 = 등급</span>
           <span>자동 관리: 더 좋은 장비로 바꿔 끼기 켜짐 · 일반·고급은 재료로 바꾸기 켜짐</span>
         </div>
@@ -247,7 +247,7 @@ class Component extends DCLogic {
       { id: 'i5', slot: 'R', inv: true, img: 'ring_uncommon', grade: '고급', name: '바위껍질 반지', kind: '반지', line: '검술', ilv: 22, base: '공격력 7 · 생명력 70', baseD: '', enhNote: '반지 칸 +0', opts: [{ t: '생명력 +2%', r: '[1 – 2]%', d: '(−3%)' }], lost: [{ t: '공격력 +4%' }, { t: '조준 사격 +1' }], power: '장착하면 전투력 −61', price: '350' },
       { id: 'i6', slot: 'B', inv: true, img: 'body_common', grade: '일반', name: '구름 무명옷', kind: '옷', line: '궁술', ilv: 23, base: '생명력 140', baseD: '(+9)', enhNote: '몸 칸 +1 적용 · 실제 생명력 154', opts: [], lost: [{ t: '생명력 +2%' }], power: '장착하면 전투력 −6', price: '190' },
       { id: 'i7', slot: 'W', inv: true, img: 'bow_uncommon', grade: '고급', name: '바람결 단궁', kind: '단궁', line: '궁술', ilv: 20, base: '공격력 28', baseD: '(−3)', enhNote: '무기 칸 +2 적용 · 실제 공격력 34', opts: [{ t: '공격력 +1%', r: '[1 – 2]%', d: '(−2%)' }], lost: [{ t: '연사 +1' }], power: '장착하면 전투력 −35', price: '300' },
-      { id: 'i8', slot: 'W', inv: true, img: 'staff_hero', grade: '영웅', name: '구름 수정 지팡이', kind: '지팡이', line: '마법', ilv: 23, base: '공격력 40', baseD: '(+9)', enhNote: '무기 칸 +2 적용 · 실제 공격력 48', opts: [{ t: '공격력 +6%', r: '[3 – 6]%', d: '(+3%)' }, { t: '축복 마법 전부 +1', r: '마법사 기술 · 효과 없음', off: true }, { t: '생명력 +3%', r: '[3 – 6]%', d: '(+3%)' }], lost: [{ t: '연사 +1' }], power: '장착하면 전투력 +22', price: '2,400', up: true }
+      { id: 'i8', slot: 'W', inv: true, img: 'staff_hero', grade: '영웅', name: '구름 수정 지팡이', kind: '지팡이', line: '마법', ilv: 23, base: '공격력 40', baseD: '(+9)', enhNote: '무기 칸 +2 적용 · 실제 공격력 48', opts: [{ t: '공격력 +6%', r: '[3 – 6]%', d: '(+3%)' }, { t: '축복 마법 전부 +1', r: '마법사 기술 · 효과 없음', off: true }, { t: '생명력 +3%', r: '[3 – 6]%', d: '(+3%)' }], lost: [{ t: '연사 +1' }], power: '장착하면 전투력 +22 · 키우는 기술 연사 −1이라 자동 장착 안 함', price: '2,400' }
     ];
     const activeId = this.state.pinned || this.state.hover;
     const deco = (it) => {
