@@ -53,8 +53,8 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
 
     <main style="flex: 999 1 560px; min-width: 0; display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
 
-      <div style="flex: 0 1 420px; min-width: 340px; display: flex; flex-direction: column; gap: 16px">
-      <section aria-label="착용 장비 10칸" style=" border: 1px solid #263243; border-radius: 12px; overflow: hidden; background-color: #121A26; background-image: radial-gradient(ellipse 46% 58% at 50% 62%, rgba(110, 140, 220, 0.30), rgba(110, 140, 220, 0) 70%), repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 8px), repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 8px)">
+      <div style="flex: 1 1 100%; min-width: 0; display: flex; gap: 16px; align-items: stretch">
+      <section aria-label="착용 장비 10칸" style="flex: 0 0 360px; border: 1px solid #263243; border-radius: 12px; overflow: hidden; background-color: #121A26; background-image: radial-gradient(ellipse 46% 58% at 50% 62%, rgba(110, 140, 220, 0.30), rgba(110, 140, 220, 0) 70%), repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 8px), repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 8px)">
         <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 12px 0; position: relative; z-index: 1">
           <span style="font-size: 13px; font-weight: 700; color: #E8EDF4; background: #1B2433; border: 1px solid #3A4658; border-radius: 8px; padding: 2px 10px">사냥꾼 · Lv 10</span>
           <div role="group" aria-label="보이는 모습" style="display: flex; background: rgba(16, 22, 31, 0.85); border-radius: 8px; padding: 2px">
@@ -99,7 +99,7 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
           <div style="display: flex; flex-direction: column"><span style="font-size: 12px; color: #A7B3C2">기술 칸</span><span style="font-weight: 700">연사 2 · 조준 2 · 관통 1</span></div>
         </div>
       </section>
-      <section aria-label="보관함" style=" background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+      <section aria-label="보관함" style="flex: 1 1 0; min-width: 0; background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
         <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px">
           <span style="font-size: 15px; font-weight: 700">보관함 <span style="font-size: 12px; font-weight: 400; color: #A7B3C2">9 / 50 · 올리면 설명, 누르면 고정</span></span>
           <div style="display: flex; gap: 6px">
@@ -109,7 +109,7 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
             <button type="button" aria-pressed="false" style="min-height: 36px; padding: 0 12px; border-radius: 999px; border: 1px solid #3A4658; background: transparent; color: #E8EDF4; font: inherit; font-size: 13px">잠금</button>
           </div>
         </div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); gap: 8px">
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(66px, 1fr)); gap: 8px">
           <sc-for list="{{inv}}" as="it" hint-placeholder-count="20">
             <sc-if value="{{it.empty}}" hint-placeholder-val="{{ false }}">
               <div style="aspect-ratio: 1; border-radius: 8px; border: 1px solid #263243; background: #141B25"></div>
@@ -130,9 +130,9 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
       </section>
       </div>
 
-      <section aria-label="장비 설명" style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+      <section aria-label="장비 설명" style="flex: 1 1 100%; min-width: 0; display: flex; gap: 12px; align-items: flex-start">
         <sc-if value="{{hasCur}}" hint-placeholder-val="{{ true }}">
-          <article style="min-width: 0; background: #141B27; border: 1px solid #3A4658; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+          <article style="flex: 1 1 0; min-width: 0; background: #141B27; border: 1px solid #3A4658; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
             <span style="font-size: 12px; font-weight: 700; color: #A7B3C2">착용 중</span>
             <div style="display: flex; gap: 10px; align-items: center">
               <div style="width: 48px; height: 48px; flex-shrink: 0; border-radius: 8px; border: 2px solid {{cur.color}}; background: {{cur.tint}}; display: flex; align-items: center; justify-content: center"><img src="{{cur.img}}" alt="" width="34" height="34" style="image-rendering: pixelated"></div>
@@ -168,7 +168,7 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
           </article>
         </sc-if>
 
-        <article style="min-width: 0; background: #141B27; border: 2px solid {{s.color}}; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+        <article style="flex: 1 1 0; min-width: 0; background: #141B27; border: 2px solid {{s.color}}; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
           <span style="font-size: 12px; font-weight: 700; color: #A7B3C2">{{s.where}}</span>
           <div style="display: flex; gap: 10px; align-items: center">
             <div style="width: 48px; height: 48px; flex-shrink: 0; border-radius: 8px; border: 2px solid {{s.color}}; background: {{s.tint}}; display: flex; align-items: center; justify-content: center"><img src="{{s.img}}" alt="" width="34" height="34" style="image-rendering: pixelated"></div>
