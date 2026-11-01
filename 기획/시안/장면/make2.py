@@ -104,6 +104,13 @@ for sp,x,fl in (('knight',44,False),('ranger',62,False),('wizard',80,False),('kn
     stand(s,spr(sp),x,G,fl)
 tag(s,'하늘등대',97,30,bg=(46,110,190,235))
 s.save(OUT+'s_guild.png')
+# 9 마을 쉼터: 접속 중인 모험가들, 말풍선
+s=base(); put(s, island(3,1), 150, 36); put(s, island(10,2), 7, G)
+prop(s,84,14,G); prop(s,105,150,G); prop(s,106,168,G); prop(s,124,32,G)
+for sp,x,fl in (('wizard',50,False),('knight',70,False),('ranger',96,True),('ranger',120,False),('knight',138,True)):
+    stand(s,spr(sp),x,G,fl)
+bubble(s,'안녕하세요!',58,G-18); bubble(s,'같이 가요~',128,G-30)
+s.save(OUT+'s_shelter.png')
 sheet=Image.new('RGBA',(390*4+30,260*2+10),(16,22,31,255))
 for i,n in enumerate(('s_home','s_start','s_explore','s_battle','s_result','s_guests','s_profile')):
     im=Image.open(OUT+n+'.png').resize((390,260),Image.NEAREST); sheet.paste(im,((i%4)*400,(i//4)*270))

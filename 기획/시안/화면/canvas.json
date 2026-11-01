@@ -291,6 +291,83 @@
       "w": 390,
       "x": 2350,
       "y": 2528
+    },
+    "ShelterB.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "b",
+      "title": "B안 · 마을 쉼터 (몸짓 눌러 보기)",
+      "w": 390,
+      "x": 4230,
+      "y": 0
+    },
+    "ChatB.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "b",
+      "title": "B안 · 대화 · 1:1·파티·길드·방명록 (눌러 보기)",
+      "w": 390,
+      "x": 4700,
+      "y": 0
+    },
+    "GuildManageB.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "b",
+      "title": "B안 · 길드 만들기·관리 (눌러 보기)",
+      "w": 390,
+      "x": 4230,
+      "y": 1264
+    },
+    "SocialPCB.dc.html": {
+      "expand": "fill",
+      "h": 900,
+      "is_interactive": true,
+      "page": "b",
+      "title": "B안 · 교류 · PC",
+      "w": 1280,
+      "x": 0,
+      "y": 6432
+    },
+    "GuildPCB.dc.html": {
+      "expand": "fill",
+      "h": 900,
+      "is_interactive": true,
+      "page": "b",
+      "title": "B안 · 길드 섬 · PC",
+      "w": 1280,
+      "x": 1360,
+      "y": 6432
+    },
+    "CodexPCB.dc.html": {
+      "expand": "fill",
+      "h": 900,
+      "is_interactive": true,
+      "page": "b",
+      "title": "B안 · 도감 · PC (눌러 보기)",
+      "w": 1280,
+      "x": 2720,
+      "y": 6432
+    },
+    "RaidPCB.dc.html": {
+      "expand": "fill",
+      "h": 900,
+      "is_interactive": true,
+      "page": "b",
+      "title": "B안 · 큰 토벌 · PC (눌러 보기)",
+      "w": 1280,
+      "x": 0,
+      "y": 7752
+    },
+    "SkillsPCB.dc.html": {
+      "expand": "fill",
+      "h": 900,
+      "is_interactive": true,
+      "page": "b",
+      "title": "B안 · 기술 · PC (눌러 보기)",
+      "w": 1280,
+      "x": 1360,
+      "y": 7752
     }
   },
   "createdOnFiles": {
@@ -351,6 +428,14 @@
       "w": 240,
       "x": 0,
       "y": -300
+    },
+    "rowPC2": {
+      "kind": "title1",
+      "maxW": 3000,
+      "page": "b",
+      "text": "PC 화면 · 교류·길드·도감·큰 토벌·기술",
+      "x": 0,
+      "y": 6132
     }
   },
   "order": [
@@ -386,7 +471,15 @@
     "SocialB.dc.html",
     "DialogueB.dc.html",
     "GuildB.dc.html",
-    "CodexB.dc.html"
+    "CodexB.dc.html",
+    "ShelterB.dc.html",
+    "ChatB.dc.html",
+    "GuildManageB.dc.html",
+    "SocialPCB.dc.html",
+    "GuildPCB.dc.html",
+    "CodexPCB.dc.html",
+    "RaidPCB.dc.html",
+    "SkillsPCB.dc.html"
   ],
   "pages": [
     {

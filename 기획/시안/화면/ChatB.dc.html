@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>B안 · 대화</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Galmuri11';src:url(/_blob/3d7d41766d6fe4ab874aa2af55b7545e) format('woff2');font-weight:400;font-display:swap}@font-face{font-family:'Galmuri11';src:url(/_blob/8457e27020c70d82c86e28af69c16a56) format('woff2');font-weight:700;font-display:swap}@font-face{font-family:'Galmuri14';src:url(/_blob/b67fdc63fa51b5e3d8ffaa0aa94ab0fc) format('woff2');font-weight:100 900;font-display:swap}body{-webkit-font-smoothing:none}button,input,select,textarea{font-family:inherit}
+
+body{margin:0}
+a{color:#8CC4F5}a:hover{color:#B8DBFA}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #10161F; font-family: 'Galmuri11', 'Noto Sans KR', system-ui, sans-serif; color: #E8EDF4; display: flex; flex-direction: column; overflow: hidden">
+  <header style="height: 52px; box-sizing: border-box; padding: 0 10px 0 4px; display: flex; align-items: center; justify-content: space-between; gap: 8px; border-bottom: 1px solid #263243">
+    <div style="display: flex; align-items: center; gap: 2px">
+      <a href="SocialB.dc.html" aria-label="뒤로" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #E8EDF4"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5 L8 12 L15 19"></path></svg></a>
+      <span style="font-family: 'Galmuri14', 'Galmuri11', sans-serif; font-size: 19px; font-weight: 700; white-space: nowrap">대화</span>
+    </div>
+    <span style="font-size: 12px; color: #A7B3C2; white-space: nowrap"></span>
+  </header>
+  <main style="flex: 1; padding: 10px 14px; display: flex; flex-direction: column; gap: 8px; overflow: hidden">
+    <div role="tablist" aria-label="대화 종류" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px">
+      <sc-for list="{{tabs}}" as="t" hint-placeholder-count="4">
+        <button type="button" role="tab" aria-selected="{{t.on}}" onClick="{{t.pick}}" style="min-height: 40px; border-radius: 8px; border: 1px solid {{t.border}}; background: {{t.bg}}; color: #E8EDF4; font-size: 13px; font-weight: 700; white-space: nowrap; cursor: pointer">{{t.label}}<sc-if value="{{t.hasNew}}" hint-placeholder-val="{{ false }}"><span style="color: #F3D08A"> ·{{t.n}}</span></sc-if></button>
+      </sc-for>
+    </div>
+    <sc-if value="{{isDm}}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; gap: 6px; overflow: hidden">
+        <sc-for list="{{threads}}" as="th" hint-placeholder-count="3">
+          <button type="button" onClick="{{th.pick}}" style="flex-shrink: 0; min-height: 40px; display: flex; align-items: center; gap: 6px; padding: 0 10px 0 4px; border-radius: 20px; border: 1px solid {{th.border}}; background: {{th.bg}}; color: #E8EDF4; font-size: 12px; white-space: nowrap; cursor: pointer"><img src="{{th.img}}" alt="" width="30" height="30" style="image-rendering: pixelated; border-radius: 15px; background: #22324A">{{th.name}}<sc-if value="{{th.unread}}" hint-placeholder-val="{{ false }}"><span aria-label="새 글" style="width: 8px; height: 8px; border-radius: 4px; background: #F2B33D"></span></sc-if></button>
+        </sc-for>
+      </div>
+    </sc-if>
+    <section aria-label="{{boxLabel}}" style="flex: 1; background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; gap: 10px; overflow: hidden">
+      <sc-for list="{{msgs}}" as="m" hint-placeholder-count="5">
+        <div style="display: flex; gap: 8px; align-items: flex-start; min-width: 0"><img src="{{m.img}}" alt="" width="32" height="32" style="image-rendering: pixelated; flex-shrink: 0; border-radius: 8px; background: #22324A"><span style="display: flex; flex-direction: column; min-width: 0"><span style="display: flex; gap: 6px; align-items: baseline"><span style="font-size: 12px; font-weight: 700; color: {{m.color}}; white-space: nowrap">{{m.name}}</span><sc-if value="{{m.auto}}" hint-placeholder-val="{{ false }}"><span style="font-size: 10px; color: #A7B3C2; border: 1px solid #3A4658; border-radius: 6px; padding: 0 4px; white-space: nowrap">말풍선</span></sc-if><span style="font-size: 11px; color: #6E7B8C; white-space: nowrap">{{m.time}}</span><sc-if value="{{m.canHide}}" hint-placeholder-val="{{ false }}"><button type="button" style="border: none; background: transparent; padding: 0; color: #8CC4F5; font-size: 11px; cursor: pointer; white-space: nowrap">숨기기</button></sc-if></span><span style="font-size: 13px; line-height: 1.5; word-break: keep-all">{{m.text}}</span></span></div>
+      </sc-for>
+    </section>
+    <div style="display: flex; gap: 6px"><input type="text" placeholder="{{placeholder}}" aria-label="{{placeholder}}" style="flex: 1; min-width: 0; min-height: 42px; box-sizing: border-box; border-radius: 10px; border: 1px solid #3A4658; background: #1B2433; color: #E8EDF4; font-size: 13px; padding: 0 12px"><button type="button" style="min-width: 60px; min-height: 42px; border-radius: 10px; border: none; background: #3D86C6; color: #FFFFFF; font-size: 13px; font-weight: 700; white-space: nowrap; cursor: pointer">보내기</button></div>
+  </main>
+
+  <nav aria-label="주 메뉴" style="height: 64px; background: #151D29; border-top: 1px solid #263243; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr))">
+    <a href="HomeB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11 L12 4 L21 11"></path><path d="M5 10 V20 H19 V10"></path></svg>집</a>
+    <a href="ExpeditionB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 V15"></path><path d="M7 10 L12 15 L17 10"></path><path d="M4 20 H20"></path></svg>원정</a>
+    <a href="GearB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 L19 6 V12 C19 16 16 19 12 21 C8 19 5 16 5 12 V6 Z"></path></svg>장비</a>
+    <a href="SocialB.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; font-weight: 700; color: #8CC4F5; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3 19 C3 15 6 13 9 13 C12 13 15 15 15 19"></path><circle cx="17" cy="9" r="2.5"></circle><path d="M16 13.5 C19 13.5 21 15.5 21 19"></path></svg>교류</a>
+    <a href="MarketB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 8 H20 L18 20 H6 Z"></path><path d="M9 8 V6 A3 3 0 0 1 15 6 V8"></path></svg>거래소</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { tab: 'dm', th: 'b' }; }
+  renderVals() {
+    const R = '/_blob/c2e10fff92a559b32f281532a0025abb', W = '/_blob/65476abc18e3766f1b74c327719c3452', K = '/_blob/05be44623edeece48a014d214caf38a7';
+    const st = this.state;
+    const threads = [{ id: 'b', img: W, name: '이슬비', unread: true }, { id: 'a', img: K, name: '바위', unread: false }, { id: 'c', img: R, name: '구름빵', unread: true }];
+    const DM = {
+      b: [{ img: W, name: '이슬비', text: '오늘 큰 토벌 같이 가실래요?', time: '10분 전' }, { img: R, name: '나', text: '좋아요! 노을 섬으로 갈게요', time: '8분 전', me: true }, { img: W, name: '이슬비', text: '치유 프리셋으로 바꿔 둘게요', time: '방금' }],
+      a: [{ img: K, name: '바위', text: '어제 관문 고마웠어', time: '어제' }],
+      c: [{ img: R, name: '구름빵', text: '장궁 거래소에 올리셨어요?', time: '1시간 전' }]
+    };
+    const PARTY = [{ img: K, name: '바위', text: '내 뒤로!', time: '어제 21:14', auto: true }, { img: W, name: '레아', text: '치유의 빛!', time: '어제 21:14', auto: true }, { img: R, name: '노을', text: '다음 폭풍도 같이 넘자.', time: '어제 21:15' }];
+    const GUILD = [{ img: K, name: '바람막이', text: '오늘 토벌 8명 넘으면 두 무리로 가요', time: '30분 전' }, { img: W, name: '이슬비', text: '저 치유 프리셋으로 바꿔 둘게요', time: '20분 전' }, { img: R, name: '솔', text: '22시 전에 섬에 와 있을게요', time: '방금' }];
+    const BOOK = [{ img: R, name: '하늘지기', text: '깃털 장식 멋지다! 다음에 또 올게', time: '오늘', canHide: true }, { img: W, name: '구름빵', text: '전송진 반짝이는 거 너무 예뻐요', time: '어제', canHide: true }];
+    const src = { dm: DM[st.th] || [], party: PARTY, guild: GUILD, book: BOOK }[st.tab];
+    const msgs = src.map((m) => Object.assign({ auto: false, canHide: false, color: m.me ? '#8CC4F5' : '#E8EDF4' }, m));
+    const tdef = [['dm', '1:1', 2], ['party', '파티', 0], ['guild', '길드', 3], ['book', '방명록', 1]];
+    const tabs = tdef.map((x) => ({ label: x[1], on: st.tab === x[0], hasNew: x[2] > 0, n: x[2], border: st.tab === x[0] ? '#8CC4F5' : '#3A4658', bg: st.tab === x[0] ? '#1F3550' : 'transparent', pick: () => this.setState({ tab: x[0] }) }));
+    return {
+      tabs: tabs, isDm: st.tab === 'dm', msgs: msgs,
+      threads: threads.map((t) => ({ img: t.img, name: t.name, unread: t.unread && st.th !== t.id, border: st.th === t.id ? '#8CC4F5' : '#3A4658', bg: st.th === t.id ? '#1F3550' : 'transparent', pick: () => this.setState({ th: t.id }) })),
+      boxLabel: { dm: '1:1 대화', party: '파티 대화', guild: '길드 대화', book: '내 섬 방명록' }[st.tab],
+      placeholder: { dm: '이슬비에게 말하기', party: '파티에 말하기', guild: '길드에 말하기', book: '방명록은 손님이 남겨요' }[st.tab]
+    };
+  }
+}
+</script>
+</body>
+</html>

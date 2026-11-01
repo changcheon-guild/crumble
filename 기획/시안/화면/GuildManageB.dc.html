@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>B안 · 길드</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Galmuri11';src:url(/_blob/3d7d41766d6fe4ab874aa2af55b7545e) format('woff2');font-weight:400;font-display:swap}@font-face{font-family:'Galmuri11';src:url(/_blob/8457e27020c70d82c86e28af69c16a56) format('woff2');font-weight:700;font-display:swap}@font-face{font-family:'Galmuri14';src:url(/_blob/b67fdc63fa51b5e3d8ffaa0aa94ab0fc) format('woff2');font-weight:100 900;font-display:swap}body{-webkit-font-smoothing:none}button,input,select,textarea{font-family:inherit}
+
+body{margin:0}
+a{color:#8CC4F5}a:hover{color:#B8DBFA}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #10161F; font-family: 'Galmuri11', 'Noto Sans KR', system-ui, sans-serif; color: #E8EDF4; display: flex; flex-direction: column; overflow: hidden">
+  <header style="height: 52px; box-sizing: border-box; padding: 0 10px 0 4px; display: flex; align-items: center; justify-content: space-between; gap: 8px; border-bottom: 1px solid #263243">
+    <div style="display: flex; align-items: center; gap: 2px">
+      <a href="GuildB.dc.html" aria-label="뒤로" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #E8EDF4"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5 L8 12 L15 19"></path></svg></a>
+      <span style="font-family: 'Galmuri14', 'Galmuri11', sans-serif; font-size: 19px; font-weight: 700; white-space: nowrap">길드</span>
+    </div>
+    <span style="font-size: 12px; color: #A7B3C2; white-space: nowrap"></span>
+  </header>
+  <main style="flex: 1; padding: 10px 14px; display: flex; flex-direction: column; gap: 10px; overflow: hidden">
+    <div role="tablist" aria-label="길드" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px">
+      <sc-for list="{{tabs}}" as="t" hint-placeholder-count="2">
+        <button type="button" role="tab" aria-selected="{{t.on}}" onClick="{{t.pick}}" style="min-height: 40px; border-radius: 8px; border: 1px solid {{t.border}}; background: {{t.bg}}; color: #E8EDF4; font-size: 13px; font-weight: 700; white-space: nowrap; cursor: pointer">{{t.label}}</button>
+      </sc-for>
+    </div>
+    <sc-if value="{{isMake}}" hint-placeholder-val="{{ false }}">
+      <section aria-label="길드 만들기" style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 10px">
+        <label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 700">길드 이름 <span style="font-weight: 400; font-size: 12px; color: #A7B3C2">2~8자 · 길드 섬 이름도 돼요</span><input type="text" value="하늘등대" maxlength="8" style="min-height: 42px; box-sizing: border-box; border-radius: 8px; border: 1px solid #3A4658; background: #1B2433; color: #E8EDF4; font-size: 14px; padding: 0 12px"></label>
+        <div style="display: flex; gap: 12px; align-items: center">
+          <div aria-label="깃발 미리보기" style="width: 64px; height: 64px; flex-shrink: 0; border-radius: 8px; background: #1B2433; display: grid; grid-template-columns: repeat(8, 1fr); padding: 4px; box-sizing: border-box">
+            <sc-for list="{{flag}}" as="px" hint-placeholder-count="64"><span style="background: {{px.c}}"></span></sc-for>
+          </div>
+          <span style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 13px; font-weight: 700">깃발</span><a href="PixelEditorB.dc.html" style="font-size: 13px; white-space: nowrap">도트 편집기로 그리기 ›</a></span>
+        </div>
+        <span style="font-size: 13px; font-weight: 700">가입 방식</span>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
+          <sc-for list="{{joins}}" as="j" hint-placeholder-count="3">
+            <button type="button" aria-pressed="{{j.on}}" onClick="{{j.pick}}" style="min-height: 40px; border-radius: 8px; border: 1px solid {{j.border}}; background: {{j.bg}}; color: #E8EDF4; font-size: 12px; white-space: nowrap; cursor: pointer">{{j.t}}</button>
+          </sc-for>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; background: #1B2433; border-radius: 8px; padding: 8px 10px; font-size: 13px"><span style="display: flex; align-items: center; gap: 6px; white-space: nowrap"><img src="/_blob/f455ad14c4095214ee4a4ff7129ab42b" alt="" width="22" height="22" style="image-rendering: pixelated">골드 10,000</span><span style="color: #6FD08C; white-space: nowrap">가진 골드 12,400</span></div>
+        <button type="button" style="min-height: 46px; border-radius: 10px; border: none; background: #F2B33D; color: #1B2735; font-size: 15px; font-weight: 700; cursor: pointer">길드와 길드 섬 만들기</button>
+      </section>
+    </sc-if>
+    <sc-if value="{{isManage}}" hint-placeholder-val="{{ true }}">
+      <section aria-label="가입 신청" style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 8px 12px; display: flex; flex-direction: column; gap: 6px">
+        <span style="font-size: 14px; font-weight: 700">가입 신청 {{reqCount}}</span>
+        <sc-for list="{{reqs}}" as="r" hint-placeholder-count="2">
+          <div style="display: flex; gap: 8px; align-items: center; border-top: 1px solid #263243; padding-top: 6px">
+            <img src="{{r.img}}" alt="" width="32" height="32" style="image-rendering: pixelated; border-radius: 8px; background: #22324A; flex-shrink: 0">
+            <span style="display: flex; flex-direction: column; flex: 1; min-width: 0"><span style="font-size: 13px; font-weight: 700; white-space: nowrap">{{r.name}} <span style="font-weight: 400; font-size: 12px; color: #A7B3C2">{{r.info}}</span></span><span style="font-size: 12px; color: #A7B3C2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">"{{r.msg}}"</span></span>
+            <button type="button" onClick="{{r.ok}}" style="min-height: 36px; padding: 0 10px; border-radius: 8px; border: none; background: #3D86C6; color: #FFFFFF; font-size: 12px; white-space: nowrap; cursor: pointer">받기</button>
+            <button type="button" onClick="{{r.no}}" style="min-height: 36px; padding: 0 8px; border-radius: 8px; border: 1px solid #3A4658; background: transparent; color: #E8EDF4; font-size: 12px; white-space: nowrap; cursor: pointer">거절</button>
+          </div>
+        </sc-for>
+      </section>
+      <section aria-label="길드원" style="flex: 1; background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 8px 12px; display: flex; flex-direction: column; gap: 4px; overflow: hidden">
+        <div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-size: 14px; font-weight: 700">길드원 {{memCount}} / 32</span><span style="font-size: 12px; color: #A7B3C2; white-space: nowrap">큰 토벌 출발 22:00 · <a href="#time">바꾸기</a></span></div>
+        <sc-for list="{{members}}" as="m" hint-placeholder-count="5">
+          <div style="display: flex; gap: 8px; align-items: center; border-top: 1px solid #263243; padding: 5px 0">
+            <img src="{{m.img}}" alt="" width="28" height="28" style="image-rendering: pixelated; border-radius: 8px; background: #22324A; flex-shrink: 0">
+            <span style="flex: 1; min-width: 0; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{m.name}} <span style="font-size: 12px; color: #A7B3C2">{{m.info}}</span></span>
+            <span style="font-size: 11px; padding: 1px 6px; border-radius: 6px; background: {{m.roleBg}}; color: {{m.roleColor}}; white-space: nowrap">{{m.role}}</span>
+          </div>
+        </sc-for>
+      </section>
+    </sc-if>
+  </main>
+
+  <nav aria-label="주 메뉴" style="height: 64px; background: #151D29; border-top: 1px solid #263243; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr))">
+    <a href="HomeB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11 L12 4 L21 11"></path><path d="M5 10 V20 H19 V10"></path></svg>집</a>
+    <a href="ExpeditionB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 V15"></path><path d="M7 10 L12 15 L17 10"></path><path d="M4 20 H20"></path></svg>원정</a>
+    <a href="GearB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 L19 6 V12 C19 16 16 19 12 21 C8 19 5 16 5 12 V6 Z"></path></svg>장비</a>
+    <a href="SocialB.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; font-weight: 700; color: #8CC4F5; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3 19 C3 15 6 13 9 13 C12 13 15 15 15 19"></path><circle cx="17" cy="9" r="2.5"></circle><path d="M16 13.5 C19 13.5 21 15.5 21 19"></path></svg>교류</a>
+    <a href="MarketB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 8 H20 L18 20 H6 Z"></path><path d="M9 8 V6 A3 3 0 0 1 15 6 V8"></path></svg>거래소</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { tab: 'manage', join: 1, done: {} }; }
+  renderVals() {
+    const R = '/_blob/c2e10fff92a559b32f281532a0025abb', W = '/_blob/65476abc18e3766f1b74c327719c3452', K = '/_blob/05be44623edeece48a014d214caf38a7';
+    const st = this.state;
+    const tabs = [['make', '길드 만들기'], ['manage', '하늘등대 관리']].map((x) => ({ label: x[1], on: st.tab === x[0], border: st.tab === x[0] ? '#8CC4F5' : '#3A4658', bg: st.tab === x[0] ? '#1F3550' : 'transparent', pick: () => this.setState({ tab: x[0] }) }));
+    const joins = ['누구나', '신청 후 승인', '초대만'].map((t, i) => ({ t: t, on: st.join === i, border: st.join === i ? '#8CC4F5' : '#3A4658', bg: st.join === i ? '#1F3550' : 'transparent', pick: () => this.setState({ join: i }) }));
+    const F = ['#10161F', '#E0A93B', '#F2B33D', '#3D86C6', '#E8EDF4'];
+    const art = ['00000000', '01111110', '01222210', '01233210', '01233210', '01222210', '01111110', '00000000'];
+    const flag = [];
+    art.forEach((row, y) => row.split('').forEach((c) => flag.push({ c: F[+c] })));
+    const reqRaw = [{ id: 1, img: W, name: '물안개', info: '마법사 · Lv 11', msg: '치유 좋아해요. 저녁에 자주 접속해요' }, { id: 2, img: K, name: '돌방패', info: '전사 · Lv 9', msg: '큰 토벌 같이 하고 싶어요' }];
+    const reqs = reqRaw.filter((r) => !st.done[r.id]).map((r) => Object.assign({}, r, { ok: () => { const d = Object.assign({}, st.done); d[r.id] = 'ok'; this.setState({ done: d }); }, no: () => { const d = Object.assign({}, st.done); d[r.id] = 'no'; this.setState({ done: d }); } }));
+    const role = (t) => t === '길드장' ? { roleBg: '#5A4413', roleColor: '#F3D08A' } : t === '관리자' ? { roleBg: '#1F3550', roleColor: '#8CC4F5' } : { roleBg: '#263243', roleColor: '#C8D3E6' };
+    const mem = [['바람막이', K, '전사 · Lv 13 · 섬에 있음', '길드장'], ['이슬비', W, '마법사 · Lv 10 · 섬에 있음', '관리자'], ['나', R, '사냥꾼 · Lv 10', '관리자'], ['솔', R, '사냥꾼 · Lv 10 · 섬에 있음', '길드원'], ['섬돌', K, '전사 · Lv 6 · 3시간 전', '길드원']];
+    const joined = reqRaw.filter((r) => st.done[r.id] === 'ok').map((r) => [r.name, r.img, r.info + ' · 새로 들어옴', '길드원']);
+    const members = mem.concat(joined).map((m) => Object.assign({ name: m[0], img: m[1], info: m[2], role: m[3] }, role(m[3])));
+    return { tabs: tabs, isMake: st.tab === 'make', isManage: st.tab === 'manage', joins: joins, flag: flag, reqs: reqs, reqCount: reqs.length, members: members, memCount: 18 + joined.length };
+  }
+}
+</script>
+</body>
+</html>
