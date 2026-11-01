@@ -265,6 +265,15 @@
       "w": 390,
       "x": 3290,
       "y": 0
+    },
+    "DialogueB.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "b",
+      "title": "B안 · 말풍선 대사 (고치기·끄기)",
+      "w": 390,
+      "x": 3290,
+      "y": 1264
     }
   },
   "createdOnFiles": {
@@ -357,7 +366,8 @@
     "BattlePCB.dc.html",
     "IslandGuestsB.dc.html",
     "RaidB.dc.html",
-    "SocialB.dc.html"
+    "SocialB.dc.html",
+    "DialogueB.dc.html"
   ],
   "pages": [
     {

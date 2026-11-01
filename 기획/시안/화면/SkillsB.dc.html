@@ -75,7 +75,11 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
           <div style="display: flex; flex-direction: column; gap: 1px; flex: 1; min-width: 0">
             <span style="font-size: 14px; font-weight: 700">{{sk.name}} <span style="font-size: 12px; font-weight: 500; color: {{sk.lvColor}}">{{sk.lvText}}</span></span>
             <span style="font-size: 12px; color: #A7B3C2">{{sk.desc}}</span>
-            <span style="font-size: 12px; color: #8CC4F5">{{sk.source}}</span>
+            <span style="display: flex; gap: 4px; align-items: center; min-width: 0">
+              <sc-for list="{{sk.marks}}" as="mk" hint-placeholder-count="3"><span style="white-space: nowrap; font-size: 11px; padding: 0 6px; border-radius: 8px; border: 1px solid {{mk.border}}; background: {{mk.bg}}; color: {{mk.color}}">{{mk.label}}</span></sc-for>
+              <span style="font-size: 11px; color: #C8D3E6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{sk.next}}</span>
+            </span>
+            <span style="font-size: 12px; color: #8CC4F5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{sk.source}}</span>
           </div>
           <sc-if value="{{sk.learned}}" hint-placeholder-val="{{ true }}">
             <button type="button" onClick="{{sk.toggle}}" style="min-width: 60px; min-height: 44px; border-radius: 8px; border: 1px solid {{sk.btnBorder}}; background: {{sk.btnBg}}; color: #FFFFFF; font: inherit; font-size: 13px; cursor: pointer">{{sk.btnText}}</button>
@@ -115,7 +119,7 @@ class Component extends DCLogic {
     const st = { focus: P.focus };
     const setFocus = (f) => { const ps = st0.ps.map((x, i) => i === st0.cur ? Object.assign({}, x, { focus: f }) : x); this.setState({ ps: ps }); };
     const defs = [
-      { id: 'aim', name: '조준 사격', learnLv: 1, img: B + 'b133920c0637dd17a05b1e3b3be43417', lv: 3, desc: '한 대상에게 크게 한 발', source: '순풍의 목걸이 · 조준 사격 +2' },
+      { id: 'aim', name: '조준 사격', learnLv: 1, img: B + 'b133920c0637dd17a05b1e3b3be43417', lv: 4, desc: '한 대상에게 크게 한 발', source: '순풍의 목걸이 +2 · 물방울 귀걸이 +1' },
       { id: 'rapid', name: '연사', learnLv: 5, img: B + '4f2083e560e2a0725ab09c4fc0b8cfa4', lv: 2, desc: '빠르게 여러 발', source: '바람결 장궁 · 연사 +1 (보관함의 천둥새의 장궁에도 있음)' },
       { id: 'pierce', name: '관통 화살', learnLv: 10, img: B + '4beb5d4ca18f0341931aa0c52f420782', lv: 1, desc: '줄지어 선 적을 꿰뚫어요', source: '장비 +1 없음' },
       { id: 'rain', name: '화살비', learnLv: 15, img: B + '0ab31bf79cf405cb73f3ebf826178f62', lv: 1, desc: '여러 적에게 화살을 퍼부어요', source: '' },
@@ -129,6 +133,7 @@ class Component extends DCLogic {
     // 기술 칸: 키울 기술 먼저, 남는 칸은 레벨 높은 순(같으면 먼저 배운 순)
     const rest = learned.filter((d) => st.focus.indexOf(d.id) < 0).sort((x, y) => y.lv - x.lv || x.learnLv - y.learnLv);
     const slotIds = st.focus.concat(rest.map((d) => d.id)).slice(0, 3);
+    const MS = {"aim": ["방어 10% 무시", "옆 적에게도 절반", "다시 쓰기 1초 빠름"], "rapid": ["화살 1발 더", "마지막 발이 꿰뚫음", "쏜 뒤 공격 속도 +15%"], "pierce": ["꿰뚫는 수 +1", "꿰뚫을 때마다 피해 +10%", "다시 쓰기 1초 빠름"], "rain": ["범위 넓어짐", "맞은 적 느려짐", "화살비 한 번 더"], "weak": ["우두머리 피해 +10%", "약점 표시가 파티에 퍼짐", "표시 시간 2배"], "hawk": ["효과 시간 +2초", "파티 생명력도 조금", "다시 쓰기 2초 빠름"]};
     const skills = defs.map((d) => {
       const isL = myLv >= d.learnLv;
       const fi = st.focus.indexOf(d.id);
@@ -137,6 +142,8 @@ class Component extends DCLogic {
         lvText: isL ? ('Lv ' + d.lv + (d.lv > 1 ? ' (장비 +' + (d.lv - 1) + ')' : '') + (slotIds.indexOf(d.id) >= 0 ? ' · 기술 칸' : '')) : '',
         lvColor: d.lv > 1 ? '#6FD08C' : '#A7B3C2',
         source: isL ? d.source : '',
+        marks: [3, 6, 9].map((m, k) => { const got = isL && d.lv - 1 >= m; return { label: '+' + m, border: got ? '#E0A93B' : '#3A4658', bg: got ? '#5A4413' : 'transparent', color: got ? '#F3D08A' : '#A7B3C2' }; }),
+        next: (() => { const k = [3, 6, 9].findIndex((m) => d.lv - 1 < m); return k < 0 ? '추가 효과 모두 열림' : '+' + [3, 6, 9][k] + ' ' + MS[d.id][k] + ' (' + ([3, 6, 9][k] - (d.lv - 1)) + ' 남음)'; })(),
         btnText: fi >= 0 ? '★ 키우는 중' : '키우기', btnBg: fi >= 0 ? '#5A4413' : '#3D86C6', btnBorder: fi >= 0 ? '#E0A93B' : '#3D86C6',
         toggle: () => {
           const f = st.focus.slice();

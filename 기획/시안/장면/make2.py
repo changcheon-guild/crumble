@@ -46,6 +46,20 @@ def tag(s,text,cx,y,bg=(16,22,31,215),fg=(255,255,255,255)):
     x=int(cx-w/2); d.rectangle((x,y,x+w-1,y+h-1),fill=bg)
     d.text((x+3-l,y+1),text,font=FONT,fill=fg)
     s.alpha_composite(lay)
+def bubble(s,text,cx,bottom_y):
+    """말풍선: 꼬리 끝이 (cx, bottom_y)에 닿는다. 글자는 갈무리9 1배."""
+    l,tp,r,b=FONT.getbbox(text); w=r-l+8; h=13
+    lay=Image.new('RGBA',s.size,(0,0,0,0)); d=ImageDraw.Draw(lay); d.fontmode='1'
+    x=int(cx-w/2); y=bottom_y-h-3
+    edge=(43,49,66,255); fill=(255,255,255,255)
+    d.rectangle((x+1,y,x+w-2,y+h-1),fill=fill); d.rectangle((x,y+1,x+w-1,y+h-2),fill=fill)
+    d.line((x+1,y-1,x+w-2,y-1),fill=edge); d.line((x+1,y+h,x+w-2,y+h),fill=edge)
+    d.line((x-1,y+1,x-1,y+h-2),fill=edge); d.line((x+w,y+1,x+w,y+h-2),fill=edge)
+    d.point([(x,y),(x+w-1,y),(x,y+h-1),(x+w-1,y+h-1)],fill=edge)
+    d.polygon([(cx-2,y+h),(cx+2,y+h),(cx,y+h+2)],fill=fill); d.point([(cx-3,y+h),(cx+3,y+h)],fill=edge)
+    d.line((cx-2,y+h+1,cx-1,y+h+2),fill=edge); d.line((cx+2,y+h+1,cx+1,y+h+2),fill=edge); d.point((cx,y+h+3),fill=edge)
+    d.text((x+4-l,y+1),text,font=FONT,fill=(27,39,53,255))
+    s.alpha_composite(lay)
 OUT='scenes/'
 def home_island(s, gy=92):
     put(s, island(3,1), 6, 44); put(s, island(3,1), 160, 34); put(s, island(9,2), 16, gy)
@@ -61,12 +75,13 @@ stand(s,spr('knight'),78,G); stand(s,spr('ranger'),98,G); stand(s,spr('wizard'),
 # 3 탐사 (비구름 지대, 사냥꾼과 게)
 s=base(sat=0.55,dark=0.85); put(s, island(3,1,'snow'), 152, 40); put(s, island(7,2,'snow'), 30, G)
 prop(s,126,46,G); prop(s,126,136,G)
-stand(s,spr('ranger'),76,G); stand(s,spr('crab'),104,G,flip=True); s.save(OUT+'s_explore.png')
+stand(s,spr('ranger'),76,G); stand(s,spr('crab'),104,G,flip=True); bubble(s,'게다!',84,G-18); s.save(OUT+'s_explore.png')
 # 4 보스전 (폭풍의 벽)
 s=base(tint=(88,70,150,120),dark=0.8); put(s, island(9,2), 10, G)
 prop(s,126,18,G); prop(s,126,160,G)
 stand(s,spr('wizard'),34,G); stand(s,spr('ranger'),54,G); stand(s,spr('knight'),82,G)
 boss=spr('bat'); boss=boss.resize((boss.width*2,boss.height*2),Image.NEAREST); put(s,boss,118,46)
+bubble(s,'치유의 빛!',42,G-18); bubble(s,'내 뒤로!',90,G-30)
 s.save(OUT+'s_battle.png')
 # 5 결과 (폭풍이 걷힌 하늘)
 s=base(); put(s, island(9,2), 10, G); prop(s,126,18,G); prop(s,111,150,G); prop(s,126,168,G)

@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>B안 · 말풍선 대사</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Galmuri11';src:url(/_blob/3d7d41766d6fe4ab874aa2af55b7545e) format('woff2');font-weight:400;font-display:swap}@font-face{font-family:'Galmuri11';src:url(/_blob/8457e27020c70d82c86e28af69c16a56) format('woff2');font-weight:700;font-display:swap}@font-face{font-family:'Galmuri14';src:url(/_blob/b67fdc63fa51b5e3d8ffaa0aa94ab0fc) format('woff2');font-weight:100 900;font-display:swap}body{-webkit-font-smoothing:none}button,input,select,textarea{font-family:inherit}
+
+body{margin:0}
+a{color:#8CC4F5}a:hover{color:#B8DBFA}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #10161F; font-family: 'Galmuri11', 'Noto Sans KR', system-ui, sans-serif; color: #E8EDF4; display: flex; flex-direction: column; overflow: hidden">
+  <header style="height: 52px; box-sizing: border-box; padding: 0 6px; display: flex; align-items: center; gap: 2px; border-bottom: 1px solid #263243">
+    <a href="SettingsB.dc.html" aria-label="뒤로" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #E8EDF4">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5 L8 12 L15 19"></path></svg></a>
+    <span style="font-family: 'Galmuri14', 'Galmuri11', sans-serif; font-size: 19px; font-weight: 700">말풍선 대사</span>
+  </header>
+
+  <main style="flex: 1; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; overflow: hidden">
+    <div style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 0 14px">
+      <sc-for list="{{masters}}" as="m" hint-placeholder-count="2">
+        <button type="button" role="switch" aria-checked="{{m.on}}" onClick="{{m.flip}}" style="width: 100%; min-height: 48px; display: flex; justify-content: space-between; align-items: center; gap: 12px; border: none; border-top: {{m.line}}; background: transparent; color: #E8EDF4; text-align: left; padding: 4px 0; cursor: pointer">
+          <span style="font-size: 14px; white-space: nowrap">{{m.label}}</span>
+          <span aria-hidden="true" style="width: 44px; height: 26px; flex-shrink: 0; border-radius: 13px; background: {{m.track}}; position: relative"><span style="position: absolute; top: 3px; left: {{m.knob}}; width: 20px; height: 20px; border-radius: 10px; background: #FFFFFF"></span></span>
+        </button>
+      </sc-for>
+    </div>
+
+    <div role="tablist" aria-label="상황 묶음" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
+      <sc-for list="{{tabs}}" as="t" hint-placeholder-count="3">
+        <button type="button" role="tab" aria-selected="{{t.on}}" onClick="{{t.pick}}" style="min-height: 40px; border-radius: 8px; border: 1px solid {{t.border}}; background: {{t.bg}}; color: #E8EDF4; font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap">{{t.label}}</button>
+      </sc-for>
+    </div>
+
+    <section aria-label="대사 목록" style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 2px 12px; display: flex; flex-direction: column; flex: 1; overflow: hidden">
+      <sc-for list="{{rows}}" as="r" hint-placeholder-count="6">
+        <div style="border-bottom: 1px solid #263243; padding: 8px 0; display: flex; flex-direction: column; gap: 6px; opacity: {{r.dim}}">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+            <span style="display: flex; align-items: center; gap: 6px; min-width: 0">
+              <sc-if value="{{r.hasImg}}" hint-placeholder-val="{{ false }}"><img src="{{r.img}}" alt="" width="20" height="20" style="image-rendering: pixelated"></sc-if>
+              <span style="font-size: 13px; font-weight: 700; white-space: nowrap">{{r.when}}</span>
+              <sc-if value="{{r.edited}}" hint-placeholder-val="{{ false }}"><span style="font-size: 11px; color: #F3D08A; white-space: nowrap">고침</span></sc-if>
+            </span>
+            <button type="button" role="switch" aria-checked="{{r.on}}" aria-label="{{r.when}} 말풍선" onClick="{{r.flip}}" style="width: 44px; height: 26px; flex-shrink: 0; border: none; padding: 0; border-radius: 13px; background: {{r.track}}; position: relative; cursor: pointer"><span style="position: absolute; top: 3px; left: {{r.knob}}; width: 20px; height: 20px; border-radius: 10px; background: #FFFFFF"></span></button>
+          </div>
+          <input type="text" value="{{r.text}}" onChange="{{r.edit}}" maxlength="20" aria-label="{{r.when}} 대사" style="min-height: 38px; box-sizing: border-box; border-radius: 8px; border: 1px solid #3A4658; background: #1B2433; color: #E8EDF4; font-size: 13px; padding: 0 10px">
+        </div>
+      </sc-for>
+    </section>
+  </main>
+
+  <nav aria-label="주 메뉴" style="height: 64px; background: #151D29; border-top: 1px solid #263243; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr))">
+    <a href="HomeB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11 L12 4 L21 11"></path><path d="M5 10 V20 H19 V10"></path></svg>집</a>
+    <a href="ExpeditionB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 V15"></path><path d="M7 10 L12 15 L17 10"></path><path d="M4 20 H20"></path></svg>원정</a>
+    <a href="GearB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 L19 6 V12 C19 16 16 19 12 21 C8 19 5 16 5 12 V6 Z"></path></svg>장비</a>
+    <a href="SocialB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3 19 C3 15 6 13 9 13 C12 13 15 15 15 19"></path><circle cx="17" cy="9" r="2.5"></circle><path d="M16 13.5 C19 13.5 21 15.5 21 19"></path></svg>교류</a>
+    <a href="#market" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 8 H20 L18 20 H6 Z"></path><path d="M9 8 V6 A3 3 0 0 1 15 6 V8"></path></svg>거래소</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tab: 'battle', mine: true, others: true, off: {}, text: {} };
+  }
+  renderVals() {
+    const B = '/_blob/';
+    const st = this.state;
+    const defs = {
+      battle: [
+        { id: 'start', when: '전투 시작', text: '가 보자!' },
+        { id: 'aim', when: '조준 사격', img: B + 'b133920c0637dd17a05b1e3b3be43417', text: '한 발이면 돼.' },
+        { id: 'rapid', when: '연사', img: B + '4f2083e560e2a0725ab09c4fc0b8cfa4', text: '쏟아 붓는다!' },
+        { id: 'pierce', when: '관통 화살', img: B + '4beb5d4ca18f0341931aa0c52f420782', text: '줄 서 있네?' },
+        { id: 'low', when: '생명력 30% 아래', text: '조금 위험해…' },
+        { id: 'healed', when: '치유를 받았을 때', text: '고마워!' },
+        { id: 'win', when: '이겼을 때', text: '다음 폭풍도 같이!' }
+      ],
+      explore: [
+        { id: 'go', when: '탐사 출발', text: '오늘은 어디까지?' },
+        { id: 'meet', when: '적을 만났을 때', text: '저기다!' },
+        { id: 'find', when: '좋은 장비를 찾았을 때', text: '이건 놓칠 수 없지.' },
+        { id: 'gate', when: '관문에 닿았을 때', text: '폭풍이 거세졌어.' }
+      ],
+      island: [
+        { id: 'hello', when: '손님이 왔을 때', text: '어서 와!' },
+        { id: 'visit', when: '남의 섬에 갔을 때', text: '실례할게요~' },
+        { id: 'bye', when: '섬을 떠날 때', text: '또 올게!' }
+      ]
+    };
+    const sw = (on) => ({ track: on ? '#3D86C6' : '#3A4658', knob: on ? '21px' : '3px' });
+    const rows = defs[st.tab].map((d) => {
+      const on = !st.off[d.id];
+      const txt = st.text[d.id] !== undefined ? st.text[d.id] : d.text;
+      return Object.assign({ when: d.when, img: d.img || '', hasImg: !!d.img, on: on, dim: on && st.mine ? '1' : '0.5',
+        text: txt, edited: txt !== d.text,
+        flip: () => { const o = Object.assign({}, st.off); o[d.id] = on; this.setState({ off: o }); },
+        edit: (e) => { const t = Object.assign({}, st.text); t[d.id] = e.target.value; this.setState({ text: t }); } }, sw(on));
+    });
+    const masters = [
+      Object.assign({ label: '내 말풍선 띄우기', on: st.mine, line: 'none', flip: () => this.setState({ mine: !st.mine }) }, sw(st.mine)),
+      Object.assign({ label: '다른 사람 말풍선 보기', on: st.others, line: '1px solid #263243', flip: () => this.setState({ others: !st.others }) }, sw(st.others))
+    ];
+    const tabs = [['battle', '전투'], ['explore', '탐사'], ['island', '섬']].map((x) => ({ label: x[1], on: st.tab === x[0],
+      border: st.tab === x[0] ? '#8CC4F5' : '#3A4658', bg: st.tab === x[0] ? '#1F3550' : 'transparent', pick: () => this.setState({ tab: x[0] }) }));
+    return { rows: rows, masters: masters, tabs: tabs };
+  }
+}
+</script>
+</body>
+</html>
