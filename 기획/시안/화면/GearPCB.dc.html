@@ -76,7 +76,7 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
           <div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; height: 30px; background: linear-gradient(180deg, rgba(16, 22, 31, 0), rgba(16, 22, 31, 0.9))"></div>
           <div style="position: absolute; left: 10px; top: 10px; display: flex; flex-direction: column; gap: 6px">
             <sc-for list="{{leftSlots}}" as="q" hint-placeholder-count="5">
-            <button type="button" onMouseEnter="{{q.hover}}" onClick="{{q.pin}}" aria-label="{{q.slotName}} · {{q.name}}" style="position: relative; width: 62px; height: 62px; box-sizing: border-box; border-radius: 8px; border: 2px solid {{q.color}}; outline: {{q.ring}}; outline-offset: 1px; background: {{q.tint}}; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer">
+            <button type="button" onClick="{{q.pin}}" aria-label="{{q.slotName}} · {{q.name}}" style="position: relative; width: 62px; height: 62px; box-sizing: border-box; border-radius: 8px; border: 2px solid {{q.color}}; outline: {{q.ring}}; outline-offset: 1px; background: {{q.tint}}; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer">
               <img src="{{q.img}}" alt="" width="48" height="48" style="image-rendering: pixelated; filter: drop-shadow(1px 0 0 #0A0E14) drop-shadow(-1px 0 0 #0A0E14) drop-shadow(0 1px 0 #0A0E14) drop-shadow(0 -1px 0 #0A0E14)">
               <span style="position: absolute; left: 3px; top: 1px; font-family: 'Galmuri11', sans-serif; font-size: 10px; color: #E8EDF4; text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000">{{q.slotName}}</span>
               <span style="position: absolute; right: 3px; bottom: 1px; font-family: 'Galmuri11', sans-serif; font-size: 12px; font-weight: 700; color: #FFFFFF; text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000">{{q.enh}}</span>
@@ -85,7 +85,7 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
           </div>
           <div style="position: absolute; right: 10px; top: 10px; display: flex; flex-direction: column; gap: 6px">
             <sc-for list="{{rightSlots}}" as="q" hint-placeholder-count="5">
-            <button type="button" onMouseEnter="{{q.hover}}" onClick="{{q.pin}}" aria-label="{{q.slotName}} · {{q.name}}" style="position: relative; width: 62px; height: 62px; box-sizing: border-box; border-radius: 8px; border: 2px solid {{q.color}}; outline: {{q.ring}}; outline-offset: 1px; background: {{q.tint}}; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer">
+            <button type="button" onClick="{{q.pin}}" aria-label="{{q.slotName}} · {{q.name}}" style="position: relative; width: 62px; height: 62px; box-sizing: border-box; border-radius: 8px; border: 2px solid {{q.color}}; outline: {{q.ring}}; outline-offset: 1px; background: {{q.tint}}; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer">
               <img src="{{q.img}}" alt="" width="48" height="48" style="image-rendering: pixelated; filter: drop-shadow(1px 0 0 #0A0E14) drop-shadow(-1px 0 0 #0A0E14) drop-shadow(0 1px 0 #0A0E14) drop-shadow(0 -1px 0 #0A0E14)">
               <span style="position: absolute; left: 3px; top: 1px; font-family: 'Galmuri11', sans-serif; font-size: 10px; color: #E8EDF4; text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000">{{q.slotName}}</span>
               <span style="position: absolute; right: 3px; bottom: 1px; font-family: 'Galmuri11', sans-serif; font-size: 12px; font-weight: 700; color: #FFFFFF; text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000">{{q.enh}}</span>
@@ -115,7 +115,7 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
               <div style="aspect-ratio: 1; border-radius: 8px; border: 1px solid #263243; background: #141B25"></div>
             </sc-if>
             <sc-if value="{{it.real}}" hint-placeholder-val="{{ true }}">
-              <button type="button" onMouseEnter="{{it.hover}}" onClick="{{it.pin}}" aria-label="{{it.label}}" style="position: relative; aspect-ratio: 1; border-radius: 8px; border: 2px solid {{it.color}}; background: {{it.tint}}; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer; outline: {{it.ring}}; outline-offset: 2px">
+              <button type="button" onClick="{{it.pin}}" aria-label="{{it.label}}" style="position: relative; aspect-ratio: 1; border-radius: 8px; border: 2px solid {{it.color}}; background: {{it.tint}}; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer; outline: {{it.ring}}; outline-offset: 2px">
                 <img src="{{it.img}}" alt="" width="34" height="34" style="image-rendering: pixelated; width: 68%; height: auto; filter: drop-shadow(1px 0 0 #0A0E14) drop-shadow(-1px 0 0 #0A0E14) drop-shadow(0 1px 0 #0A0E14) drop-shadow(0 -1px 0 #0A0E14)">
                 <sc-if value="{{it.up}}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="position: absolute; left: 4px; top: 2px; font-size: 12px; font-weight: 700; color: #6FD08C">▲</span></sc-if>
               </button>
@@ -131,6 +131,7 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
       </div>
 
       <section aria-label="장비 설명" style="flex: 1 1 100%; min-width: 0; display: flex; gap: 12px; align-items: flex-start">
+        <sc-if value="{{hasSel}}" hint-placeholder-val="{{ true }}">
         <sc-if value="{{hasCur}}" hint-placeholder-val="{{ true }}">
           <article style="flex: 0 1 460px; min-width: 0; background: #141B27; border: 1px solid #3A4658; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
             <span style="font-size: 12px; font-weight: 700; color: #A7B3C2">착용 중</span>
@@ -229,6 +230,8 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
           </sc-if>
           <span style="font-size: 12px; color: #A7B3C2">{{pinNote}}</span>
         </article>
+              </sc-if>
+        <sc-if value="{{noSel}}" hint-placeholder-val="{{ false }}"><div style="flex: 0 1 460px; min-height: 80px; border: 1px dashed #3A4658; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 13px; color: #A7B3C2">장비를 누르면 설명과 장착 버튼이 나와요</div></sc-if>
       </section>
     </main>
   </div>
@@ -238,7 +241,7 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { hover: 'i9', pinned: null };
+    this.state = { sel: 'i9' };
   }
   renderVals() {
     const B = '/_blob/';
@@ -278,7 +281,7 @@ class Component extends DCLogic {
       { id: 'i7', slot: 'W', inv: true, img: 'bow_uncommon', grade: '고급', name: '바람결 단궁', kind: '단궁', line: '궁술', ilv: 20, base: '공격력 28', baseD: '(−3)', enhNote: '무기 칸 +2 적용 · 실제 공격력 34', opts: [{ t: '공격력 +1%', r: '[1 – 2]%', d: '(−2%)' }], lost: [{ t: '연사 +1' }], power: '장착하면 전투력 −35', price: '300' },
       { id: 'i8', slot: 'W', inv: true, img: 'staff_hero', grade: '영웅', name: '구름 수정 지팡이', kind: '지팡이', line: '마법', ilv: 23, base: '공격력 40', baseD: '(+9)', enhNote: '무기 칸 +2 적용 · 실제 공격력 48', opts: [{ t: '공격력 +6%', r: '[3 – 6]%', d: '(+3%)' }, { t: '축복 마법 전부 +1', r: '마법사 기술 · 효과 없음', off: true }, { t: '생명력 +3%', r: '[3 – 6]%', d: '(+3%)' }], lost: [{ t: '연사 +1' }], power: '장착하면 전투력 +22 · 키우는 기술 연사 −1이라 자동 장착 안 함', price: '2,400' }
     ];
-    const activeId = this.state.pinned || this.state.hover;
+    const activeId = this.state.sel;
     const deco = (it) => {
       const g = G[it.grade];
       const opts = (it.opts || []).map((o) => ({ t: o.t, r: o.r, d: o.d || '', dColor: col(o.d), textColor: o.off ? '#6E7B8C' : '#E8EDF4', deco: o.off ? 'line-through' : 'none' }));
@@ -295,8 +298,7 @@ class Component extends DCLogic {
         power: it.power || '착용 중인 장비', powerColor: it.power ? col(it.power.replace('장착하면 전투력 ', '')) : '#A7B3C2',
         inv: !!it.inv, up: !!it.up,
         ring: it.id === activeId ? '2px solid #FFFFFF' : 'none',
-        hover: () => { if (!this.state.pinned && this.state.hover !== it.id) this.setState({ hover: it.id, sk: null }); },
-        pin: () => this.setState({ pinned: this.state.pinned === it.id ? null : it.id, hover: it.id })
+        pin: () => this.setState({ sel: this.state.sel === it.id ? null : it.id, sk: null })
       });
     };
     const SB = '/_blob/';
@@ -334,6 +336,7 @@ class Component extends DCLogic {
     const inv = all.filter((x) => x.inv);
     while (inv.length < 24) inv.push({ empty: true, real: false });
     const s = byId[activeId] || byId.i9;
+    const hasSel = !!byId[activeId];
     const cur = s.inv ? eqBySlot[s.slot] : null;
     return {
       eqW: byId.eqW, eqH: byId.eqH, eqB: byId.eqB, eqA: byId.eqA,
@@ -345,7 +348,7 @@ class Component extends DCLogic {
       inv: inv, s: withTips(s, 's'), cur: withTips(cur || byId.eqW, 'c'), hasCur: !!cur,
       sTip: { skOn: !!(tipKey && tipKey.where === 's'), sk: tipKey && tipKey.where === 's' ? skillBox(tipKey.name, tipKey.n) : skillBox('연사', 1) },
       cTip: { skOn: !!(tipKey && tipKey.where === 'c'), sk: tipKey && tipKey.where === 'c' ? skillBox(tipKey.name, tipKey.n) : skillBox('연사', 1) },
-      pinNote: this.state.pinned ? '고정됨 · 다시 누르면 풀려요' : '누르면 이 설명을 고정해요'
+      pinNote: '같은 장비를 다시 누르면 닫혀요', hasSel: hasSel, noSel: !hasSel
     };
   }
 }
