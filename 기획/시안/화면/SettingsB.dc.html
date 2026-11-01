@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>B안 · 설정과 자동 관리 · 휴대폰</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#8CC4F5}a:hover{color:#B8DBFA}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #10161F; font-family: 'Noto Sans KR', system-ui, sans-serif; color: #E8EDF4; display: flex; flex-direction: column; overflow: hidden">
+
+  <header style="height: 52px; box-sizing: border-box; padding: 0 6px; display: flex; align-items: center; gap: 2px; border-bottom: 1px solid #263243">
+    <a href="HomeB.dc.html" aria-label="뒤로" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #E8EDF4">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5 L8 12 L15 19"></path></svg></a>
+    <span style="font-family: 'Gowun Batang', serif; font-size: 19px; font-weight: 700">설정</span>
+  </header>
+
+  <main style="flex: 1; padding: 12px 14px 16px; display: flex; flex-direction: column; gap: 12px; overflow-y: auto">
+    <sc-for list="{{groups}}" as="g" hint-placeholder-count="3">
+      <section aria-label="{{g.title}}" style="display: flex; flex-direction: column; gap: 4px">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 0 2px">
+          <span style="font-size: 14px; font-weight: 700">{{g.title}}</span>
+          <span style="font-size: 12px; color: #A7B3C2">{{g.note}}</span>
+        </div>
+        <div style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 0 14px">
+          <sc-for list="{{g.rows}}" as="r" hint-placeholder-count="4">
+            <button type="button" role="switch" aria-checked="{{r.on}}" onClick="{{r.flip}}" style="width: 100%; min-height: 50px; display: flex; justify-content: space-between; align-items: center; gap: 12px; border: none; border-top: {{r.line}}; background: transparent; color: #E8EDF4; font: inherit; text-align: left; padding: 6px 0; cursor: pointer">
+              <span style="display: flex; flex-direction: column; gap: 1px"><span style="font-size: 14px">{{r.label}}</span><span style="font-size: 12px; color: #A7B3C2">{{r.sub}}</span></span>
+              <span aria-hidden="true" style="width: 44px; height: 26px; flex-shrink: 0; border-radius: 13px; background: {{r.track}}; position: relative">
+                <span style="position: absolute; top: 3px; left: {{r.knobLeft}}; width: 20px; height: 20px; border-radius: 10px; background: #FFFFFF"></span>
+              </span>
+            </button>
+          </sc-for>
+        </div>
+      </section>
+    </sc-for>
+
+    <section aria-label="계정" style="display: flex; flex-direction: column; gap: 4px">
+      <span style="font-size: 14px; font-weight: 700; padding: 0 2px">계정</span>
+      <div style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 0 14px">
+        <a href="#nickname" style="min-height: 50px; display: flex; justify-content: space-between; align-items: center; color: #E8EDF4; text-decoration: none; font-size: 14px">닉네임 바꾸기<span style="font-size: 12px; color: #A7B3C2">구름사냥꾼 · 첫 변경 무료</span></a>
+        <a href="PixelEditorB.dc.html" style="min-height: 50px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #263243; color: #E8EDF4; text-decoration: none; font-size: 14px">내 캐릭터·프로필 그리기<span style="font-size: 12px; color: #A7B3C2">도트 편집기</span></a>
+        <a href="#credits" style="min-height: 50px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #263243; color: #E8EDF4; text-decoration: none; font-size: 14px">만든 사람<span style="font-size: 12px; color: #A7B3C2">그림 출처와 라이선스</span></a>
+      </div>
+    </section>
+  </main>
+
+  <nav aria-label="주 메뉴" style="height: 64px; background: #151D29; border-top: 1px solid #263243; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr))">
+    <a href="HomeB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11 L12 4 L21 11"></path><path d="M5 10 V20 H19 V10"></path></svg>집</a>
+    <a href="ExpeditionB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 V15"></path><path d="M7 10 L12 15 L17 10"></path><path d="M4 20 H20"></path></svg>원정</a>
+    <a href="GearB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 L19 6 V12 C19 16 16 19 12 21 C8 19 5 16 5 12 V6 Z"></path></svg>장비</a>
+    <a href="#market" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 8 H20 L18 20 H6 Z"></path><path d="M9 8 V6 A3 3 0 0 1 15 6 V8"></path></svg>거래소</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { on: { equip: true, salvage: true, keep: true, enhance: true, sell: false, match: false, ready: true, skill: true, nGate: true, nClear: true, nTrade: true, nQuiet: true, look: true } };
+  }
+  renderVals() {
+    const on = this.state.on;
+    const row = (key, label, sub, first) => ({
+      label: label, sub: sub, on: !!on[key],
+      line: first ? 'none' : '1px solid #263243',
+      track: on[key] ? '#3D86C6' : '#3A4658',
+      knobLeft: on[key] ? '21px' : '3px',
+      flip: () => { const n = Object.assign({}, on); n[key] = !on[key]; this.setState({ on: n }); }
+    });
+    const groups = [
+      { title: '자동 관리', note: '켜 두면 알아서 해요', rows: [
+        row('equip', '더 좋은 장비로 바꿔 끼기', '장착 후 전투력이 오를 때만', true),
+        row('salvage', '일반·고급은 재료로 바꾸기', '하늘돌로 바뀌어요'),
+        row('keep', '희귀 이상은 보관하기', '보관함이 가득해도 영웅·전설은 지켜요'),
+        row('enhance', '하늘돌이 모이면 자동 강화', '가장 낮은 칸부터 올려요'),
+        row('sell', '다른 계통 장비 거래소에 올리기', '최근 거래 가격으로 등록해요'),
+        row('skill', '기술 칸 자동 추천 장착', '기술 레벨이 높은 기술부터 끼워요')
+      ] },
+      { title: '원정', note: '탐사와 던전', rows: [
+        row('match', '관문에 닿으면 자동매칭', '이길 수 있는 파티가 모이면 출발해요', true),
+        row('ready', '파티에 들어가면 자동준비', '준비완료를 누르지 않아도 돼요')
+      ] },
+      { title: '알림', note: '꼭 필요한 것만', rows: [
+        row('nGate', '폭풍의 벽에 닿았을 때', '', true),
+        row('nClear', '토벌이 끝났을 때', '자동매칭으로 깬 경우도'),
+        row('nTrade', '거래소에서 팔렸을 때', '여러 건은 한 번에 모아서'),
+        row('nQuiet', '방해 금지 시간', '22:00 ~ 08:00에는 알리지 않아요')
+      ] },
+      { title: '모습', note: '', rows: [
+        row('look', '장비 모습 보이기', '끄면 직접 그린 그대로만 보여요', true)
+      ] }
+    ];
+    return { groups: groups };
+  }
+}
+</script>
+</body>
+</html>

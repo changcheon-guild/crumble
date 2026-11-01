@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>B안 · 파티 모집과 대기</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#8CC4F5}a:hover{color:#B8DBFA}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #10161F; font-family: 'Noto Sans KR', system-ui, sans-serif; color: #E8EDF4; display: flex; flex-direction: column; overflow: hidden">
+
+  <header style="height: 52px; box-sizing: border-box; padding: 0 12px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #263243">
+    <a href="GateB.dc.html" aria-label="폭풍의 벽으로 돌아가기" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #E8EDF4">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5 L8 12 L15 19"></path></svg>
+    </a>
+    <div style="display: flex; flex-direction: column">
+      <span style="font-family: 'Gowun Batang', serif; font-size: 18px; font-weight: 700">파티 · 첫 번째 폭풍의 벽</span>
+      <span style="font-size: 12px; color: #A7B3C2">내 전투력 925 · 혼자서는 조금 모자라요</span>
+    </div>
+  </header>
+
+  <main style="flex: 1; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; overflow: hidden">
+
+    <section aria-label="모집 목록" style="display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline">
+        <span style="font-size: 15px; font-weight: 700">모집 목록</span>
+        <span style="font-size: 12px; color: #A7B3C2">들어가면 이길 수 있는 순서</span>
+      </div>
+      <sc-for list="{{posts}}" as="p" hint-placeholder-count="3">
+        <article style="background: #151D29; border: 1px solid {{p.border}}; border-radius: 12px; padding: 10px 12px; display: flex; align-items: center; gap: 10px">
+          <div style="display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0">
+            <div style="display: flex; gap: 4px; align-items: center">
+              <sc-for list="{{p.members}}" as="m" hint-placeholder-count="2">
+                <img src="{{m.img}}" alt="{{m.cls}}" width="32" height="32" style="image-rendering: pixelated; background: #1B2433; border-radius: 6px">
+              </sc-for>
+              <span style="font-size: 12px; color: #A7B3C2; margin-left: 4px">{{p.count}}</span>
+            </div>
+            <span style="font-size: 13px">파티 전투력 {{p.sum}} · 내가 들어가면 {{p.withMe}}</span>
+            <span style="font-size: 12px; font-weight: 700; color: #6FD08C">당신이 들어가면 이길 수 있어요</span>
+          </div>
+          <button type="button" onClick="{{p.join}}" style="min-width: 64px; min-height: 44px; border-radius: 8px; border: none; background: {{p.btnBg}}; color: {{p.btnColor}}; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer">{{p.btnLabel}}</button>
+        </article>
+      </sc-for>
+    </section>
+
+    <sc-if value="{{joined}}" hint-placeholder-val="{{ true }}">
+      <section aria-label="파티 대기" style="background: #1F2A44; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; justify-content: space-between; align-items: baseline">
+          <span style="font-size: 15px; font-weight: 700">파티 대기 · {{room.count}}</span>
+          <span style="font-size: 12px; color: #C8D3E6">자동준비 켜짐</span>
+        </div>
+        <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px">
+          <sc-for list="{{room.members}}" as="m" hint-placeholder-count="2">
+            <li style="display: flex; align-items: center; gap: 10px; background: #2C3A5C; border-radius: 8px; padding: 6px 10px">
+              <img src="{{m.img}}" alt="" width="32" height="32" style="image-rendering: pixelated">
+              <span style="display: flex; flex-direction: column; flex: 1"><span style="font-size: 14px; font-weight: 500">{{m.name}}</span><span style="font-size: 12px; color: #C8D3E6">{{m.cls}} · 전투력 {{m.power}} · {{m.row}}</span></span>
+              <span style="font-size: 12px; font-weight: 700; color: #6FD08C">준비완료</span>
+            </li>
+          </sc-for>
+        </ul>
+        <div style="background: #2C3A5C; border-radius: 8px; padding: 10px 12px; font-size: 13px; line-height: 1.5">
+          <span style="font-weight: 700">예상 결과</span> · 파티 전투력 {{room.sum}}. 이길 것 같아요.
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+          <span style="font-size: 14px; font-weight: 700">{{countText}}</span>
+          <div style="display: flex; gap: 8px">
+            <button type="button" onClick="{{leave}}" style="min-height: 44px; padding: 0 14px; border-radius: 8px; border: 1px solid #8FA3C4; background: transparent; color: #FFFFFF; font: inherit; font-size: 14px; cursor: pointer">나가기</button>
+            <a href="BattleB.dc.html" style="min-height: 44px; padding: 0 14px; border-radius: 8px; background: #F2B33D; color: #1B2735; font-size: 14px; font-weight: 700; text-decoration: none; display: flex; align-items: center">전투 보기</a>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+    <sc-if value="{{notJoined}}" hint-placeholder-val="{{ false }}">
+      <section style="border: 1px dashed #3A4658; border-radius: 12px; padding: 16px; font-size: 13px; color: #A7B3C2; line-height: 1.6">
+        모집에 지원하면 여기서 파티원과 함께 준비해요. 모두 준비되면 5초 뒤 알아서 출발해요.
+      </section>
+    </sc-if>
+  </main>
+
+  <nav aria-label="주 메뉴" style="height: 64px; background: #151D29; border-top: 1px solid #263243; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr))">
+    <a href="HomeB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11 L12 4 L21 11"></path><path d="M5 10 V20 H19 V10"></path></svg>집</a>
+    <a href="ExpeditionB.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; font-weight: 700; color: #8CC4F5; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 V15"></path><path d="M7 10 L12 15 L17 10"></path><path d="M4 20 H20"></path></svg>원정</a>
+    <a href="GearB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 L19 6 V12 C19 16 16 19 12 21 C8 19 5 16 5 12 V6 Z"></path></svg>장비</a>
+    <a href="#market" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 8 H20 L18 20 H6 Z"></path><path d="M9 8 V6 A3 3 0 0 1 15 6 V8"></path></svg>거래소</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { joined: 0, count: 5 };
+  }
+  componentWillUnmount() { if (this.timer) clearInterval(this.timer); }
+  startCountdown() {
+    if (this.timer) clearInterval(this.timer);
+    this.timer = setInterval(() => {
+      if (this.state.count > 0) this.setState({ count: this.state.count - 1 });
+      else { clearInterval(this.timer); this.timer = null; }
+    }, 1000);
+  }
+  renderVals() {
+    const K = '/_blob/689e691e038f8261d6c42237293f9ec6', R = '/_blob/85042bc7bf9925776f059c045e499aff', W = '/_blob/850a28b84a715fb9e29b1d0372ddfa0d';
+    const raw = [
+      { id: 1, members: [{ img: K, cls: '전사', name: '바람막이', power: 940, row: '앞줄' }], max: 2 },
+      { id: 2, members: [{ img: W, cls: '마법사', name: '이슬비', power: 600, row: '뒷줄' }, { img: K, cls: '전사', name: '섬돌', power: 340, row: '앞줄' }], max: 4 },
+      { id: 3, members: [{ img: K, cls: '전사', name: '구름도우미', power: 1300, row: '앞줄' }], max: 2 }
+    ];
+    const me = { img: R, cls: '사냥꾼', name: '나 (사냥꾼)', power: 925, row: '뒷줄' };
+    const fmt = (n) => n.toLocaleString('ko-KR');
+    const posts = raw.map((p) => {
+      const sum = p.members.reduce((a, m) => a + m.power, 0);
+      const mine = this.state.joined === p.id;
+      return {
+        members: p.members, count: (p.members.length + (mine ? 1 : 0)) + ' / ' + p.max,
+        sum: fmt(sum), withMe: fmt(sum + me.power),
+        border: mine ? '#8CC4F5' : '#263243',
+        btnLabel: mine ? '참가 중' : '지원', btnBg: mine ? '#2C3A5C' : '#3D86C6', btnColor: '#FFFFFF',
+        join: () => { this.setState({ joined: p.id, count: 5 }); this.startCountdown(); }
+      };
+    });
+    const sel = raw.find((p) => p.id === this.state.joined) || raw[0];
+    const roomMembers = sel.members.concat([me]);
+    const roomSum = roomMembers.reduce((a, m) => a + m.power, 0);
+    const full = roomMembers.length >= sel.max;
+    return {
+      posts: posts,
+      joined: !!this.state.joined, notJoined: !this.state.joined,
+      room: { members: roomMembers, count: roomMembers.length + ' / ' + sel.max, sum: fmt(roomSum) },
+      countText: full ? (this.state.count > 0 ? '모두 준비됐어요 · ' + this.state.count + '초 뒤 출발' : '출발했어요') : '파티원을 기다리는 중 · 방장이 바로 출발할 수도 있어요',
+      leave: () => { if (this.timer) clearInterval(this.timer); this.setState({ joined: 0, count: 5 }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>B안 · 거래소 · PC</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#8CC4F5}a:hover{color:#B8DBFA}
+</style>
+</helmet>
+<div style="min-height: 900px; box-sizing: border-box; background: #10161F; font-family: 'Noto Sans KR', system-ui, sans-serif; color: #E8EDF4">
+
+  <header style="background: #151D29; border-bottom: 1px solid #263243">
+    <div style="max-width: 1280px; margin: 0 auto; box-sizing: border-box; padding: 10px 24px; display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: center; justify-content: space-between">
+      <div style="display: flex; align-items: baseline; gap: 12px">
+        <span style="font-family: 'Gowun Batang', serif; font-size: 20px; font-weight: 700">거래소</span>
+        <span style="font-size: 13px; color: #A7B3C2">군도 마을 · 정한 가격에 바로 사고팔아요</span>
+      </div>
+      <div style="display: flex; gap: 18px; font-size: 14px; font-weight: 500; align-items: center">
+        <span style="display: flex; align-items: center; gap: 4px"><img src="/_blob/f455ad14c4095214ee4a4ff7129ab42b" alt="골드" width="34" height="34" style="image-rendering: pixelated">12,400</span>
+        <span style="display: flex; align-items: center; gap: 4px"><img src="/_blob/7302eda7e37a9db3d859ef3a49cf94a1" alt="구름 수정" width="34" height="34" style="image-rendering: pixelated">4</span>
+      </div>
+    </div>
+  </header>
+
+  <div style="max-width: 1280px; margin: 0 auto; box-sizing: border-box; padding: 24px; display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+
+    <nav aria-label="주 메뉴" style="flex: 1 1 160px; max-width: 200px; background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 8px; display: flex; flex-direction: column; gap: 2px">
+      <a href="HomePCB.dc.html" style="min-height: 44px; display: flex; align-items: center; gap: 10px; padding: 0 12px; border-radius: 8px; color: #C9D3DE; text-decoration: none">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11 L12 4 L21 11"></path><path d="M5 10 V20 H19 V10"></path></svg>집</a>
+      <a href="ExpeditionPCB.dc.html" style="min-height: 44px; display: flex; align-items: center; gap: 10px; padding: 0 12px; border-radius: 8px; color: #C9D3DE; text-decoration: none">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 V15"></path><path d="M7 10 L12 15 L17 10"></path><path d="M4 20 H20"></path></svg>원정</a>
+      <a href="GearPCB.dc.html" style="min-height: 44px; display: flex; align-items: center; gap: 10px; padding: 0 12px; border-radius: 8px; color: #C9D3DE; text-decoration: none">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 L19 6 V12 C19 16 16 19 12 21 C8 19 5 16 5 12 V6 Z"></path></svg>장비</a>
+      <a href="MarketPCB.dc.html" aria-current="page" style="min-height: 44px; display: flex; align-items: center; gap: 10px; padding: 0 12px; border-radius: 8px; background: #1F2A44; color: #8CC4F5; font-weight: 700; text-decoration: none">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 8 H20 L18 20 H6 Z"></path><path d="M9 8 V6 A3 3 0 0 1 15 6 V8"></path></svg>거래소</a>
+      <a href="#settings" style="min-height: 44px; display: flex; align-items: center; gap: 10px; padding: 0 12px; border-radius: 8px; color: #C9D3DE; text-decoration: none">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M12 3 V6 M12 18 V21 M3 12 H6 M18 12 H21"></path></svg>설정</a>
+    </nav>
+
+    <main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+      <div role="tablist" aria-label="거래소 메뉴" style="display: flex; flex-wrap: wrap; gap: 6px; border-bottom: 1px solid #263243">
+        <button type="button" role="tab" aria-selected="false" style="min-height: 44px; padding: 0 18px; border: none; border-bottom: 3px solid transparent; background: transparent; color: #A7B3C2; font: inherit; font-size: 15px">추천</button>
+        <button type="button" role="tab" aria-selected="true" style="min-height: 44px; padding: 0 18px; border: none; border-bottom: 3px solid #8CC4F5; background: transparent; color: #FFFFFF; font: inherit; font-size: 15px; font-weight: 700">검색</button>
+        <button type="button" role="tab" aria-selected="false" style="min-height: 44px; padding: 0 18px; border: none; border-bottom: 3px solid transparent; background: transparent; color: #A7B3C2; font: inherit; font-size: 15px">판매</button>
+        <button type="button" role="tab" aria-selected="false" style="min-height: 44px; padding: 0 18px; border: none; border-bottom: 3px solid transparent; background: transparent; color: #A7B3C2; font: inherit; font-size: 15px">상점</button>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+        <aside aria-label="검색 조건" style="flex: 1 1 200px; max-width: 240px; background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 14px; font-size: 14px">
+          <fieldset style="border: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px">
+            <legend style="font-size: 12px; font-weight: 700; color: #A7B3C2; padding: 0 0 4px">부위</legend>
+            <label style="display: flex; gap: 8px; align-items: center; min-height: 32px"><input type="checkbox" checked> 무기</label>
+            <label style="display: flex; gap: 8px; align-items: center; min-height: 32px"><input type="checkbox"> 머리</label>
+            <label style="display: flex; gap: 8px; align-items: center; min-height: 32px"><input type="checkbox"> 몸</label>
+            <label style="display: flex; gap: 8px; align-items: center; min-height: 32px"><input type="checkbox"> 장신구</label>
+          </fieldset>
+          <fieldset style="border: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px">
+            <legend style="font-size: 12px; font-weight: 700; color: #A7B3C2; padding: 0 0 4px">계통</legend>
+            <label style="display: flex; gap: 8px; align-items: center; min-height: 32px"><input type="checkbox"> 검술</label>
+            <label style="display: flex; gap: 8px; align-items: center; min-height: 32px"><input type="checkbox" checked> 궁술 (내 계통)</label>
+            <label style="display: flex; gap: 8px; align-items: center; min-height: 32px"><input type="checkbox"> 마법</label>
+          </fieldset>
+          <label style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; font-weight: 700; color: #A7B3C2">등급</span>
+            <select style="min-height: 40px; border-radius: 8px; border: 1px solid #3A4658; background: #10161F; color: #E8EDF4; font: inherit; padding: 0 8px"><option>희귀 이상</option><option>전체</option><option>영웅 이상</option><option>전설</option></select></label>
+          <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; font-weight: 700; color: #A7B3C2">장비 레벨</span>
+            <div style="display: flex; gap: 6px; align-items: center">
+              <label style="flex: 1"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden">최소</span><input type="number" value="20" style="width: 100%; box-sizing: border-box; min-height: 40px; border-radius: 8px; border: 1px solid #3A4658; background: #10161F; color: #E8EDF4; font: inherit; padding: 0 8px"></label>
+              <span>~</span>
+              <label style="flex: 1"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden">최대</span><input type="number" value="26" style="width: 100%; box-sizing: border-box; min-height: 40px; border-radius: 8px; border: 1px solid #3A4658; background: #10161F; color: #E8EDF4; font: inherit; padding: 0 8px"></label>
+            </div>
+          </div>
+          <label style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; font-weight: 700; color: #A7B3C2">옵션</span>
+            <input type="text" value="연사 +1" style="min-height: 40px; border-radius: 8px; border: 1px solid #3A4658; background: #10161F; color: #E8EDF4; font: inherit; padding: 0 8px"></label>
+          <label style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; font-weight: 700; color: #A7B3C2">최대 가격</span>
+            <input type="text" value="15,000골드" style="min-height: 40px; border-radius: 8px; border: 1px solid #3A4658; background: #10161F; color: #E8EDF4; font: inherit; padding: 0 8px"></label>
+          <label style="display: flex; gap: 8px; align-items: center; min-height: 32px"><input type="checkbox" checked> 장착하면 좋아지는 것만</label>
+          <button type="button" style="min-height: 44px; border-radius: 8px; border: none; background: #3D86C6; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 700">검색</button>
+        </aside>
+
+        <section aria-label="검색 결과" style="flex: 999 1 460px; min-width: 0; background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+          <div style="display: flex; justify-content: space-between; align-items: baseline">
+            <span style="font-size: 15px; font-weight: 700">무기 · 궁술 · 희귀 이상 · 연사 +1 <span style="font-size: 12px; font-weight: 400; color: #A7B3C2">결과 4개</span></span>
+            <span style="font-size: 12px; color: #A7B3C2">정렬: 장착하면 좋아지는 순</span>
+          </div>
+          <div style="overflow-x: auto">
+            <table style="width: 100%; min-width: 640px; border-collapse: collapse; font-size: 14px">
+              <thead>
+                <tr style="text-align: left; color: #A7B3C2; font-size: 12px">
+                  <th scope="col" style="padding: 6px 8px; font-weight: 500">장비</th>
+                  <th scope="col" style="padding: 6px 8px; font-weight: 500">주요 옵션</th>
+                  <th scope="col" style="padding: 6px 8px; font-weight: 500">장착하면</th>
+                  <th scope="col" style="padding: 6px 8px; font-weight: 500; text-align: right">가격</th>
+                  <th scope="col" style="padding: 6px 8px; font-weight: 500; text-align: right">최근 거래가</th>
+                  <th scope="col" style="padding: 6px 8px"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden">구매</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-top: 1px solid #263243">
+                  <td style="padding: 8px"><span style="display: flex; gap: 10px; align-items: center"><span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 8px; border: 2px solid #E0A93B; background: #2E2412; display: flex; align-items: center; justify-content: center"><img src="/_blob/c8ca740f95bdd2198e02dcb53d1ff32f" alt="" width="34" height="34" style="image-rendering: pixelated"></span><span style="display: flex; flex-direction: column"><span style="font-weight: 700; color: #E0A93B">폭풍깃 장궁</span><span style="font-size: 12px; color: #A7B3C2">전설 · 궁술 · 레벨 23</span></span></span></td>
+                  <td style="padding: 8px; font-size: 13px">공격력 +7% · 연사 +1 · 생명력 +6%<br><span style="color: #F3D08A">고유: 연사 +1, 관통 화살 +1</span></td>
+                  <td style="padding: 8px; font-weight: 700; color: #6FD08C">+118</td>
+                  <td style="padding: 8px; text-align: right; font-weight: 700">12,500</td>
+                  <td style="padding: 8px; text-align: right; color: #A7B3C2">11,900</td>
+                  <td style="padding: 8px"><button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 8px; border: none; background: #3D86C6; color: #FFFFFF; font: inherit; font-size: 13px; font-weight: 700">구매</button></td>
+                </tr>
+                <tr style="border-top: 1px solid #263243">
+                  <td style="padding: 8px"><span style="display: flex; gap: 10px; align-items: center"><span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 8px; border: 2px solid #B585EA; background: #241A33; display: flex; align-items: center; justify-content: center"><img src="/_blob/73e7dad451ba6becb494e6c86611ff42" alt="" width="34" height="34" style="image-rendering: pixelated"></span><span style="display: flex; flex-direction: column"><span style="font-weight: 700; color: #B585EA">천둥새의 장궁</span><span style="font-size: 12px; color: #A7B3C2">영웅 · 궁술 · 레벨 24</span></span></span></td>
+                  <td style="padding: 8px; font-size: 13px">공격력 +5% · 연사 +1 · 생명력 +4%</td>
+                  <td style="padding: 8px; font-weight: 700; color: #6FD08C">+67</td>
+                  <td style="padding: 8px; text-align: right; font-weight: 700">3,400</td>
+                  <td style="padding: 8px; text-align: right; color: #A7B3C2">3,150</td>
+                  <td style="padding: 8px"><button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 8px; border: none; background: #3D86C6; color: #FFFFFF; font: inherit; font-size: 13px; font-weight: 700">구매</button></td>
+                </tr>
+                <tr style="border-top: 1px solid #263243">
+                  <td style="padding: 8px"><span style="display: flex; gap: 10px; align-items: center"><span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 8px; border: 2px solid #5A9BE6; background: #152335; display: flex; align-items: center; justify-content: center"><img src="/_blob/d61d6d3457eee15749230a4770741e37" alt="" width="34" height="34" style="image-rendering: pixelated"></span><span style="display: flex; flex-direction: column"><span style="font-weight: 700; color: #5A9BE6">바람결 장궁</span><span style="font-size: 12px; color: #A7B3C2">희귀 · 궁술 · 레벨 25</span></span></span></td>
+                  <td style="padding: 8px; font-size: 13px">공격력 +4% · 연사 +1</td>
+                  <td style="padding: 8px; font-weight: 700; color: #6FD08C">+38</td>
+                  <td style="padding: 8px; text-align: right; font-weight: 700">1,200</td>
+                  <td style="padding: 8px; text-align: right; color: #A7B3C2">1,080</td>
+                  <td style="padding: 8px"><button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 8px; border: none; background: #3D86C6; color: #FFFFFF; font: inherit; font-size: 13px; font-weight: 700">구매</button></td>
+                </tr>
+                <tr style="border-top: 1px solid #263243">
+                  <td style="padding: 8px"><span style="display: flex; gap: 10px; align-items: center"><span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 8px; border: 2px solid #5A9BE6; background: #152335; display: flex; align-items: center; justify-content: center"><img src="/_blob/de2557cb71105c3a53de6d784b342f81" alt="" width="34" height="34" style="image-rendering: pixelated"></span><span style="display: flex; flex-direction: column"><span style="font-weight: 700; color: #5A9BE6">바람결 단궁</span><span style="font-size: 12px; color: #A7B3C2">희귀 · 궁술 · 레벨 26</span></span></span></td>
+                  <td style="padding: 8px; font-size: 13px">연사 +1 · 생명력 +2%</td>
+                  <td style="padding: 8px; font-weight: 700; color: #6FD08C">+9</td>
+                  <td style="padding: 8px; text-align: right; font-weight: 700">880</td>
+                  <td style="padding: 8px; text-align: right; color: #A7B3C2">900</td>
+                  <td style="padding: 8px"><button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 8px; border: none; background: #3D86C6; color: #FFFFFF; font: inherit; font-size: 13px; font-weight: 700">구매</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <span style="font-size: 12px; color: #A7B3C2">산 장비는 바로 보관함에 들어가요. 더 좋으면 자동으로 바꿔 껴요.</span>
+        </section>
+      </div>
+    </main>
+
+    <aside aria-label="내 판매" style="flex: 1 1 260px; max-width: 320px; display: flex; flex-direction: column; gap: 16px">
+      <section style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-size: 15px; font-weight: 700">내가 올린 물건</span><span style="font-size: 12px; color: #A7B3C2">2 / 10</span></div>
+        <div style="display: flex; gap: 10px; align-items: center">
+          <span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 8px; border: 2px solid #5A9BE6; background: #152335; display: flex; align-items: center; justify-content: center"><img src="/_blob/6f5b0cdfdc6f63e19bf2ce554a666b15" alt="" width="34" height="34" style="image-rendering: pixelated"></span>
+          <span style="display: flex; flex-direction: column; flex: 1; font-size: 13px"><span style="font-weight: 700; color: #5A9BE6">이슬 지팡이</span><span style="color: #A7B3C2">1,500골드 · 5일 2시간 남음</span></span>
+        </div>
+        <div style="display: flex; gap: 10px; align-items: center">
+          <span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 8px; border: 2px solid #B585EA; background: #241A33; display: flex; align-items: center; justify-content: center"><img src="/_blob/422d1f0fb82719519ec686025246d86e" alt="" width="34" height="34" style="image-rendering: pixelated"></span>
+          <span style="display: flex; flex-direction: column; flex: 1; font-size: 13px"><span style="font-weight: 700; color: #B585EA">구름 수정 지팡이</span><span style="color: #A7B3C2">3,800골드 · 6일 남음</span></span>
+        </div>
+        <div style="border-top: 1px solid #263243; padding-top: 10px; display: flex; flex-direction: column; gap: 4px; font-size: 13px">
+          <span style="font-weight: 700">팔린 물건</span>
+          <span style="display: flex; justify-content: space-between"><span>섬돌 갑옷 1,400골드</span><span style="color: #6FD08C">+1,330 받음</span></span>
+          <span style="font-size: 12px; color: #A7B3C2">수수료 5% (70골드)를 떼고 받아요</span>
+        </div>
+        <button type="button" style="min-height: 44px; border-radius: 8px; border: 1px solid #3A4658; background: transparent; color: #E8EDF4; font: inherit; font-size: 14px">보관함에서 올리기</button>
+      </section>
+      <section style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 4px 14px">
+        <label style="display: flex; justify-content: space-between; align-items: center; gap: 8px; min-height: 52px; font-size: 14px"><span>다른 계통 희귀 이상 장비 자동으로 올리기<br><span style="font-size: 12px; color: #A7B3C2">최근 거래가로 올려요</span></span><input type="checkbox" checked style="width: 20px; height: 20px; flex-shrink: 0"></label>
+        <label style="display: flex; justify-content: space-between; align-items: center; gap: 8px; min-height: 52px; font-size: 14px; border-top: 1px solid #263243"><span>7일 동안 안 팔리면 상점에 팔기</span><input type="checkbox" style="width: 20px; height: 20px; flex-shrink: 0"></label>
+      </section>
+    </aside>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

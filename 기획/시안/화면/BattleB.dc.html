@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>B안 · 던전 중계 재생</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#8CC4F5}a:hover{color:#B8DBFA}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #10161F; font-family: 'Noto Sans KR', system-ui, sans-serif; color: #E8EDF4; display: flex; flex-direction: column; overflow: hidden">
+
+  <header style="height: 52px; box-sizing: border-box; padding: 0 14px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #263243">
+    <span style="font-family: 'Gowun Batang', serif; font-size: 18px; font-weight: 700">수리의 둥지</span>
+    <span style="font-size: 13px; color: #A7B3C2">{{clock}}</span>
+  </header>
+
+  <section aria-label="전투 장면" style="position: relative; height: 210px; background-image: url(/_blob/69907e8b4a7316dc4eb78efd37614c75); background-size: 390px auto; background-position: center 30%; image-rendering: pixelated">
+    <img src="/_blob/850a28b84a715fb9e29b1d0372ddfa0d" alt="마법사 (뒷줄)" width="48" height="48" style="position: absolute; left: 22px; top: 54px; image-rendering: pixelated">
+    <img src="/_blob/85042bc7bf9925776f059c045e499aff" alt="사냥꾼 (뒷줄, 나)" width="48" height="48" style="position: absolute; left: 22px; top: 118px; image-rendering: pixelated">
+    <img src="/_blob/689e691e038f8261d6c42237293f9ec6" alt="전사 (앞줄)" width="64" height="64" style="position: absolute; left: 104px; top: 78px; image-rendering: pixelated">
+    <img src="/_blob/8bf3d29778607cf2042e32f38e394ffa" alt="돌개바람 수리" width="128" height="128" style="position: absolute; right: 22px; top: 40px; image-rendering: pixelated; opacity: {{bossOpacity}}">
+    <span style="position: absolute; left: 96px; top: 146px; font-size: 11px; font-weight: 700; color: #10304A; background: rgba(255, 255, 255, 0.85); border-radius: 4px; padding: 0 4px">앞줄</span>
+    <span style="position: absolute; left: 10px; top: 170px; font-size: 11px; font-weight: 700; color: #10304A; background: rgba(255, 255, 255, 0.85); border-radius: 4px; padding: 0 4px">뒷줄</span>
+  </section>
+
+  <section aria-label="생명력" style="padding: 10px 14px; display: flex; flex-direction: column; gap: 8px; background: #151D29; border-bottom: 1px solid #263243">
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <div style="display: flex; justify-content: space-between; font-size: 13px"><span style="font-weight: 700">돌개바람 수리</span><span>{{bossPct}}%</span></div>
+      <div style="position: relative; height: 12px; background: #263243; border-radius: 6px">
+        <div style="width: {{bossWidth}}; height: 12px; background: #D9534F; border-radius: 6px"></div>
+        <div title="지난번 기록 4%" style="position: absolute; left: 4%; top: -3px; width: 2px; height: 18px; background: #F3D08A"></div>
+      </div>
+      <span style="font-size: 11px; color: #A7B3C2">노란 선 = 지난번에 남긴 생명력 4%</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+      <sc-for list="{{party}}" as="m" hint-placeholder-count="3">
+        <div style="display: flex; flex-direction: column; gap: 3px">
+          <span style="font-size: 12px">{{m.name}} <span style="color: #A7B3C2">{{m.pct}}%</span></span>
+          <div style="height: 6px; background: #263243; border-radius: 3px"><div style="width: {{m.width}}; height: 6px; background: #6FD08C; border-radius: 3px"></div></div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section aria-label="전투 일지" aria-live="polite" style="flex: 1; padding: 10px 14px; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; overflow: hidden">
+    <sc-for list="{{shown}}" as="l" hint-placeholder-count="6">
+      <div style="display: flex; gap: 8px; font-size: {{l.size}}; font-weight: {{l.weight}}; color: {{l.color}}; line-height: 1.4">
+        <span style="color: #A7B3C2; font-weight: 400; flex-shrink: 0">{{l.t}}</span><span>{{l.text}}</span>
+      </div>
+    </sc-for>
+  </section>
+
+  <sc-if value="{{done}}" hint-placeholder-val="{{ false }}">
+    <a href="ResultB.dc.html" style="margin: 0 14px 8px; min-height: 48px; border-radius: 10px; background: #F2B33D; color: #1B2735; font-size: 15px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center">토벌 성공 · 결과 보기</a>
+  </sc-if>
+
+  <div style="height: 64px; box-sizing: border-box; padding: 8px 14px; background: #151D29; border-top: 1px solid #263243; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+    <button type="button" onClick="{{togglePlay}}" style="border-radius: 8px; border: 1px solid #3A4658; background: transparent; color: #E8EDF4; font: inherit; font-size: 14px; cursor: pointer">{{playLabel}}</button>
+    <button type="button" onClick="{{toggleSpeed}}" aria-pressed="{{fast}}" style="border-radius: 8px; border: 1px solid #3A4658; background: {{speedBg}}; color: #E8EDF4; font: inherit; font-size: 14px; cursor: pointer">{{speedLabel}}</button>
+    <button type="button" onClick="{{skip}}" style="border-radius: 8px; border: none; background: #3D86C6; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer">결과 바로 보기</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { idx: 0, playing: true, fast: false };
+  }
+  componentDidMount() { this.restart(); }
+  componentWillUnmount() { if (this.timer) clearInterval(this.timer); }
+  restart(fast) {
+    if (this.timer) clearInterval(this.timer);
+    const f = fast === undefined ? this.state.fast : fast;
+    this.timer = setInterval(() => {
+      if (!this.state.playing) return;
+      if (this.state.idx < this.lines().length - 1) this.setState({ idx: this.state.idx + 1 });
+    }, f ? 500 : 1000);
+  }
+  lines() {
+    // [시각, 문장, 보스%, 전사%, 사냥꾼%, 마법사%, 강조]
+    return [
+      ['0:00', '수리의 둥지에 들어섰다', 100, 100, 100, 100, 0],
+      ['0:01', '전사가 앞으로 나서 돌개바람 수리의 시선을 끌었다', 100, 100, 100, 100, 0],
+      ['0:02', '사냥꾼의 연사 → 돌개바람 수리 −93', 88, 100, 100, 100, 0],
+      ['0:03', '돌개바람 수리가 날개를 휘둘렀다 → 전사가 방패로 막았다 −18', 88, 96, 100, 100, 0],
+      ['0:04', '마법사의 화염구 → 돌개바람 수리 −60', 79, 96, 100, 100, 0],
+      ['0:05', '마법사의 이슬 보호막이 파티를 감쌌다', 79, 96, 100, 100, 0],
+      ['0:06', '전사의 강타 → 돌개바람 수리 −58', 69, 96, 100, 100, 0],
+      ['0:07', '돌개바람 수리가 분노했다 (생명력 50%)', 50, 96, 100, 100, 1],
+      ['0:08', '돌개바람 수리가 회오리를 일으켰다 → 전사 −22 · 사냥꾼 −8', 50, 91, 98, 100, 0],
+      ['0:09', '사냥꾼의 관통 화살 → 돌개바람 수리 −110', 36, 91, 98, 100, 0],
+      ['0:10', '돌개바람 수리가 다시 분노했다 (생명력 25%)', 25, 91, 98, 100, 1],
+      ['0:11', '마법사의 화염구 → 돌개바람 수리 −64', 15, 91, 98, 100, 0],
+      ['0:12', '지난번 기록을 넘어섰다 (남은 생명력 4% 아래)', 3, 91, 98, 100, 2],
+      ['0:13', '사냥꾼의 결정타 → 돌개바람 수리를 쓰러뜨렸다', 0, 91, 98, 100, 2]
+    ];
+  }
+  renderVals() {
+    const L = this.lines();
+    const idx = this.state.idx;
+    const cur = L[idx];
+    const start = Math.max(0, idx - 9);
+    const shown = L.slice(start, idx + 1).map((l) => ({
+      t: l[0], text: l[1],
+      size: l[6] ? '15px' : '13px', weight: l[6] ? '700' : '400',
+      color: l[6] === 2 ? '#F3D08A' : (l[6] === 1 ? '#F08A8A' : '#E8EDF4')
+    }));
+    const done = idx >= L.length - 1;
+    return {
+      clock: cur[0] + ' · ' + (this.state.fast ? '2배속' : '1배속'),
+      bossPct: cur[2], bossWidth: cur[2] + '%', bossOpacity: done ? '0.35' : '1',
+      party: [
+        { name: '전사', pct: cur[3], width: cur[3] + '%' },
+        { name: '사냥꾼 (나)', pct: cur[4], width: cur[4] + '%' },
+        { name: '마법사', pct: cur[5], width: cur[5] + '%' }
+      ],
+      shown: shown, done: done,
+      playLabel: done ? '처음부터' : (this.state.playing ? '멈춤' : '재생'),
+      togglePlay: () => {
+        if (done) { this.setState({ idx: 0, playing: true }); return; }
+        this.setState({ playing: !this.state.playing });
+      },
+      fast: this.state.fast, speedLabel: this.state.fast ? '2배속' : '1배속', speedBg: this.state.fast ? '#2C3A5C' : 'transparent',
+      toggleSpeed: () => { const f = !this.state.fast; this.setState({ fast: f }); this.restart(f); },
+      skip: () => this.setState({ idx: L.length - 1 })
+    };
+  }
+}
+</script>
+</body>
+</html>

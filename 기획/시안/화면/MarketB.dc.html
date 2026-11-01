@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>B안 · 거래소 · 휴대폰</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#8CC4F5}a:hover{color:#B8DBFA}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #10161F; font-family: 'Noto Sans KR', system-ui, sans-serif; color: #E8EDF4; display: flex; flex-direction: column; overflow: hidden">
+
+  <header style="padding: 10px 16px 0; display: flex; flex-direction: column; gap: 6px; border-bottom: 1px solid #263243">
+    <div style="display: flex; justify-content: space-between; align-items: center; min-height: 40px">
+      <div style="display: flex; flex-direction: column">
+        <span style="font-family: 'Gowun Batang', serif; font-size: 20px; font-weight: 700">거래소</span>
+        <span style="font-size: 12px; color: #A7B3C2">군도 마을</span>
+      </div>
+      <span style="display: flex; align-items: center; gap: 2px; font-size: 14px; font-weight: 700"><img src="/_blob/f455ad14c4095214ee4a4ff7129ab42b" alt="골드" width="22" height="22" style="image-rendering: pixelated">12,400</span>
+    </div>
+    <div role="tablist" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr))">
+      <sc-for list="{{tabs}}" as="tb" hint-placeholder-count="4">
+        <button type="button" role="tab" aria-selected="{{tb.on}}" onClick="{{tb.pick}}" style="min-height: 46px; border: none; border-bottom: 3px solid {{tb.line}}; background: transparent; font: inherit; font-size: 15px; font-weight: 700; color: {{tb.color}}; cursor: pointer">{{tb.label}}</button>
+      </sc-for>
+    </div>
+  </header>
+
+  <main style="flex: 1; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; overflow: hidden">
+
+    <sc-if value="{{isRec}}" hint-placeholder-val="{{ true }}">
+      <p style="margin: 0; font-size: 13px; color: #A7B3C2">궁술 계통 중 장착하면 전투력이 오르는 장비예요.</p>
+      <sc-for list="{{recs}}" as="r" hint-placeholder-count="4">
+        <article style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 10px 12px; display: flex; gap: 10px; align-items: center">
+          <div style="width: 60px; height: 60px; flex-shrink: 0; border-radius: 10px; border: 2px solid {{r.color}}; background: {{r.tint}}; display: flex; align-items: center; justify-content: center"><img src="{{r.img}}" alt="" width="51" height="51" style="image-rendering: pixelated"></div>
+          <div style="display: flex; flex-direction: column; gap: 1px; flex: 1; min-width: 0">
+            <span style="font-size: 14px; font-weight: 700; color: {{r.color}}">[{{r.grade}}] {{r.name}}</span>
+            <span style="font-size: 12px; color: #A7B3C2">{{r.meta}}</span>
+            <span style="font-size: 13px; font-weight: 700; color: #6FD08C">장착하면 {{r.gain}}</span>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px">
+            <span style="font-size: 14px; font-weight: 700">{{r.price}}</span>
+            <span style="font-size: 11px; color: #A7B3C2">최근 {{r.recent}}</span>
+            <button type="button" style="min-height: 36px; min-width: 68px; border-radius: 8px; border: none; background: #3D86C6; color: #FFFFFF; font: inherit; font-size: 13px; font-weight: 700">바로 구매</button>
+          </div>
+        </article>
+      </sc-for>
+    </sc-if>
+
+    <sc-if value="{{isSearch}}" hint-placeholder-val="{{ false }}">
+      <section aria-label="검색 조건" style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 8px">
+        <sc-for list="{{filters}}" as="f" hint-placeholder-count="3">
+          <div style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap">
+            <span style="font-size: 12px; color: #A7B3C2; width: 34px">{{f.label}}</span>
+            <sc-for list="{{f.chips}}" as="c" hint-placeholder-count="4">
+              <button type="button" aria-pressed="{{c.on}}" style="min-height: 34px; padding: 0 10px; border-radius: 999px; border: 1px solid {{c.border}}; background: {{c.bg}}; color: {{c.color}}; font: inherit; font-size: 12px">{{c.t}}</button>
+            </sc-for>
+          </div>
+        </sc-for>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+          <label style="display: flex; flex-direction: column; gap: 2px; font-size: 12px; color: #A7B3C2">장비 레벨<input type="text" value="21 – 30" style="min-height: 38px; border-radius: 8px; border: 1px solid #3A4658; background: #1B2433; color: #E8EDF4; padding: 0 10px; font: inherit; font-size: 13px"></label>
+          <label style="display: flex; flex-direction: column; gap: 2px; font-size: 12px; color: #A7B3C2">최대 가격<input type="text" value="5,000골드" style="min-height: 38px; border-radius: 8px; border: 1px solid #3A4658; background: #1B2433; color: #E8EDF4; padding: 0 10px; font: inherit; font-size: 13px"></label>
+        </div>
+        <label style="display: flex; flex-direction: column; gap: 2px; font-size: 12px; color: #A7B3C2">옵션<input type="text" value="연사 +1" style="min-height: 38px; border-radius: 8px; border: 1px solid #3A4658; background: #1B2433; color: #E8EDF4; padding: 0 10px; font: inherit; font-size: 13px"></label>
+      </section>
+      <span style="font-size: 13px; color: #A7B3C2">결과 8개 · 낮은 가격순</span>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+        <sc-for list="{{results}}" as="rs" hint-placeholder-count="8">
+          <button type="button" aria-label="{{rs.label}}" style="display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 0; border-radius: 10px; border: 2px solid {{rs.color}}; background: {{rs.tint}}; color: #E8EDF4; font: inherit; cursor: pointer">
+            <img src="{{rs.img}}" alt="" width="51" height="51" style="image-rendering: pixelated">
+            <span style="font-size: 12px; font-weight: 700">{{rs.price}}</span>
+          </button>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{isSell}}" hint-placeholder-val="{{ false }}">
+      <section aria-label="내 보관함" style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px">
+        <span style="font-size: 13px; color: #A7B3C2">팔 장비 고르기 · 희귀 이상만 올릴 수 있어요</span>
+        <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px">
+          <sc-for list="{{mine}}" as="m" hint-placeholder-count="6">
+            <button type="button" onClick="{{m.pick}}" aria-label="{{m.label}}" style="position: relative; aspect-ratio: 1; border-radius: 8px; border: 2px solid {{m.color}}; background: {{m.tint}}; outline: {{m.outline}}; outline-offset: 2px; opacity: {{m.dim}}; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer">
+              <img src="{{m.img}}" alt="" width="40" height="40" style="image-rendering: pixelated">
+              <sc-if value="{{m.lock}}" hint-placeholder-val="{{ false }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" aria-hidden="true" style="position: absolute; right: 2px; bottom: 2px"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11 V7 A4 4 0 0 1 16 7 V11"></path></svg></sc-if>
+            </button>
+          </sc-for>
+        </div>
+      </section>
+
+      <sc-if value="{{sel.ok}}" hint-placeholder-val="{{ true }}">
+        <section style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 8px">
+          <span style="font-size: 15px; font-weight: 700; color: {{sel.color}}">[{{sel.grade}}] {{sel.name}}</span>
+          <label style="display: flex; flex-direction: column; gap: 2px; font-size: 12px; color: #A7B3C2">판매 가격 · 최근 거래가 {{sel.recent}}<input type="text" value="{{sel.price}}" style="min-height: 42px; border-radius: 8px; border: 1px solid #3A4658; background: #1B2433; color: #E8EDF4; padding: 0 10px; font: inherit; font-size: 15px; font-weight: 700"></label>
+          <div style="display: flex; justify-content: space-between; font-size: 13px"><span style="color: #A7B3C2">수수료 5%</span><span>−{{sel.fee}}</span></div>
+          <div style="display: flex; justify-content: space-between; font-size: 14px; font-weight: 700"><span>팔리면 받는 골드</span><span style="color: #6FD08C">{{sel.get}}</span></div>
+          <button type="button" style="min-height: 46px; border-radius: 8px; border: none; background: #3D86C6; color: #FFFFFF; font: inherit; font-size: 15px; font-weight: 700">7일 동안 올리기</button>
+        </section>
+      </sc-if>
+      <sc-if value="{{sel.no}}" hint-placeholder-val="{{ false }}">
+        <section style="background: #2A1F24; border: 1px solid #5A3A44; border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 4px">
+          <span style="font-size: 15px; font-weight: 700">{{sel.name}}</span>
+          <span style="font-size: 13px; color: #F3C1C1">{{sel.why}}</span>
+        </section>
+      </sc-if>
+
+      <section style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 4px 12px">
+        <div style="display: flex; justify-content: space-between; align-items: center; min-height: 44px; font-size: 13px"><span>올린 물건 · [희귀] 이슬 지팡이 · 780</span><span style="color: #A7B3C2">6일 3시간 남음</span></div>
+        <label style="display: flex; justify-content: space-between; align-items: center; min-height: 44px; font-size: 13px; border-top: 1px solid #263243">다른 계통 희귀 이상 자동으로 올리기<input type="checkbox" style="width: 20px; height: 20px"></label>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{isShop}}" hint-placeholder-val="{{ false }}">
+      <section style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 10px">
+        <span style="font-size: 15px; font-weight: 700">마을 상점</span>
+        <div style="display: flex; gap: 10px; align-items: center">
+          <img src="/_blob/b57b5fdadf690adfcf48b45d05b6dd29" alt="" width="40" height="40" style="image-rendering: pixelated; background: #1B2433; border-radius: 8px">
+          <div style="display: flex; flex-direction: column; flex: 1"><span style="font-size: 14px; font-weight: 700">하늘돌 10개</span><span style="font-size: 12px; color: #A7B3C2">언제나 같은 값 · 1,200골드</span></div>
+          <div style="display: flex; align-items: center; gap: 4px">
+            <button type="button" aria-label="하나 줄이기" style="width: 36px; height: 36px; border-radius: 8px; border: 1px solid #3A4658; background: transparent; color: #E8EDF4; font: inherit">−</button>
+            <span style="min-width: 20px; text-align: center; font-weight: 700">1</span>
+            <button type="button" aria-label="하나 늘리기" style="width: 36px; height: 36px; border-radius: 8px; border: 1px solid #3A4658; background: transparent; color: #E8EDF4; font: inherit">+</button>
+          </div>
+        </div>
+        <button type="button" style="min-height: 44px; border-radius: 8px; border: none; background: #3D86C6; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 700">1,200골드로 사기</button>
+      </section>
+      <section style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 12px; display: flex; justify-content: space-between; align-items: center; gap: 10px">
+        <div style="display: flex; flex-direction: column"><span style="font-size: 14px; font-weight: 700">장비 팔기</span><span style="font-size: 12px; color: #A7B3C2">등급과 장비 레벨로 값이 정해져요</span></div>
+        <button type="button" style="min-height: 44px; padding: 0 14px; border-radius: 8px; border: 1px solid #3A4658; background: transparent; color: #E8EDF4; font: inherit; font-size: 13px">보관함에서 고르기</button>
+      </section>
+      <section style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 8px">
+        <span style="font-size: 14px; font-weight: 700">집 꾸미기</span>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+          <div style="background: #1B2433; border-radius: 10px; padding: 8px; display: flex; flex-direction: column; align-items: center; gap: 2px"><img src="/_blob/2a7e5c9ac60ab693a7c8cadba10101b9" alt="" width="40" height="40" style="image-rendering: pixelated"><span style="font-size: 12px">나무 상자</span><span style="font-size: 12px; color: #A7B3C2">3,000</span></div>
+          <div style="background: #1B2433; border-radius: 10px; padding: 8px; display: flex; flex-direction: column; align-items: center; gap: 2px"><img src="/_blob/4bc7d7603535ab1cc065d190ede0b556" alt="" width="40" height="40" style="image-rendering: pixelated"><span style="font-size: 12px">벽시계</span><span style="font-size: 12px; color: #A7B3C2">5,000</span></div>
+          <div style="background: #1B2433; border-radius: 10px; padding: 8px; display: flex; flex-direction: column; align-items: center; gap: 2px; opacity: 0.7"><img src="/_blob/61bee62cdf8b6e2036870639fdb0af49" alt="" width="40" height="40" style="image-rendering: pixelated"><span style="font-size: 12px">수리의 깃털</span><span style="font-size: 11px; color: #A7B3C2">토벌 기념품</span></div>
+        </div>
+      </section>
+    </sc-if>
+  </main>
+
+  <nav aria-label="주 메뉴" style="height: 64px; background: #151D29; border-top: 1px solid #263243; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr))">
+    <a href="HomeB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11 L12 4 L21 11"></path><path d="M5 10 V20 H19 V10"></path></svg>집</a>
+    <a href="ExpeditionB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 V15"></path><path d="M7 10 L12 15 L17 10"></path><path d="M4 20 H20"></path></svg>원정</a>
+    <a href="GearB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 L19 6 V12 C19 16 16 19 12 21 C8 19 5 16 5 12 V6 Z"></path></svg>장비</a>
+    <a href="MarketB.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; font-weight: 700; color: #8CC4F5; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 8 H20 L18 20 H6 Z"></path><path d="M9 8 V6 A3 3 0 0 1 15 6 V8"></path></svg>거래소</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tab: 'rec', sell: 'i8' };
+  }
+  renderVals() {
+    const B = '/_blob/';
+    const G = {
+      '일반': { c: '#A3ADBA', t: '#1C232E' }, '고급': { c: '#5FBF73', t: '#16261C' }, '희귀': { c: '#5A9BE6', t: '#152335' },
+      '영웅': { c: '#B585EA', t: '#241A33' }, '전설': { c: '#E0A93B', t: '#2E2412' }
+    };
+    const IMG = {
+      bow_rare: B + 'd61d6d3457eee15749230a4770741e37', bow_hero: B + '73e7dad451ba6becb494e6c86611ff42', bow_uncommon: B + 'de2557cb71105c3a53de6d784b342f81', bow_legend: B + 'c8ca740f95bdd2198e02dcb53d1ff32f',
+      helm_common: B + 'e73000b1d7fa921f4c7a5f16d29c112c', helm_rare: B + 'bcaae8ddfad9fe968df9ad1cdc91a203', body_uncommon: B + 'adfecbba38ea742d9ab15accf5ca9158',
+      armor_rare: B + '2a96d0fa5e250354c1cc8f11e599e180', neck_hero: B + 'ed017087ecb4ada9cd6b781f59b3f622', ring_uncommon: B + 'c4779bf8dd8ac6277ecf64e1ef96f7ff',
+      staff_rare: B + '6f5b0cdfdc6f63e19bf2ce554a666b15', staff_hero: B + '422d1f0fb82719519ec686025246d86e', core: B + '03183310b3ca0f8452ac3597547329b7'
+    };
+    const st = this.state;
+    const g = (x) => Object.assign({}, x, { color: G[x.grade].c, tint: G[x.grade].t, img: IMG[x.img] });
+    const tabDefs = [['rec', '추천'], ['search', '검색'], ['sell', '판매'], ['shop', '상점']];
+    const tabs = tabDefs.map((d) => ({ label: d[1], on: st.tab === d[0], line: st.tab === d[0] ? '#8CC4F5' : 'transparent', color: st.tab === d[0] ? '#FFFFFF' : '#A7B3C2', pick: () => this.setState({ tab: d[0] }) }));
+    const recs = [
+      { grade: '영웅', name: '회오리 장궁', img: 'bow_hero', meta: '무기 · 궁술 · 장비 레벨 25 · 연사 +1', gain: '+120', price: '3,200', recent: '3,050' },
+      { grade: '희귀', name: '새벽 사냥꾼 모자', img: 'helm_rare', meta: '머리 · 궁술 · 장비 레벨 24 · 관통 화살 +1', gain: '+44', price: '950', recent: '900' },
+      { grade: '영웅', name: '구름결 목걸이', img: 'neck_hero', meta: '장신구 · 궁술 · 장비 레벨 24 · 조준 사격 +1', gain: '+71', price: '2,400', recent: '2,600' },
+      { grade: '희귀', name: '바람 깃 장궁', img: 'bow_rare', meta: '무기 · 궁술 · 장비 레벨 25', gain: '+38', price: '880', recent: '910' }
+    ].map(g);
+    const chip = (t, on) => ({ t: t, on: on, border: on ? '#8CC4F5' : '#3A4658', bg: on ? '#1F3550' : 'transparent', color: on ? '#FFFFFF' : '#C8D3E6' });
+    const filters = [
+      { label: '부위', chips: [chip('전체', false), chip('무기', true), chip('머리', false), chip('몸', false), chip('장신구', false)] },
+      { label: '계통', chips: [chip('궁술', true), chip('검술', false), chip('마법', false)] },
+      { label: '등급', chips: [chip('희귀', true), chip('영웅', true), chip('전설', false)] }
+    ];
+    const results = [
+      { grade: '희귀', img: 'bow_rare', price: '780' }, { grade: '희귀', img: 'bow_rare', price: '880' }, { grade: '희귀', img: 'bow_rare', price: '1,050' }, { grade: '영웅', img: 'bow_hero', price: '2,900' },
+      { grade: '영웅', img: 'bow_hero', price: '3,200' }, { grade: '영웅', img: 'bow_hero', price: '3,400' }, { grade: '영웅', img: 'bow_hero', price: '4,100' }, { grade: '희귀', img: 'bow_rare', price: '4,800' }
+    ].map((r) => Object.assign(g(r), { label: r.grade + ' 장궁 · ' + r.price + '골드' }));
+    const mineRaw = [
+      { id: 'i8', grade: '영웅', img: 'staff_hero', name: '구름 수정 지팡이', recent: '2,400', price: '2,450', fee: '122', get: '2,328' },
+      { id: 'i4', grade: '희귀', img: 'armor_rare', name: '섬돌 갑옷', recent: '760', price: '780', fee: '39', get: '741' },
+      { id: 'i2', grade: '희귀', img: 'helm_rare', name: '매의 눈 가죽모자', recent: '820', price: '850', fee: '42', get: '808' },
+      { id: 'i1', grade: '영웅', img: 'bow_hero', name: '천둥새의 장궁', recent: '2,960', price: '3,000', fee: '150', get: '2,850' },
+      { id: 'gate', grade: '희귀', img: 'bow_rare', name: '[희귀] 바람결 장궁 (첫 토벌 보상)', no: true, why: '관문 첫 토벌 보상은 토벌 기념품이라 거래할 수 없어요.' },
+      { id: 'core', grade: '전설', img: 'core', name: '폭풍의 핵', no: true, why: '폭풍의 벽을 직접 뚫은 기록이라 거래할 수 없어요.' }
+    ];
+    const mine = mineRaw.map((m) => Object.assign(g(m), {
+      label: m.name, lock: !!m.no, dim: m.no ? '0.7' : '1', outline: st.sell === m.id ? '2px solid #8CC4F5' : 'none',
+      pick: () => this.setState({ sell: m.id })
+    }));
+    const s0 = mine.filter((m) => st.sell === m.id)[0] || mine[0];
+    const sel = Object.assign({}, s0, { ok: !s0.no, no: !!s0.no, why: s0.why || '', recent: s0.recent || '', price: s0.price || '', fee: s0.fee || '', get: s0.get || '' });
+    return {
+      tabs: tabs, isRec: st.tab === 'rec', isSearch: st.tab === 'search', isSell: st.tab === 'sell', isShop: st.tab === 'shop',
+      recs: recs, filters: filters, results: results, mine: mine, sel: sel
+    };
+  }
+}
+</script>
+</body>
+</html>

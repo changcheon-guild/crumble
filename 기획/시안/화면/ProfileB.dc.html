@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>B안 · 다른 모험가 프로필 · 휴대폰</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#8CC4F5}a:hover{color:#B8DBFA}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #10161F; font-family: 'Noto Sans KR', system-ui, sans-serif; color: #E8EDF4; display: flex; flex-direction: column; overflow: hidden; position: relative">
+
+  <header style="height: 52px; box-sizing: border-box; padding: 0 6px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #263243">
+    <div style="display: flex; align-items: center; gap: 2px">
+      <a href="#back" aria-label="뒤로" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #E8EDF4">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5 L8 12 L15 19"></path></svg></a>
+      <span style="font-family: 'Gowun Batang', serif; font-size: 19px; font-weight: 700">모험가 프로필</span>
+    </div>
+    <button type="button" onClick="{{toggleMenu}}" aria-label="더 보기" aria-expanded="{{menu}}" style="width: 44px; height: 44px; border: none; background: transparent; color: #E8EDF4; cursor: pointer; display: flex; align-items: center; justify-content: center">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="5" r="2"></circle><circle cx="12" cy="12" r="2"></circle><circle cx="12" cy="19" r="2"></circle></svg>
+    </button>
+  </header>
+
+  <section style="background-image: url(/_blob/69907e8b4a7316dc4eb78efd37614c75); background-size: 390px auto; background-position: center 60%; image-rendering: pixelated; padding: 18px 16px 16px; display: flex; gap: 14px; align-items: flex-end">
+    <div style="width: 108px; height: 108px; flex-shrink: 0; border-radius: 14px; border: 3px solid #FFFFFF; background: #1B2433; display: flex; align-items: center; justify-content: center">
+      <img src="/_blob/850a28b84a715fb9e29b1d0372ddfa0d" alt="새벽바람이 직접 그린 프로필" width="96" height="96" style="image-rendering: pixelated">
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 4px; background: rgba(16, 22, 31, 0.85); border-radius: 10px; padding: 8px 12px">
+      <span style="font-family: 'Gowun Batang', serif; font-size: 22px; font-weight: 700">새벽바람</span>
+      <span style="font-size: 13px; color: #C8D3E6">마법사 · Lv 12 · 전투력 1,180</span>
+      <span style="font-size: 12px; color: #A7B3C2">치유 마법을 주로 써요</span>
+    </div>
+  </section>
+
+  <main style="flex: 1; padding: 14px; display: flex; flex-direction: column; gap: 10px; overflow: hidden">
+    <article style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px">
+      <span style="font-size: 12px; color: #A7B3C2">지금 하는 일</span>
+      <span style="font-size: 15px; font-weight: 700">25번째 구름층 탐사 중</span>
+      <span style="font-size: 13px; color: #C8D3E6">"느긋하게 키워요. 폭풍의 벽 같이 가실 분 환영해요."</span>
+    </article>
+
+    <article style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px">
+      <span style="font-size: 14px; font-weight: 700">토벌 기록</span>
+      <div style="display: flex; justify-content: space-between; align-items: center; min-height: 40px; border-top: 1px solid #263243">
+        <span style="display: flex; flex-direction: column"><span style="font-size: 14px">첫 번째 폭풍의 벽</span><span style="font-size: 12px; color: #A7B3C2">돌개바람 수리 · 최고 기록 31초</span></span>
+        <img src="/_blob/61bee62cdf8b6e2036870639fdb0af49" alt="수리의 깃털" width="34" height="34" style="image-rendering: pixelated">
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; min-height: 40px; border-top: 1px solid #263243">
+        <span style="display: flex; flex-direction: column"><span style="font-size: 14px">도움 기록</span><span style="font-size: 12px; color: #A7B3C2">다른 모험가의 첫 토벌을 4번 도왔어요</span></span>
+      </div>
+    </article>
+
+    <article style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 12px 14px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; text-align: center">
+      <div style="display: flex; flex-direction: column"><span style="font-size: 12px; color: #A7B3C2">함께 간 던전</span><span style="font-size: 17px; font-weight: 700">3번</span></div>
+      <div style="display: flex; flex-direction: column"><span style="font-size: 12px; color: #A7B3C2">거래</span><span style="font-size: 17px; font-weight: 700">1번</span></div>
+      <div style="display: flex; flex-direction: column"><span style="font-size: 12px; color: #A7B3C2">사이</span><span style="font-size: 17px; font-weight: 700">친구</span></div>
+    </article>
+
+    <div style="margin-top: auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+      <button type="button" style="min-height: 48px; border-radius: 10px; border: 1px solid #3A4658; background: transparent; color: #E8EDF4; font: inherit; font-size: 15px">친구 추가됨</button>
+      <button type="button" style="min-height: 48px; border-radius: 10px; border: none; background: #3D86C6; color: #FFFFFF; font: inherit; font-size: 15px; font-weight: 700">파티에 초대</button>
+    </div>
+  </main>
+
+  <sc-if value="{{menu}}" hint-placeholder-val="{{ false }}">
+    <div role="menu" aria-label="더 보기" style="position: absolute; right: 10px; top: 50px; width: 210px; background: #1B2433; border: 1px solid #3A4658; border-radius: 10px; padding: 6px; display: flex; flex-direction: column">
+      <button type="button" role="menuitem" style="min-height: 44px; text-align: left; padding: 0 12px; border: none; background: transparent; color: #E8EDF4; font: inherit; font-size: 14px">친구 끊기</button>
+      <button type="button" role="menuitem" style="min-height: 44px; text-align: left; padding: 0 12px; border: none; background: transparent; color: #E8EDF4; font: inherit; font-size: 14px">이 모험가 차단</button>
+      <button type="button" role="menuitem" style="min-height: 44px; text-align: left; padding: 0 12px; border: none; border-top: 1px solid #3A4658; background: transparent; color: #F08A8A; font: inherit; font-size: 14px">그림·닉네임 신고</button>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { menu: false };
+  }
+  renderVals() {
+    return {
+      menu: this.state.menu,
+      toggleMenu: () => this.setState({ menu: !this.state.menu })
+    };
+  }
+}
+</script>
+</body>
+</html>

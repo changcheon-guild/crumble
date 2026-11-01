@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>B안 · 도트 편집기 · 휴대폰</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#8CC4F5}a:hover{color:#B8DBFA}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #10161F; font-family: 'Noto Sans KR', system-ui, sans-serif; color: #E8EDF4; display: flex; flex-direction: column; overflow: hidden">
+
+  <header style="height: 52px; box-sizing: border-box; padding: 0 10px 0 6px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #263243">
+    <div style="display: flex; align-items: center; gap: 2px">
+      <a href="SettingsB.dc.html" aria-label="뒤로" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #E8EDF4">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5 L8 12 L15 19"></path></svg></a>
+      <span style="font-family: 'Gowun Batang', serif; font-size: 19px; font-weight: 700">내 캐릭터 그리기</span>
+    </div>
+    <span style="font-size: 12px; color: #A7B3C2">32 × 32</span>
+  </header>
+
+  <section aria-label="그림판" style="padding: 10px 19px 6px; display: flex; flex-direction: column; gap: 6px">
+    <div style="position: relative; width: 352px; height: 352px; background: #1B2433; border: 1px solid #263243">
+      <div style="display: grid; grid-template-columns: repeat(32, 11px); grid-template-rows: repeat(32, 11px)">
+        <sc-for list="{{cells}}" as="c" hint-placeholder-count="1024">
+          <button type="button" onClick="{{c.paint}}" aria-label="{{c.label}}" style="width: 11px; height: 11px; padding: 0; border: none; border-right: 1px solid #10161F; border-bottom: 1px solid #10161F; box-sizing: border-box; background: {{c.bg}}; cursor: crosshair"></button>
+        </sc-for>
+      </div>
+      <div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 352px; height: 352px; pointer-events: none">
+        <div style="position: absolute; left: 0; right: 0; top: 54px; border-top: 1px dashed #E0A93B"></div>
+        <div style="position: absolute; left: 0; right: 0; top: 230px; border-top: 1px dashed #6FD08C"></div>
+        <div style="position: absolute; top: 0; bottom: 0; left: 175px; border-left: 1px dashed #4A5A78"></div>
+        <span style="position: absolute; right: 2px; top: 38px; font-size: 11px; font-weight: 700; color: #F3D08A; background: rgba(16, 22, 31, 0.85); padding: 0 4px; border-radius: 4px">머리 기준선</span>
+        <span style="position: absolute; right: 2px; top: 214px; font-size: 11px; font-weight: 700; color: #8FE0A7; background: rgba(16, 22, 31, 0.85); padding: 0 4px; border-radius: 4px">손 기준선</span>
+      </div>
+    </div>
+    <span style="font-size: 12px; color: #A7B3C2">머리 장비는 머리 기준선에, 무기는 손 기준선에 자동으로 겹쳐 보여요.</span>
+  </section>
+
+  <section aria-label="도구" style="padding: 0 14px; display: flex; gap: 6px; flex-wrap: wrap">
+    <button type="button" onClick="{{toPen}}" aria-pressed="{{isPen}}" style="min-height: 40px; padding: 0 12px; border-radius: 8px; border: 1px solid {{penBorder}}; background: {{penBg}}; color: #E8EDF4; font: inherit; font-size: 13px">연필</button>
+    <button type="button" onClick="{{toEraser}}" aria-pressed="{{isEraser}}" style="min-height: 40px; padding: 0 12px; border-radius: 8px; border: 1px solid {{eraserBorder}}; background: {{eraserBg}}; color: #E8EDF4; font: inherit; font-size: 13px">지우개</button>
+    <button type="button" onClick="{{toFill}}" aria-pressed="{{isFill}}" style="min-height: 40px; padding: 0 12px; border-radius: 8px; border: 1px solid {{fillBorder}}; background: {{fillBg}}; color: #E8EDF4; font: inherit; font-size: 13px">채우기</button>
+    <button type="button" onClick="{{toggleMirror}}" aria-pressed="{{mirror}}" style="min-height: 40px; padding: 0 12px; border-radius: 8px; border: 1px solid {{mirrorBorder}}; background: {{mirrorBg}}; color: #E8EDF4; font: inherit; font-size: 13px">좌우 대칭</button>
+    <button type="button" onClick="{{undo}}" style="min-height: 40px; padding: 0 12px; border-radius: 8px; border: 1px solid #3A4658; background: transparent; color: #E8EDF4; font: inherit; font-size: 13px">되돌리기 {{undoCount}}</button>
+  </section>
+
+  <section aria-label="팔레트" style="padding: 8px 14px 0; display: flex; flex-direction: column; gap: 6px">
+    <div style="display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 5px">
+      <sc-for list="{{palette}}" as="p" hint-placeholder-count="20">
+        <button type="button" onClick="{{p.pick}}" aria-label="{{p.label}}" aria-pressed="{{p.on}}" style="aspect-ratio: 1; min-height: 30px; border-radius: 6px; border: {{p.ring}}; background: {{p.c}}; padding: 0; cursor: pointer"></button>
+      </sc-for>
+    </div>
+    <span style="font-size: 12px; color: #A7B3C2">위 두 줄은 하늘 군도 기본색, 마지막 네 칸은 내 색이에요.</span>
+  </section>
+
+  <section aria-label="미리보기와 저장" style="margin-top: auto; padding: 10px 14px 14px; display: flex; gap: 12px; align-items: flex-end; border-top: 1px solid #263243">
+    <div style="display: flex; gap: 10px; align-items: flex-end">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 2px">
+        <div style="width: 32px; height: 32px; display: grid; grid-template-columns: repeat(32, 1px); background-image: url(/_blob/69907e8b4a7316dc4eb78efd37614c75); background-size: cover">
+          <sc-for list="{{cells}}" as="c" hint-placeholder-count="1024"><div style="width: 1px; height: 1px; background: {{c.pv}}"></div></sc-for>
+        </div>
+        <span style="font-size: 11px; color: #A7B3C2">1배</span>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 2px">
+        <div style="width: 64px; height: 64px; display: grid; grid-template-columns: repeat(32, 2px); background-image: url(/_blob/69907e8b4a7316dc4eb78efd37614c75); background-size: cover">
+          <sc-for list="{{cells}}" as="c" hint-placeholder-count="1024"><div style="width: 2px; height: 2px; background: {{c.pv}}"></div></sc-for>
+        </div>
+        <span style="font-size: 11px; color: #A7B3C2">2배</span>
+      </div>
+    </div>
+    <div style="flex: 1; display: flex; flex-direction: column; gap: 6px">
+      <button type="button" style="min-height: 44px; border-radius: 10px; border: none; background: #3D86C6; color: #FFFFFF; font: inherit; font-size: 15px; font-weight: 700">캐릭터로 저장</button>
+      <button type="button" style="min-height: 44px; border-radius: 10px; border: 1px solid #3A4658; background: transparent; color: #E8EDF4; font: inherit; font-size: 14px">얼굴을 잘라 프로필로 저장</button>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    const base = '......AAAAA.........AAAAAAAA.......AAAABBBAAA.....AAACBBBBCAAA....AACBBBBBBCAA....AADDDEEEDDAA....AABFFGGGFFAA....AAFFHFFFHFAA....AAGFHFFFHGAA....AAAGFCCCGBAA...AAADCCCBCCDAAA.AAABDDAAAADDBAAAAABGBDBBDDDBGBAAAABBADDDBBDABBAAAAAAACCAACCAAAAA.AAAABBAABBAAAA.';
+    const px = [];
+    for (let y = 0; y < 32; y++) {
+      for (let x = 0; x < 32; x++) {
+        const ch = base.charAt(Math.floor(y / 2) * 16 + Math.floor(x / 2));
+        px.push(ch === '.' ? -1 : ch.charCodeAt(0) - 65);
+      }
+    }
+    this.state = { px: px, color: 3, tool: 'pen', mirror: false, history: [] };
+  }
+  renderVals() {
+    const PAL = ['#3F2631', '#BD6C4A', '#763B36', '#25956A', '#43E1B3', '#F7C282', '#E19A65', '#262B44',
+      '#FFFFFF', '#C9D3DE', '#8CC4F5', '#5A9BE6', '#2F5872', '#B585EA', '#E0A93B', '#5FBF73',
+      '#F08A8A', '#FFD27A', '#6E6A93', '#A3ADBA'];
+    const NAMES = ['진한 갈색', '구릿빛', '적갈색', '숲 초록', '민트', '살구색', '주황 살구', '남색 그림자',
+      '흰색', '구름 회색', '하늘색', '파랑', '깊은 하늘', '보라', '금색', '풀색',
+      '내 색 1', '내 색 2', '내 색 3', '내 색 4'];
+    const st = this.state;
+    const apply = (idx) => {
+      const px = st.px.slice();
+      const val = st.tool === 'eraser' ? -1 : st.color;
+      if (st.tool === 'fill') {
+        const target = px[idx];
+        if (target === val) return;
+        const stack = [idx];
+        while (stack.length) {
+          const i = stack.pop();
+          if (i < 0 || i >= 1024 || px[i] !== target) continue;
+          px[i] = val;
+          const x = i % 32;
+          stack.push(i - 32, i + 32);
+          if (x > 0) stack.push(i - 1);
+          if (x < 31) stack.push(i + 1);
+        }
+      } else {
+        px[idx] = val;
+        if (st.mirror) {
+          const y = Math.floor(idx / 32), x = idx % 32;
+          px[y * 32 + (31 - x)] = val;
+        }
+      }
+      const history = st.history.concat([st.px]).slice(-20);
+      this.setState({ px: px, history: history });
+    };
+    const cells = st.px.map((v, i) => ({
+      bg: v < 0 ? '#1B2433' : PAL[v],
+      pv: v < 0 ? 'transparent' : PAL[v],
+      label: (Math.floor(i / 32) + 1) + '행 ' + (i % 32 + 1) + '열',
+      paint: () => apply(i)
+    }));
+    const palette = PAL.map((c, i) => ({
+      c: c, label: NAMES[i], on: st.color === i,
+      ring: st.color === i ? '3px solid #FFFFFF' : '1px solid #3A4658',
+      pick: () => this.setState({ color: i, tool: st.tool === 'eraser' ? 'pen' : st.tool })
+    }));
+    const on = (t) => st.tool === t;
+    return {
+      cells: cells, palette: palette,
+      isPen: on('pen'), isEraser: on('eraser'), isFill: on('fill'), mirror: st.mirror,
+      penBorder: on('pen') ? '#8CC4F5' : '#3A4658', penBg: on('pen') ? '#1F3550' : 'transparent',
+      eraserBorder: on('eraser') ? '#8CC4F5' : '#3A4658', eraserBg: on('eraser') ? '#1F3550' : 'transparent',
+      fillBorder: on('fill') ? '#8CC4F5' : '#3A4658', fillBg: on('fill') ? '#1F3550' : 'transparent',
+      mirrorBorder: st.mirror ? '#8CC4F5' : '#3A4658', mirrorBg: st.mirror ? '#1F3550' : 'transparent',
+      undoCount: st.history.length ? '(' + st.history.length + ')' : '',
+      toPen: () => this.setState({ tool: 'pen' }),
+      toEraser: () => this.setState({ tool: 'eraser' }),
+      toFill: () => this.setState({ tool: 'fill' }),
+      toggleMirror: () => this.setState({ mirror: !st.mirror }),
+      undo: () => {
+        if (!st.history.length) return;
+        const h = st.history.slice();
+        const prev = h.pop();
+        this.setState({ px: prev, history: h });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
