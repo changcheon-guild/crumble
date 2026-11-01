@@ -1,6 +1,9 @@
 """화면 시안용 장면 합성. 재료: Kenney Pixel Platformer·Tiny Dungeon(CC0), PauR Sky background(CC BY 3.0), 갈무리9(OFL).
 캐릭터·몬스터·이름표를 모두 한 장에 같은 배율로 넣는다. 화면에서는 2배·3배로만 키운다."""
+import os
 from PIL import Image, ImageDraw, ImageEnhance, ImageFont
+# 재료는 이 파일 옆 재료/ 폴더에서 읽고, 결과는 이 파일 옆에 쓴다. 실행: python3 make2.py
+os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), '재료'))
 T='dl/pp/kenney_pixel-platformer/Tiles/'
 CH='outline/'
 FONT=ImageFont.truetype('fonts/Galmuri9.ttf',10)
@@ -60,7 +63,7 @@ def bubble(s,text,cx,bottom_y):
     d.line((cx-2,y+h+1,cx-1,y+h+2),fill=edge); d.line((cx+2,y+h+1,cx+1,y+h+2),fill=edge); d.point((cx,y+h+3),fill=edge)
     d.text((x+4-l,y+1),text,font=FONT,fill=(27,39,53,255))
     s.alpha_composite(lay)
-OUT='scenes/'
+OUT='../'
 def home_island(s, gy=92):
     put(s, island(3,1), 6, 44); put(s, island(3,1), 160, 34); put(s, island(9,2), 16, gy)
     prop(s,126,24,gy); prop(s,84,44,gy); prop(s,105,62,gy); prop(s,106,80,gy)
@@ -114,4 +117,4 @@ s.save(OUT+'s_shelter.png')
 sheet=Image.new('RGBA',(390*4+30,260*2+10),(16,22,31,255))
 for i,n in enumerate(('s_home','s_start','s_explore','s_battle','s_result','s_guests','s_profile')):
     im=Image.open(OUT+n+'.png').resize((390,260),Image.NEAREST); sheet.paste(im,((i%4)*400,(i//4)*270))
-sheet.save(OUT+'compare3.png')
+sheet.save(OUT+'모아보기.png')
