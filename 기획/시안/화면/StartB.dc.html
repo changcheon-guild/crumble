@@ -68,9 +68,9 @@ class Component extends DCLogic {
   renderVals() {
     const B = '/_blob/';
     const list = [
-      { id: 'warrior', name: '전사', img: B + 'f890d1d3b0ebe5b55e3f3b00f8ebb691', btn: '전사로 시작하기', role: '앞에서 동료를 지켜요', pos: '앞줄', desc: '섬에 내리면 맨 앞에 서서 방패로 적의 공격을 막아요. 보스의 공격을 가장 많이 받아 내요.' },
-      { id: 'hunter', name: '사냥꾼', img: B + '64ae9ed81130ea20c79ff61a7efd0c61', btn: '사냥꾼으로 시작하기', role: '멀리서 활을 쏴요', pos: '뒷줄', desc: '긴 활로 구름 너머의 적을 맞혀요. 가장 큰 피해 숫자를 내는 직업이에요.' },
-      { id: 'mage', name: '마법사', img: B + '34b6b35084770f950ac747214e2463a9', btn: '마법사로 시작하기', role: '공격·치유·축복을 배워요', pos: '뒷줄', desc: '공격 마법으로 싸우거나, 치유 마법으로 동료를 지키거나, 축복 마법으로 동료를 강하게 해요.' }
+      { id: 'warrior', name: '전사', img: B + '05be44623edeece48a014d214caf38a7', btn: '전사로 시작하기', role: '앞에서 동료를 지켜요', pos: '앞줄', desc: '섬에 내리면 맨 앞에 서서 방패로 적의 공격을 막아요. 보스의 공격을 가장 많이 받아 내요.' },
+      { id: 'hunter', name: '사냥꾼', img: B + 'c2e10fff92a559b32f281532a0025abb', btn: '사냥꾼으로 시작하기', role: '멀리서 활을 쏴요', pos: '뒷줄', desc: '긴 활로 구름 너머의 적을 맞혀요. 가장 큰 피해 숫자를 내는 직업이에요.' },
+      { id: 'mage', name: '마법사', img: B + '65476abc18e3766f1b74c327719c3452', btn: '마법사로 시작하기', role: '공격·치유·축복을 배워요', pos: '뒷줄', desc: '공격 마법으로 싸우거나, 치유 마법으로 동료를 지키거나, 축복 마법으로 동료를 강하게 해요.' }
     ];
     const cur = this.state.pick;
     const classes = list.map((k) => Object.assign({}, k, {
