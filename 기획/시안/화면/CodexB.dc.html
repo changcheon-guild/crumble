@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>B안 · 도감과 제작</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Galmuri11';src:url(/_blob/3d7d41766d6fe4ab874aa2af55b7545e) format('woff2');font-weight:400;font-display:swap}@font-face{font-family:'Galmuri11';src:url(/_blob/8457e27020c70d82c86e28af69c16a56) format('woff2');font-weight:700;font-display:swap}@font-face{font-family:'Galmuri14';src:url(/_blob/b67fdc63fa51b5e3d8ffaa0aa94ab0fc) format('woff2');font-weight:100 900;font-display:swap}body{-webkit-font-smoothing:none}button,input,select,textarea{font-family:inherit}
+
+body{margin:0}
+a{color:#8CC4F5}a:hover{color:#B8DBFA}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #10161F; font-family: 'Galmuri11', 'Noto Sans KR', system-ui, sans-serif; color: #E8EDF4; display: flex; flex-direction: column; overflow: hidden">
+  <header style="height: 52px; box-sizing: border-box; padding: 0 6px 0 4px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #263243">
+    <div style="display: flex; align-items: center; gap: 2px">
+      <a href="GearB.dc.html" aria-label="장비로 돌아가기" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #E8EDF4"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5 L8 12 L15 19"></path></svg></a>
+      <span style="font-family: 'Galmuri14', 'Galmuri11', sans-serif; font-size: 19px; font-weight: 700">도감</span>
+    </div>
+    <span style="font-size: 12px; color: #A7B3C2; white-space: nowrap; padding-right: 10px">{{progress}}</span>
+  </header>
+
+  <main style="flex: 1; padding: 10px 14px; display: flex; flex-direction: column; gap: 10px; overflow: hidden">
+    <div role="tablist" aria-label="도감 종류" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px">
+      <sc-for list="{{tabs}}" as="t" hint-placeholder-count="4">
+        <button type="button" role="tab" aria-selected="{{t.on}}" onClick="{{t.pick}}" style="min-height: 40px; border-radius: 8px; border: 1px solid {{t.border}}; background: {{t.bg}}; color: #E8EDF4; font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap">{{t.label}}</button>
+      </sc-for>
+    </div>
+    <div style="display: flex; gap: 6px; overflow: hidden">
+      <sc-for list="{{filters}}" as="f" hint-placeholder-count="4">
+        <span style="white-space: nowrap; font-size: 12px; padding: 4px 10px; border-radius: 999px; border: 1px solid {{f.border}}; background: {{f.bg}}">{{f.t}}</span>
+      </sc-for>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px">
+      <sc-for list="{{cells}}" as="c" hint-placeholder-count="24">
+        <button type="button" onClick="{{c.pick}}" onMouseEnter="{{c.pick}}" aria-label="{{c.label}}" style="aspect-ratio: 1; box-sizing: border-box; border-radius: 8px; border: 2px solid {{c.border}}; background: {{c.tint}}; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer; position: relative">
+          <img src="{{c.img}}" alt="" width="40" height="40" style="image-rendering: pixelated; max-width: 80%; height: auto; filter: {{c.filter}}">
+          <sc-if value="{{c.craftable}}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="position: absolute; right: 2px; bottom: 0; font-size: 11px; color: #F3D08A; text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000">⚒</span></sc-if>
+        </button>
+      </sc-for>
+    </div>
+
+    <article aria-label="고른 항목" style="background: #151D29; border: 2px solid {{sel.color}}; border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; gap: 10px; align-items: center">
+        <span style="width: 52px; height: 52px; flex-shrink: 0; box-sizing: border-box; border-radius: 8px; border: 2px solid {{sel.color}}; background: {{sel.tint}}; display: flex; align-items: center; justify-content: center"><img src="{{sel.img}}" alt="" width="40" height="40" style="image-rendering: pixelated; filter: {{sel.filter}}"></span>
+        <span style="display: flex; flex-direction: column; min-width: 0">
+          <span style="font-size: 16px; font-weight: 700; color: {{sel.color}}; white-space: nowrap">{{sel.name}}</span>
+          <span style="font-size: 12px; color: #A7B3C2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{sel.meta}}</span>
+        </span>
+      </div>
+      <span style="font-size: 12px; color: #C8D3E6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{sel.where}}</span>
+      <sc-if value="{{sel.known}}" hint-placeholder-val="{{ true }}">
+        <div style="border-top: 1px solid #263243; padding-top: 8px; display: flex; flex-direction: column; gap: 6px">
+          <span style="font-size: 13px; font-weight: 700">만들기 <span style="font-size: 12px; font-weight: 400; color: #A7B3C2">장비 레벨 23 · 옵션은 등급 폭 안에서</span></span>
+          <div style="display: flex; gap: 6px">
+            <sc-for list="{{sel.cost}}" as="m" hint-placeholder-count="2">
+              <span style="flex: 1; min-width: 0; display: flex; align-items: center; gap: 4px; background: #1B2433; border-radius: 8px; padding: 4px 8px; font-size: 12px; white-space: nowrap"><img src="{{m.img}}" alt="" width="22" height="22" style="image-rendering: pixelated">{{m.name}} <span style="color: {{m.color}}; font-weight: 700">{{m.have}} / {{m.need}}</span></span>
+            </sc-for>
+          </div>
+          <button type="button" style="min-height: 44px; border-radius: 8px; border: {{sel.btnBorder}}; background: {{sel.btnBg}}; color: {{sel.btnColor}}; font-size: 14px; font-weight: 700; cursor: pointer">{{sel.btnText}}</button>
+        </div>
+      </sc-if>
+    </article>
+  </main>
+
+  <nav aria-label="주 메뉴" style="height: 64px; background: #151D29; border-top: 1px solid #263243; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr))">
+    <a href="HomeB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11 L12 4 L21 11"></path><path d="M5 10 V20 H19 V10"></path></svg>집</a>
+    <a href="#expedition" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 V15"></path><path d="M7 10 L12 15 L17 10"></path><path d="M4 20 H20"></path></svg>원정</a>
+    <a href="GearB.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; font-weight: 700; color: #8CC4F5; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 L19 6 V12 C19 16 16 19 12 21 C8 19 5 16 5 12 V6 Z"></path></svg>장비</a>
+    <a href="SocialB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3 19 C3 15 6 13 9 13 C12 13 15 15 15 19"></path><circle cx="17" cy="9" r="2.5"></circle><path d="M16 13.5 C19 13.5 21 15.5 21 19"></path></svg>교류</a>
+    <a href="#market" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 8 H20 L18 20 H6 Z"></path><path d="M9 8 V6 A3 3 0 0 1 15 6 V8"></path></svg>거래소</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { tab: 'gear', sel: 0 }; }
+  renderVals() {
+    const B = '/_blob/';
+    const G = { '일반': { c: '#A3ADBA', t: '#1C232E' }, '고급': { c: '#5FBF73', t: '#16261C' }, '희귀': { c: '#5A9BE6', t: '#152335' }, '영웅': { c: '#B585EA', t: '#241A33' }, '전설': { c: '#E0A93B', t: '#2E2412' } };
+    const MAT = { sky: { name: '하늘돌', img: B + 'b57b5fdadf690adfcf48b45d05b6dd29', have: 142 }, cry: { name: '구름 수정', img: B + '7302eda7e37a9db3d859ef3a49cf94a1', have: 9 }, core: { name: '폭풍의 핵', img: B + '03183310b3ca0f8452ac3597547329b7', have: 1 }, gold: { name: '골드', img: B + 'f455ad14c4095214ee4a4ff7129ab42b', have: 12400 } };
+    const COST = { '일반': [['gold', 300], ['sky', 5]], '고급': [['gold', 800], ['sky', 15]], '희귀': [['gold', 2000], ['cry', 3]], '영웅': [['gold', 5000], ['cry', 30]], '전설': [['core', 3], ['cry', 50]] };
+    const gear = [
+      ['폭풍깃 장궁', '전설', 'c8ca740f95bdd2198e02dcb53d1ff32f', '무기 · 궁술', '23번째 구름층에서 처음 얻음', 1],
+      ['천둥새의 장궁', '영웅', '73e7dad451ba6becb494e6c86611ff42', '무기 · 궁술', '24번째 구름층에서 처음 얻음', 1],
+      ['바람결 장궁', '희귀', 'd61d6d3457eee15749230a4770741e37', '무기 · 궁술', '첫 번째 폭풍의 벽 첫 토벌', 1],
+      ['바람결 단궁', '고급', 'de2557cb71105c3a53de6d784b342f81', '무기 · 궁술', '7번째 구름층에서 처음 얻음', 1],
+      ['구름 수정 지팡이', '영웅', '422d1f0fb82719519ec686025246d86e', '무기 · 마법', '거래소에서 산 적 있음', 1],
+      ['이슬 지팡이', '희귀', '6f5b0cdfdc6f63e19bf2ce554a666b15', '무기 · 마법', '22번째 구름층에서 처음 얻음', 1],
+      ['하늘돌 투구', '일반', 'e73000b1d7fa921f4c7a5f16d29c112c', '머리 · 검술', '3번째 구름층에서 처음 얻음', 1],
+      ['매의 눈 가죽모자', '희귀', 'bcaae8ddfad9fe968df9ad1cdc91a203', '머리 · 궁술', '23번째 구름층에서 처음 얻음', 1],
+      ['구름 비단 옷', '고급', 'adfecbba38ea742d9ab15accf5ca9158', '몸 · 궁술', '12번째 구름층에서 처음 얻음', 1],
+      ['섬돌 갑옷', '희귀', '2a96d0fa5e250354c1cc8f11e599e180', '몸 · 검술', '21번째 구름층에서 처음 얻음', 1],
+      ['순풍의 목걸이', '영웅', 'ed017087ecb4ada9cd6b781f59b3f622', '목걸이 · 궁술', '20번째 구름층에서 처음 얻음', 1],
+      ['바위껍질 반지', '고급', 'c4779bf8dd8ac6277ecf64e1ef96f7ff', '반지 · 검술', '22번째 구름층에서 처음 얻음', 1],
+      ['바람 가죽 장갑', '고급', '2494f8c86f6a4417732af687f49f7fd7', '장갑 · 궁술', '20번째 구름층에서 처음 얻음', 1],
+      ['구름결 장화', '고급', 'd1cf717c3beb5a3d9fabb8b76ca50e15', '신발 · 궁술', '21번째 구름층에서 처음 얻음', 1],
+      ['물방울 귀걸이', '희귀', '820e3eaa8e5d24e3026a58d95bb2373a', '귀걸이 · 마법', '21번째 구름층에서 처음 얻음', 1],
+      ['돌구슬 팔찌', '일반', 'e4cfb79a17c09fd685cd3cd20512c869', '팔찌 · 검술', '18번째 구름층에서 처음 얻음', 1],
+      ['하늘빛 반지', '희귀', '24b8c11ef677cc785f033a239864eec2', '반지 · 마법', '22번째 구름층에서 처음 얻음', 1],
+      ['구름 무명옷', '일반', '5719e606863870a72c6eca112036b137', '몸 · 궁술', '23번째 구름층에서 처음 얻음', 1],
+      ['???', '전설', 'c8ca740f95bdd2198e02dcb53d1ff32f', '무기 · 검술', '비구름 지대 어딘가', 0],
+      ['???', '영웅', 'ed017087ecb4ada9cd6b781f59b3f622', '목걸이 · 마법', '비구름 지대 어딘가', 0],
+      ['???', '희귀', '2a96d0fa5e250354c1cc8f11e599e180', '몸 · 마법', '21~40번째 구름층', 0],
+      ['???', '영웅', '73e7dad451ba6becb494e6c86611ff42', '무기 · 궁술', '두 번째 폭풍의 벽', 0],
+      ['???', '희귀', 'bcaae8ddfad9fe968df9ad1cdc91a203', '머리 · 검술', '21~40번째 구름층', 0],
+      ['???', '전설', '24b8c11ef677cc785f033a239864eec2', '반지 · 궁술', '세 번째 폭풍의 벽', 0]
+    ];
+    const mons = [
+      ['바위껍질 게', '일반', '390c51764c9c7683e96426e448f8b5dc', '적 · 1~20번째 구름층', '쓰러뜨림 1,240', 1],
+      ['구름 박쥐', '일반', '5919c11916a5b09d0838114c0b310e8f', '적 · 1~20번째 구름층', '쓰러뜨림 980', 1],
+      ['안개 슬라임', '일반', 'fc2ee4ed5948a1fe311228425bcecf03', '적 · 1~20번째 구름층', '쓰러뜨림 1,512', 1],
+      ['돌개바람 수리', '전설', '5919c11916a5b09d0838114c0b310e8f', '우두머리 · 첫 번째 폭풍의 벽', '토벌 1 · 최고 기록 31초', 1],
+      ['???', '일반', '390c51764c9c7683e96426e448f8b5dc', '적 · 21~40번째 구름층', '아직 못 만남', 0],
+      ['???', '전설', '5919c11916a5b09d0838114c0b310e8f', '우두머리 · 두 번째 폭풍의 벽', '아직 못 만남', 0]
+    ];
+    const st = this.state;
+    const list = st.tab === 'mon' ? mons : gear;
+    const cells = list.map((r, i) => ({ label: r[5] ? r[0] : '아직 모름', img: B + r[2], tint: r[5] ? G[r[1]].t : '#141B25',
+      border: i === st.sel ? '#F2B33D' : (r[5] ? G[r[1]].c : '#263243'), filter: r[5] ? 'none' : 'brightness(0) opacity(0.45)',
+      craftable: st.tab === 'gear' && !!r[5], pick: () => this.setState({ sel: i }) }));
+    while (cells.length < 24) cells.push({ label: '빈칸', img: B + '5719e606863870a72c6eca112036b137', tint: '#141B25', border: '#1E2734', filter: 'opacity(0)', craftable: false, pick: () => {} });
+    const r = list[st.sel] || list[0];
+    const known = !!r[5];
+    const cost = st.tab === 'gear' ? COST[r[1]].map((c) => { const m = MAT[c[0]]; const ok = m.have >= c[1]; return { name: m.name, img: m.img, have: m.have.toLocaleString('ko-KR'), need: c[1].toLocaleString('ko-KR'), color: ok ? '#6FD08C' : '#F08A8A', ok: ok }; }) : [];
+    const can = cost.length && cost.every((c) => c.ok);
+    const sel = { name: known ? '[' + r[1] + '] ' + r[0] : '아직 모르는 ' + (st.tab === 'mon' ? '적' : '장비'), meta: r[3], where: known ? r[4] : '얻는 곳: ' + r[4],
+      img: B + r[2], filter: known ? 'none' : 'brightness(0) opacity(0.45)', color: known ? G[r[1]].c : '#3A4658', tint: known ? G[r[1]].t : '#141B25',
+      known: known && st.tab === 'gear', cost: cost,
+      btnText: can ? '만들기' : '재료가 모자라요', btnBg: can ? '#3D86C6' : 'transparent', btnColor: can ? '#FFFFFF' : '#8C9AB0', btnBorder: can ? 'none' : '1px solid #3A4658' };
+    const tabs = [['gear', '장비'], ['mon', '적'], ['skill', '기술'], ['deco', '장식']].map((x) => ({ label: x[1], on: st.tab === x[0],
+      border: st.tab === x[0] ? '#8CC4F5' : '#3A4658', bg: st.tab === x[0] ? '#1F3550' : 'transparent', pick: () => this.setState({ tab: x[0] === 'skill' || x[0] === 'deco' ? st.tab : x[0], sel: 0 }) }));
+    const chip = (t, on) => ({ t: t, border: on ? '#8CC4F5' : '#3A4658', bg: on ? '#1F3550' : 'transparent' });
+    const filters = st.tab === 'mon' ? [chip('전체', true), chip('1~20층', false), chip('21~40층', false), chip('우두머리', false)] : [chip('전체', true), chip('궁술', false), chip('만들 수 있음', false), chip('전설', false)];
+    const done = list.filter((x) => x[5]).length;
+    return { cells: cells, sel: sel, tabs: tabs, filters: filters, progress: (st.tab === 'mon' ? '적 ' : '장비 ') + done + ' / ' + (st.tab === 'mon' ? 64 : 180) };
+  }
+}
+</script>
+</body>
+</html>

@@ -117,10 +117,22 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
             </div>
             <ul style="margin: 0; padding: 8px 0 0; border-top: 1px solid #2A3647; list-style: none; display: flex; flex-direction: column; gap: 6px">
               <sc-for list="{{cur.opts}}" as="o" hint-placeholder-count="2">
-                <li style="font-size: 14px; color: {{o.textColor}}; text-decoration: {{o.deco}}">◆ {{o.t}} <span style="color: #A7B3C2; font-size: 12px">{{o.r}}</span></li>
+                <li style="font-size: 14px; color: {{o.textColor}}; text-decoration: {{o.deco}}; white-space: nowrap">◆ <sc-if value="{{o.isSkill}}" hint-placeholder-val="{{ false }}"><button type="button" onMouseEnter="{{o.tip}}" onClick="{{o.tip}}" style="border: none; background: transparent; padding: 0; color: inherit; font-size: 14px; text-decoration: underline dotted; text-underline-offset: 3px; cursor: help">{{o.t}}</button></sc-if><sc-if value="{{o.notSkill}}" hint-placeholder-val="{{ true }}">{{o.t}}</sc-if> <span style="color: #A7B3C2; font-size: 12px">{{o.r}}</span></li>
               </sc-for>
               <sc-if value="{{cur.noOpts}}" hint-placeholder-val="{{ false }}"><li style="font-size: 13px; color: #A7B3C2">추가옵션 없음</li></sc-if>
             </ul>
+<sc-if value="{{cTip.skOn}}" hint-placeholder-val="{{ false }}">
+            <div role="note" style="background: #1F2A3B; border: 1px solid #3A4E6A; border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px">
+              <div style="display: flex; gap: 8px; align-items: center; justify-content: space-between">
+                <span style="display: flex; gap: 8px; align-items: center; min-width: 0"><img src="{{cTip.sk.img}}" alt="" width="28" height="28" style="image-rendering: pixelated; flex-shrink: 0"><span style="font-size: 15px; font-weight: 700; white-space: nowrap">{{cTip.sk.name}}</span><span style="font-size: 12px; color: #A7B3C2; white-space: nowrap">{{cTip.sk.cls}} 기술</span></span>
+                <span style="font-size: 13px; font-weight: 700; color: {{cTip.sk.lvColor}}; white-space: nowrap">{{cTip.sk.lvText}}</span>
+              </div>
+              <span style="font-size: 13px; color: #C8D3E6">{{cTip.sk.desc}}</span>
+              <div style="display: flex; flex-direction: column; gap: 2px">
+                <sc-for list="{{cTip.sk.ms}}" as="m" hint-placeholder-count="3"><span style="font-size: 12px; color: {{m.color}}; white-space: nowrap">{{m.mark}} +{{m.at}} · {{m.t}}</span></sc-for>
+              </div>
+            </div>
+          </sc-if>
             <span style="font-size: 12px; color: #A7B3C2; text-align: right">판매가 {{cur.price}} 골드</span>
           </article>
         </sc-if>
@@ -141,14 +153,27 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
           </div>
           <ul style="margin: 0; padding: 8px 0 0; border-top: 1px solid #2A3647; list-style: none; display: flex; flex-direction: column; gap: 6px">
             <sc-for list="{{s.opts}}" as="o" hint-placeholder-count="3">
-              <li style="font-size: 14px; color: {{o.textColor}}; text-decoration: {{o.deco}}">◆ {{o.t}} <span style="color: #A7B3C2; font-size: 12px">{{o.r}}</span> <span style="color: {{o.dColor}}; font-size: 12px">{{o.d}}</span></li>
+              <li style="font-size: 14px; color: {{o.textColor}}; text-decoration: {{o.deco}}; white-space: nowrap">◆ <sc-if value="{{o.isSkill}}" hint-placeholder-val="{{ false }}"><button type="button" onMouseEnter="{{o.tip}}" onClick="{{o.tip}}" style="border: none; background: transparent; padding: 0; color: inherit; font-size: 14px; text-decoration: underline dotted; text-underline-offset: 3px; cursor: help">{{o.t}}</button></sc-if><sc-if value="{{o.notSkill}}" hint-placeholder-val="{{ true }}">{{o.t}}</sc-if> <span style="color: #A7B3C2; font-size: 12px">{{o.r}}</span> <span style="color: {{o.dColor}}; font-size: 12px">{{o.d}}</span></li>
             </sc-for>
             <sc-if value="{{s.noOpts}}" hint-placeholder-val="{{ false }}"><li style="font-size: 13px; color: #A7B3C2">추가옵션 없음</li></sc-if>
           </ul>
           <sc-if value="{{s.hasUnique}}" hint-placeholder-val="{{ false }}">
             <div style="border-top: 1px solid #2A3647; padding-top: 8px; display: flex; flex-direction: column; gap: 2px">
               <span style="font-size: 12px; font-weight: 700; color: #E0A93B">고유 효과</span>
-              <span style="font-size: 14px; color: #F3D08A">{{s.unique}}</span>
+              <span style="display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: baseline; font-size: 14px; color: #F3D08A"><span style="white-space: nowrap">{{s.uniqueName}}</span>
+                <sc-for list="{{s.uniqueSkills}}" as="u" hint-placeholder-count="2"><button type="button" onMouseEnter="{{u.tip}}" onClick="{{u.tip}}" style="border: none; background: transparent; padding: 0; color: #F3D08A; font-size: 14px; white-space: nowrap; text-decoration: underline dotted; text-underline-offset: 3px; cursor: help">{{u.t}}</button></sc-for></span>
+            </div>
+          </sc-if>
+<sc-if value="{{sTip.skOn}}" hint-placeholder-val="{{ false }}">
+            <div role="note" style="background: #1F2A3B; border: 1px solid #3A4E6A; border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px">
+              <div style="display: flex; gap: 8px; align-items: center; justify-content: space-between">
+                <span style="display: flex; gap: 8px; align-items: center; min-width: 0"><img src="{{sTip.sk.img}}" alt="" width="28" height="28" style="image-rendering: pixelated; flex-shrink: 0"><span style="font-size: 15px; font-weight: 700; white-space: nowrap">{{sTip.sk.name}}</span><span style="font-size: 12px; color: #A7B3C2; white-space: nowrap">{{sTip.sk.cls}} 기술</span></span>
+                <span style="font-size: 13px; font-weight: 700; color: {{sTip.sk.lvColor}}; white-space: nowrap">{{sTip.sk.lvText}}</span>
+              </div>
+              <span style="font-size: 13px; color: #C8D3E6">{{sTip.sk.desc}}</span>
+              <div style="display: flex; flex-direction: column; gap: 2px">
+                <sc-for list="{{sTip.sk.ms}}" as="m" hint-placeholder-count="3"><span style="font-size: 12px; color: {{m.color}}; white-space: nowrap">{{m.mark}} +{{m.at}} · {{m.t}}</span></sc-for>
+              </div>
             </div>
           </sc-if>
           <sc-if value="{{s.hasLost}}" hint-placeholder-val="{{ false }}">
@@ -269,9 +294,36 @@ class Component extends DCLogic {
         power: it.power || '착용 중인 장비', powerColor: it.power ? col(it.power.replace('장착하면 전투력 ', '')) : '#A7B3C2',
         inv: !!it.inv, up: !!it.up,
         ring: it.id === activeId ? '2px solid #FFFFFF' : 'none',
-        hover: () => { if (!this.state.pinned) this.setState({ hover: it.id }); },
+        hover: () => { if (!this.state.pinned && this.state.hover !== it.id) this.setState({ hover: it.id, sk: null }); },
         pin: () => this.setState({ pinned: this.state.pinned === it.id ? null : it.id, hover: it.id })
       });
+    };
+    const SB = '/_blob/';
+    const SK = {
+      '연사': { img: SB + '4f2083e560e2a0725ab09c4fc0b8cfa4', cls: '사냥꾼', lv: 2, desc: '빠르게 여러 발을 쏴요', ms: ['화살 1발 더', '마지막 발이 꿰뚫음', '쏜 뒤 공격 속도 +15%'] },
+      '조준 사격': { img: SB + 'b133920c0637dd17a05b1e3b3be43417', cls: '사냥꾼', lv: 4, desc: '한 대상에게 크게 한 발', ms: ['방어 10% 무시', '옆 적에게도 절반', '다시 쓰기 1초 빠름'] },
+      '관통 화살': { img: SB + '4beb5d4ca18f0341931aa0c52f420782', cls: '사냥꾼', lv: 1, desc: '줄지어 선 적을 꿰뚫어요', ms: ['꿰뚫는 수 +1', '꿰뚫을 때마다 피해 +10%', '다시 쓰기 1초 빠름'] },
+      '화염구': { img: SB + '6f5b0cdfdc6f63e19bf2ce554a666b15', cls: '마법사', lv: 0, desc: '불덩이를 던져 모인 적에게 피해', ms: ['불길이 2초 남음', '튕겨 한 번 더', '다시 쓰기 1초 빠름'] },
+      '방패 막기': { img: SB + '2a96d0fa5e250354c1cc8f11e599e180', cls: '전사', lv: 0, desc: '앞에서 받는 피해를 막아요', ms: ['막는 양 +10%', '옆 동료도 조금 막음', '막은 뒤 반격'] },
+      '축복 마법 전부': { img: SB + '422d1f0fb82719519ec686025246d86e', cls: '마법사', lv: 0, desc: '축복 마법 여섯 개가 모두 올라요', ms: ['효과 시간 +2초', '받는 동료 +1명', '다시 쓰기 2초 빠름'] }
+    };
+    const parse = (t) => { const m = /^(.+?) \+(\d+)$/.exec(t); return m && SK[m[1]] ? { name: m[1], n: +m[2] } : null; };
+    const skillBox = (name, n) => {
+      const k = SK[name]; const mine = k.cls === '사냥꾼';
+      return { name: name, img: k.img, cls: k.cls, desc: k.desc,
+        lvText: mine ? ('지금 Lv ' + k.lv + ' · 이 옵션 +' + n) : '사냥꾼은 못 써요', lvColor: mine ? '#6FD08C' : '#F08A8A',
+        ms: k.ms.map((t, i) => { const at = (i + 1) * 3; const got = mine && k.lv - 1 >= at; return { at: at, t: t, mark: got ? '●' : '○', color: got ? '#F3D08A' : '#A7B3C2' }; }) };
+    };
+    const tipKey = this.state.sk || null;
+    const withTips = (it, where) => {
+      if (!it) return it;
+      const opts = it.opts.map((o) => { const p = parse(o.t); return Object.assign({}, o, { isSkill: !!p, notSkill: !p, tip: () => { if (p) this.setState({ sk: { where: where, name: p.name, n: p.n } }); } }); });
+      let uniqueName = it.unique, uniqueSkills = [];
+      if (it.unique && it.unique.indexOf(' · ') > 0) {
+        uniqueName = it.unique.split(' · ')[0] + ' ·';
+        uniqueSkills = it.unique.split(' · ')[1].split(', ').map((t) => { const p = parse(t); return { t: t, tip: () => { if (p) this.setState({ sk: { where: where, name: p.name, n: p.n } }); } }; });
+      }
+      return Object.assign({}, it, { opts: opts, uniqueName: uniqueName, uniqueSkills: uniqueSkills });
     };
     const all = raw.map(deco);
     const byId = {};
@@ -289,7 +341,9 @@ class Component extends DCLogic {
       isArt: this.state.look !== 'dot', isDot: this.state.look === 'dot',
       artBg: this.state.look !== 'dot' ? '#3D86C6' : 'transparent', dotBg: this.state.look === 'dot' ? '#3D86C6' : 'transparent',
       toArt: () => this.setState({ look: 'art' }), toDot: () => this.setState({ look: 'dot' }),
-      inv: inv, s: s, cur: cur || byId.eqW, hasCur: !!cur,
+      inv: inv, s: withTips(s, 's'), cur: withTips(cur || byId.eqW, 'c'), hasCur: !!cur,
+      sTip: { skOn: !!(tipKey && tipKey.where === 's'), sk: tipKey && tipKey.where === 's' ? skillBox(tipKey.name, tipKey.n) : skillBox('연사', 1) },
+      cTip: { skOn: !!(tipKey && tipKey.where === 'c'), sk: tipKey && tipKey.where === 'c' ? skillBox(tipKey.name, tipKey.n) : skillBox('연사', 1) },
       pinNote: this.state.pinned ? '고정됨 · 다시 누르면 풀려요' : '누르면 이 설명을 고정해요'
     };
   }

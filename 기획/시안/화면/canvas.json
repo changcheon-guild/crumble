@@ -282,6 +282,15 @@
       "w": 390,
       "x": 3760,
       "y": 0
+    },
+    "CodexB.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "b",
+      "title": "B안 · 도감과 제작 (눌러 보기)",
+      "w": 390,
+      "x": 2350,
+      "y": 2528
     }
   },
   "createdOnFiles": {
@@ -376,7 +385,8 @@
     "RaidB.dc.html",
     "SocialB.dc.html",
     "DialogueB.dc.html",
-    "GuildB.dc.html"
+    "GuildB.dc.html",
+    "CodexB.dc.html"
   ],
   "pages": [
     {
