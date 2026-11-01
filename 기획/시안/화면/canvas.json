@@ -274,6 +274,14 @@
       "w": 390,
       "x": 3290,
       "y": 1264
+    },
+    "GuildB.dc.html": {
+      "h": 844,
+      "page": "b",
+      "title": "B안 · 길드 섬",
+      "w": 390,
+      "x": 3760,
+      "y": 0
     }
   },
   "createdOnFiles": {
@@ -367,7 +375,8 @@
     "IslandGuestsB.dc.html",
     "RaidB.dc.html",
     "SocialB.dc.html",
-    "DialogueB.dc.html"
+    "DialogueB.dc.html",
+    "GuildB.dc.html"
   ],
   "pages": [
     {

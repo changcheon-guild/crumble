@@ -97,6 +97,13 @@ for name,sp,x,fl,y,host in (('노을','ranger',60,False,62,True),('바위','knig
 s.save(OUT+'s_guests.png')
 # 7 프로필 (마법사)
 s=base(); home_island(s); stand(s,spr('wizard'),104,G); s.save(OUT+'s_profile.png')
+# 8 길드 섬 (하늘등대): 넓은 섬, 깃발 둘, 길드원 여럿
+s=base(); put(s, island(3,1), 4, 40); put(s, island(10,2), 7, G)
+prop(s,111,12,G); prop(s,111,172,G); put(s,t(130),150,G-36+2); prop(s,150,150,G); prop(s,84,26,G)
+for sp,x,fl in (('knight',44,False),('ranger',62,False),('wizard',80,False),('knight',98,True),('ranger',114,True),('wizard',132,True)):
+    stand(s,spr(sp),x,G,fl)
+tag(s,'하늘등대',97,30,bg=(46,110,190,235))
+s.save(OUT+'s_guild.png')
 sheet=Image.new('RGBA',(390*4+30,260*2+10),(16,22,31,255))
 for i,n in enumerate(('s_home','s_start','s_explore','s_battle','s_result','s_guests','s_profile')):
     im=Image.open(OUT+n+'.png').resize((390,260),Image.NEAREST); sheet.paste(im,((i%4)*400,(i//4)*270))
