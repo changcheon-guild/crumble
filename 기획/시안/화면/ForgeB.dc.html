@@ -117,7 +117,24 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
     </sc-if>
 
     <sc-if value="{{isCraft}}" hint-placeholder-val="{{ false }}">
-      <a href="CodexB.dc.html" style="min-height: 52px; border-radius: 12px; background: #1F2A44; color: #E8EDF4; text-decoration: none; display: flex; align-items: center; justify-content: space-between; padding: 0 14px"><span style="display: flex; flex-direction: column"><span style="font-size: 14px; font-weight: 700">도감에서 골라 만들기</span><span style="font-size: 12px; color: #A7B3C2; white-space: nowrap">한 번 얻은 장비는 다시 만들 수 있어요 · 18종</span></span><span style="color: #8CC4F5; white-space: nowrap">열기 ›</span></a>
+      <article aria-label="다시 만들기" style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 8px">
+        <div style="display: flex; justify-content: space-between; align-items: baseline">
+          <span style="font-size: 15px; font-weight: 700">도감 장비 다시 만들기</span>
+          <a href="CodexB.dc.html" style="font-size: 12px; white-space: nowrap">도감 ›</a>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 4px">
+          <sc-for list="{{recipes}}" as="rc" hint-placeholder-count="16">
+            <button type="button" onClick="{{rc.pick}}" onMouseEnter="{{rc.pick}}" aria-label="{{rc.label}}" style="aspect-ratio: 1; box-sizing: border-box; padding: 0; border-radius: 6px; border: 2px solid {{rc.border}}; background: {{rc.tint}}; display: flex; align-items: center; justify-content: center; cursor: pointer"><img src="{{rc.img}}" alt="" width="32" height="32" style="image-rendering: pixelated; width: 80%; height: auto; filter: drop-shadow(1px 0 0 #0A0E14) drop-shadow(-1px 0 0 #0A0E14) drop-shadow(0 1px 0 #0A0E14) drop-shadow(0 -1px 0 #0A0E14)"></button>
+          </sc-for>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: baseline; min-width: 0"><span style="font-size: 14px; font-weight: 700; color: {{rcSel.color}}; white-space: nowrap">{{rcSel.name}}</span><span style="font-size: 12px; color: #A7B3C2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{rcSel.meta}} · 장비 레벨 23</span></div>
+        <div style="display: flex; gap: 6px">
+          <sc-for list="{{rcSel.cost}}" as="m" hint-placeholder-count="2">
+            <span style="flex: 1; min-width: 0; display: flex; align-items: center; gap: 4px; background: #1B2433; border-radius: 8px; padding: 4px 8px; font-size: 12px; white-space: nowrap"><img src="{{m.img}}" alt="" width="22" height="22" style="image-rendering: pixelated">{{m.name}} <span style="color: {{m.color}}; font-weight: 700">{{m.have}} / {{m.need}}</span></span>
+          </sc-for>
+        </div>
+        <button type="button" style="min-height: 44px; border-radius: 8px; border: {{rcSel.btnBorder}}; background: {{rcSel.btnBg}}; color: {{rcSel.btnColor}}; font-size: 14px; font-weight: 700; cursor: pointer">{{rcSel.btnText}}</button>
+      </article>
       <article style="background: #151D29; border: 2px solid #B585EA; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
         <div style="display: flex; justify-content: space-between; align-items: baseline">
           <span style="font-size: 16px; font-weight: 700; color: #B585EA">영웅 장비 만들기</span>
@@ -226,7 +243,45 @@ class Component extends DCLogic {
     const chip = (label, on, pick) => ({ label: label, on: on, pick: pick, border: on ? '#8CC4F5' : '#3A4658', bg: on ? '#1F3550' : 'transparent', color: on ? '#FFFFFF' : '#C8D3E6' });
     const parts = ['무기', '머리', '몸', '목걸이'].map((p) => chip(p, st.part === p, () => this.setState({ part: p })));
     const lines = ['궁술', '검술', '마법'].map((l) => chip(l + ' 계통', st.line === l, () => this.setState({ line: l })));
+    const B2 = '/_blob/';
+    const GG = { '일반': { c: '#A3ADBA', t: '#1C232E' }, '고급': { c: '#5FBF73', t: '#16261C' }, '희귀': { c: '#5A9BE6', t: '#152335' }, '영웅': { c: '#B585EA', t: '#241A33' }, '전설': { c: '#E0A93B', t: '#2E2412' } };
+    const MAT = { sky: { name: '하늘돌', img: B2 + 'b57b5fdadf690adfcf48b45d05b6dd29', have: 142 }, cry: { name: '구름 수정', img: B2 + '7302eda7e37a9db3d859ef3a49cf94a1', have: 9 }, core: { name: '폭풍의 핵', img: B2 + '03183310b3ca0f8452ac3597547329b7', have: 1 }, gold: { name: '골드', img: B2 + 'f455ad14c4095214ee4a4ff7129ab42b', have: 12400 } };
+    const COST = { '일반': [['gold', 300], ['sky', 5]], '고급': [['gold', 800], ['sky', 15]], '희귀': [['gold', 2000], ['cry', 3]], '영웅': [['gold', 5000], ['cry', 30]], '전설': [['core', 3], ['cry', 50]] };
+    const gear = [
+      ['폭풍깃 장궁', '전설', 'c8ca740f95bdd2198e02dcb53d1ff32f', '무기 · 궁술', '23번째 구름층에서 처음 얻음', 1],
+      ['천둥새의 장궁', '영웅', '73e7dad451ba6becb494e6c86611ff42', '무기 · 궁술', '24번째 구름층에서 처음 얻음', 1],
+      ['바람결 장궁', '희귀', 'd61d6d3457eee15749230a4770741e37', '무기 · 궁술', '첫 번째 폭풍의 벽 첫 토벌', 1],
+      ['바람결 단궁', '고급', 'de2557cb71105c3a53de6d784b342f81', '무기 · 궁술', '7번째 구름층에서 처음 얻음', 1],
+      ['구름 수정 지팡이', '영웅', '422d1f0fb82719519ec686025246d86e', '무기 · 마법', '거래소에서 산 적 있음', 1],
+      ['이슬 지팡이', '희귀', '6f5b0cdfdc6f63e19bf2ce554a666b15', '무기 · 마법', '22번째 구름층에서 처음 얻음', 1],
+      ['하늘돌 투구', '일반', 'e73000b1d7fa921f4c7a5f16d29c112c', '머리 · 검술', '3번째 구름층에서 처음 얻음', 1],
+      ['매의 눈 가죽모자', '희귀', 'bcaae8ddfad9fe968df9ad1cdc91a203', '머리 · 궁술', '23번째 구름층에서 처음 얻음', 1],
+      ['구름 비단 옷', '고급', 'adfecbba38ea742d9ab15accf5ca9158', '몸 · 궁술', '12번째 구름층에서 처음 얻음', 1],
+      ['섬돌 갑옷', '희귀', '2a96d0fa5e250354c1cc8f11e599e180', '몸 · 검술', '21번째 구름층에서 처음 얻음', 1],
+      ['순풍의 목걸이', '영웅', 'ed017087ecb4ada9cd6b781f59b3f622', '목걸이 · 궁술', '20번째 구름층에서 처음 얻음', 1],
+      ['바위껍질 반지', '고급', 'c4779bf8dd8ac6277ecf64e1ef96f7ff', '반지 · 검술', '22번째 구름층에서 처음 얻음', 1],
+      ['바람 가죽 장갑', '고급', '2494f8c86f6a4417732af687f49f7fd7', '장갑 · 궁술', '20번째 구름층에서 처음 얻음', 1],
+      ['구름결 장화', '고급', 'd1cf717c3beb5a3d9fabb8b76ca50e15', '신발 · 궁술', '21번째 구름층에서 처음 얻음', 1],
+      ['물방울 귀걸이', '희귀', '820e3eaa8e5d24e3026a58d95bb2373a', '귀걸이 · 마법', '21번째 구름층에서 처음 얻음', 1],
+      ['돌구슬 팔찌', '일반', 'e4cfb79a17c09fd685cd3cd20512c869', '팔찌 · 검술', '18번째 구름층에서 처음 얻음', 1],
+      ['하늘빛 반지', '희귀', '24b8c11ef677cc785f033a239864eec2', '반지 · 마법', '22번째 구름층에서 처음 얻음', 1],
+      ['구름 무명옷', '일반', '5719e606863870a72c6eca112036b137', '몸 · 궁술', '23번째 구름층에서 처음 얻음', 1],
+      ['???', '전설', 'c8ca740f95bdd2198e02dcb53d1ff32f', '무기 · 검술', '비구름 지대 어딘가', 0],
+      ['???', '영웅', 'ed017087ecb4ada9cd6b781f59b3f622', '목걸이 · 마법', '비구름 지대 어딘가', 0],
+      ['???', '희귀', '2a96d0fa5e250354c1cc8f11e599e180', '몸 · 마법', '21~40번째 구름층', 0],
+      ['???', '영웅', '73e7dad451ba6becb494e6c86611ff42', '무기 · 궁술', '두 번째 폭풍의 벽', 0],
+      ['???', '희귀', 'bcaae8ddfad9fe968df9ad1cdc91a203', '머리 · 검술', '21~40번째 구름층', 0],
+      ['???', '전설', '24b8c11ef677cc785f033a239864eec2', '반지 · 궁술', '세 번째 폭풍의 벽', 0]
+    ];
+    const known = gear.filter((r) => r[5] && r[4].indexOf('첫 토벌') < 0);
+    const ri = Math.min(st.rc || 0, known.length - 1), rr = known[ri];
+    const rcost = COST[rr[1]].map((c) => { const m = MAT[c[0]]; const ok = m.have >= c[1]; return { name: m.name, img: m.img, have: m.have.toLocaleString('ko-KR'), need: c[1].toLocaleString('ko-KR'), color: ok ? '#6FD08C' : '#F08A8A', ok: ok }; });
+    const rcan = rcost.every((x) => x.ok);
+    const recipes = known.map((r, k) => ({ label: r[1] + ' ' + r[0], img: B2 + r[2], tint: GG[r[1]].t, border: k === ri ? '#F2B33D' : GG[r[1]].c, pick: () => this.setState({ rc: k }) }));
+    const rcSel = { name: '[' + rr[1] + '] ' + rr[0], meta: rr[3], color: GG[rr[1]].c, cost: rcost,
+      btnText: rcan ? '만들기' : '재료가 모자라요', btnBg: rcan ? '#3D86C6' : 'transparent', btnColor: rcan ? '#FFFFFF' : '#8C9AB0', btnBorder: rcan ? 'none' : '1px solid #3A4658' };
     return {
+      recipes: recipes, rcSel: rcSel,
       tabs: tabs, isEnh: st.tab === 'enh', isReroll: st.tab === 'reroll', isCraft: st.tab === 'craft',
       slots: slots, cur: cur, rItems: rItems, ri0: ri0, rOpts: rOpts, rSel: rSel, parts: parts, lines: lines
     };

@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>B안 · 도감과 제작</title>
+<title>B안 · 도감</title>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -55,17 +55,11 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
           <span style="font-size: 12px; color: #A7B3C2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{sel.meta}}</span>
         </span>
       </div>
-      <span style="font-size: 12px; color: #C8D3E6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{sel.where}}</span>
+      <div style="display: flex; flex-direction: column; gap: 2px">
+        <sc-for list="{{sel.lines}}" as="ln" hint-placeholder-count="1"><span style="font-size: 12px; color: #C8D3E6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ln.t}}</span></sc-for>
+      </div>
       <sc-if value="{{sel.known}}" hint-placeholder-val="{{ true }}">
-        <div style="border-top: 1px solid #263243; padding-top: 8px; display: flex; flex-direction: column; gap: 6px">
-          <span style="font-size: 13px; font-weight: 700">만들기 <span style="font-size: 12px; font-weight: 400; color: #A7B3C2">장비 레벨 23 · 옵션은 등급 폭 안에서</span></span>
-          <div style="display: flex; gap: 6px">
-            <sc-for list="{{sel.cost}}" as="m" hint-placeholder-count="2">
-              <span style="flex: 1; min-width: 0; display: flex; align-items: center; gap: 4px; background: #1B2433; border-radius: 8px; padding: 4px 8px; font-size: 12px; white-space: nowrap"><img src="{{m.img}}" alt="" width="22" height="22" style="image-rendering: pixelated">{{m.name}} <span style="color: {{m.color}}; font-weight: 700">{{m.have}} / {{m.need}}</span></span>
-            </sc-for>
-          </div>
-          <button type="button" style="min-height: 44px; border-radius: 8px; border: {{sel.btnBorder}}; background: {{sel.btnBg}}; color: {{sel.btnColor}}; font-size: 14px; font-weight: 700; cursor: pointer">{{sel.btnText}}</button>
-        </div>
+        <a href="ForgeB.dc.html" style="min-height: 40px; border-top: 1px solid #263243; padding-top: 6px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; text-decoration: none; color: #E8EDF4"><span>다시 만들 수 있어요</span><span style="color: #8CC4F5; white-space: nowrap">제작에서 만들기 ›</span></a>
       </sc-if>
     </article>
   </main>
@@ -126,8 +120,25 @@ class Component extends DCLogic {
       ['???', '일반', '390c51764c9c7683e96426e448f8b5dc', '적 · 21~40번째 구름층', '아직 못 만남', 0],
       ['???', '전설', '5919c11916a5b09d0838114c0b310e8f', '우두머리 · 두 번째 폭풍의 벽', '아직 못 만남', 0]
     ];
+    const skills = [
+      ['조준 사격', '영웅', 'b133920c0637dd17a05b1e3b3be43417', '사냥꾼 · Lv 4 · +3 열림', '+3 방어 10% 무시 · +6 옆 적에게도 절반 · +9 다시 쓰기 1초 빠름', 1],
+      ['연사', '희귀', '4f2083e560e2a0725ab09c4fc0b8cfa4', '사냥꾼 · Lv 2', '+3 화살 1발 더 · +6 마지막 발이 꿰뚫음 · +9 쏜 뒤 공격 속도 +15%', 1],
+      ['관통 화살', '고급', '4beb5d4ca18f0341931aa0c52f420782', '사냥꾼 · Lv 1', '+3 꿰뚫는 수 +1 · +6 꿰뚫을 때마다 피해 +10% · +9 다시 쓰기 1초 빠름', 1],
+      ['화살비', '일반', '0ab31bf79cf405cb73f3ebf826178f62', '사냥꾼 · Lv 15에 배움', '+3 범위 넓어짐 · +6 맞은 적 느려짐 · +9 화살비 한 번 더', 1],
+      ['약점 노리기', '일반', '9f07b5bb6f1c7afba59183aacbec0517', '사냥꾼 · Lv 20에 배움', '+3 우두머리 피해 +10% · +6 약점 표시가 파티에 퍼짐 · +9 표시 시간 2배', 1],
+      ['매의 눈', '일반', '56e583870f25dbfe6f3e277c33e48574', '사냥꾼 · Lv 30에 배움', '+3 효과 시간 +2초 · +6 파티 생명력도 조금 · +9 다시 쓰기 2초 빠름', 1],
+      ['방패 막기', '일반', '2a96d0fa5e250354c1cc8f11e599e180', '전사 기술', '+3 막는 양 +10% · +6 옆 동료도 조금 막음 · +9 막은 뒤 반격', 1],
+      ['치유', '일반', '422d1f0fb82719519ec686025246d86e', '마법사 기술', '+3 남는 치유는 보호막 · +6 둘에게 나눠 치유 · +9 받는 피해 −10% (3초)', 1],
+      ['화염구', '일반', '6f5b0cdfdc6f63e19bf2ce554a666b15', '마법사 기술', '+3 불길이 2초 남음 · +6 튕겨 한 번 더 · +9 다시 쓰기 1초 빠름', 1]
+    ];
+    const decos = [
+      ['수리의 깃털', '희귀', '61bee62cdf8b6e2036870639fdb0af49', '토벌 기념품', '첫 번째 폭풍의 벽 첫 토벌', 1],
+      ['???', '희귀', '61bee62cdf8b6e2036870639fdb0af49', '토벌 기념품', '두 번째 폭풍의 벽 첫 토벌', 0],
+      ['???', '영웅', '61bee62cdf8b6e2036870639fdb0af49', '큰 토벌 장식', '큰 토벌 기록 10만', 0],
+      ['???', '고급', '61bee62cdf8b6e2036870639fdb0af49', '도움 기념', '처음으로 다른 모험가의 첫 토벌을 도움', 0]
+    ];
     const st = this.state;
-    const list = st.tab === 'mon' ? mons : gear;
+    const list = st.tab === 'mon' ? mons : (st.tab === 'skill' ? skills : (st.tab === 'deco' ? decos : gear));
     const cells = list.map((r, i) => ({ label: r[5] ? r[0] : '아직 모름', img: B + r[2], tint: r[5] ? G[r[1]].t : '#141B25',
       border: i === st.sel ? '#F2B33D' : (r[5] ? G[r[1]].c : '#263243'), filter: r[5] ? 'none' : 'brightness(0) opacity(0.45)',
       craftable: st.tab === 'gear' && !!r[5], pick: () => this.setState({ sel: i }) }));
@@ -136,16 +147,18 @@ class Component extends DCLogic {
     const known = !!r[5];
     const cost = st.tab === 'gear' ? COST[r[1]].map((c) => { const m = MAT[c[0]]; const ok = m.have >= c[1]; return { name: m.name, img: m.img, have: m.have.toLocaleString('ko-KR'), need: c[1].toLocaleString('ko-KR'), color: ok ? '#6FD08C' : '#F08A8A', ok: ok }; }) : [];
     const can = cost.length && cost.every((c) => c.ok);
-    const sel = { name: known ? '[' + r[1] + '] ' + r[0] : '아직 모르는 ' + (st.tab === 'mon' ? '적' : '장비'), meta: r[3], where: known ? r[4] : '얻는 곳: ' + r[4],
+    const noun = { mon: '적', skill: '기술', deco: '장식', gear: '장비' }[st.tab];
+    const sel = { name: known ? (st.tab === 'skill' ? r[0] : '[' + r[1] + '] ' + r[0]) : '아직 모르는 ' + noun, meta: r[3], where: known ? r[4] : '얻는 곳: ' + r[4],
       img: B + r[2], filter: known ? 'none' : 'brightness(0) opacity(0.45)', color: known ? G[r[1]].c : '#3A4658', tint: known ? G[r[1]].t : '#141B25',
+      lines: (known || st.tab !== 'gear' ? (known ? r[4] : '얻는 곳: ' + r[4]) : '얻는 곳: ' + r[4]).split(' · ').map((t) => ({ t: t })),
       known: known && st.tab === 'gear', cost: cost,
       btnText: can ? '만들기' : '재료가 모자라요', btnBg: can ? '#3D86C6' : 'transparent', btnColor: can ? '#FFFFFF' : '#8C9AB0', btnBorder: can ? 'none' : '1px solid #3A4658' };
     const tabs = [['gear', '장비'], ['mon', '적'], ['skill', '기술'], ['deco', '장식']].map((x) => ({ label: x[1], on: st.tab === x[0],
-      border: st.tab === x[0] ? '#8CC4F5' : '#3A4658', bg: st.tab === x[0] ? '#1F3550' : 'transparent', pick: () => this.setState({ tab: x[0] === 'skill' || x[0] === 'deco' ? st.tab : x[0], sel: 0 }) }));
+      border: st.tab === x[0] ? '#8CC4F5' : '#3A4658', bg: st.tab === x[0] ? '#1F3550' : 'transparent', pick: () => this.setState({ tab: x[0], sel: 0 }) }));
     const chip = (t, on) => ({ t: t, border: on ? '#8CC4F5' : '#3A4658', bg: on ? '#1F3550' : 'transparent' });
-    const filters = st.tab === 'mon' ? [chip('전체', true), chip('1~20층', false), chip('21~40층', false), chip('우두머리', false)] : [chip('전체', true), chip('궁술', false), chip('만들 수 있음', false), chip('전설', false)];
+    const filters = st.tab === 'skill' ? [chip('사냥꾼', true), chip('전사', false), chip('마법사', false)] : st.tab === 'deco' ? [chip('전체', true), chip('기념품', false)] : st.tab === 'mon' ? [chip('전체', true), chip('1~20층', false), chip('21~40층', false), chip('우두머리', false)] : [chip('전체', true), chip('궁술', false), chip('만들 수 있음', false), chip('전설', false)];
     const done = list.filter((x) => x[5]).length;
-    return { cells: cells, sel: sel, tabs: tabs, filters: filters, progress: (st.tab === 'mon' ? '적 ' : '장비 ') + done + ' / ' + (st.tab === 'mon' ? 64 : 180) };
+    return { cells: cells, sel: sel, tabs: tabs, filters: filters, progress: st.tab === 'skill' ? '세 직업 기술 18종' : noun + ' ' + done + ' / ' + ({ mon: 64, gear: 180, deco: 40 }[st.tab]) };
   }
 }
 </script>

@@ -23,7 +23,7 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5 L8 12 L15 19"></path></svg></a>
     <div style="display: flex; flex-direction: column">
       <span style="font-family: 'Galmuri14', 'Galmuri11', sans-serif; font-size: 18px; font-weight: 700">큰 토벌 · 오늘의 기록</span>
-      <span style="font-size: 12px; color: #A7B3C2; white-space: nowrap">노을의 섬 · 22:00에 모여 있는 사람이 출발</span>
+      <span style="font-size: 12px; color: #A7B3C2; white-space: nowrap">22:00에 섬에 모여 있는 사람이 출발</span>
     </div>
   </header>
 
@@ -38,25 +38,35 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
         </div>
       </div>
       <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px">
-        <div style="background: #262B48; border-radius: 8px; padding: 8px 10px; display: flex; flex-direction: column"><span style="font-size: 11px; color: #A7B3C2">최고 기록</span><span style="font-size: 16px; font-weight: 700; color: #F3D08A">{{g.best}}</span></div>
+        <div style="background: #262B48; border-radius: 8px; padding: 8px 10px; display: flex; flex-direction: column"><span style="font-size: 11px; color: #A7B3C2; white-space: nowrap">{{g.name}} 최고</span><span style="font-size: 16px; font-weight: 700; color: #F3D08A">{{g.best}}</span></div>
         <div style="background: #262B48; border-radius: 8px; padding: 8px 10px; display: flex; flex-direction: column"><span style="font-size: 11px; color: #A7B3C2">오늘 예상</span><span style="font-size: 16px; font-weight: 700">{{g.expect}} <span style="font-size: 12px; color: {{g.diffColor}}">{{g.diff}}</span></span></div>
       </div>
     </article>
 
-    <section aria-label="오늘 참가" style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 10px 14px; display: flex; flex-direction: column; gap: 8px">
+    <div role="tablist" aria-label="어디서 가나" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px">
+      <sc-for list="{{srcs}}" as="g" hint-placeholder-count="2">
+        <button type="button" role="tab" aria-selected="{{g.on}}" onClick="{{g.pick}}" style="min-height: 40px; border-radius: 10px; border: 2px solid {{g.border}}; background: {{g.bg}}; color: #E8EDF4; font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap">{{g.name}}</button>
+      </sc-for>
+    </div>
+
+    <section aria-label="무리" style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px">
       <div style="display: flex; justify-content: space-between; align-items: baseline">
-        <span style="font-size: 14px; font-weight: 700">지금 섬에 모인 사람</span>
-        <span style="font-size: 12px; color: #A7B3C2">{{count}} · 최대 8명</span>
+        <span style="font-size: 14px; font-weight: 700; white-space: nowrap">{{boardTitle}}</span>
+        <span style="font-size: 12px; color: #A7B3C2; white-space: nowrap">{{boardNote}}</span>
       </div>
-      <div style="display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 4px">
-        <sc-for list="{{seats}}" as="m" hint-placeholder-count="8">
-          <div title="{{m.name}}" style="aspect-ratio: 1; box-sizing: border-box; border-radius: 6px; border: {{m.border}}; background: {{m.bg}}; display: flex; align-items: center; justify-content: center">
-            <sc-if value="{{m.filled}}" hint-placeholder-val="{{ true }}"><img src="{{m.img}}" alt="{{m.name}}" width="32" height="32" style="image-rendering: pixelated; width: 80%; height: auto"></sc-if>
+      <sc-for list="{{teams}}" as="tm" hint-placeholder-count="1">
+        <div style="display: flex; gap: 6px; align-items: center">
+          <span style="width: 34px; flex-shrink: 0; font-size: 11px; color: #A7B3C2; white-space: nowrap">{{tm.label}}</span>
+          <div style="flex: 1; display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 3px">
+            <sc-for list="{{tm.seats}}" as="m" hint-placeholder-count="8">
+              <button type="button" onClick="{{m.take}}" aria-label="{{m.name}}" style="aspect-ratio: 1; box-sizing: border-box; padding: 0; border-radius: 5px; border: {{m.border}}; background: {{m.bg}}; display: flex; align-items: center; justify-content: center; cursor: {{m.cursor}}">
+                <sc-if value="{{m.filled}}" hint-placeholder-val="{{ true }}"><img src="{{m.img}}" alt="" width="32" height="32" style="image-rendering: pixelated; width: 85%; height: auto"></sc-if>
+              </button>
+            </sc-for>
           </div>
-        </sc-for>
-      </div>
-      <button type="button" onClick="{{toggle}}" style="min-height: 46px; border-radius: 10px; border: {{btnBorder}}; background: {{btnBg}}; color: {{btnColor}}; font-size: 15px; font-weight: 700; cursor: pointer">{{btnText}}</button>
-      <span style="font-size: 12px; color: #A7B3C2; line-height: 1.5; white-space: nowrap">출발까지 2시간 14분 · 섬에 머물면 접속을 끊어도 돼요</span>
+        </div>
+      </sc-for>
+      <button type="button" onClick="{{toggle}}" style="min-height: 44px; border-radius: 10px; border: {{btnBorder}}; background: {{btnBg}}; color: {{btnColor}}; font-size: 14px; font-weight: 700; cursor: pointer; white-space: nowrap">{{btnText}}</button>
     </section>
 
     <section aria-label="기록 보상" style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 10px 14px; display: flex; flex-direction: column; gap: 8px">
@@ -99,36 +109,57 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
 class Component extends DCLogic {
-  constructor(props) { super(props); this.state = { g: 0, on: true, tip: -1 }; }
+  constructor(props) { super(props); this.state = { src: 'guild', on: true, team: -1, tip: -1 }; }
   renderVals() {
     const K = '/_blob/05be44623edeece48a014d214caf38a7', R = '/_blob/c2e10fff92a559b32f281532a0025abb', W = '/_blob/65476abc18e3766f1b74c327719c3452';
     const fmt = (n) => n.toLocaleString('ko-KR');
-    const G = [
-            { name: '노을의 섬 모임', sub: '', best: 182400, members: [{ img: R, name: '노을' }, { img: K, name: '바위' }, { img: W, name: '레아' }] }
-    ];
-    const g = G[this.state.g];
-    const list = g.members.concat(this.state.on ? [{ img: R, name: '나', me: true }] : []);
-    const expect = g.none ? 0 : (this.state.on ? 191300 : 143900);
-    const d = g.best ? Math.round((expect - g.best) / g.best * 1000) / 10 : 0;
-    const rec = expect || 0;
+    const st = this.state;
+    const isG = st.src === 'guild';
+    // 길드: 섬에 와 있는 길드원 13명을 들어온 순서로 8명씩 채운다. 직접 고른 자리가 있으면 그 무리에 먼저 넣는다.
+    const pool = isG ? [K, R, W, K, R, W, K, R, W, K, R, W, K].map((img, i) => ({ img: img, name: '길드원 ' + (i + 1) })) : [{ img: R, name: '노을' }, { img: K, name: '바위' }, { img: W, name: '레아' }];
+    const nTeams = isG ? 4 : 1;
+    const teams = [];
+    for (let t = 0; t < nTeams; t++) teams.push([]);
+    const me = st.on ? { img: R, name: '나', me: true } : null;
+    let rest = pool.slice();
+    if (me && st.team >= 0 && st.team < nTeams) teams[st.team].push(me);
+    else if (me) rest.push(me);
+    for (const m of rest) { const t = teams.findIndex((x) => x.length < 8); if (t >= 0) teams[t].push(m); }
+    const record = (n) => n ? Math.round(48000 * n * (1 - n * 0.015)) : 0;
+    const teamVals = teams.map((list, t) => ({ label: isG ? (t + 1) + '무리' : '모임',
+      seats: [0, 1, 2, 3, 4, 5, 6, 7].map((k) => {
+        const m = list[k];
+        if (m) return { filled: true, img: m.img, name: m.name, border: m.me ? '2px solid #F2B33D' : '1px solid #3A4658', bg: '#1B2433', cursor: 'default', take: () => {} };
+        return { filled: false, img: '', name: (t + 1) + '무리 빈자리', border: '1px dashed #3A4658', bg: 'transparent', cursor: isG && st.on ? 'pointer' : 'default', take: () => { if (isG && st.on) this.setState({ team: t }); } };
+      }) }));
+    const myTeam = teams.findIndex((x) => x.some((m) => m.me));
+    const myCount = myTeam >= 0 ? teams[myTeam].length : 0;
+    const best = isG ? 412800 : 182400;
+    const expect = isG ? teams.reduce((a, x) => a + record(x.length), 0) : record(myCount || pool.length);
+    const d = Math.round((expect - best) / best * 1000) / 10;
+    const myRec = record(myCount);
     const raw = [
-      { label: '구름 수정 ' + Math.floor(rec / 20000), img: '/_blob/7302eda7e37a9db3d859ef3a49cf94a1', title: '구름 수정 ' + Math.floor(rec / 20000) + '개', body: '오늘 기록에 따라 받아요. 기록 2만마다 1개.' },
-      { label: '골드 ' + fmt(Math.floor(rec / 40) ), img: '/_blob/f455ad14c4095214ee4a4ff7129ab42b', title: '골드 ' + fmt(Math.floor(rec / 40)), body: '오늘 기록에 따라 받아요.' }
+      { label: '구름 수정 ' + Math.floor(myRec / 20000), img: '/_blob/7302eda7e37a9db3d859ef3a49cf94a1', title: '구름 수정 ' + Math.floor(myRec / 20000) + '개', body: '내 무리 기록에 따라 받아요. 기록 2만마다 1개.' },
+      { label: '골드 ' + fmt(Math.floor(myRec / 40)), img: '/_blob/f455ad14c4095214ee4a4ff7129ab42b', title: '골드 ' + fmt(Math.floor(myRec / 40)), body: '내 무리 기록에 따라 받아요.' }
     ];
-    const i = this.state.tip, t = raw[i] || raw[0];
+    const i = st.tip, tt = raw[i] || raw[0];
+    const total = teams.reduce((a, x) => a + x.length, 0);
     return {
-      g: { name: g.name, best: g.best ? fmt(g.best) : '아직 없음', expect: expect ? fmt(expect) : '—', diff: g.best ? ((d >= 0 ? '+' : '') + d + '%') : '', diffColor: d >= 0 ? '#6FD08C' : '#F08A8A' },
-      count: list.length + ' / 8',
-      seats: [0, 1, 2, 3, 4, 5, 6, 7].map((k) => list[k] ? { filled: true, img: list[k].img, name: list[k].name, border: list[k].me ? '2px solid #F2B33D' : '1px solid #3A4658', bg: '#1B2433' } : { filled: false, img: '', name: '빈자리', border: '1px dashed #3A4658', bg: 'transparent' }),
-      btnText: this.state.on ? '섬에 머무는 중 · 모임에서 빠지기' : '노을의 섬으로 건너가기',
-      btnBg: this.state.on ? 'transparent' : '#F2B33D', btnColor: this.state.on ? '#E8EDF4' : '#1B2735', btnBorder: this.state.on ? '1px solid #8FA3C4' : 'none',
-      toggle: () => this.setState({ on: !this.state.on }),
+      srcs: [['guild', '하늘등대 길드 섬'], ['island', '노을의 섬']].map((x) => ({ name: x[1], on: st.src === x[0], border: st.src === x[0] ? '#E0A93B' : '#3A4658', bg: st.src === x[0] ? '#2A2312' : '#151D29', pick: () => this.setState({ src: x[0], team: -1 }) })),
+      g: { name: isG ? '하늘등대' : '노을의 섬 모임', best: fmt(best), expect: fmt(expect), diff: (d >= 0 ? '+' : '') + d + '%', diffColor: d >= 0 ? '#6FD08C' : '#F08A8A' },
+      boardTitle: isG ? '무리 · 지금 ' + total + ' / 32명' : '지금 섬에 모인 사람 ' + total + ' / 8',
+      boardNote: isG ? '빈칸을 누르면 그 무리로 · 안 고르면 자동' : '22:00 출발',
+      teams: teamVals,
+      btnText: st.on ? (isG ? '섬에 머무는 중 · ' + (myTeam + 1) + '무리' + (st.team >= 0 ? ' (고름)' : ' (자동)') : '섬에 머무는 중 · 모임에서 빠지기') : (isG ? '하늘등대로 건너가기' : '노을의 섬으로 건너가기'),
+      btnBg: st.on ? 'transparent' : '#F2B33D', btnColor: st.on ? '#E8EDF4' : '#1B2735', btnBorder: st.on ? '1px solid #8FA3C4' : 'none',
+      toggle: () => this.setState({ on: !st.on, team: -1 }),
       rewards: raw.map((r, k) => ({ label: r.label, img: r.img, on: i === k, border: i === k ? '2px solid #F2B33D' : '1px solid #263243', show: () => this.setState({ tip: k }) })),
       tipOn: i >= 0, closeTip: () => this.setState({ tip: -1 }),
-      tip: { title: t.title, color: '#E8EDF4', body: t.body, hasLink: false, href: '', link: '', arrow: (12.5 + 25 * Math.max(i, 0)) + '%' }
+      tip: { title: tt.title, color: '#E8EDF4', body: tt.body, hasLink: false, href: '', link: '', arrow: (12.5 + 25 * Math.max(i, 0)) + '%' }
     };
   }
 }
+
 </script>
 </body>
 </html>
