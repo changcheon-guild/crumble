@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>장비 · 휴대폰 · 착용</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1F5F99}a:hover{color:#16466F}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #EEF3F8; font-family: 'Noto Sans KR', system-ui, sans-serif; color: #1B2735; display: flex; flex-direction: column; overflow: hidden">
+
+  <header style="background: #FFFFFF; border-bottom: 1px solid #D9E2EC; padding: 12px 16px 0; display: flex; flex-direction: column; gap: 10px">
+    <div style="display: flex; justify-content: space-between; align-items: baseline">
+      <span style="font-family: 'Gowun Batang', serif; font-size: 20px; font-weight: 700">장비</span>
+      <span style="font-size: 14px; font-weight: 700">전투력 1,054</span>
+    </div>
+    <div role="tablist" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr))">
+      <button type="button" role="tab" aria-selected="true" style="min-height: 44px; border: none; border-bottom: 3px solid #1F5F99; background: transparent; font: inherit; font-size: 14px; font-weight: 700; color: #1F5F99">착용</button>
+      <button type="button" role="tab" aria-selected="false" style="min-height: 44px; border: none; border-bottom: 3px solid transparent; background: transparent; font: inherit; font-size: 14px; color: #4A5B6D">보관함 12/50</button>
+      <button type="button" role="tab" aria-selected="false" style="min-height: 44px; border: none; border-bottom: 3px solid transparent; background: transparent; font: inherit; font-size: 14px; color: #4A5B6D">강화</button>
+    </div>
+  </header>
+
+  <main style="flex: 1; padding: 16px; display: flex; flex-direction: column; gap: 12px; overflow: hidden">
+
+    <section aria-label="착용 장비" style="background: #FFFFFF; border-radius: 12px; padding: 14px; display: grid; grid-template-columns: minmax(0, 1fr) 104px minmax(0, 1fr); gap: 10px; align-items: center">
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <button type="button" style="text-align: left; border: 2px solid #2563A8; border-radius: 10px; background: #F3F7FC; padding: 8px; font: inherit; color: inherit; display: flex; flex-direction: column; gap: 2px; min-height: 96px">
+          <span style="display: flex; justify-content: space-between; align-items: center">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2563A8" stroke-width="2" aria-hidden="true"><path d="M6 3 Q18 12 6 21"></path><path d="M6 3 V21"></path><path d="M9 12 H20 M17 9 L20 12 L17 15"></path></svg>
+            <span style="font-size: 12px; font-weight: 700; background: #1F5F99; color: #FFFFFF; border-radius: 6px; padding: 1px 6px">+2</span>
+          </span>
+          <span style="font-size: 12px; font-weight: 700; color: #2563A8">희귀 · 무기</span>
+          <span style="font-size: 13px; font-weight: 500">바람결 장궁</span>
+          <span style="font-size: 11px; color: #4A5B6D">궁술 · 장비 레벨 21</span>
+        </button>
+        <button type="button" style="text-align: left; border: 2px solid #2F7A3E; border-radius: 10px; background: #F4F9F5; padding: 8px; font: inherit; color: inherit; display: flex; flex-direction: column; gap: 2px; min-height: 96px">
+          <span style="display: flex; justify-content: space-between; align-items: center">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2F7A3E" stroke-width="2" aria-hidden="true"><path d="M7 4 L12 6 L17 4 L20 8 L17 10 V20 H7 V10 L4 8 Z"></path></svg>
+            <span style="font-size: 12px; font-weight: 700; background: #1F5F99; color: #FFFFFF; border-radius: 6px; padding: 1px 6px">+1</span>
+          </span>
+          <span style="font-size: 12px; font-weight: 700; color: #2F7A3E">고급 · 몸</span>
+          <span style="font-size: 13px; font-weight: 500">구름 비단 망토</span>
+          <span style="font-size: 11px; color: #4A5B6D">궁술 · 장비 레벨 19</span>
+        </button>
+      </div>
+
+      <svg width="104" height="200" viewBox="0 0 104 200" role="img" aria-label="장비를 착용한 사냥꾼">
+        <ellipse cx="52" cy="190" rx="34" ry="6" fill="#DCE6F0"></ellipse>
+        <path d="M70 60 Q96 104 70 150" fill="none" stroke="#8A5A3B" stroke-width="4"></path>
+        <line x1="70" y1="60" x2="70" y2="150" stroke="#4A5B6D" stroke-width="1.5"></line>
+        <path d="M30 78 L74 78 L84 160 L20 160 Z" fill="#2F5872"></path>
+        <path d="M34 78 L70 78 L74 140 L30 140 Z" fill="#3F7A9C"></path>
+        <rect x="34" y="140" width="36" height="8" fill="#7A5B42"></rect>
+        <rect x="36" y="160" width="12" height="24" fill="#4A3A30"></rect>
+        <rect x="56" y="160" width="12" height="24" fill="#4A3A30"></rect>
+        <circle cx="52" cy="54" r="22" fill="#F2C9A5"></circle>
+        <path d="M30 52 Q32 26 52 26 Q74 26 74 52 Q64 40 30 52 Z" fill="#5B3A29"></path>
+        <path d="M28 46 Q52 18 76 46 L72 50 Q52 30 32 50 Z" fill="#6C7A8A"></path>
+        <circle cx="44" cy="58" r="2.5" fill="#1B2735"></circle>
+        <circle cx="60" cy="58" r="2.5" fill="#1B2735"></circle>
+        <circle cx="52" cy="98" r="5" fill="#C7A6E8" stroke="#7A3FB0" stroke-width="2"></circle>
+      </svg>
+
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <button type="button" style="text-align: left; border: 2px solid #6B7280; border-radius: 10px; background: #F6F7F8; padding: 8px; font: inherit; color: inherit; display: flex; flex-direction: column; gap: 2px; min-height: 96px">
+          <span style="display: flex; justify-content: space-between; align-items: center">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#4B5563" stroke-width="2" aria-hidden="true"><path d="M5 14 Q5 5 12 5 Q19 5 19 14 Z"></path><path d="M4 14 H20 V17 H4 Z"></path></svg>
+            <span style="font-size: 12px; font-weight: 700; background: #1F5F99; color: #FFFFFF; border-radius: 6px; padding: 1px 6px">+1</span>
+          </span>
+          <span style="font-size: 12px; font-weight: 700; color: #4B5563">일반 · 머리</span>
+          <span style="font-size: 13px; font-weight: 500">하늘돌 투구</span>
+          <span style="font-size: 11px; color: #4A5B6D">검술 · 장비 레벨 22</span>
+        </button>
+        <button type="button" style="text-align: left; border: 2px solid #7A3FB0; border-radius: 10px; background: #F7F2FB; padding: 8px; font: inherit; color: inherit; display: flex; flex-direction: column; gap: 2px; min-height: 96px">
+          <span style="display: flex; justify-content: space-between; align-items: center">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7A3FB0" stroke-width="2" aria-hidden="true"><circle cx="12" cy="14" r="6"></circle><path d="M9 6 L12 3 L15 6 Z"></path></svg>
+            <span style="font-size: 12px; font-weight: 500; background: #DCE6F0; color: #33465A; border-radius: 6px; padding: 1px 6px">+0</span>
+          </span>
+          <span style="font-size: 12px; font-weight: 700; color: #7A3FB0">영웅 · 장신구</span>
+          <span style="font-size: 13px; font-weight: 500">순풍의 반지</span>
+          <span style="font-size: 11px; color: #4A5B6D">궁술 · 장비 레벨 20</span>
+        </button>
+      </div>
+    </section>
+
+    <section aria-label="능력치" style="background: #FFFFFF; border-radius: 12px; padding: 12px 14px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; text-align: center">
+      <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #4A5B6D">공격력</span><span style="font-size: 16px; font-weight: 700">105</span></div>
+      <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #4A5B6D">생명력</span><span style="font-size: 16px; font-weight: 700">1,058</span></div>
+      <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #4A5B6D">추가옵션</span><span style="font-size: 16px; font-weight: 700">5줄</span></div>
+    </section>
+
+    <section aria-label="기술 칸" style="background: #FFFFFF; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <span style="font-size: 14px; font-weight: 700">기술 칸</span>
+        <span style="font-size: 12px; color: #4A5B6D">자동 추천 장착 켜짐</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+        <div style="background: #F3F7FB; border-radius: 8px; padding: 8px; display: flex; flex-direction: column; gap: 2px">
+          <span style="font-size: 13px; font-weight: 700">연사</span>
+          <span style="font-size: 12px; color: #2F7A3E; font-weight: 500">Lv 2 · 장비 +1</span>
+        </div>
+        <div style="background: #F3F7FB; border-radius: 8px; padding: 8px; display: flex; flex-direction: column; gap: 2px">
+          <span style="font-size: 13px; font-weight: 700">조준 사격</span>
+          <span style="font-size: 12px; color: #4A5B6D">Lv 1</span>
+        </div>
+        <div style="background: #F3F7FB; border-radius: 8px; padding: 8px; display: flex; flex-direction: column; gap: 2px">
+          <span style="font-size: 13px; font-weight: 700">관통 화살</span>
+          <span style="font-size: 12px; color: #4A5B6D">Lv 1</span>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="자동 관리" style="background: #FFFFFF; border-radius: 12px; padding: 4px 14px">
+      <label style="display: flex; justify-content: space-between; align-items: center; min-height: 44px; font-size: 14px">더 좋은 장비로 바꿔 끼기<input type="checkbox" checked style="width: 20px; height: 20px"></label>
+      <label style="display: flex; justify-content: space-between; align-items: center; min-height: 44px; font-size: 14px; border-top: 1px solid #E4EBF2">하늘돌이 모이면 자동 강화<input type="checkbox" checked style="width: 20px; height: 20px"></label>
+    </section>
+  </main>
+
+  <nav aria-label="주 메뉴" style="height: 68px; background: #FFFFFF; border-top: 1px solid #D9E2EC; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr))">
+    <a href="Main.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; color: #4A5B6D; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11 L12 4 L21 11"></path><path d="M5 10 V20 H19 V10"></path></svg>집</a>
+    <a href="#expedition" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; color: #4A5B6D; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 V15"></path><path d="M7 10 L12 15 L17 10"></path><path d="M4 20 H20"></path></svg>원정</a>
+    <a href="Gear.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 700; color: #1F5F99; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 L19 6 V12 C19 16 16 19 12 21 C8 19 5 16 5 12 V6 Z"></path></svg>장비</a>
+    <a href="#market" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; color: #4A5B6D; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 8 H20 L18 20 H6 Z"></path><path d="M9 8 V6 A3 3 0 0 1 15 6 V8"></path></svg>거래소</a>
+    <a href="#dungeon" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; color: #4A5B6D; text-decoration: none">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 14 C8 8 12 16 20 10"></path><path d="M4 19 C8 13 12 21 20 15"></path><path d="M4 9 C8 3 12 11 20 5"></path></svg>던전</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

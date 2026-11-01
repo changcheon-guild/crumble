@@ -30,20 +30,41 @@ a{color:#1F5F99}a:hover{color:#16466F}
 
   <section style="height: 236px; position: relative; background: #CFE3F2">
     <svg width="390" height="236" viewBox="0 0 390 236" role="img" aria-label="하늘섬 아래로 보랏빛 네뷸라 폭풍이 소용돌이친다">
-      <rect width="390" height="236" fill="#CFE3F2"></rect>
-      <rect y="150" width="390" height="86" fill="#6E6A93"></rect>
-      <path d="M0 160 C60 140 110 176 170 156 C230 136 290 174 390 150 L390 236 L0 236 Z" fill="#57537C"></path>
-      <path d="M0 196 C70 178 130 210 200 192 C270 174 320 206 390 188 L390 236 L0 236 Z" fill="#45426A"></path>
-      <path d="M300 168 L292 186 L302 186 L294 206" fill="none" stroke="#F4E27A" stroke-width="2.5"></path>
-      <ellipse cx="70" cy="50" rx="44" ry="13" fill="#FFFFFF" opacity="0.9"></ellipse>
-      <path d="M80 120 L310 120 L272 160 L226 182 L170 184 L122 166 Z" fill="#8C7A6B"></path>
-      <ellipse cx="195" cy="120" rx="120" ry="16" fill="#7FB069"></ellipse>
-      <rect x="116" y="70" width="64" height="48" fill="#F3E3C8"></rect>
-      <path d="M108 72 L148 44 L188 72 Z" fill="#C2553A"></path>
-      <rect x="142" y="88" width="14" height="30" fill="#8A5A3B"></rect>
-      <rect x="124" y="82" width="11" height="11" fill="#FCE9A8"></rect>
-      <ellipse cx="258" cy="120" rx="30" ry="7" fill="none" stroke="#5FB4F0" stroke-width="3"></ellipse>
-      <ellipse cx="258" cy="120" rx="20" ry="4" fill="#BFE3FB" opacity="0.6"></ellipse>
+      <defs>
+        <linearGradient id="skyB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B9D9F1"></stop><stop offset="1" stop-color="#D8E4F0"></stop></linearGradient>
+        <linearGradient id="rockB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A48C78"></stop><stop offset="1" stop-color="#5F5047"></stop></linearGradient>
+        <linearGradient id="stormB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8A82B8"></stop><stop offset="1" stop-color="#3A3660"></stop></linearGradient>
+      </defs>
+      <rect width="390" height="236" fill="url(#skyB)"></rect>
+      <path d="M22 70 Q40 62 58 70 L52 78 L30 78 Z" fill="#A8C7DE"></path>
+      <path d="M0 168 Q50 146 98 164 Q140 140 190 162 Q240 142 286 164 Q334 146 390 160 L390 236 L0 236 Z" fill="url(#stormB)"></path>
+      <path d="M40 200 Q100 176 160 196 Q220 214 280 192 Q330 176 370 194" fill="none" stroke="#B3ABDB" stroke-width="2" opacity="0.7"></path>
+      <path d="M70 222 Q140 204 210 220 Q280 236 350 214" fill="none" stroke="#9F97CC" stroke-width="2" opacity="0.6"></path>
+      <path d="M312 172 L302 192 L314 192 L304 214" fill="none" stroke="#F6E58A" stroke-width="2.5" stroke-linejoin="round"></path>
+      <path d="M96 182 L90 196 L98 196 L92 210" fill="none" stroke="#F6E58A" stroke-width="2" stroke-linejoin="round"></path>
+      <g transform="translate(0,-32)">
+        <path d="M72 160 L318 160 L300 182 L276 192 L262 216 L240 206 L222 238 L204 212 L182 226 L168 200 L140 196 L112 184 L92 176 Z" fill="url(#rockB)"></path>
+        <path d="M140 196 L168 200 L182 226 L160 210 Z M240 206 L262 216 L252 228 Z" fill="#C2AC98" opacity="0.55"></path>
+        <path d="M60 156 Q195 128 330 156 Q326 166 314 166 L76 166 Q64 166 60 156 Z" fill="#8DBE6F"></path>
+        <path d="M64 160 Q195 140 326 160 Q322 166 314 166 L76 166 Q68 166 64 160 Z" fill="#6FA457"></path>
+        <ellipse cx="170" cy="156" rx="8" ry="3" fill="#E2D5C2"></ellipse>
+        <ellipse cx="196" cy="154" rx="8" ry="3" fill="#E2D5C2"></ellipse>
+        <ellipse cx="222" cy="153" rx="8" ry="3" fill="#E2D5C2"></ellipse>
+        <rect x="96" y="104" width="64" height="48" rx="2" fill="#F6E7CF"></rect>
+        <path d="M96 116 H160 M128 104 V152" stroke="#C99E74" stroke-width="2"></path>
+        <path d="M88 108 L128 78 L168 108 Z" fill="#B5523B"></path>
+        <path d="M88 108 L168 108 L164 112 L92 112 Z" fill="#8E3D2C"></path>
+        <rect x="142" y="80" width="9" height="18" fill="#8A6A55"></rect>
+        <path d="M106 152 V132 Q114 124 122 132 V152 Z" fill="#7A4E33"></path>
+        <rect x="136" y="124" width="16" height="14" rx="2" fill="#FFD27A" stroke="#8E6A4E" stroke-width="2"></rect>
+        <rect x="236" y="116" width="6" height="36" fill="#7A5B42"></rect>
+        <circle cx="232" cy="110" r="14" fill="#6FA457"></circle>
+        <circle cx="248" cy="104" r="12" fill="#5E9446"></circle>
+        <circle cx="244" cy="118" r="11" fill="#7DB561"></circle>
+        <ellipse cx="286" cy="154" rx="30" ry="8" fill="#CFEFFF" opacity="0.5"></ellipse>
+        <ellipse cx="286" cy="154" rx="30" ry="8" fill="none" stroke="#5DB6F2" stroke-width="2.5"></ellipse>
+        <ellipse cx="286" cy="154" rx="20" ry="5" fill="none" stroke="#8ED0FA" stroke-width="1.5" stroke-dasharray="3 3"></ellipse>
+      </g>
     </svg>
     <span style="position: absolute; left: 16px; bottom: 14px; background: #FFFFFF; border-radius: 999px; padding: 6px 12px; font-size: 13px; font-weight: 500">20번째 구름층에서 전리품을 모으는 중</span>
   </section>
