@@ -49,15 +49,16 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
     <section aria-label="기술 칸" style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px">
       <div style="display: flex; justify-content: space-between; align-items: center">
         <span style="font-size: 15px; font-weight: 700">기술 칸 3개</span>
-        <span style="font-size: 12px; color: #A7B3C2">자동으로 채워요</span>
+        <span style="font-size: 12px; color: #A7B3C2; white-space: nowrap"><span style="color: #F3D08A">★</span> 키우는 기술</span>
       </div>
       <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
         <sc-for list="{{slots}}" as="sl" hint-placeholder-count="3">
-          <div style="min-height: 92px; border-radius: 10px; border: 1px dashed {{sl.border}}; background: #1B2433; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 6px">
+          <div style="position: relative; min-height: 92px; border-radius: 10px; border: {{sl.borderW}} {{sl.border}}; background: #1B2433; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 6px">
+            <sc-if value="{{sl.focus}}" hint-placeholder-val="{{ false }}"><span aria-label="키우는 기술" style="position: absolute; top: 4px; right: 6px; font-size: 13px; color: #F3D08A">★</span></sc-if>
             <sc-if value="{{sl.filled}}" hint-placeholder-val="{{ true }}">
               <img src="{{sl.img}}" alt="" width="40" height="40" style="image-rendering: pixelated">
-              <span style="font-size: 13px; font-weight: 700">{{sl.name}}</span>
-              <span style="font-size: 12px; color: {{sl.lvColor}}">Lv {{sl.lv}} · <span style="color: {{sl.tagColor}}">{{sl.tag}}</span></span>
+              <span style="font-size: 13px; font-weight: 700; white-space: nowrap">{{sl.name}}</span>
+              <span style="font-size: 12px; color: {{sl.lvColor}}; white-space: nowrap">Lv {{sl.lv}}</span>
             </sc-if>
             <sc-if value="{{sl.empty}}" hint-placeholder-val="{{ false }}">
               <span style="font-size: 12px; color: #A7B3C2">빈 칸</span>
@@ -134,7 +135,7 @@ class Component extends DCLogic {
         lvText: isL ? ('Lv ' + d.lv + (d.lv > 1 ? ' (장비 +' + (d.lv - 1) + ')' : '') + (slotIds.indexOf(d.id) >= 0 ? ' · 기술 칸' : '')) : '',
         lvColor: d.lv > 1 ? '#6FD08C' : '#A7B3C2',
         source: isL ? d.source : '',
-        btnText: fi >= 0 ? '키우는 중' : '키우기', btnBg: fi >= 0 ? '#5A4413' : '#3D86C6', btnBorder: fi >= 0 ? '#E0A93B' : '#3D86C6',
+        btnText: fi >= 0 ? '★ 키우는 중' : '키우기', btnBg: fi >= 0 ? '#5A4413' : '#3D86C6', btnBorder: fi >= 0 ? '#E0A93B' : '#3D86C6',
         toggle: () => {
           const f = st.focus.slice();
           if (fi >= 0) f.splice(fi, 1); else { if (f.length >= 2) f.shift(); f.push(d.id); }
@@ -145,8 +146,8 @@ class Component extends DCLogic {
     const slots = [0, 1, 2].map((i) => {
       const s = slotIds[i] ? byId[slotIds[i]] : null;
       const isF = s && st.focus.indexOf(s.id) >= 0;
-      return s ? { filled: true, empty: false, img: s.img, name: s.name, lv: s.lv, lvColor: s.lv > 1 ? '#6FD08C' : '#A7B3C2', border: isF ? '#E0A93B' : '#3A4658', tag: isF ? '키우는 기술' : '자동', tagColor: isF ? '#F3D08A' : '#A7B3C2' }
-               : { filled: false, empty: true, img: '', name: '', lv: '', lvColor: '#A7B3C2', border: '#5A6B82', tag: '', tagColor: '#A7B3C2' };
+      return s ? { filled: true, empty: false, img: s.img, name: s.name, lv: s.lv, lvColor: s.lv > 1 ? '#6FD08C' : '#A7B3C2', border: isF ? '#E0A93B' : '#3A4658', borderW: isF ? '2px solid' : '1px solid', focus: !!isF }
+               : { filled: false, empty: true, img: '', name: '', lv: '', lvColor: '#A7B3C2', border: '#5A6B82', borderW: '1px dashed', focus: false };
     });
     const focusText = st.focus.length ? st.focus.map((id) => byId[id].name).join(' · ') : '고르지 않음 · 전투력만 봐요';
     const useDefs = [{ id: 'explore', label: '혼자 탐사' }, { id: 'together', label: '함께 탐사' }, { id: 'gate', label: '관문·던전' }];
@@ -165,149 +166,6 @@ class Component extends DCLogic {
     });
     const presets = st0.ps.map((x, i) => ({ name: x.name, power: x.power, on: i === st0.cur, border: i === st0.cur ? '#E0A93B' : '#3A4658', bg: i === st0.cur ? '#2A2312' : '#151D29', pick: () => this.setState({ cur: i }) }));
     return { skills: skills, slots: slots, focusText: focusText, presets: presets, uses: uses };
-  }
-}
-</script>
-</head>
-<body>
-<x-dc>
-<helmet>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet">
-<style>
-@font-face{font-family:'Galmuri11';src:url(/_blob/3d7d41766d6fe4ab874aa2af55b7545e) format('woff2');font-weight:400;font-display:swap}@font-face{font-family:'Galmuri11';src:url(/_blob/8457e27020c70d82c86e28af69c16a56) format('woff2');font-weight:700;font-display:swap}@font-face{font-family:'Galmuri14';src:url(/_blob/b67fdc63fa51b5e3d8ffaa0aa94ab0fc) format('woff2');font-weight:100 900;font-display:swap}body{-webkit-font-smoothing:none}button,input,select,textarea{font-family:inherit}
-
-body{margin:0}
-a{color:#8CC4F5}a:hover{color:#B8DBFA}
-</style>
-</helmet>
-<div style="width: 390px; height: 844px; box-sizing: border-box; background: #10161F; font-family: 'Galmuri11', 'Noto Sans KR', system-ui, sans-serif; color: #E8EDF4; display: flex; flex-direction: column; overflow: hidden">
-
-  <header style="height: 52px; box-sizing: border-box; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #263243">
-    <span style="font-family: 'Galmuri14', 'Galmuri11', sans-serif; font-size: 20px; font-weight: 700">기술 · 사냥꾼</span>
-    <span style="font-size: 13px; color: #A7B3C2">Lv 10 · 궁술 계통</span>
-  </header>
-
-  <main style="flex: 1; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; overflow: hidden">
-    <section aria-label="프리셋" style="display: flex; flex-direction: column; gap: 6px">
-      <div role="tablist" aria-label="프리셋 고르기" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px">
-        <sc-for list="{{presets}}" as="pr" hint-placeholder-count="2">
-          <button type="button" role="tab" aria-selected="{{pr.on}}" onClick="{{pr.pick}}" style="min-height: 48px; border-radius: 10px; border: 2px solid {{pr.border}}; background: {{pr.bg}}; color: #E8EDF4; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px">{{pr.name}}<span style="font-size: 11px; font-weight: 400; color: #C8D3E6">전투력 {{pr.power}}</span></button>
-        </sc-for>
-      </div>
-      <div style="background: #1F2A44; border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px">
-        <div style="display: flex; justify-content: space-between; align-items: baseline">
-          <span style="font-size: 15px; font-weight: 700">키울 기술 <span style="font-size: 12px; font-weight: 400; color: #C8D3E6">최대 2개</span></span>
-          <span style="font-size: 12px; color: #F3D08A">{{focusText}}</span>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px">
-          <span style="font-size: 12px; color: #C8D3E6">쓰는 곳</span>
-          <sc-for list="{{uses}}" as="u" hint-placeholder-count="3">
-            <button type="button" aria-pressed="{{u.on}}" onClick="{{u.flip}}" style="min-height: 32px; padding: 0 10px; border-radius: 16px; border: 1px solid {{u.border}}; background: {{u.bg}}; color: #E8EDF4; font-size: 12px; cursor: pointer">{{u.label}}</button>
-          </sc-for>
-        </div>
-        <span style="font-size: 12px; line-height: 1.6; color: #E3E9F3">상황이 바뀌면 프리셋이 알아서 바뀌고, 기술 칸과 장비도 그 프리셋 기준으로 다시 끼워요.</span>
-      </div>
-    </section>
-
-    <section aria-label="기술 칸" style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px">
-      <div style="display: flex; justify-content: space-between; align-items: center">
-        <span style="font-size: 15px; font-weight: 700">기술 칸 3개</span>
-        <span style="font-size: 12px; color: #A7B3C2">자동으로 채워요</span>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
-        <sc-for list="{{slots}}" as="sl" hint-placeholder-count="3">
-          <div style="min-height: 92px; border-radius: 10px; border: 1px dashed {{sl.border}}; background: #1B2433; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 6px">
-            <sc-if value="{{sl.filled}}" hint-placeholder-val="{{ true }}">
-              <img src="{{sl.img}}" alt="" width="40" height="40" style="image-rendering: pixelated">
-              <span style="font-size: 13px; font-weight: 700">{{sl.name}}</span>
-              <span style="font-size: 12px; color: {{sl.lvColor}}">Lv {{sl.lv}} · <span style="color: {{sl.tagColor}}">{{sl.tag}}</span></span>
-            </sc-if>
-            <sc-if value="{{sl.empty}}" hint-placeholder-val="{{ false }}">
-              <span style="font-size: 12px; color: #A7B3C2">빈 칸</span>
-            </sc-if>
-          </div>
-        </sc-for>
-      </div>
-    </section>
-
-    <section aria-label="배운 기술과 배울 기술" style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 4px 12px; display: flex; flex-direction: column; flex: 1; overflow: hidden">
-      <sc-for list="{{skills}}" as="sk" hint-placeholder-count="6">
-        <div style="display: flex; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid #263243; opacity: {{sk.dim}}">
-          <img src="{{sk.img}}" alt="" width="44" height="44" style="image-rendering: pixelated; border-radius: 8px; background: #1B2433; flex-shrink: 0">
-          <div style="display: flex; flex-direction: column; gap: 1px; flex: 1; min-width: 0">
-            <span style="font-size: 14px; font-weight: 700">{{sk.name}} <span style="font-size: 12px; font-weight: 500; color: {{sk.lvColor}}">{{sk.lvText}}</span></span>
-            <span style="font-size: 12px; color: #A7B3C2">{{sk.desc}}</span>
-            <span style="font-size: 12px; color: #8CC4F5">{{sk.source}}</span>
-          </div>
-          <sc-if value="{{sk.learned}}" hint-placeholder-val="{{ true }}">
-            <button type="button" onClick="{{sk.toggle}}" style="min-width: 60px; min-height: 44px; border-radius: 8px; border: 1px solid {{sk.btnBorder}}; background: {{sk.btnBg}}; color: #FFFFFF; font: inherit; font-size: 13px; cursor: pointer">{{sk.btnText}}</button>
-          </sc-if>
-          <sc-if value="{{sk.locked}}" hint-placeholder-val="{{ false }}">
-            <span style="min-width: 60px; text-align: center; font-size: 12px; color: #A7B3C2">Lv {{sk.learnLv}}에<br>배워요</span>
-          </sc-if>
-        </div>
-      </sc-for>
-    </section>
-  </main>
-
-  <nav aria-label="주 메뉴" style="height: 64px; background: #151D29; border-top: 1px solid #263243; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr))">
-    <a href="HomeB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11 L12 4 L21 11"></path><path d="M5 10 V20 H19 V10"></path></svg>집</a>
-    <a href="ExpeditionB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 V15"></path><path d="M7 10 L12 15 L17 10"></path><path d="M4 20 H20"></path></svg>원정</a>
-    <a href="GearB.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; font-weight: 700; color: #8CC4F5; text-decoration: none">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 L19 6 V12 C19 16 16 19 12 21 C8 19 5 16 5 12 V6 Z"></path></svg>장비</a>
-    <a href="MarketB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 8 H20 L18 20 H6 Z"></path><path d="M9 8 V6 A3 3 0 0 1 15 6 V8"></path></svg>거래소</a>
-  </nav>
-</div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
-class Component extends DCLogic {
-  constructor(props) {
-    super(props);
-    this.state = { equipped: ['rapid', 'aim', 'pierce'], auto: true };
-  }
-  renderVals() {
-    const B = '/_blob/';
-    const st = this.state;
-    const defs = [
-      { id: 'aim', name: '조준 사격', learnLv: 1, img: B + 'b133920c0637dd17a05b1e3b3be43417', lv: 2, desc: '한 대상에게 크게 한 발', source: '순풍의 목걸이 · 조준 사격 +1' },
-      { id: 'rapid', name: '연사', learnLv: 5, img: B + '4f2083e560e2a0725ab09c4fc0b8cfa4', lv: 2, desc: '빠르게 여러 발', source: '바람결 장궁 · 연사 +1 (보관함의 천둥새의 장궁에도 있음)' },
-      { id: 'pierce', name: '관통 화살', learnLv: 10, img: B + '4beb5d4ca18f0341931aa0c52f420782', lv: 1, desc: '줄지어 선 적을 꿰뚫어요', source: '장비 +1 없음' },
-      { id: 'rain', name: '화살비', learnLv: 15, img: B + '0ab31bf79cf405cb73f3ebf826178f62', lv: 1, desc: '여러 적에게 화살을 퍼부어요', source: '' },
-      { id: 'weak', name: '약점 노리기', learnLv: 20, img: B + '9f07b5bb6f1c7afba59183aacbec0517', lv: 1, desc: '우두머리에게 더 큰 피해', source: '' },
-      { id: 'hawk', name: '매의 눈', learnLv: 30, img: B + '56e583870f25dbfe6f3e277c33e48574', lv: 1, desc: '파티 모두의 공격이 조금 오름', source: '' }
-    ];
-    const myLv = 10;
-    const byId = {};
-    const skills = defs.map((d) => {
-      const learned = myLv >= d.learnLv;
-      const on = st.equipped.indexOf(d.id) >= 0;
-      const x = Object.assign({}, d, {
-        learned: learned, locked: !learned, dim: learned ? '1' : '0.55',
-        lvText: learned ? ('Lv ' + d.lv + (d.lv > 1 ? ' (장비 +' + (d.lv - 1) + ')' : '')) : '',
-        lvColor: d.lv > 1 ? '#6FD08C' : '#A7B3C2',
-        source: learned ? d.source : '',
-        btnText: on ? '빼기' : '끼우기', btnBg: on ? 'transparent' : '#3D86C6', btnBorder: on ? '#3A4658' : '#3D86C6',
-        toggle: () => {
-          const eq = st.equipped.slice();
-          const i = eq.indexOf(d.id);
-          if (i >= 0) eq.splice(i, 1); else if (eq.length < 3) eq.push(d.id);
-          this.setState({ equipped: eq, auto: false });
-        }
-      });
-      byId[d.id] = x;
-      return x;
-    });
-    const slots = [0, 1, 2].map((i) => {
-      const id = st.equipped[i];
-      const s = id ? byId[id] : null;
-      return s ? { filled: true, empty: false, img: s.img, name: s.name, lv: s.lv, lvColor: s.lvColor, border: '#3A4658' }
-               : { filled: false, empty: true, img: '', name: '', lv: '', lvColor: '#A7B3C2', border: '#5A6B82' };
-    });
-    return { skills: skills, slots: slots, auto: st.auto, toggleAuto: () => this.setState({ auto: !st.auto }) };
   }
 }
 </script>

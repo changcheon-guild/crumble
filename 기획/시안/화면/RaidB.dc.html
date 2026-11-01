@@ -46,7 +46,6 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
         <div style="background: #262B48; border-radius: 8px; padding: 8px 10px; display: flex; flex-direction: column"><span style="font-size: 11px; color: #A7B3C2">{{g.name}} 최고 기록</span><span style="font-size: 16px; font-weight: 700; color: #F3D08A">{{g.best}}</span></div>
         <div style="background: #262B48; border-radius: 8px; padding: 8px 10px; display: flex; flex-direction: column"><span style="font-size: 11px; color: #A7B3C2">오늘 예상</span><span style="font-size: 16px; font-weight: 700">{{g.expect}} <span style="font-size: 12px; color: {{g.diffColor}}">{{g.diff}}</span></span></div>
       </div>
-      <span style="font-size: 12px; color: #A7B3C2">운이 없어서 같은 사람·같은 작전이면 기록도 같아요. 기록이 오르면 우리가 강해졌다는 뜻이에요.</span>
     </article>
 
     <section aria-label="오늘 참가" style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 10px 14px; display: flex; flex-direction: column; gap: 8px">
@@ -66,7 +65,7 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
     </section>
 
     <section aria-label="기록 보상" style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 10px 14px; display: flex; flex-direction: column; gap: 8px">
-      <span style="font-size: 14px; font-weight: 700">보상 · 각자 받아요</span>
+      <span style="font-size: 14px; font-weight: 700">오늘 예상 보상 <span style="font-size: 12px; font-weight: 400; color: #A7B3C2">기록만큼 · 모두 같게</span></span>
       <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; text-align: center; font-size: 11px">
         <sc-for list="{{rewards}}" as="r" hint-placeholder-count="4">
           <button type="button" onClick="{{r.show}}" onMouseEnter="{{r.show}}" aria-expanded="{{r.on}}" aria-label="{{r.label}} 설명 보기" style="display: flex; flex-direction: column; align-items: center; gap: 4px; border: none; background: transparent; color: #E8EDF4; font-size: 11px; padding: 0; cursor: pointer">
@@ -115,11 +114,10 @@ class Component extends DCLogic {
     const list = g.members.concat(this.state.on ? [{ img: R, name: '나', me: true }] : []);
     const expect = g.none ? 0 : (this.state.on ? 191300 : 143900);
     const d = g.best ? Math.round((expect - g.best) / g.best * 1000) / 10 : 0;
+    const rec = expect || 0;
     const raw = [
-      { label: '참가 몫', img: '/_blob/7302eda7e37a9db3d859ef3a49cf94a1', title: '구름 수정 2 · 매일', body: '하루 한 번 참가하면 받아요. 기록과 상관없어요.' },
-      { label: '경신 보상', img: '/_blob/f455ad14c4095214ee4a4ff7129ab42b', title: '최고 기록을 넘으면', body: '무리의 최고 기록을 새로 쓰면 골드와 구름 수정을 더 받아요. 오른 만큼 조금 더 줘요.' },
-      { label: '기록 단계', img: '/_blob/d61d6d3457eee15749230a4770741e37', title: '20만 · 50만 · 100만 …', body: '기록이 정해진 단계를 처음 넘을 때 한 번씩 희귀 이상 장비를 받아요. 다음 단계까지 17,600 남았어요.' },
-      { label: '섬 장식', img: '/_blob/61bee62cdf8b6e2036870639fdb0af49', title: '먹구름 날개 장식', body: '무리가 처음 10만을 넘으면 함께한 모두가 받아요.' }
+      { label: '구름 수정 ' + Math.floor(rec / 20000), img: '/_blob/7302eda7e37a9db3d859ef3a49cf94a1', title: '구름 수정 ' + Math.floor(rec / 20000) + '개', body: '오늘 기록에 따라 받아요. 기록 2만마다 1개.' },
+      { label: '골드 ' + fmt(Math.floor(rec / 40) ), img: '/_blob/f455ad14c4095214ee4a4ff7129ab42b', title: '골드 ' + fmt(Math.floor(rec / 40)), body: '오늘 기록에 따라 받아요.' }
     ];
     const i = this.state.tip, t = raw[i] || raw[0];
     return {
@@ -128,142 +126,6 @@ class Component extends DCLogic {
       count: list.length + ' / 8',
       seats: [0, 1, 2, 3, 4, 5, 6, 7].map((k) => list[k] ? { filled: true, img: list[k].img, name: list[k].name, border: list[k].me ? '2px solid #F2B33D' : '1px solid #3A4658', bg: '#1B2433' } : { filled: false, img: '', name: '빈자리', border: '1px dashed #3A4658', bg: 'transparent' }),
       btnText: this.state.on ? '오늘 참가 중 · 빼기' : '오늘 참가 걸기',
-      btnBg: this.state.on ? 'transparent' : '#F2B33D', btnColor: this.state.on ? '#E8EDF4' : '#1B2735', btnBorder: this.state.on ? '1px solid #8FA3C4' : 'none',
-      toggle: () => this.setState({ on: !this.state.on }),
-      rewards: raw.map((r, k) => ({ label: r.label, img: r.img, on: i === k, border: i === k ? '2px solid #F2B33D' : '1px solid #263243', show: () => this.setState({ tip: k }) })),
-      tipOn: i >= 0, closeTip: () => this.setState({ tip: -1 }),
-      tip: { title: t.title, color: '#E8EDF4', body: t.body, hasLink: false, href: '', link: '', arrow: (12.5 + 25 * Math.max(i, 0)) + '%' }
-    };
-  }
-}
-</script>
-</head>
-<body>
-<x-dc>
-<helmet>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet">
-<style>
-@font-face{font-family:'Galmuri11';src:url(/_blob/3d7d41766d6fe4ab874aa2af55b7545e) format('woff2');font-weight:400;font-display:swap}@font-face{font-family:'Galmuri11';src:url(/_blob/8457e27020c70d82c86e28af69c16a56) format('woff2');font-weight:700;font-display:swap}@font-face{font-family:'Galmuri14';src:url(/_blob/b67fdc63fa51b5e3d8ffaa0aa94ab0fc) format('woff2');font-weight:100 900;font-display:swap}body{-webkit-font-smoothing:none}button,input,select,textarea{font-family:inherit}
-
-body{margin:0}
-a{color:#8CC4F5}a:hover{color:#B8DBFA}
-</style>
-</helmet>
-<div style="width: 390px; height: 844px; box-sizing: border-box; background: #10161F; font-family: 'Galmuri11', 'Noto Sans KR', system-ui, sans-serif; color: #E8EDF4; display: flex; flex-direction: column; overflow: hidden">
-  <header style="height: 52px; box-sizing: border-box; padding: 0 12px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #263243">
-    <a href="ExpeditionB.dc.html" aria-label="원정으로 돌아가기" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #E8EDF4">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5 L8 12 L15 19"></path></svg></a>
-    <div style="display: flex; flex-direction: column">
-      <span style="font-family: 'Galmuri14', 'Galmuri11', sans-serif; font-size: 18px; font-weight: 700">큰 토벌 · 오늘의 기록</span>
-      <span style="font-size: 12px; color: #A7B3C2">하루 한 번 · 오늘 22:00에 모인 사람끼리 출발</span>
-    </div>
-  </header>
-
-  <main style="flex: 1; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; overflow: hidden">
-    <div role="tablist" aria-label="함께 갈 무리" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px">
-      <sc-for list="{{groups}}" as="g" hint-placeholder-count="2">
-        <button type="button" role="tab" aria-selected="{{g.on}}" onClick="{{g.pick}}" style="min-height: 44px; border-radius: 10px; border: 2px solid {{g.border}}; background: {{g.bg}}; color: #E8EDF4; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center">{{g.name}}<span style="font-size: 11px; font-weight: 400; color: #A7B3C2">{{g.sub}}</span></button>
-      </sc-for>
-    </div>
-
-    <article style="background: #1A1F33; border: 1px solid #3A3F66; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px">
-      <div style="display: flex; gap: 12px; align-items: center">
-        <div style="width: 60px; height: 60px; flex-shrink: 0; border-radius: 12px; background: #262B48; display: flex; align-items: center; justify-content: center"><img src="/_blob/5919c11916a5b09d0838114c0b310e8f" alt="" width="48" height="48" style="image-rendering: pixelated"></div>
-        <div style="display: flex; flex-direction: column; gap: 2px">
-          <span style="font-family: 'Galmuri14', 'Galmuri11', sans-serif; font-size: 16px; font-weight: 700">먹구름 날개 무리</span>
-          <span style="font-size: 12px; color: #C8D3E6">쓰러지지 않아요. 60초 동안 준 피해가 기록이 돼요</span>
-        </div>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px">
-        <div style="background: #262B48; border-radius: 8px; padding: 8px 10px; display: flex; flex-direction: column"><span style="font-size: 11px; color: #A7B3C2">{{g.name}} 최고 기록</span><span style="font-size: 16px; font-weight: 700; color: #F3D08A">{{g.best}}</span></div>
-        <div style="background: #262B48; border-radius: 8px; padding: 8px 10px; display: flex; flex-direction: column"><span style="font-size: 11px; color: #A7B3C2">오늘 예상</span><span style="font-size: 16px; font-weight: 700">{{g.expect}} <span style="font-size: 12px; color: {{g.diffColor}}">{{g.diff}}</span></span></div>
-      </div>
-      <span style="font-size: 12px; color: #A7B3C2">운이 없어서 같은 사람·같은 작전이면 기록도 같아요. 기록이 오르면 우리가 강해졌다는 뜻이에요.</span>
-    </article>
-
-    <section aria-label="오늘 참가" style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 10px 14px; display: flex; flex-direction: column; gap: 8px">
-      <div style="display: flex; justify-content: space-between; align-items: baseline">
-        <span style="font-size: 14px; font-weight: 700">오늘 참가</span>
-        <span style="font-size: 12px; color: #A7B3C2">{{count}} · 최대 8명</span>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 4px">
-        <sc-for list="{{seats}}" as="m" hint-placeholder-count="8">
-          <div title="{{m.name}}" style="aspect-ratio: 1; box-sizing: border-box; border-radius: 6px; border: {{m.border}}; background: {{m.bg}}; display: flex; align-items: center; justify-content: center">
-            <sc-if value="{{m.filled}}" hint-placeholder-val="{{ true }}"><img src="{{m.img}}" alt="{{m.name}}" width="32" height="32" style="image-rendering: pixelated; width: 80%; height: auto"></sc-if>
-          </div>
-        </sc-for>
-      </div>
-      <button type="button" onClick="{{toggle}}" style="min-height: 46px; border-radius: 10px; border: {{btnBorder}}; background: {{btnBg}}; color: {{btnColor}}; font-size: 15px; font-weight: 700; cursor: pointer">{{btnText}}</button>
-      <span style="font-size: 12px; color: #A7B3C2; line-height: 1.5">걸어 두기만 하면 접속하지 않아도 돼요. 파티 프리셋으로 나가요.</span>
-    </section>
-
-    <section aria-label="기록 보상" style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 10px 14px; display: flex; flex-direction: column; gap: 8px">
-      <span style="font-size: 14px; font-weight: 700">보상 · 각자 받아요</span>
-      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; text-align: center; font-size: 11px">
-        <sc-for list="{{rewards}}" as="r" hint-placeholder-count="4">
-          <button type="button" onClick="{{r.show}}" onMouseEnter="{{r.show}}" aria-expanded="{{r.on}}" aria-label="{{r.label}} 설명 보기" style="display: flex; flex-direction: column; align-items: center; gap: 4px; border: none; background: transparent; color: #E8EDF4; font-size: 11px; padding: 0; cursor: pointer">
-            <span style="width: 44px; height: 44px; box-sizing: border-box; border-radius: 8px; border: {{r.border}}; display: flex; align-items: center; justify-content: center"><img src="{{r.img}}" alt="" width="34" height="34" style="image-rendering: pixelated; filter: drop-shadow(1px 0 0 #0A0E14) drop-shadow(-1px 0 0 #0A0E14) drop-shadow(0 1px 0 #0A0E14) drop-shadow(0 -1px 0 #0A0E14)"></span>
-            <span>{{r.label}}</span>
-          </button>
-        </sc-for>
-      </div>
-      <sc-if value="{{tipOn}}" hint-placeholder-val="{{ false }}">
-        <div role="note" style="position: relative; margin-top: 4px; background: #1F2A3B; border: 1px solid #3A4E6A; border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 4px">
-          <span aria-hidden="true" style="position: absolute; top: -7px; left: {{tip.arrow}}; width: 12px; height: 12px; margin-left: -6px; background: #1F2A3B; border-left: 1px solid #3A4E6A; border-top: 1px solid #3A4E6A; transform: rotate(45deg)"></span>
-          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
-            <span style="font-size: 14px; font-weight: 700; color: {{tip.color}}">{{tip.title}}</span>
-            <button type="button" onClick="{{closeTip}}" aria-label="설명 닫기" style="width: 32px; height: 32px; margin: -6px -6px -6px 0; border: none; background: transparent; color: #A7B3C2; font: inherit; font-size: 14px; cursor: pointer">✕</button>
-          </div>
-          <span style="font-size: 12px; color: #C8D3E6; line-height: 1.6">{{tip.body}}</span>
-          <sc-if value="{{tip.hasLink}}" hint-placeholder-val="{{ false }}"><a href="{{tip.href}}" style="font-size: 13px; font-weight: 700; align-self: flex-start; min-height: 32px; display: flex; align-items: center">{{tip.link}} ›</a></sc-if>
-        </div>
-      </sc-if>
-    </section>
-  </main>
-
-  <nav aria-label="주 메뉴" style="height: 64px; background: #151D29; border-top: 1px solid #263243; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr))">
-    <a href="HomeB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11 L12 4 L21 11"></path><path d="M5 10 V20 H19 V10"></path></svg>집</a>
-    <a href="ExpeditionB.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; font-weight: 700; color: #8CC4F5; text-decoration: none">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 V15"></path><path d="M7 10 L12 15 L17 10"></path><path d="M4 20 H20"></path></svg>원정</a>
-    <a href="GearB.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 L19 6 V12 C19 16 16 19 12 21 C8 19 5 16 5 12 V6 Z"></path></svg>장비</a>
-    <a href="#market" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 8 H20 L18 20 H6 Z"></path><path d="M9 8 V6 A3 3 0 0 1 15 6 V8"></path></svg>거래소</a>
-  </nav>
-</div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
-class Component extends DCLogic {
-  constructor(props) { super(props); this.state = { on: true, tip: -1 }; }
-  renderVals() {
-    const K = '/_blob/05be44623edeece48a014d214caf38a7', R = '/_blob/c2e10fff92a559b32f281532a0025abb', W = '/_blob/65476abc18e3766f1b74c327719c3452';
-    const fmt = (n) => n.toLocaleString('ko-KR');
-    const others = [
-      { img: K, name: '바람막이', p: 1180, row: 0 }, { img: K, name: '섬돌', p: 990, row: 0 }, { img: K, name: '구름도우미', p: 1300, row: 0 },
-      { img: W, name: '이슬비', p: 1020, row: 1 }, { img: R, name: '솔', p: 1110, row: 1 }
-    ];
-    const me = { img: R, name: '나', p: 1031, row: 1, me: true };
-    const list = this.state.on ? others.concat([me]) : others.slice(0, 0);
-    const cell = (m) => m ? { filled: true, empty: false, img: m.img, name: m.name, border: m.me ? '2px solid #F2B33D' : '1px solid #3A4658', bg: '#1B2433' }
-                          : { filled: false, empty: true, img: '', name: '', border: '1px dashed #3A4658', bg: 'transparent' };
-    const fr = list.filter((m) => m.row === 0), bk = list.filter((m) => m.row === 1);
-    const pad = (a) => [0, 1, 2, 3].map((i) => cell(a[i]));
-    const sum = list.reduce((a, m) => a + m.p, 0);
-    const raw = [
-      { label: '구름 수정 6', img: '/_blob/7302eda7e37a9db3d859ef3a49cf94a1', title: '구름 수정 6개', body: '재련과 영웅 장비 제작에 써요. 하루 한 번 받는 몫이에요.' },
-      { label: '골드 4,000', img: '/_blob/f455ad14c4095214ee4a4ff7129ab42b', title: '골드 4,000', body: '강화, 재련, 제작, 거래에 쓰는 기본 돈이에요.' },
-      { label: '날개 장식', img: '/_blob/61bee62cdf8b6e2036870639fdb0af49', title: '먹구름 날개 · 섬 장식', body: '처음 이겼을 때 한 번만 받아요. 섬에 장식으로 둘 수 있어요.' },
-      { label: '희귀 장비', img: '/_blob/d61d6d3457eee15749230a4770741e37', title: '희귀 장비 1개 (아무 칸)', body: '파티 프리셋의 키울 기술이 붙을 가능성이 조금 높아요. 하루 한 번 받는 몫이에요.' }
-    ];
-    const i = this.state.tip;
-    const t = raw[i] || raw[0];
-    return {
-      need: fmt(7500), sum: fmt(sum), count: list.length + ' / 8',
-      statusTitle: this.state.on ? '매칭 중' : '매칭 걸어 두기',
-      front: pad(fr), back: pad(bk),
-      btnText: this.state.on ? '매칭 그만두기' : '큰 토벌 매칭 걸기',
       btnBg: this.state.on ? 'transparent' : '#F2B33D', btnColor: this.state.on ? '#E8EDF4' : '#1B2735', btnBorder: this.state.on ? '1px solid #8FA3C4' : 'none',
       toggle: () => this.setState({ on: !this.state.on }),
       rewards: raw.map((r, k) => ({ label: r.label, img: r.img, on: i === k, border: i === k ? '2px solid #F2B33D' : '1px solid #263243', show: () => this.setState({ tip: k }) })),
