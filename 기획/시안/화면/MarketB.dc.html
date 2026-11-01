@@ -182,9 +182,9 @@ class Component extends DCLogic {
     const tabDefs = [['rec', '추천'], ['search', '검색'], ['sell', '판매'], ['shop', '상점']];
     const tabs = tabDefs.map((d) => ({ label: d[1], on: st.tab === d[0], line: st.tab === d[0] ? '#8CC4F5' : 'transparent', color: st.tab === d[0] ? '#FFFFFF' : '#A7B3C2', pick: () => this.setState({ tab: d[0] }) }));
     const recs = [
-      { grade: '영웅', name: '회오리 장궁', img: 'bow_hero', meta: '무기 · 궁술 · 장비 레벨 25', opt: '연사 +1', gain: '+120', price: '3,200', recent: '3,050' },
+      { grade: '영웅', name: '회오리 장궁', img: 'bow_hero', meta: '무기 · 궁술 · 장비 레벨 25', opt: '연사 +2', gain: '+120', price: '3,200', recent: '3,050' },
       { grade: '희귀', name: '새벽 사냥꾼 모자', img: 'helm_rare', meta: '머리 · 궁술 · 장비 레벨 24', opt: '관통 화살 +1', gain: '+44', price: '950', recent: '900' },
-      { grade: '영웅', name: '구름결 목걸이', img: 'neck_hero', meta: '목걸이 · 궁술 · 장비 레벨 24', opt: '조준 사격 +1', gain: '+71', price: '2,400', recent: '2,600' },
+      { grade: '영웅', name: '구름결 목걸이', img: 'neck_hero', meta: '목걸이 · 궁술 · 장비 레벨 24', opt: '조준 사격 +3', gain: '+71', price: '2,400', recent: '2,600' },
       { grade: '희귀', name: '바람 깃 장궁', img: 'bow_rare', meta: '무기 · 궁술 · 장비 레벨 25', gain: '+38', price: '880', recent: '910' }
     ].map(g);
     const chip = (t, on) => ({ t: t, on: on, border: on ? '#8CC4F5' : '#3A4658', bg: on ? '#1F3550' : 'transparent', color: on ? '#FFFFFF' : '#C8D3E6' });

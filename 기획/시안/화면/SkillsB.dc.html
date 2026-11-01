@@ -113,7 +113,7 @@ class Component extends DCLogic {
     const st = { focus: P.focus };
     const setFocus = (f) => { const ps = st0.ps.map((x, i) => i === st0.cur ? Object.assign({}, x, { focus: f }) : x); this.setState({ ps: ps }); };
     const defs = [
-      { id: 'aim', name: '조준 사격', learnLv: 1, img: B + 'b133920c0637dd17a05b1e3b3be43417', lv: 2, desc: '한 대상에게 크게 한 발', source: '순풍의 목걸이 · 조준 사격 +1' },
+      { id: 'aim', name: '조준 사격', learnLv: 1, img: B + 'b133920c0637dd17a05b1e3b3be43417', lv: 3, desc: '한 대상에게 크게 한 발', source: '순풍의 목걸이 · 조준 사격 +2' },
       { id: 'rapid', name: '연사', learnLv: 5, img: B + '4f2083e560e2a0725ab09c4fc0b8cfa4', lv: 2, desc: '빠르게 여러 발', source: '바람결 장궁 · 연사 +1 (보관함의 천둥새의 장궁에도 있음)' },
       { id: 'pierce', name: '관통 화살', learnLv: 10, img: B + '4beb5d4ca18f0341931aa0c52f420782', lv: 1, desc: '줄지어 선 적을 꿰뚫어요', source: '장비 +1 없음' },
       { id: 'rain', name: '화살비', learnLv: 15, img: B + '0ab31bf79cf405cb73f3ebf826178f62', lv: 1, desc: '여러 적에게 화살을 퍼부어요', source: '' },
