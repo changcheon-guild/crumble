@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet">
 <style>
-@font-face{font-family:'Galmuri11';src:url(/_blob/3d7d41766d6fe4ab874aa2af55b7545e) format('woff2');font-weight:400;font-display:swap}@font-face{font-family:'Galmuri11';src:url(/_blob/8457e27020c70d82c86e28af69c16a56) format('woff2');font-weight:700;font-display:swap}@font-face{font-family:'Galmuri14';src:url(/_blob/b67fdc63fa51b5e3d8ffaa0aa94ab0fc) format('woff2');font-weight:100 900;font-display:swap}body{-webkit-font-smoothing:none}
+@font-face{font-family:'Galmuri11';src:url(/_blob/3d7d41766d6fe4ab874aa2af55b7545e) format('woff2');font-weight:400;font-display:swap}@font-face{font-family:'Galmuri11';src:url(/_blob/8457e27020c70d82c86e28af69c16a56) format('woff2');font-weight:700;font-display:swap}@font-face{font-family:'Galmuri14';src:url(/_blob/b67fdc63fa51b5e3d8ffaa0aa94ab0fc) format('woff2');font-weight:100 900;font-display:swap}body{-webkit-font-smoothing:none}button,input,select,textarea{font-family:inherit}
 
 body{margin:0}
 a{color:#8CC4F5}a:hover{color:#B8DBFA}
@@ -75,11 +75,27 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
     <section aria-label="첫 토벌 보상" style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px">
       <span style="font-size: 14px; font-weight: 700">첫 토벌 보상</span>
       <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; text-align: center; font-size: 11px">
-        <div style="display: flex; flex-direction: column; align-items: center; gap: 4px"><span style="width: 44px; height: 44px; border-radius: 8px; border: 2px solid #5A9BE6; background: #152335; display: flex; align-items: center; justify-content: center"><img src="/_blob/d61d6d3457eee15749230a4770741e37" alt="" width="34" height="34" style="image-rendering: pixelated"></span><span>희귀 무기</span></div>
-        <div style="display: flex; flex-direction: column; align-items: center; gap: 4px"><span style="width: 44px; height: 44px; border-radius: 8px; border: 1px solid #263243; display: flex; align-items: center; justify-content: center"><img src="/_blob/f455ad14c4095214ee4a4ff7129ab42b" alt="" width="34" height="34" style="image-rendering: pixelated"></span><span>골드 7,000</span></div>
-        <div style="display: flex; flex-direction: column; align-items: center; gap: 4px"><span style="width: 44px; height: 44px; border-radius: 8px; border: 1px solid #263243; display: flex; align-items: center; justify-content: center"><img src="/_blob/61bee62cdf8b6e2036870639fdb0af49" alt="" width="34" height="34" style="image-rendering: pixelated"></span><span>수리의 깃털</span></div>
-        <div style="display: flex; flex-direction: column; align-items: center; gap: 4px"><span style="width: 44px; height: 44px; border-radius: 8px; border: 1px solid #263243; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #8CC4F5">21~40</span><span>비구름 지대</span></div>
+        <sc-for list="{{rewards}}" as="r" hint-placeholder-count="4">
+          <button type="button" onClick="{{r.show}}" onMouseEnter="{{r.show}}" aria-expanded="{{r.on}}" aria-label="{{r.label}} 설명 보기" style="display: flex; flex-direction: column; align-items: center; gap: 4px; border: none; background: transparent; color: #E8EDF4; font: inherit; font-size: 11px; padding: 0; cursor: pointer">
+            <span style="width: 44px; height: 44px; box-sizing: border-box; border-radius: 8px; border: {{r.border}}; background: {{r.bg}}; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #8CC4F5">
+              <sc-if value="{{r.hasImg}}" hint-placeholder-val="{{ true }}"><img src="{{r.img}}" alt="" width="34" height="34" style="image-rendering: pixelated; filter: drop-shadow(1px 0 0 #0A0E14) drop-shadow(-1px 0 0 #0A0E14) drop-shadow(0 1px 0 #0A0E14) drop-shadow(0 -1px 0 #0A0E14)"></sc-if>
+              <sc-if value="{{r.noImg}}" hint-placeholder-val="{{ false }}">{{r.text}}</sc-if>
+            </span>
+            <span>{{r.label}}</span>
+          </button>
+        </sc-for>
       </div>
+      <sc-if value="{{tipOn}}" hint-placeholder-val="{{ false }}">
+        <div role="note" style="position: relative; margin-top: 4px; background: #1F2A3B; border: 1px solid #3A4E6A; border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 4px">
+          <span aria-hidden="true" style="position: absolute; top: -7px; left: {{tip.arrow}}; width: 12px; height: 12px; margin-left: -6px; background: #1F2A3B; border-left: 1px solid #3A4E6A; border-top: 1px solid #3A4E6A; transform: rotate(45deg)"></span>
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+            <span style="font-size: 14px; font-weight: 700; color: {{tip.color}}">{{tip.title}}</span>
+            <button type="button" onClick="{{closeTip}}" aria-label="설명 닫기" style="width: 32px; height: 32px; margin: -6px -6px -6px 0; border: none; background: transparent; color: #A7B3C2; font: inherit; font-size: 14px; cursor: pointer">✕</button>
+          </div>
+          <span style="font-size: 12px; color: #C8D3E6; line-height: 1.6">{{tip.body}}</span>
+          <sc-if value="{{tip.hasLink}}" hint-placeholder-val="{{ false }}"><a href="{{tip.href}}" style="font-size: 13px; font-weight: 700; align-self: flex-start; min-height: 32px; display: flex; align-items: center">{{tip.link}} ›</a></sc-if>
+        </div>
+      </sc-if>
     </section>
 
     <section aria-label="기록 목표" style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 10px 14px; display: flex; flex-direction: column; gap: 6px; font-size: 13px">
@@ -104,8 +120,27 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
 class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { tip: -1 }; }
   renderVals() {
-    return {};
+    const raw = [
+      { label: '희귀 무기', img: '/_blob/d61d6d3457eee15749230a4770741e37', rare: true, title: '[희귀] 무기 1개', color: '#8CC4F5', body: '처음 토벌할 때 한 번만 받아요. 계통과 추가 옵션은 무작위예요. 토벌 기념품이라 거래소에 올릴 수 없어요.' },
+      { label: '골드 7,000', img: '/_blob/f455ad14c4095214ee4a4ff7129ab42b', title: '골드 7,000', color: '#F3D08A', body: '강화, 재련, 제작, 거래에 쓰는 기본 돈이에요.' },
+      { label: '수리의 깃털', img: '/_blob/61bee62cdf8b6e2036870639fdb0af49', title: '수리의 깃털 · 토벌 기념품', color: '#E8EDF4', body: '프로필의 토벌 기록에 남고, 섬에 장식으로 둘 수 있어요. 전투력에는 영향이 없어요.' },
+      { label: '비구름 지대', text: '21~40', title: '비구름 지대가 열려요', color: '#8CC4F5', body: '21~40번째 구름층으로 내려갈 수 있어요. 네뷸라가 짙어져 적이 강해지고 보상도 커져요.' }
+    ];
+    const i = this.state.tip;
+    const rewards = raw.map((r, k) => ({
+      label: r.label, img: r.img || '', hasImg: !!r.img, noImg: !r.img, text: r.text || '', on: i === k,
+      border: i === k ? '2px solid #F2B33D' : (r.rare ? '2px solid #5A9BE6' : '1px solid #263243'),
+      bg: r.rare ? '#152335' : 'transparent',
+      show: () => this.setState({ tip: k })
+    }));
+    const t = raw[i] || raw[0];
+    return {
+      rewards: rewards, tipOn: i >= 0,
+      tip: { title: t.title, color: t.color, body: t.body, hasLink: false, href: '', link: '', arrow: (12.5 + 25 * Math.max(i, 0)) + '%' },
+      closeTip: () => this.setState({ tip: -1 })
+    };
   }
 }
 </script>

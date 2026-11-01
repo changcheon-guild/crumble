@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet">
 <style>
-@font-face{font-family:'Galmuri11';src:url(/_blob/3d7d41766d6fe4ab874aa2af55b7545e) format('woff2');font-weight:400;font-display:swap}@font-face{font-family:'Galmuri11';src:url(/_blob/8457e27020c70d82c86e28af69c16a56) format('woff2');font-weight:700;font-display:swap}@font-face{font-family:'Galmuri14';src:url(/_blob/b67fdc63fa51b5e3d8ffaa0aa94ab0fc) format('woff2');font-weight:100 900;font-display:swap}body{-webkit-font-smoothing:none}
+@font-face{font-family:'Galmuri11';src:url(/_blob/3d7d41766d6fe4ab874aa2af55b7545e) format('woff2');font-weight:400;font-display:swap}@font-face{font-family:'Galmuri11';src:url(/_blob/8457e27020c70d82c86e28af69c16a56) format('woff2');font-weight:700;font-display:swap}@font-face{font-family:'Galmuri14';src:url(/_blob/b67fdc63fa51b5e3d8ffaa0aa94ab0fc) format('woff2');font-weight:100 900;font-display:swap}body{-webkit-font-smoothing:none}button,input,select,textarea{font-family:inherit}button,input,select,textarea{font-family:inherit}
 
 body{margin:0}
 a{color:#8CC4F5}a:hover{color:#B8DBFA}
@@ -50,32 +50,43 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
 
     <main style="flex: 999 1 560px; min-width: 0; display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
 
-      <section aria-label="착용 장비" style="flex: 1 1 320px; max-width: 380px; border: 1px solid #263243; border-radius: 12px; overflow: hidden; background-image: url(/_blob/69907e8b4a7316dc4eb78efd37614c75); background-size: cover; background-position: center; image-rendering: pixelated">
-        <div style="padding: 16px; display: grid; grid-template-columns: 76px minmax(0, 1fr) 76px; gap: 8px; align-items: center">
-          <div style="display: flex; flex-direction: column; gap: 16px; align-items: center">
-            <button type="button" onMouseEnter="{{eqH.hover}}" onClick="{{eqH.pin}}" aria-label="머리 · {{eqH.name}}" style="position: relative; width: 76px; height: 76px; border-radius: 10px; border: 2px solid {{eqH.color}}; background: {{eqH.tint}}; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer">
-              <img src="{{eqH.img}}" alt="" width="68" height="68" style="image-rendering: pixelated">
-              <span style="position: absolute; right: 4px; bottom: 2px; font-size: 12px; font-weight: 700; color: #FFFFFF">{{eqH.enh}}</span>
-            </button>
-            <button type="button" onMouseEnter="{{eqB.hover}}" onClick="{{eqB.pin}}" aria-label="몸 · {{eqB.name}}" style="position: relative; width: 76px; height: 76px; border-radius: 10px; border: 2px solid {{eqB.color}}; background: {{eqB.tint}}; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer">
-              <img src="{{eqB.img}}" alt="" width="68" height="68" style="image-rendering: pixelated">
-              <span style="position: absolute; right: 4px; bottom: 2px; font-size: 12px; font-weight: 700; color: #FFFFFF">{{eqB.enh}}</span>
-            </button>
+      <section aria-label="착용 장비 10칸" style="flex: 1 1 340px; max-width: 400px; border: 1px solid #263243; border-radius: 12px; overflow: hidden; background-image: url(/_blob/69907e8b4a7316dc4eb78efd37614c75); background-size: cover; background-position: center; image-rendering: pixelated">
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 12px 0; position: relative; z-index: 1">
+          <span style="font-size: 13px; font-weight: 700; color: #1B2735; background: rgba(255, 255, 255, 0.85); border-radius: 8px; padding: 2px 10px">사냥꾼 · Lv 10</span>
+          <div role="group" aria-label="보이는 모습" style="display: flex; background: rgba(16, 22, 31, 0.85); border-radius: 8px; padding: 2px">
+            <button type="button" aria-pressed="{{isArt}}" onClick="{{toArt}}" style="min-height: 32px; padding: 0 10px; border-radius: 6px; border: none; background: {{artBg}}; color: #FFFFFF; font-family: 'Galmuri11', sans-serif; font-size: 12px; cursor: pointer">일러스트</button>
+            <button type="button" aria-pressed="{{isDot}}" onClick="{{toDot}}" style="min-height: 32px; padding: 0 10px; border-radius: 6px; border: none; background: {{dotBg}}; color: #FFFFFF; font-family: 'Galmuri11', sans-serif; font-size: 12px; cursor: pointer">도트</button>
           </div>
-          <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 280px">
-            <img src="/_blob/c2e10fff92a559b32f281532a0025abb" alt="장비를 착용한 사냥꾼" width="160" height="160" style="image-rendering: pixelated">
-            <div style="width: 120px; height: 14px; border-radius: 50%; background: rgba(16, 22, 31, 0.35); margin-top: -10px"></div>
-            <span style="margin-top: 10px; font-size: 13px; font-weight: 700; color: #1B2735; background: rgba(255, 255, 255, 0.85); border-radius: 8px; padding: 2px 10px">사냥꾼 · Lv 10</span>
+        </div>
+        <div style="position: relative; height: 352px; overflow: hidden">
+          <sc-if value="{{isArt}}" hint-placeholder-val="{{ true }}">
+            <div role="img" aria-label="직접 올린 스탠딩 일러스트 자리. 아래 능력치 띠 위로 상반신이 보여요" style="position: absolute; left: 50%; bottom: -170px; width: 220px; height: 480px; margin-left: -110px; box-sizing: border-box; border: 2px dashed rgba(255, 255, 255, 0.85); border-radius: 110px 110px 0 0; background: linear-gradient(180deg, rgba(16, 22, 31, 0.35), rgba(16, 22, 31, 0.6)); display: flex; flex-direction: column; align-items: center; padding-top: 80px; gap: 6px; text-align: center">
+              <span style="font-size: 15px; font-weight: 700">스탠딩 일러스트</span>
+              <span style="font-size: 12px; color: #C8D3E6; line-height: 1.5; padding: 0 20px">올린 그림의 위쪽이<br>아래 띠에 붙어서 보여요</span>
+              <span style="font-size: 11px; color: #A7B3C2">설정 → 내 모습에서 올려요</span>
+            </div>
+          </sc-if>
+          <sc-if value="{{isDot}}" hint-placeholder-val="{{ false }}">
+            <img src="/_blob/c2e10fff92a559b32f281532a0025abb" alt="장비를 착용한 사냥꾼" width="176" height="176" style="position: absolute; left: 50%; bottom: 0; margin-left: -88px; image-rendering: pixelated">
+          </sc-if>
+          <div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; height: 30px; background: linear-gradient(180deg, rgba(16, 22, 31, 0), rgba(16, 22, 31, 0.9))"></div>
+          <div style="position: absolute; left: 10px; top: 10px; display: flex; flex-direction: column; gap: 6px">
+            <sc-for list="{{leftSlots}}" as="q" hint-placeholder-count="5">
+            <button type="button" onMouseEnter="{{q.hover}}" onClick="{{q.pin}}" aria-label="{{q.slotName}} · {{q.name}}" style="position: relative; width: 62px; height: 62px; box-sizing: border-box; border-radius: 8px; border: 2px solid {{q.color}}; outline: {{q.ring}}; outline-offset: 1px; background: {{q.tint}}; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer">
+              <img src="{{q.img}}" alt="" width="48" height="48" style="image-rendering: pixelated; filter: drop-shadow(1px 0 0 #0A0E14) drop-shadow(-1px 0 0 #0A0E14) drop-shadow(0 1px 0 #0A0E14) drop-shadow(0 -1px 0 #0A0E14)">
+              <span style="position: absolute; left: 3px; top: 1px; font-family: 'Galmuri11', sans-serif; font-size: 10px; color: #E8EDF4; text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000">{{q.slotName}}</span>
+              <span style="position: absolute; right: 3px; bottom: 1px; font-family: 'Galmuri11', sans-serif; font-size: 12px; font-weight: 700; color: #FFFFFF; text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000">{{q.enh}}</span>
+            </button>
+            </sc-for>
           </div>
-          <div style="display: flex; flex-direction: column; gap: 16px; align-items: center">
-            <button type="button" onMouseEnter="{{eqW.hover}}" onClick="{{eqW.pin}}" aria-label="무기 · {{eqW.name}}" style="position: relative; width: 76px; height: 76px; border-radius: 10px; border: 2px solid {{eqW.color}}; background: {{eqW.tint}}; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer">
-              <img src="{{eqW.img}}" alt="" width="68" height="68" style="image-rendering: pixelated">
-              <span style="position: absolute; right: 4px; bottom: 2px; font-size: 12px; font-weight: 700; color: #FFFFFF">{{eqW.enh}}</span>
+          <div style="position: absolute; right: 10px; top: 10px; display: flex; flex-direction: column; gap: 6px">
+            <sc-for list="{{rightSlots}}" as="q" hint-placeholder-count="5">
+            <button type="button" onMouseEnter="{{q.hover}}" onClick="{{q.pin}}" aria-label="{{q.slotName}} · {{q.name}}" style="position: relative; width: 62px; height: 62px; box-sizing: border-box; border-radius: 8px; border: 2px solid {{q.color}}; outline: {{q.ring}}; outline-offset: 1px; background: {{q.tint}}; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer">
+              <img src="{{q.img}}" alt="" width="48" height="48" style="image-rendering: pixelated; filter: drop-shadow(1px 0 0 #0A0E14) drop-shadow(-1px 0 0 #0A0E14) drop-shadow(0 1px 0 #0A0E14) drop-shadow(0 -1px 0 #0A0E14)">
+              <span style="position: absolute; left: 3px; top: 1px; font-family: 'Galmuri11', sans-serif; font-size: 10px; color: #E8EDF4; text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000">{{q.slotName}}</span>
+              <span style="position: absolute; right: 3px; bottom: 1px; font-family: 'Galmuri11', sans-serif; font-size: 12px; font-weight: 700; color: #FFFFFF; text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000">{{q.enh}}</span>
             </button>
-            <button type="button" onMouseEnter="{{eqA.hover}}" onClick="{{eqA.pin}}" aria-label="장신구 · {{eqA.name}}" style="position: relative; width: 76px; height: 76px; border-radius: 10px; border: 2px solid {{eqA.color}}; background: {{eqA.tint}}; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer">
-              <img src="{{eqA.img}}" alt="" width="68" height="68" style="image-rendering: pixelated">
-              <span style="position: absolute; right: 4px; bottom: 2px; font-size: 12px; font-weight: 700; color: #FFFFFF">{{eqA.enh}}</span>
-            </button>
+            </sc-for>
           </div>
         </div>
         <div style="background: rgba(16, 22, 31, 0.9); padding: 12px 16px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; font-size: 13px">
@@ -178,7 +189,7 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
             </sc-if>
             <sc-if value="{{it.real}}" hint-placeholder-val="{{ true }}">
               <button type="button" onMouseEnter="{{it.hover}}" onClick="{{it.pin}}" aria-label="{{it.label}}" style="position: relative; aspect-ratio: 1; border-radius: 8px; border: 2px solid {{it.color}}; background: {{it.tint}}; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer; outline: {{it.ring}}; outline-offset: 2px">
-                <img src="{{it.img}}" alt="" width="34" height="34" style="image-rendering: pixelated; width: 68%; height: auto">
+                <img src="{{it.img}}" alt="" width="34" height="34" style="image-rendering: pixelated; width: 68%; height: auto; filter: drop-shadow(1px 0 0 #0A0E14) drop-shadow(-1px 0 0 #0A0E14) drop-shadow(0 1px 0 #0A0E14) drop-shadow(0 -1px 0 #0A0E14)">
                 <sc-if value="{{it.up}}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="position: absolute; left: 4px; top: 2px; font-size: 12px; font-weight: 700; color: #6FD08C">▲</span></sc-if>
               </button>
             </sc-if>
@@ -206,7 +217,7 @@ class Component extends DCLogic {
       bow_rare: B + 'd61d6d3457eee15749230a4770741e37', bow_hero: B + '73e7dad451ba6becb494e6c86611ff42', bow_uncommon: B + 'de2557cb71105c3a53de6d784b342f81', bow_legend: B + 'c8ca740f95bdd2198e02dcb53d1ff32f',
       helm_common: B + 'e73000b1d7fa921f4c7a5f16d29c112c', helm_rare: B + 'bcaae8ddfad9fe968df9ad1cdc91a203',
       body_uncommon: B + 'adfecbba38ea742d9ab15accf5ca9158', body_common: B + '5719e606863870a72c6eca112036b137', armor_rare: B + '2a96d0fa5e250354c1cc8f11e599e180',
-      neck_hero: B + 'ed017087ecb4ada9cd6b781f59b3f622', ring_uncommon: B + 'c4779bf8dd8ac6277ecf64e1ef96f7ff',
+      neck_hero: B + 'ed017087ecb4ada9cd6b781f59b3f622', ring_uncommon: B + 'c4779bf8dd8ac6277ecf64e1ef96f7ff', gloves: B + '2494f8c86f6a4417732af687f49f7fd7', shoes: B + 'd1cf717c3beb5a3d9fabb8b76ca50e15', earring: B + '820e3eaa8e5d24e3026a58d95bb2373a', bracelet: B + 'e4cfb79a17c09fd685cd3cd20512c869', ring2: B + '24b8c11ef677cc785f033a239864eec2',
       staff_rare: B + '6f5b0cdfdc6f63e19bf2ce554a666b15', staff_hero: B + '422d1f0fb82719519ec686025246d86e'
     };
     const G = {
@@ -221,13 +232,19 @@ class Component extends DCLogic {
       { id: 'eqW', slot: 'W', img: 'bow_rare', grade: '희귀', name: '바람결 장궁', kind: '장궁', line: '궁술', ilv: 21, enh: '+2', base: '공격력 31', enhNote: '무기 칸 +2 적용 · 실제 공격력 37', opts: [{ t: '공격력 +3%', r: '[2 – 4]%' }, { t: '연사 +1', r: '궁술 기술' }], price: '640' },
       { id: 'eqH', slot: 'H', img: 'helm_common', grade: '일반', name: '하늘돌 투구', kind: '투구', line: '검술', ilv: 22, enh: '+1', base: '생명력 124', enhNote: '머리 칸 +1 적용 · 실제 생명력 136', opts: [], price: '210' },
       { id: 'eqB', slot: 'B', img: 'body_uncommon', grade: '고급', name: '구름 비단 옷', kind: '옷', line: '궁술', ilv: 19, enh: '+1', base: '생명력 131', enhNote: '몸 칸 +1 적용 · 실제 생명력 144', opts: [{ t: '생명력 +2%', r: '[1 – 2]%' }], price: '330' },
-      { id: 'eqA', slot: 'A', img: 'neck_hero', grade: '영웅', name: '순풍의 목걸이', kind: '목걸이', line: '궁술', ilv: 20, enh: '+0', base: '공격력 9 · 생명력 88', enhNote: '장신구 칸 +0', opts: [{ t: '공격력 +4%', r: '[3 – 6]%' }, { t: '생명력 +5%', r: '[3 – 6]%' }, { t: '조준 사격 +1', r: '궁술 기술' }], price: '1,480' },
+      { id: 'eqA', slot: 'A', img: 'neck_hero', grade: '영웅', name: '순풍의 목걸이', kind: '목걸이', line: '궁술', ilv: 20, enh: '+0', base: '공격력 9 · 생명력 88', enhNote: '목걸이 칸 +0', opts: [{ t: '공격력 +4%', r: '[3 – 6]%' }, { t: '생명력 +5%', r: '[3 – 6]%' }, { t: '조준 사격 +1', r: '궁술 기술' }], price: '1,480' },
+      { id: 'eqE', slot: 'E', img: 'earring', grade: '희귀', name: '물방울 귀걸이', kind: '귀걸이', line: '마법', ilv: 21, enh: '+0', base: '공격력 6 · 생명력 40', enhNote: '귀걸이 칸 +0', opts: [{ t: '생명력 +3%', r: '[2 – 4]%' }, { t: '조준 사격 +1', r: '궁술 기술' }], price: '700' },
+      { id: 'eqG', slot: 'G', img: 'gloves', grade: '고급', name: '바람 가죽 장갑', kind: '장갑', line: '궁술', ilv: 20, enh: '+1', base: '공격력 8 · 생명력 50', enhNote: '장갑 칸 +1 적용 · 실제 공격력 9', opts: [{ t: '공격력 +1%', r: '[1 – 2]%' }], price: '280' },
+      { id: 'eqR1', slot: 'R', img: 'ring_uncommon', grade: '고급', name: '구름 고리 반지', kind: '반지', line: '검술', ilv: 21, enh: '+0', base: '공격력 6 · 생명력 60', enhNote: '반지 칸 +0', opts: [{ t: '생명력 +1%', r: '[1 – 2]%' }], price: '260' },
+      { id: 'eqR2', slot: 'R2', img: 'ring2', grade: '희귀', name: '하늘빛 반지', kind: '반지', line: '마법', ilv: 22, enh: '+0', base: '공격력 7 · 생명력 64', enhNote: '반지 칸 +0', opts: [{ t: '공격력 +2%', r: '[2 – 4]%' }, { t: '관통 화살 +1', r: '궁술 기술' }], price: '760' },
+      { id: 'eqBr', slot: 'Br', img: 'bracelet', grade: '일반', name: '돌구슬 팔찌', kind: '팔찌', line: '검술', ilv: 18, enh: '+0', base: '공격력 5 · 생명력 46', enhNote: '팔찌 칸 +0', opts: [], price: '120' },
+      { id: 'eqS', slot: 'S', img: 'shoes', grade: '고급', name: '구름결 장화', kind: '신발', line: '궁술', ilv: 21, enh: '+1', base: '생명력 72', enhNote: '신발 칸 +1 적용 · 실제 생명력 79', opts: [{ t: '생명력 +2%', r: '[1 – 2]%' }], price: '310' },
       { id: 'i9', slot: 'W', inv: true, img: 'bow_legend', grade: '전설', name: '폭풍깃 장궁', kind: '장궁', line: '궁술', ilv: 23, base: '공격력 52', baseD: '(+21)', enhNote: '무기 칸 +2 적용 · 실제 공격력 62', opts: [{ t: '공격력 +7%', r: '[5 – 8]%', d: '(+4%)' }, { t: '연사 +1', r: '궁술 기술', d: '(같음)' }, { t: '생명력 +6%', r: '[5 – 8]%', d: '(+6%)' }], unique: '폭풍의 깃 · 연사 +1, 관통 화살 +1', power: '장착하면 전투력 +118', price: '9,800', up: true },
       { id: 'i1', slot: 'W', inv: true, img: 'bow_hero', grade: '영웅', name: '천둥새의 장궁', kind: '장궁', line: '궁술', ilv: 24, base: '공격력 46', baseD: '(+15)', enhNote: '무기 칸 +2 적용 · 실제 공격력 55', opts: [{ t: '공격력 +5%', r: '[3 – 6]%', d: '(+2%)' }, { t: '연사 +1', r: '궁술 기술', d: '(같음)' }, { t: '생명력 +4%', r: '[3 – 6]%', d: '(+4%)' }], power: '장착하면 전투력 +67', price: '2,960', up: true },
       { id: 'i2', slot: 'H', inv: true, img: 'helm_rare', grade: '희귀', name: '매의 눈 가죽모자', kind: '모자', line: '궁술', ilv: 23, base: '생명력 141', baseD: '(+17)', enhNote: '머리 칸 +1 적용 · 실제 생명력 155', opts: [{ t: '생명력 +3%', r: '[2 – 4]%', d: '(+3%)' }, { t: '관통 화살 +1', r: '궁술 기술', d: '(+1)' }], power: '장착하면 전투력 +31', price: '820', up: true },
       { id: 'i3', slot: 'W', inv: true, img: 'staff_rare', grade: '희귀', name: '이슬 지팡이', kind: '지팡이', line: '마법', ilv: 22, base: '공격력 33', baseD: '(+2)', enhNote: '무기 칸 +2 적용 · 실제 공격력 40', opts: [{ t: '공격력 +2%', r: '[2 – 4]%', d: '(−1%)' }, { t: '화염구 +1', r: '마법사 기술 · 효과 없음', off: true }], lost: [{ t: '연사 +1' }], power: '장착하면 전투력 −9', price: '780' },
       { id: 'i4', slot: 'B', inv: true, img: 'armor_rare', grade: '희귀', name: '섬돌 갑옷', kind: '갑옷', line: '검술', ilv: 21, base: '생명력 126', baseD: '(−5)', enhNote: '몸 칸 +1 적용 · 실제 생명력 139', opts: [{ t: '생명력 +2%', r: '[2 – 4]%', d: '(같음)' }, { t: '방패 막기 +1', r: '전사 기술 · 효과 없음', off: true }], power: '장착하면 전투력 −4', price: '760' },
-      { id: 'i5', slot: 'A', inv: true, img: 'ring_uncommon', grade: '고급', name: '바위껍질 반지', kind: '반지', line: '검술', ilv: 22, base: '공격력 7 · 생명력 70', baseD: '', enhNote: '장신구 칸 +0', opts: [{ t: '생명력 +2%', r: '[1 – 2]%', d: '(−3%)' }], lost: [{ t: '공격력 +4%' }, { t: '조준 사격 +1' }], power: '장착하면 전투력 −61', price: '350' },
+      { id: 'i5', slot: 'R', inv: true, img: 'ring_uncommon', grade: '고급', name: '바위껍질 반지', kind: '반지', line: '검술', ilv: 22, base: '공격력 7 · 생명력 70', baseD: '', enhNote: '반지 칸 +0', opts: [{ t: '생명력 +2%', r: '[1 – 2]%', d: '(−3%)' }], lost: [{ t: '공격력 +4%' }, { t: '조준 사격 +1' }], power: '장착하면 전투력 −61', price: '350' },
       { id: 'i6', slot: 'B', inv: true, img: 'body_common', grade: '일반', name: '구름 무명옷', kind: '옷', line: '궁술', ilv: 23, base: '생명력 140', baseD: '(+9)', enhNote: '몸 칸 +1 적용 · 실제 생명력 154', opts: [], lost: [{ t: '생명력 +2%' }], power: '장착하면 전투력 −6', price: '190' },
       { id: 'i7', slot: 'W', inv: true, img: 'bow_uncommon', grade: '고급', name: '바람결 단궁', kind: '단궁', line: '궁술', ilv: 20, base: '공격력 28', baseD: '(−3)', enhNote: '무기 칸 +2 적용 · 실제 공격력 34', opts: [{ t: '공격력 +1%', r: '[1 – 2]%', d: '(−2%)' }], lost: [{ t: '연사 +1' }], power: '장착하면 전투력 −35', price: '300' },
       { id: 'i8', slot: 'W', inv: true, img: 'staff_hero', grade: '영웅', name: '구름 수정 지팡이', kind: '지팡이', line: '마법', ilv: 23, base: '공격력 40', baseD: '(+9)', enhNote: '무기 칸 +2 적용 · 실제 공격력 48', opts: [{ t: '공격력 +6%', r: '[3 – 6]%', d: '(+3%)' }, { t: '축복 마법 전부 +1', r: '마법사 기술 · 효과 없음', off: true }, { t: '생명력 +3%', r: '[3 – 6]%', d: '(+3%)' }], lost: [{ t: '연사 +1' }], power: '장착하면 전투력 +22', price: '2,400', up: true }
@@ -256,13 +273,19 @@ class Component extends DCLogic {
     const all = raw.map(deco);
     const byId = {};
     all.forEach((x) => { byId[x.id] = x; });
-    const eqBySlot = { W: byId.eqW, H: byId.eqH, B: byId.eqB, A: byId.eqA };
+    const eqBySlot = { W: byId.eqW, H: byId.eqH, B: byId.eqB, A: byId.eqA, E: byId.eqE, G: byId.eqG, R: byId.eqR1, R2: byId.eqR2, Br: byId.eqBr, S: byId.eqS };
+    const sl = (id, n) => Object.assign({}, byId[id], { slotName: n });
     const inv = all.filter((x) => x.inv);
     while (inv.length < 24) inv.push({ empty: true, real: false });
     const s = byId[activeId] || byId.i9;
     const cur = s.inv ? eqBySlot[s.slot] : null;
     return {
       eqW: byId.eqW, eqH: byId.eqH, eqB: byId.eqB, eqA: byId.eqA,
+      leftSlots: [sl('eqH', '머리'), sl('eqE', '귀걸이'), sl('eqA', '목걸이'), sl('eqB', '몸'), sl('eqG', '장갑')],
+      rightSlots: [sl('eqW', '무기'), sl('eqR1', '반지'), sl('eqR2', '반지'), sl('eqBr', '팔찌'), sl('eqS', '신발')],
+      isArt: this.state.look !== 'dot', isDot: this.state.look === 'dot',
+      artBg: this.state.look !== 'dot' ? '#3D86C6' : 'transparent', dotBg: this.state.look === 'dot' ? '#3D86C6' : 'transparent',
+      toArt: () => this.setState({ look: 'art' }), toDot: () => this.setState({ look: 'dot' }),
       inv: inv, s: s, cur: cur || byId.eqW, hasCur: !!cur,
       pinNote: this.state.pinned ? '고정됨 · 다시 누르면 풀려요' : '누르면 이 설명을 고정해요'
     };

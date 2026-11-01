@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet">
 <style>
-@font-face{font-family:'Galmuri11';src:url(/_blob/3d7d41766d6fe4ab874aa2af55b7545e) format('woff2');font-weight:400;font-display:swap}@font-face{font-family:'Galmuri11';src:url(/_blob/8457e27020c70d82c86e28af69c16a56) format('woff2');font-weight:700;font-display:swap}@font-face{font-family:'Galmuri14';src:url(/_blob/b67fdc63fa51b5e3d8ffaa0aa94ab0fc) format('woff2');font-weight:100 900;font-display:swap}body{-webkit-font-smoothing:none}
+@font-face{font-family:'Galmuri11';src:url(/_blob/3d7d41766d6fe4ab874aa2af55b7545e) format('woff2');font-weight:400;font-display:swap}@font-face{font-family:'Galmuri11';src:url(/_blob/8457e27020c70d82c86e28af69c16a56) format('woff2');font-weight:700;font-display:swap}@font-face{font-family:'Galmuri14';src:url(/_blob/b67fdc63fa51b5e3d8ffaa0aa94ab0fc) format('woff2');font-weight:100 900;font-display:swap}body{-webkit-font-smoothing:none}button,input,select,textarea{font-family:inherit}
 
 body{margin:0}
 a{color:#8CC4F5}a:hover{color:#B8DBFA}
@@ -47,12 +47,24 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
     <section style="background: #151D29; border: 1px solid #263243; border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px">
       <span style="font-size: 13px; font-weight: 700">얻은 것</span>
       <div style="display: flex; gap: 6px; align-items: center">
-        <div style="width: 44px; height: 44px; border-radius: 8px; border: 2px solid #B585EA; background: #241A33; display: flex; align-items: center; justify-content: center"><img src="/_blob/73e7dad451ba6becb494e6c86611ff42" alt="영웅 천둥새의 장궁" width="34" height="34" style="image-rendering: pixelated"></div>
-        <div style="width: 44px; height: 44px; border-radius: 8px; border: 2px solid #5A9BE6; background: #152335; display: flex; align-items: center; justify-content: center"><img src="/_blob/bcaae8ddfad9fe968df9ad1cdc91a203" alt="희귀 매의 눈 가죽모자" width="34" height="34" style="image-rendering: pixelated"></div>
-        <div style="width: 44px; height: 44px; border-radius: 8px; border: 2px solid #5A9BE6; background: #152335; display: flex; align-items: center; justify-content: center"><img src="/_blob/6f5b0cdfdc6f63e19bf2ce554a666b15" alt="희귀 이슬 지팡이" width="34" height="34" style="image-rendering: pixelated"></div>
-        <span style="display: flex; align-items: center; gap: 2px; font-size: 13px; margin-left: 6px"><img src="/_blob/b57b5fdadf690adfcf48b45d05b6dd29" alt="하늘돌" width="22" height="22" style="image-rendering: pixelated">+27</span>
-        <span style="display: flex; align-items: center; gap: 2px; font-size: 13px"><img src="/_blob/7302eda7e37a9db3d859ef3a49cf94a1" alt="구름 수정" width="22" height="22" style="image-rendering: pixelated">+2</span>
+        <sc-for list="{{gains}}" as="g" hint-placeholder-count="5">
+          <button type="button" onClick="{{g.show}}" onMouseEnter="{{g.show}}" aria-expanded="{{g.on}}" aria-label="{{g.name}} 설명 보기" style="width: 44px; height: 44px; box-sizing: border-box; flex-shrink: 0; border-radius: 8px; border: 2px solid {{g.border}}; background: {{g.bg}}; display: flex; align-items: center; justify-content: center; position: relative; padding: 0; cursor: pointer; color: #E8EDF4; font: inherit">
+            <img src="{{g.img}}" alt="" width="{{g.size}}" height="{{g.size}}" style="image-rendering: pixelated; filter: drop-shadow(1px 0 0 #0A0E14) drop-shadow(-1px 0 0 #0A0E14) drop-shadow(0 1px 0 #0A0E14) drop-shadow(0 -1px 0 #0A0E14)">
+            <sc-if value="{{g.hasCount}}" hint-placeholder-val="{{ false }}"><span style="position: absolute; right: 2px; bottom: 0; font-size: 11px; font-weight: 700; text-shadow: 0 1px 0 #000, 1px 0 0 #000, -1px 0 0 #000, 0 -1px 0 #000">{{g.count}}</span></sc-if>
+          </button>
+        </sc-for>
       </div>
+      <sc-if value="{{tipOn}}" hint-placeholder-val="{{ false }}">
+        <div role="note" style="position: relative; margin-top: 4px; background: #1F2A3B; border: 1px solid #3A4E6A; border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 4px">
+          <span aria-hidden="true" style="position: absolute; top: -7px; left: {{tip.arrow}}; width: 12px; height: 12px; margin-left: -6px; background: #1F2A3B; border-left: 1px solid #3A4E6A; border-top: 1px solid #3A4E6A; transform: rotate(45deg)"></span>
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+            <span style="font-size: 14px; font-weight: 700; color: {{tip.color}}">{{tip.title}}</span>
+            <button type="button" onClick="{{closeTip}}" aria-label="설명 닫기" style="width: 32px; height: 32px; margin: -6px -6px -6px 0; border: none; background: transparent; color: #A7B3C2; font: inherit; font-size: 14px; cursor: pointer">✕</button>
+          </div>
+          <span style="font-size: 12px; color: #C8D3E6; line-height: 1.6">{{tip.body}}</span>
+          <sc-if value="{{tip.hasLink}}" hint-placeholder-val="{{ false }}"><a href="{{tip.href}}" style="font-size: 13px; font-weight: 700; align-self: flex-start; min-height: 32px; display: flex; align-items: center">{{tip.link}} ›</a></sc-if>
+        </div>
+      </sc-if>
       <span style="font-size: 12px; color: #A7B3C2">일반·고급 장비 41개는 재료로 바꿨어요</span>
     </section>
 
@@ -66,7 +78,7 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
         <span style="flex: 1">바람결 장궁</span><span style="color: #6FD08C; font-weight: 700">+41</span>
       </div>
       <div style="display: flex; align-items: center; gap: 8px; font-size: 13px">
-        <span style="color: #A7B3C2; width: 40px">장신구</span>
+        <span style="color: #A7B3C2; width: 40px">목걸이</span>
         <img src="/_blob/c4779bf8dd8ac6277ecf64e1ef96f7ff" alt="고급 바위껍질 반지" width="30" height="30" style="image-rendering: pixelated; border: 2px solid #5FBF73; border-radius: 6px; background: #16261C">
         <span aria-hidden="true">→</span>
         <img src="/_blob/ed017087ecb4ada9cd6b781f59b3f622" alt="영웅 순풍의 목걸이" width="30" height="30" style="image-rendering: pixelated; border: 2px solid #B585EA; border-radius: 6px; background: #241A33">
@@ -109,6 +121,19 @@ class Component extends DCLogic {
     this.state = { open: 18 };
   }
   renderVals() {
+    const gi = this.state.tip === undefined ? -1 : this.state.tip;
+    const graw = [
+      { name: '[영웅] 천둥새의 장궁', img: '/_blob/73e7dad451ba6becb494e6c86611ff42', c: '#B585EA', bg: '#241A33', body: '무기 · 바람결 계통 · 23번째 구름층. 지금 무기보다 전투력 +96. 자동 장착은 꺼 둔 계통이라 보관함에 넣었어요.', link: true },
+      { name: '[희귀] 매의 눈 가죽모자', img: '/_blob/bcaae8ddfad9fe968df9ad1cdc91a203', c: '#5A9BE6', bg: '#152335', body: '머리 · 바람결 계통 · 21번째 구름층. 지금 머리보다 전투력 -12라 보관만 했어요.', link: true },
+      { name: '[희귀] 이슬 지팡이', img: '/_blob/6f5b0cdfdc6f63e19bf2ce554a666b15', c: '#5A9BE6', bg: '#152335', body: '무기 · 이슬 계통 · 22번째 구름층. 다른 계통이라 거래소에 올리기 좋아요.', link: true },
+      { name: '하늘돌 +27', img: '/_blob/b57b5fdadf690adfcf48b45d05b6dd29', count: '+27', c: '#3A4658', bg: '#1B2433', body: '장비 칸 강화 재료예요. 일반·고급 장비를 재료로 바꾸면 생기고, 상점에서도 살 수 있어요. 지금 142개.' },
+      { name: '구름 수정 +2', img: '/_blob/7302eda7e37a9db3d859ef3a49cf94a1', count: '+2', c: '#3A4658', bg: '#1B2433', body: '재련과 영웅 장비 제작에 써요. 희귀 이상 장비를 재료로 바꾸거나 관문을 처음 토벌하면 생겨요. 거래할 수 있어요. 지금 9개.' }
+    ];
+    const gains = graw.map((g, k) => ({ name: g.name, img: g.img, size: g.count ? 26 : 34, hasCount: !!g.count, count: g.count || '', on: gi === k,
+      border: gi === k ? '#F2B33D' : g.c, bg: g.bg, show: () => this.setState({ tip: k }) }));
+    const gt = graw[gi] || graw[0];
+    const tipVals = { gains: gains, tipOn: gi >= 0, closeTip: () => this.setState({ tip: -1 }),
+      tip: { title: gt.name, color: gt.count ? '#E8EDF4' : (gt.c === '#B585EA' ? '#D2B4F5' : '#8CC4F5'), body: gt.body, hasLink: !!gt.link, href: 'GearB.dc.html', link: '장비 탭에서 보기', arrow: (22 + 50 * Math.max(gi, 0)) + 'px' } };
     const st = this.state;
     const raw = [
       { n: 18, layer: 23, time: '14:20', tag: '전설 1', tagColor: '#E0A93B', lines: ['구름 해파리 떼를 물리쳤다 · 골드 +380', '[전설] 폭풍깃 장궁을 찾았다', '일반 망토 1개 → 하늘돌 1개'] },
@@ -123,7 +148,7 @@ class Component extends DCLogic {
       lines: r.lines.map((t) => ({ t: t })),
       toggle: () => this.setState({ open: st.open === r.n ? null : r.n })
     }));
-    return { runs: runs };
+    return Object.assign({ runs: runs }, tipVals);
   }
 }
 </script>

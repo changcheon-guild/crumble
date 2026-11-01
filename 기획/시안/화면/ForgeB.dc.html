@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet">
 <style>
-@font-face{font-family:'Galmuri11';src:url(/_blob/3d7d41766d6fe4ab874aa2af55b7545e) format('woff2');font-weight:400;font-display:swap}@font-face{font-family:'Galmuri11';src:url(/_blob/8457e27020c70d82c86e28af69c16a56) format('woff2');font-weight:700;font-display:swap}@font-face{font-family:'Galmuri14';src:url(/_blob/b67fdc63fa51b5e3d8ffaa0aa94ab0fc) format('woff2');font-weight:100 900;font-display:swap}body{-webkit-font-smoothing:none}
+@font-face{font-family:'Galmuri11';src:url(/_blob/3d7d41766d6fe4ab874aa2af55b7545e) format('woff2');font-weight:400;font-display:swap}@font-face{font-family:'Galmuri11';src:url(/_blob/8457e27020c70d82c86e28af69c16a56) format('woff2');font-weight:700;font-display:swap}@font-face{font-family:'Galmuri14';src:url(/_blob/b67fdc63fa51b5e3d8ffaa0aa94ab0fc) format('woff2');font-weight:100 900;font-display:swap}body{-webkit-font-smoothing:none}button,input,select,textarea{font-family:inherit}
 
 body{margin:0}
 a{color:#8CC4F5}a:hover{color:#B8DBFA}
@@ -198,7 +198,7 @@ class Component extends DCLogic {
       { id: 'W', part: '무기', lv: '+2', next: '+3', grade: '희귀', img: B + 'd61d6d3457eee15749230a4770741e37', item: '[희귀] 바람결 장궁', effect: '공격력 기본 31 · 실제 37 → 40', gold: '1,600', stone: '14' },
       { id: 'H', part: '머리', lv: '+1', next: '+2', grade: '일반', img: B + 'e73000b1d7fa921f4c7a5f16d29c112c', item: '[일반] 하늘돌 투구', effect: '생명력 기본 124 · 실제 136 → 149', gold: '900', stone: '8' },
       { id: 'Bd', part: '몸', lv: '+1', next: '+2', grade: '고급', img: B + 'adfecbba38ea742d9ab15accf5ca9158', item: '[고급] 구름 비단 옷', effect: '생명력 기본 131 · 실제 144 → 157', gold: '900', stone: '8' },
-      { id: 'A', part: '장신구', lv: '+0', next: '+1', grade: '영웅', img: B + 'ed017087ecb4ada9cd6b781f59b3f622', item: '[영웅] 순풍의 목걸이', effect: '공격력 9 → 10 · 생명력 88 → 97', gold: '800', stone: '6' }
+      { id: 'A', part: '목걸이', lv: '+0', next: '+1', grade: '영웅', img: B + 'ed017087ecb4ada9cd6b781f59b3f622', item: '[영웅] 순풍의 목걸이', effect: '공격력 9 → 10 · 생명력 88 → 97', gold: '800', stone: '6' }
     ];
     const slots = slotRaw.map((s) => Object.assign({}, s, {
       color: G[s.grade].c, tint: G[s.grade].t, on: st.slot === s.id, ring: st.slot === s.id ? '#8CC4F5' : 'transparent',
@@ -222,7 +222,7 @@ class Component extends DCLogic {
     }));
     const rSel = rOpts[ropt];
     const chip = (label, on, pick) => ({ label: label, on: on, pick: pick, border: on ? '#8CC4F5' : '#3A4658', bg: on ? '#1F3550' : 'transparent', color: on ? '#FFFFFF' : '#C8D3E6' });
-    const parts = ['무기', '머리', '몸', '장신구'].map((p) => chip(p, st.part === p, () => this.setState({ part: p })));
+    const parts = ['무기', '머리', '몸', '목걸이'].map((p) => chip(p, st.part === p, () => this.setState({ part: p })));
     const lines = ['궁술', '검술', '마법'].map((l) => chip(l + ' 계통', st.line === l, () => this.setState({ line: l })));
     return {
       tabs: tabs, isEnh: st.tab === 'enh', isReroll: st.tab === 'reroll', isCraft: st.tab === 'craft',

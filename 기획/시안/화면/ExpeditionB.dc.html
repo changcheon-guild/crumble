@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet">
 <style>
-@font-face{font-family:'Galmuri11';src:url(/_blob/3d7d41766d6fe4ab874aa2af55b7545e) format('woff2');font-weight:400;font-display:swap}@font-face{font-family:'Galmuri11';src:url(/_blob/8457e27020c70d82c86e28af69c16a56) format('woff2');font-weight:700;font-display:swap}@font-face{font-family:'Galmuri14';src:url(/_blob/b67fdc63fa51b5e3d8ffaa0aa94ab0fc) format('woff2');font-weight:100 900;font-display:swap}body{-webkit-font-smoothing:none}
+@font-face{font-family:'Galmuri11';src:url(/_blob/3d7d41766d6fe4ab874aa2af55b7545e) format('woff2');font-weight:400;font-display:swap}@font-face{font-family:'Galmuri11';src:url(/_blob/8457e27020c70d82c86e28af69c16a56) format('woff2');font-weight:700;font-display:swap}@font-face{font-family:'Galmuri14';src:url(/_blob/b67fdc63fa51b5e3d8ffaa0aa94ab0fc) format('woff2');font-weight:100 900;font-display:swap}body{-webkit-font-smoothing:none}button,input,select,textarea{font-family:inherit}
 
 body{margin:0}
 a{color:#8CC4F5}a:hover{color:#B8DBFA}
@@ -19,16 +19,15 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
 </helmet>
 <div style="width: 390px; height: 844px; box-sizing: border-box; background: #10161F; font-family: 'Galmuri11', 'Noto Sans KR', system-ui, sans-serif; color: #E8EDF4; display: flex; flex-direction: column; overflow: hidden">
 
-  <header style="padding: 12px 16px 0; min-height: 236px; box-sizing: border-box; justify-content: space-between; display: flex; flex-direction: column; gap: 10px; background-image: url(/_blob/04ce3ab8c74bdabe38e958a86133d679); background-size: 390px auto; background-position: center bottom; image-rendering: pixelated">
-    <div style="display: flex; justify-content: space-between; align-items: center">
-      <span style="font-family: 'Galmuri14', 'Galmuri11', sans-serif; font-size: 22px; font-weight: 700; color: #10304A">원정</span>
-      <span style="font-size: 13px; font-weight: 700; color: #10304A; background: rgba(255, 255, 255, 0.8); border-radius: 8px; padding: 2px 8px">전투력 1,054</span>
-    </div>
-    <div role="tablist" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); background: rgba(16, 22, 31, 0.85); border-radius: 12px 12px 0 0">
+  <header style="padding: 10px 16px; border-bottom: 1px solid #263243"><div style="display: flex; justify-content: space-between; align-items: center">
+      <span style="font-family: 'Galmuri14', 'Galmuri11', sans-serif; font-size: 22px; font-weight: 700; color: #E8EDF4">원정</span>
+      <span style="font-size: 13px; font-weight: 700; color: #E8EDF4; background: #1F3550; border-radius: 8px; padding: 2px 8px">전투력 1,054</span>
+    </div></header>
+  <div role="img" aria-label="비구름 지대 23번째 구름층. 사냥꾼이 바위껍질 게와 마주쳤다" style="position: relative; height: 180px; overflow: hidden; display: flex; justify-content: center; align-items: flex-end; flex-shrink: 0; border-radius: 0px; background: #1B2636"><div aria-hidden="true" style="position: absolute; inset: -24px; background-image: url(/_blob/ab4876d21ddcb038c86159227f115f7f); background-size: cover; background-position: center bottom; filter: blur(14px) brightness(0.8); image-rendering: auto"></div><img src="/_blob/ab4876d21ddcb038c86159227f115f7f" alt="" width="390" height="260" style="position: relative; display: block; flex-shrink: 0; image-rendering: pixelated"></div>
+  <div role="tablist" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); background: #151D29">
       <button type="button" role="tab" aria-selected="{{isScout}}" onClick="{{toScout}}" style="min-height: 46px; border: none; border-bottom: 3px solid {{scoutLine}}; background: transparent; font: inherit; font-size: 15px; font-weight: 700; color: {{scoutColor}}; cursor: pointer">탐사</button>
       <button type="button" role="tab" aria-selected="{{isDungeon}}" onClick="{{toDungeon}}" style="min-height: 46px; border: none; border-bottom: 3px solid {{dungeonLine}}; background: transparent; font: inherit; font-size: 15px; font-weight: 700; color: {{dungeonColor}}; cursor: pointer">던전</button>
     </div>
-  </header>
 
   <main style="flex: 1; padding: 14px; display: flex; flex-direction: column; gap: 10px; overflow: hidden">
     <sc-if value="{{isScout}}" hint-placeholder-val="{{ true }}">

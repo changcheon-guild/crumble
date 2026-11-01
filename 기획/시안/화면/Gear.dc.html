@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>장비 · 휴대폰 · 착용</title>
+<title>장비 · 휴대폰</title>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -12,137 +12,237 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet">
 <style>
 body{margin:0}
-a{color:#1F5F99}a:hover{color:#16466F}
+a{color:#8CC4F5}a:hover{color:#B8DBFA}
 </style>
 </helmet>
-<div style="width: 390px; height: 844px; box-sizing: border-box; background: #EEF3F8; font-family: 'Noto Sans KR', system-ui, sans-serif; color: #1B2735; display: flex; flex-direction: column; overflow: hidden">
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #10161F; font-family: 'Noto Sans KR', system-ui, sans-serif; color: #E8EDF4; display: flex; flex-direction: column; overflow: hidden; position: relative">
 
-  <header style="background: #FFFFFF; border-bottom: 1px solid #D9E2EC; padding: 12px 16px 0; display: flex; flex-direction: column; gap: 10px">
-    <div style="display: flex; justify-content: space-between; align-items: baseline">
-      <span style="font-family: 'Gowun Batang', serif; font-size: 20px; font-weight: 700">장비</span>
-      <span style="font-size: 14px; font-weight: 700">전투력 1,054</span>
-    </div>
-    <div role="tablist" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr))">
-      <button type="button" role="tab" aria-selected="true" style="min-height: 44px; border: none; border-bottom: 3px solid #1F5F99; background: transparent; font: inherit; font-size: 14px; font-weight: 700; color: #1F5F99">착용</button>
-      <button type="button" role="tab" aria-selected="false" style="min-height: 44px; border: none; border-bottom: 3px solid transparent; background: transparent; font: inherit; font-size: 14px; color: #4A5B6D">보관함 12/50</button>
-      <button type="button" role="tab" aria-selected="false" style="min-height: 44px; border: none; border-bottom: 3px solid transparent; background: transparent; font: inherit; font-size: 14px; color: #4A5B6D">강화</button>
-    </div>
+  <header style="height: 52px; box-sizing: border-box; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #263243">
+    <span style="font-family: 'Gowun Batang', serif; font-size: 20px; font-weight: 700">장비</span>
+    <span style="font-size: 14px; font-weight: 700">전투력 1,054</span>
   </header>
 
-  <main style="flex: 1; padding: 16px; display: flex; flex-direction: column; gap: 12px; overflow: hidden">
-
-    <section aria-label="착용 장비" style="background: #FFFFFF; border-radius: 12px; padding: 14px; display: grid; grid-template-columns: minmax(0, 1fr) 104px minmax(0, 1fr); gap: 10px; align-items: center">
-      <div style="display: flex; flex-direction: column; gap: 10px">
-        <button type="button" style="text-align: left; border: 2px solid #2563A8; border-radius: 10px; background: #F3F7FC; padding: 8px; font: inherit; color: inherit; display: flex; flex-direction: column; gap: 2px; min-height: 96px">
-          <span style="display: flex; justify-content: space-between; align-items: center">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2563A8" stroke-width="2" aria-hidden="true"><path d="M6 3 Q18 12 6 21"></path><path d="M6 3 V21"></path><path d="M9 12 H20 M17 9 L20 12 L17 15"></path></svg>
-            <span style="font-size: 12px; font-weight: 700; background: #1F5F99; color: #FFFFFF; border-radius: 6px; padding: 1px 6px">+2</span>
-          </span>
-          <span style="font-size: 12px; font-weight: 700; color: #2563A8">희귀 · 무기</span>
-          <span style="font-size: 13px; font-weight: 500">바람결 장궁</span>
-          <span style="font-size: 11px; color: #4A5B6D">궁술 · 장비 레벨 21</span>
+  <section aria-label="착용 장비" style="padding: 14px 14px 10px; display: grid; grid-template-columns: 72px minmax(0, 1fr) 72px; gap: 6px; align-items: center; background: #151D29">
+    <div style="display: flex; flex-direction: column; gap: 14px; align-items: center">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 4px">
+        <button type="button" onClick="{{eqH.pick}}" aria-label="머리 · 하늘돌 투구" style="position: relative; width: 64px; height: 64px; border-radius: 10px; border: 2px solid {{eqH.color}}; background: {{eqH.tint}}; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer">
+          <svg width="40" height="40" viewBox="0 0 32 32" fill="{{eqH.color}}" fill-opacity="0.2" stroke="{{eqH.color}}" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M7 19 Q7 7 16 7 Q25 7 25 19 Z"></path><path d="M6 19 H26 V23 H6 Z"></path><path d="M16 7 V14" fill="none"></path></svg>
+          <span style="position: absolute; right: 3px; bottom: 2px; font-size: 11px; font-weight: 700; color: #FFFFFF">+1</span>
         </button>
-        <button type="button" style="text-align: left; border: 2px solid #2F7A3E; border-radius: 10px; background: #F4F9F5; padding: 8px; font: inherit; color: inherit; display: flex; flex-direction: column; gap: 2px; min-height: 96px">
-          <span style="display: flex; justify-content: space-between; align-items: center">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2F7A3E" stroke-width="2" aria-hidden="true"><path d="M7 4 L12 6 L17 4 L20 8 L17 10 V20 H7 V10 L4 8 Z"></path></svg>
-            <span style="font-size: 12px; font-weight: 700; background: #1F5F99; color: #FFFFFF; border-radius: 6px; padding: 1px 6px">+1</span>
-          </span>
-          <span style="font-size: 12px; font-weight: 700; color: #2F7A3E">고급 · 몸</span>
-          <span style="font-size: 13px; font-weight: 500">구름 비단 망토</span>
-          <span style="font-size: 11px; color: #4A5B6D">궁술 · 장비 레벨 19</span>
+        <span style="font-size: 12px; color: #A7B3C2">머리</span>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 4px">
+        <button type="button" onClick="{{eqB.pick}}" aria-label="몸 · 구름 비단 망토" style="position: relative; width: 64px; height: 64px; border-radius: 10px; border: 2px solid {{eqB.color}}; background: {{eqB.tint}}; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer">
+          <svg width="40" height="40" viewBox="0 0 32 32" fill="{{eqB.color}}" fill-opacity="0.2" stroke="{{eqB.color}}" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 H21 L26 27 H6 Z"></path><path d="M11 5 Q16 10 21 5" fill="none"></path></svg>
+          <span style="position: absolute; right: 3px; bottom: 2px; font-size: 11px; font-weight: 700; color: #FFFFFF">+1</span>
         </button>
+        <span style="font-size: 12px; color: #A7B3C2">몸</span>
       </div>
+    </div>
 
-      <svg width="104" height="200" viewBox="0 0 104 200" role="img" aria-label="장비를 착용한 사냥꾼">
-        <ellipse cx="52" cy="190" rx="34" ry="6" fill="#DCE6F0"></ellipse>
-        <path d="M70 60 Q96 104 70 150" fill="none" stroke="#8A5A3B" stroke-width="4"></path>
-        <line x1="70" y1="60" x2="70" y2="150" stroke="#4A5B6D" stroke-width="1.5"></line>
-        <path d="M30 78 L74 78 L84 160 L20 160 Z" fill="#2F5872"></path>
-        <path d="M34 78 L70 78 L74 140 L30 140 Z" fill="#3F7A9C"></path>
-        <rect x="34" y="140" width="36" height="8" fill="#7A5B42"></rect>
-        <rect x="36" y="160" width="12" height="24" fill="#4A3A30"></rect>
-        <rect x="56" y="160" width="12" height="24" fill="#4A3A30"></rect>
-        <circle cx="52" cy="54" r="22" fill="#F2C9A5"></circle>
-        <path d="M30 52 Q32 26 52 26 Q74 26 74 52 Q64 40 30 52 Z" fill="#5B3A29"></path>
-        <path d="M28 46 Q52 18 76 46 L72 50 Q52 30 32 50 Z" fill="#6C7A8A"></path>
-        <circle cx="44" cy="58" r="2.5" fill="#1B2735"></circle>
-        <circle cx="60" cy="58" r="2.5" fill="#1B2735"></circle>
-        <circle cx="52" cy="98" r="5" fill="#C7A6E8" stroke="#7A3FB0" stroke-width="2"></circle>
-      </svg>
+    <svg viewBox="0 0 170 300" width="100%" height="280" role="img" aria-label="장비를 착용한 사냥꾼">
+      <ellipse cx="85" cy="150" rx="78" ry="120" fill="#1B2636"></ellipse>
+      <ellipse cx="85" cy="286" rx="52" ry="8" fill="#0B1018"></ellipse>
+      <path d="M120 40 Q160 130 118 230" fill="none" stroke="#8A5A3B" stroke-width="5" stroke-linecap="round"></path>
+      <line x1="120" y1="40" x2="118" y2="230" stroke="#C9D3DE" stroke-width="1.2"></line>
+      <path d="M52 70 Q85 60 118 70 L134 250 Q85 266 36 250 Z" fill="#23465E"></path>
+      <path d="M64 196 L80 196 L78 262 L62 262 Z" fill="#3A3F4A"></path>
+      <path d="M90 196 L106 196 L108 262 L92 262 Z" fill="#3A3F4A"></path>
+      <path d="M58 258 L80 258 L82 276 L56 276 Z" fill="#5A4636"></path>
+      <path d="M90 258 L112 258 L114 276 L88 276 Z" fill="#5A4636"></path>
+      <path d="M58 84 L112 84 L118 200 L52 200 Z" fill="#3F7A9C"></path>
+      <path d="M58 84 L112 84 L108 120 L62 120 Z" fill="#4E8FB3"></path>
+      <path d="M62 86 L108 150" stroke="#6B4A33" stroke-width="4"></path>
+      <rect x="54" y="150" width="62" height="10" fill="#6B4A33"></rect>
+      <circle cx="85" cy="155" r="6" fill="#C9A15A"></circle>
+      <path d="M58 88 L44 150 L52 152 L64 100 Z" fill="#3F7A9C"></path>
+      <path d="M112 88 L126 150 L118 152 L106 100 Z" fill="#3F7A9C"></path>
+      <circle cx="47" cy="155" r="6" fill="#F2C9A5"></circle>
+      <circle cx="123" cy="155" r="6" fill="#F2C9A5"></circle>
+      <circle cx="123" cy="158" r="2.5" fill="#B07CE8"></circle>
+      <rect x="79" y="70" width="12" height="14" fill="#E2B48F"></rect>
+      <circle cx="85" cy="56" r="20" fill="#F2C9A5"></circle>
+      <path d="M63 54 Q63 30 85 30 Q107 30 107 54 L101 50 Q85 42 69 50 Z" fill="#8A95A3"></path>
+      <rect x="63" y="50" width="44" height="6" fill="#6C7785"></rect>
+      <circle cx="78" cy="62" r="2.2" fill="#1B2735"></circle>
+      <circle cx="92" cy="62" r="2.2" fill="#1B2735"></circle>
+    </svg>
 
-      <div style="display: flex; flex-direction: column; gap: 10px">
-        <button type="button" style="text-align: left; border: 2px solid #6B7280; border-radius: 10px; background: #F6F7F8; padding: 8px; font: inherit; color: inherit; display: flex; flex-direction: column; gap: 2px; min-height: 96px">
-          <span style="display: flex; justify-content: space-between; align-items: center">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#4B5563" stroke-width="2" aria-hidden="true"><path d="M5 14 Q5 5 12 5 Q19 5 19 14 Z"></path><path d="M4 14 H20 V17 H4 Z"></path></svg>
-            <span style="font-size: 12px; font-weight: 700; background: #1F5F99; color: #FFFFFF; border-radius: 6px; padding: 1px 6px">+1</span>
-          </span>
-          <span style="font-size: 12px; font-weight: 700; color: #4B5563">일반 · 머리</span>
-          <span style="font-size: 13px; font-weight: 500">하늘돌 투구</span>
-          <span style="font-size: 11px; color: #4A5B6D">검술 · 장비 레벨 22</span>
+    <div style="display: flex; flex-direction: column; gap: 14px; align-items: center">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 4px">
+        <button type="button" onClick="{{eqW.pick}}" aria-label="무기 · 바람결 장궁" style="position: relative; width: 64px; height: 64px; border-radius: 10px; border: 2px solid {{eqW.color}}; background: {{eqW.tint}}; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer">
+          <svg width="40" height="40" viewBox="0 0 32 32" fill="none" stroke="{{eqW.color}}" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M10 4 Q26 16 10 28"></path><path d="M10 4 V28" stroke-width="1"></path><path d="M7 16 H27 M24 13 L27 16 L24 19"></path></svg>
+          <span style="position: absolute; right: 3px; bottom: 2px; font-size: 11px; font-weight: 700; color: #FFFFFF">+2</span>
         </button>
-        <button type="button" style="text-align: left; border: 2px solid #7A3FB0; border-radius: 10px; background: #F7F2FB; padding: 8px; font: inherit; color: inherit; display: flex; flex-direction: column; gap: 2px; min-height: 96px">
-          <span style="display: flex; justify-content: space-between; align-items: center">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7A3FB0" stroke-width="2" aria-hidden="true"><circle cx="12" cy="14" r="6"></circle><path d="M9 6 L12 3 L15 6 Z"></path></svg>
-            <span style="font-size: 12px; font-weight: 500; background: #DCE6F0; color: #33465A; border-radius: 6px; padding: 1px 6px">+0</span>
-          </span>
-          <span style="font-size: 12px; font-weight: 700; color: #7A3FB0">영웅 · 장신구</span>
-          <span style="font-size: 13px; font-weight: 500">순풍의 반지</span>
-          <span style="font-size: 11px; color: #4A5B6D">궁술 · 장비 레벨 20</span>
+        <span style="font-size: 12px; color: #A7B3C2">무기</span>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 4px">
+        <button type="button" onClick="{{eqA.pick}}" aria-label="장신구 · 순풍의 반지" style="position: relative; width: 64px; height: 64px; border-radius: 10px; border: 2px solid {{eqA.color}}; background: {{eqA.tint}}; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer">
+          <svg width="40" height="40" viewBox="0 0 32 32" fill="{{eqA.color}}" fill-opacity="0.2" stroke="{{eqA.color}}" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><circle cx="16" cy="19" r="8"></circle><path d="M12 9 L16 4 L20 9 Z"></path></svg>
+          <span style="position: absolute; right: 3px; bottom: 2px; font-size: 11px; font-weight: 700; color: #FFFFFF">+0</span>
         </button>
+        <span style="font-size: 12px; color: #A7B3C2">장신구</span>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section aria-label="능력치" style="background: #FFFFFF; border-radius: 12px; padding: 12px 14px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; text-align: center">
-      <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #4A5B6D">공격력</span><span style="font-size: 16px; font-weight: 700">105</span></div>
-      <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #4A5B6D">생명력</span><span style="font-size: 16px; font-weight: 700">1,058</span></div>
-      <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #4A5B6D">추가옵션</span><span style="font-size: 16px; font-weight: 700">5줄</span></div>
-    </section>
+  <section aria-label="보관함" style="flex: 1; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; overflow: hidden">
+    <div style="display: flex; justify-content: space-between; align-items: baseline">
+      <span style="font-size: 15px; font-weight: 700">보관함</span>
+      <span style="font-size: 12px; color: #A7B3C2">8 / 50 · 눌러서 자세히 보기</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px">
+      <sc-for list="{{inv}}" as="it" hint-placeholder-count="18">
+        <sc-if value="{{it.empty}}" hint-placeholder-val="{{ false }}">
+          <div style="aspect-ratio: 1; border-radius: 8px; border: 1px solid #263243; background: #141B25"></div>
+        </sc-if>
+        <sc-if value="{{it.real}}" hint-placeholder-val="{{ true }}">
+          <button type="button" onClick="{{it.pick}}" aria-label="{{it.label}}" style="position: relative; aspect-ratio: 1; border-radius: 8px; border: 2px solid {{it.color}}; background: {{it.tint}}; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer">
+            <sc-if value="{{it.isBow}}" hint-placeholder-val="{{ false }}"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="{{it.color}}" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M10 4 Q26 16 10 28"></path><path d="M10 4 V28" stroke-width="1"></path><path d="M7 16 H27 M24 13 L27 16 L24 19"></path></svg></sc-if>
+            <sc-if value="{{it.isHelm}}" hint-placeholder-val="{{ false }}"><svg width="32" height="32" viewBox="0 0 32 32" fill="{{it.color}}" fill-opacity="0.2" stroke="{{it.color}}" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M7 19 Q7 7 16 7 Q25 7 25 19 Z"></path><path d="M6 19 H26 V23 H6 Z"></path></svg></sc-if>
+            <sc-if value="{{it.isCloak}}" hint-placeholder-val="{{ false }}"><svg width="32" height="32" viewBox="0 0 32 32" fill="{{it.color}}" fill-opacity="0.2" stroke="{{it.color}}" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 H21 L26 27 H6 Z"></path><path d="M11 5 Q16 10 21 5" fill="none"></path></svg></sc-if>
+            <sc-if value="{{it.isArmor}}" hint-placeholder-val="{{ false }}"><svg width="32" height="32" viewBox="0 0 32 32" fill="{{it.color}}" fill-opacity="0.2" stroke="{{it.color}}" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M9 6 L16 9 L23 6 L27 11 L23 13 V27 H9 V13 L5 11 Z"></path></svg></sc-if>
+            <sc-if value="{{it.isRing}}" hint-placeholder-val="{{ false }}"><svg width="32" height="32" viewBox="0 0 32 32" fill="{{it.color}}" fill-opacity="0.2" stroke="{{it.color}}" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><circle cx="16" cy="19" r="8"></circle><path d="M12 9 L16 4 L20 9 Z"></path></svg></sc-if>
+            <sc-if value="{{it.isStaff}}" hint-placeholder-val="{{ false }}"><svg width="32" height="32" viewBox="0 0 32 32" fill="{{it.color}}" fill-opacity="0.2" stroke="{{it.color}}" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M10 28 L20 11" fill="none"></path><circle cx="22" cy="8" r="4.5"></circle></svg></sc-if>
+            <sc-if value="{{it.up}}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="position: absolute; left: 3px; top: 1px; font-size: 12px; font-weight: 700; color: #6FD08C">▲</span></sc-if>
+          </button>
+        </sc-if>
+      </sc-for>
+    </div>
+    <div style="display: flex; gap: 14px; font-size: 12px; color: #A7B3C2">
+      <span><span style="color: #6FD08C">▲</span> 장착하면 전투력이 올라요</span>
+      <span>테두리 색 = 등급</span>
+    </div>
+  </section>
 
-    <section aria-label="기술 칸" style="background: #FFFFFF; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px">
-      <div style="display: flex; justify-content: space-between; align-items: center">
-        <span style="font-size: 14px; font-weight: 700">기술 칸</span>
-        <span style="font-size: 12px; color: #4A5B6D">자동 추천 장착 켜짐</span>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
-        <div style="background: #F3F7FB; border-radius: 8px; padding: 8px; display: flex; flex-direction: column; gap: 2px">
-          <span style="font-size: 13px; font-weight: 700">연사</span>
-          <span style="font-size: 12px; color: #2F7A3E; font-weight: 500">Lv 2 · 장비 +1</span>
-        </div>
-        <div style="background: #F3F7FB; border-radius: 8px; padding: 8px; display: flex; flex-direction: column; gap: 2px">
-          <span style="font-size: 13px; font-weight: 700">조준 사격</span>
-          <span style="font-size: 12px; color: #4A5B6D">Lv 1</span>
-        </div>
-        <div style="background: #F3F7FB; border-radius: 8px; padding: 8px; display: flex; flex-direction: column; gap: 2px">
-          <span style="font-size: 13px; font-weight: 700">관통 화살</span>
-          <span style="font-size: 12px; color: #4A5B6D">Lv 1</span>
-        </div>
-      </div>
-    </section>
-
-    <section aria-label="자동 관리" style="background: #FFFFFF; border-radius: 12px; padding: 4px 14px">
-      <label style="display: flex; justify-content: space-between; align-items: center; min-height: 44px; font-size: 14px">더 좋은 장비로 바꿔 끼기<input type="checkbox" checked style="width: 20px; height: 20px"></label>
-      <label style="display: flex; justify-content: space-between; align-items: center; min-height: 44px; font-size: 14px; border-top: 1px solid #E4EBF2">하늘돌이 모이면 자동 강화<input type="checkbox" checked style="width: 20px; height: 20px"></label>
-    </section>
-  </main>
-
-  <nav aria-label="주 메뉴" style="height: 68px; background: #FFFFFF; border-top: 1px solid #D9E2EC; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr))">
-    <a href="Main.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; color: #4A5B6D; text-decoration: none">
+  <nav aria-label="주 메뉴" style="height: 64px; background: #151D29; border-top: 1px solid #263243; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr))">
+    <a href="Main.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11 L12 4 L21 11"></path><path d="M5 10 V20 H19 V10"></path></svg>집</a>
-    <a href="#expedition" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; color: #4A5B6D; text-decoration: none">
+    <a href="#expedition" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 V15"></path><path d="M7 10 L12 15 L17 10"></path><path d="M4 20 H20"></path></svg>원정</a>
-    <a href="Gear.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 700; color: #1F5F99; text-decoration: none">
+    <a href="Gear.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; font-weight: 700; color: #8CC4F5; text-decoration: none">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 L19 6 V12 C19 16 16 19 12 21 C8 19 5 16 5 12 V6 Z"></path></svg>장비</a>
-    <a href="#market" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; color: #4A5B6D; text-decoration: none">
+    <a href="#market" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 8 H20 L18 20 H6 Z"></path><path d="M9 8 V6 A3 3 0 0 1 15 6 V8"></path></svg>거래소</a>
-    <a href="#dungeon" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; color: #4A5B6D; text-decoration: none">
+    <a href="#dungeon" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; color: #A7B3C2; text-decoration: none">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 14 C8 8 12 16 20 10"></path><path d="M4 19 C8 13 12 21 20 15"></path><path d="M4 9 C8 3 12 11 20 5"></path></svg>던전</a>
   </nav>
+
+  <sc-if value="{{hasSel}}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; inset: 0; background: rgba(5, 8, 12, 0.6); display: flex; flex-direction: column; justify-content: flex-end">
+      <button type="button" onClick="{{close}}" aria-label="닫기" style="flex: 1; border: none; background: transparent; cursor: pointer"></button>
+      <section role="dialog" aria-label="{{s.name}} 정보" style="background: #141B27; border-top: 2px solid {{s.color}}; border-radius: 18px 18px 0 0; padding: 10px 16px 18px; display: flex; flex-direction: column; gap: 12px; max-height: 720px; overflow: auto">
+        <div style="width: 40px; height: 4px; border-radius: 2px; background: #3A4658; align-self: center"></div>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px">
+          <div style="display: flex; flex-direction: column; gap: 2px">
+            <span style="font-family: 'Gowun Batang', serif; font-size: 21px; font-weight: 700; color: {{s.color}}">{{s.name}}</span>
+            <span style="font-size: 14px; color: {{s.color}}">{{s.sub}}</span>
+            <span style="font-size: 13px; color: #A7B3C2">{{s.meta}}</span>
+          </div>
+          <button type="button" onClick="{{close}}" aria-label="닫기" style="width: 44px; height: 44px; border-radius: 22px; border: 1px solid #3A4658; background: transparent; color: #E8EDF4; font: inherit; font-size: 18px; cursor: pointer">✕</button>
+        </div>
+
+        <div style="border-top: 1px solid #2A3647; padding-top: 10px; display: flex; flex-direction: column; gap: 4px">
+          <span style="font-size: 18px; font-weight: 700">{{s.base}} <span style="color: {{s.baseDColor}}">{{s.baseD}}</span></span>
+          <span style="font-size: 13px; color: #A7B3C2">{{s.enhNote}}</span>
+        </div>
+
+        <sc-if value="{{s.hasOpts}}" hint-placeholder-val="{{ true }}">
+          <ul style="margin: 0; padding: 10px 0 0; border-top: 1px solid #2A3647; list-style: none; display: flex; flex-direction: column; gap: 8px">
+            <sc-for list="{{s.opts}}" as="o" hint-placeholder-count="3">
+              <li style="display: flex; flex-direction: column; gap: 1px; font-size: 15px">
+                <span style="color: {{o.textColor}}; text-decoration: {{o.deco}}">◆ {{o.t}} <span style="color: #A7B3C2; font-size: 13px">{{o.r}}</span> <span style="color: {{o.dColor}}; font-size: 13px">{{o.d}}</span></span>
+              </li>
+            </sc-for>
+          </ul>
+        </sc-if>
+
+        <sc-if value="{{s.hasLost}}" hint-placeholder-val="{{ false }}">
+          <div style="border-top: 1px solid #2A3647; padding-top: 10px; display: flex; flex-direction: column; gap: 4px">
+            <span style="font-size: 13px; font-weight: 700; color: #E8EDF4">장착하면 사라지는 옵션</span>
+            <sc-for list="{{s.lost}}" as="l" hint-placeholder-count="2">
+              <span style="font-size: 14px; color: #F08A8A">◆ {{l.t}}</span>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <div style="border-top: 1px solid #2A3647; padding-top: 10px; display: flex; justify-content: space-between; align-items: baseline">
+          <span style="font-size: 14px; font-weight: 700; color: {{s.powerColor}}">{{s.power}}</span>
+          <span style="font-size: 12px; color: #A7B3C2">판매가 {{s.price}} 골드</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+          <button type="button" style="min-height: 44px; border-radius: 8px; border: 1px solid #3A4658; background: transparent; color: #E8EDF4; font: inherit; font-size: 14px">잠금</button>
+          <button type="button" style="min-height: 44px; border-radius: 8px; border: 1px solid #3A4658; background: transparent; color: #E8EDF4; font: inherit; font-size: 14px">재련</button>
+          <button type="button" style="min-height: 44px; border-radius: 8px; border: 1px solid #3A4658; background: transparent; color: #E8EDF4; font: inherit; font-size: 14px">{{s.thirdBtn}}</button>
+        </div>
+        <sc-if value="{{s.inv}}" hint-placeholder-val="{{ true }}">
+          <button type="button" style="min-height: 50px; border-radius: 10px; border: none; background: #3D86C6; color: #FFFFFF; font: inherit; font-size: 16px; font-weight: 700">장착</button>
+        </sc-if>
+      </section>
+    </div>
+  </sc-if>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+<script type="text/x-dc" data-dc-script data-props='{"initialSelected":{"editor":null},"$preview":{"width":390,"height":844}}'>
 class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { sel: undefined };
+  }
   renderVals() {
-    return {};
+    const G = {
+      '일반': { c: '#A3ADBA', t: '#1C232E' },
+      '고급': { c: '#5FBF73', t: '#16261C' },
+      '희귀': { c: '#5A9BE6', t: '#152335' },
+      '영웅': { c: '#B585EA', t: '#241A33' },
+      '전설': { c: '#E0A93B', t: '#2E2412' }
+    };
+    const col = (d) => !d ? '#A7B3C2' : (d.charAt(0) === '+' ? '#6FD08C' : (d.charAt(0) === '−' ? '#F08A8A' : '#A7B3C2'));
+    const raw = [
+      { id: 'eqW', icon: 'bow', grade: '희귀', name: '바람결 장궁', kind: '장궁', line: '궁술', ilv: 21, base: '공격력 31', enhNote: '무기 칸 +2 적용 · 실제 공격력 37', opts: [{ t: '공격력 +3%', r: '[2 – 4]%' }, { t: '연사 +1', r: '장착한 기술' }], price: '640' },
+      { id: 'eqH', icon: 'helm', grade: '일반', name: '하늘돌 투구', kind: '투구', line: '검술', ilv: 22, base: '생명력 124', enhNote: '머리 칸 +1 적용 · 실제 생명력 136', opts: [], price: '210' },
+      { id: 'eqB', icon: 'cloak', grade: '고급', name: '구름 비단 망토', kind: '망토', line: '궁술', ilv: 19, base: '생명력 131', enhNote: '몸 칸 +1 적용 · 실제 생명력 144', opts: [{ t: '생명력 +2%', r: '[1 – 2]%' }], price: '330' },
+      { id: 'eqA', icon: 'ring', grade: '영웅', name: '순풍의 반지', kind: '반지', line: '궁술', ilv: 20, base: '공격력 9 · 생명력 88', enhNote: '장신구 칸 +0', opts: [{ t: '공격력 +4%', r: '[3 – 6]%' }, { t: '생명력 +5%', r: '[3 – 6]%' }, { t: '조준 사격 +1', r: '장착한 기술' }], price: '1,480' },
+      { id: 'i1', inv: true, icon: 'bow', grade: '영웅', name: '천둥새의 장궁', kind: '장궁', line: '궁술', ilv: 24, base: '공격력 46', baseD: '(+15)', enhNote: '무기 칸 +2 적용 · 실제 공격력 55', opts: [{ t: '공격력 +5%', r: '[3 – 6]%', d: '(+2%)' }, { t: '연사 +1', r: '장착한 기술', d: '(같음)' }, { t: '생명력 +4%', r: '[3 – 6]%', d: '(+4%)' }], lost: [], power: '장착하면 전투력 +67', price: '2,960', up: true },
+      { id: 'i2', inv: true, icon: 'helm', grade: '희귀', name: '매의 눈 두건', kind: '두건', line: '궁술', ilv: 23, base: '생명력 141', baseD: '(+17)', enhNote: '머리 칸 +1 적용 · 실제 생명력 155', opts: [{ t: '생명력 +3%', r: '[2 – 4]%', d: '(+3%)' }, { t: '관통 화살 +1', r: '장착한 기술', d: '(+1)' }], lost: [], power: '장착하면 전투력 +31', price: '820', up: true },
+      { id: 'i3', inv: true, icon: 'staff', grade: '희귀', name: '이슬 지팡이', kind: '지팡이', line: '마법', ilv: 22, base: '공격력 33', baseD: '(+2)', enhNote: '무기 칸 +2 적용 · 실제 공격력 40', opts: [{ t: '공격력 +2%', r: '[2 – 4]%', d: '(−1%)' }, { t: '화염구 +1', r: '마법사 기술 · 효과 없음', off: true }], lost: [{ t: '연사 +1' }], power: '장착하면 전투력 −9', price: '780' },
+      { id: 'i4', inv: true, icon: 'armor', grade: '희귀', name: '섬돌 갑옷', kind: '갑옷', line: '검술', ilv: 21, base: '생명력 126', baseD: '(−5)', enhNote: '몸 칸 +1 적용 · 실제 생명력 139', opts: [{ t: '생명력 +2%', r: '[2 – 4]%', d: '(같음)' }, { t: '방패 막기 +1', r: '전사 기술 · 효과 없음', off: true }], lost: [], power: '장착하면 전투력 −4', price: '760' },
+      { id: 'i5', inv: true, icon: 'ring', grade: '고급', name: '바위껍질 반지', kind: '반지', line: '검술', ilv: 22, base: '공격력 7 · 생명력 70', baseD: '', enhNote: '장신구 칸 +0', opts: [{ t: '생명력 +2%', r: '[1 – 2]%', d: '(−3%)' }], lost: [{ t: '공격력 +4%' }, { t: '조준 사격 +1' }], power: '장착하면 전투력 −61', price: '350' },
+      { id: 'i6', inv: true, icon: 'cloak', grade: '일반', name: '구름 해파리 망토', kind: '망토', line: '궁술', ilv: 23, base: '생명력 140', baseD: '(+9)', enhNote: '몸 칸 +1 적용 · 실제 생명력 154', opts: [], lost: [{ t: '생명력 +2%' }], power: '장착하면 전투력 −6', price: '190' },
+      { id: 'i7', inv: true, icon: 'bow', grade: '고급', name: '바람결 단궁', kind: '단궁', line: '궁술', ilv: 20, base: '공격력 28', baseD: '(−3)', enhNote: '무기 칸 +2 적용 · 실제 공격력 34', opts: [{ t: '공격력 +1%', r: '[1 – 2]%', d: '(−2%)' }], lost: [{ t: '연사 +1' }], power: '장착하면 전투력 −35', price: '300' },
+      { id: 'i8', inv: true, icon: 'staff', grade: '영웅', name: '구름 수정 지팡이', kind: '지팡이', line: '마법', ilv: 23, base: '공격력 40', baseD: '(+9)', enhNote: '무기 칸 +2 적용 · 실제 공격력 48', opts: [{ t: '공격력 +6%', r: '[3 – 6]%', d: '(+3%)' }, { t: '축복 마법 전부 +1', r: '마법사 기술 · 효과 없음', off: true }, { t: '생명력 +3%', r: '[3 – 6]%', d: '(+3%)' }], lost: [{ t: '연사 +1' }], power: '장착하면 전투력 +22', price: '2,400', up: true }
+    ];
+    const deco = (it) => {
+      const g = G[it.grade];
+      const opts = (it.opts || []).map((o) => ({ t: o.t, r: o.r, d: o.d || '', dColor: col(o.d), textColor: o.off ? '#6E7B8C' : '#E8EDF4', deco: o.off ? 'line-through' : 'none' }));
+      const lost = it.lost || [];
+      return Object.assign({}, it, {
+        real: true, empty: false, color: g.c, tint: g.t,
+        isBow: it.icon === 'bow', isHelm: it.icon === 'helm', isCloak: it.icon === 'cloak', isArmor: it.icon === 'armor', isRing: it.icon === 'ring', isStaff: it.icon === 'staff',
+        label: it.grade + ' ' + it.kind + ' · ' + it.name,
+        sub: it.grade + ' ' + it.kind + ' · ' + it.line + ' 계통',
+        meta: '장비 레벨 ' + it.ilv + (it.inv ? ' · 보관함' : ' · 착용 중'),
+        baseD: it.baseD || '', baseDColor: col(it.baseD ? it.baseD.replace('(', '') : ''),
+        opts: opts, hasOpts: opts.length > 0, lost: lost, hasLost: lost.length > 0,
+        power: it.power || '착용 중인 장비', powerColor: it.power ? col(it.power.replace('장착하면 전투력 ', '')) : '#A7B3C2',
+        thirdBtn: it.inv ? '재료로 바꾸기' : '칸 강화',
+        inv: !!it.inv, up: !!it.up,
+        pick: () => this.setState({ sel: it.id })
+      });
+    };
+    const all = raw.map(deco);
+    const byId = {};
+    all.forEach((x) => { byId[x.id] = x; });
+    const inv = all.filter((x) => x.inv);
+    while (inv.length < 24) inv.push({ empty: true, real: false });
+    const selId = this.state.sel !== undefined ? this.state.sel : (this.props.initialSelected || null);
+    const s = selId && byId[selId] ? byId[selId] : all[0];
+    return {
+      eqW: byId.eqW, eqH: byId.eqH, eqB: byId.eqB, eqA: byId.eqA,
+      inv: inv, s: s, hasSel: !!(selId && byId[selId]),
+      close: () => this.setState({ sel: null })
+    };
   }
 }
 </script>
