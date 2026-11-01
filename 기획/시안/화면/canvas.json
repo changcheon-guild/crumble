@@ -256,6 +256,15 @@
       "w": 390,
       "x": 940,
       "y": 0
+    },
+    "SocialB.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "b",
+      "title": "B안 · 교류 탭 (눌러 보기)",
+      "w": 390,
+      "x": 3290,
+      "y": 0
     }
   },
   "createdOnFiles": {
@@ -347,7 +356,8 @@
     "MarketPCB.dc.html",
     "BattlePCB.dc.html",
     "IslandGuestsB.dc.html",
-    "RaidB.dc.html"
+    "RaidB.dc.html",
+    "SocialB.dc.html"
   ],
   "pages": [
     {
