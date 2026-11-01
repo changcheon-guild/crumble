@@ -43,7 +43,8 @@ a{color:#8CC4F5}a:hover{color:#B8DBFA}
           <div style="width: 60px; height: 60px; flex-shrink: 0; border-radius: 10px; border: 2px solid {{r.color}}; background: {{r.tint}}; display: flex; align-items: center; justify-content: center"><img src="{{r.img}}" alt="" width="51" height="51" style="image-rendering: pixelated"></div>
           <div style="display: flex; flex-direction: column; gap: 1px; flex: 1; min-width: 0">
             <span style="font-size: 14px; font-weight: 700; color: {{r.color}}">[{{r.grade}}] {{r.name}}</span>
-            <span style="font-size: 12px; color: #A7B3C2">{{r.meta}}</span>
+            <span style="font-size: 12px; color: #A7B3C2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.meta}}</span>
+            <sc-if value="{{r.hasOpt}}" hint-placeholder-val="{{ true }}"><span style="align-self: flex-start; white-space: nowrap; font-size: 12px; padding: 1px 8px; border-radius: 10px; background: #1F2A3B; border: 1px solid #2E3D54">{{r.opt}}</span></sc-if>
             <span style="font-size: 13px; font-weight: 700; color: #6FD08C">장착하면 {{r.gain}}</span>
           </div>
           <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px">
@@ -177,13 +178,13 @@ class Component extends DCLogic {
       staff_rare: B + '6f5b0cdfdc6f63e19bf2ce554a666b15', staff_hero: B + '422d1f0fb82719519ec686025246d86e', core: B + '03183310b3ca0f8452ac3597547329b7'
     };
     const st = this.state;
-    const g = (x) => Object.assign({}, x, { color: G[x.grade].c, tint: G[x.grade].t, img: IMG[x.img] });
+    const g = (x) => Object.assign({}, x, { color: G[x.grade].c, tint: G[x.grade].t, img: IMG[x.img], opt: x.opt || '', hasOpt: !!x.opt });
     const tabDefs = [['rec', '추천'], ['search', '검색'], ['sell', '판매'], ['shop', '상점']];
     const tabs = tabDefs.map((d) => ({ label: d[1], on: st.tab === d[0], line: st.tab === d[0] ? '#8CC4F5' : 'transparent', color: st.tab === d[0] ? '#FFFFFF' : '#A7B3C2', pick: () => this.setState({ tab: d[0] }) }));
     const recs = [
-      { grade: '영웅', name: '회오리 장궁', img: 'bow_hero', meta: '무기 · 궁술 · 장비 레벨 25 · 연사 +1', gain: '+120', price: '3,200', recent: '3,050' },
-      { grade: '희귀', name: '새벽 사냥꾼 모자', img: 'helm_rare', meta: '머리 · 궁술 · 장비 레벨 24 · 관통 화살 +1', gain: '+44', price: '950', recent: '900' },
-      { grade: '영웅', name: '구름결 목걸이', img: 'neck_hero', meta: '장신구 · 궁술 · 장비 레벨 24 · 조준 사격 +1', gain: '+71', price: '2,400', recent: '2,600' },
+      { grade: '영웅', name: '회오리 장궁', img: 'bow_hero', meta: '무기 · 궁술 · 장비 레벨 25', opt: '연사 +1', gain: '+120', price: '3,200', recent: '3,050' },
+      { grade: '희귀', name: '새벽 사냥꾼 모자', img: 'helm_rare', meta: '머리 · 궁술 · 장비 레벨 24', opt: '관통 화살 +1', gain: '+44', price: '950', recent: '900' },
+      { grade: '영웅', name: '구름결 목걸이', img: 'neck_hero', meta: '목걸이 · 궁술 · 장비 레벨 24', opt: '조준 사격 +1', gain: '+71', price: '2,400', recent: '2,600' },
       { grade: '희귀', name: '바람 깃 장궁', img: 'bow_rare', meta: '무기 · 궁술 · 장비 레벨 25', gain: '+38', price: '880', recent: '910' }
     ].map(g);
     const chip = (t, on) => ({ t: t, on: on, border: on ? '#8CC4F5' : '#3A4658', bg: on ? '#1F3550' : 'transparent', color: on ? '#FFFFFF' : '#C8D3E6' });

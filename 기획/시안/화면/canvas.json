@@ -1,1 +1,363 @@
-{"v": 3, "attachments": {}, "createdOnFiles": {"v": 1, "at": "2026-11-01T09:00:00Z"}, "title": "하늘 군도 화면 시안", "launch": {"view": "canvas", "page": "b"}, "pages": [{"id": "b", "name": "최신 시안 (B안)"}, {"id": "old", "name": "이전 시안"}], "boards": {"Main.dc.html": {"x": 0, "y": 0, "w": 390, "h": 844, "title": "집 화면 · 휴대폰 · 평소", "page": "old"}, "GateArrived.dc.html": {"x": 470, "y": 0, "w": 390, "h": 844, "title": "집 화면 · 휴대폰 · 폭풍의 벽 도착", "page": "old"}, "HomePC.dc.html": {"x": 940, "y": 0, "w": 1280, "h": 844, "title": "집 화면 · PC", "expand": "fill", "page": "old"}, "Gear.dc.html": {"x": 0, "y": 1264, "w": 390, "h": 844, "title": "장비 · 휴대폰 · 착용", "page": "old"}, "GearDetail.dc.html": {"x": 470, "y": 1264, "w": 390, "h": 844, "title": "장비 · 휴대폰 · 장비 비교", "page": "old"}, "GearPC.dc.html": {"x": 940, "y": 1264, "w": 1280, "h": 900, "title": "장비 · PC", "expand": "fill", "page": "old"}, "HomeB.dc.html": {"x": 0, "y": 0, "w": 390, "h": 844, "title": "B안 · 집 화면", "page": "b"}, "GearB.dc.html": {"x": 0, "y": 2528, "w": 390, "h": 844, "title": "B안 · 장비 (눌러 보기)", "page": "b", "is_interactive": true}, "GearBDetail.dc.html": {"x": 470, "y": 2528, "w": 390, "h": 844, "title": "B안 · 장비 · 전설 장비를 누른 모습", "page": "b", "is_interactive": true}, "ExpeditionB.dc.html": {"x": 0, "y": 1264, "w": 390, "h": 844, "title": "B안 · 원정 탭 (탐사·던전 눌러 보기)", "page": "b", "is_interactive": true}, "ReportB.dc.html": {"x": 470, "y": 0, "w": 390, "h": 844, "title": "B안 · 자리 비운 동안 (성장 보고 상세)", "page": "b", "is_interactive": true}, "StartB.dc.html": {"x": 940, "y": 0, "w": 390, "h": 844, "title": "B안 · 처음 시작 (닉네임·직업 고르기)", "page": "b", "is_interactive": true}, "PixelEditorB.dc.html": {"x": 1410, "y": 0, "w": 390, "h": 844, "title": "B안 · 도트 편집기 (눌러서 칠하기)", "page": "b", "is_interactive": true}, "ProfileB.dc.html": {"x": 1880, "y": 0, "w": 390, "h": 844, "title": "B안 · 다른 모험가 프로필", "page": "b", "is_interactive": true}, "SettingsB.dc.html": {"x": 2350, "y": 0, "w": 390, "h": 844, "title": "B안 · 설정과 자동 관리", "page": "b", "is_interactive": true}, "GateB.dc.html": {"x": 470, "y": 1264, "w": 390, "h": 844, "title": "B안 · 폭풍의 벽 도전", "page": "b"}, "PartyB.dc.html": {"x": 940, "y": 1264, "w": 390, "h": 844, "title": "B안 · 파티 모집과 대기 (눌러 보기)", "page": "b", "is_interactive": true}, "BattleB.dc.html": {"x": 1410, "y": 1264, "w": 390, "h": 844, "title": "B안 · 던전 중계 재생 (재생됨)", "page": "b", "is_interactive": true}, "ResultB.dc.html": {"x": 1880, "y": 1264, "w": 390, "h": 844, "title": "B안 · 전투 결과", "page": "b"}, "ForgeB.dc.html": {"x": 940, "y": 2528, "w": 390, "h": 844, "title": "B안 · 강화·재련·제작 (눌러 보기)", "page": "b", "is_interactive": true}, "SkillsB.dc.html": {"x": 1410, "y": 2528, "w": 390, "h": 844, "title": "B안 · 기술 (눌러 보기)", "page": "b", "is_interactive": true}, "MarketB.dc.html": {"x": 1880, "y": 2528, "w": 390, "h": 844, "title": "B안 · 거래소 (눌러 보기)", "page": "b", "is_interactive": true}, "HomePCB.dc.html": {"x": 0, "y": 3792, "w": 1280, "h": 900, "title": "B안 · 집 화면 · PC", "expand": "fill", "page": "b"}, "GearPCB.dc.html": {"x": 1360, "y": 3792, "w": 1280, "h": 900, "title": "B안 · 장비 · PC (올리면 설명, 누르면 고정)", "expand": "fill", "page": "b", "is_interactive": true}, "ExpeditionPCB.dc.html": {"x": 0, "y": 5112, "w": 1280, "h": 900, "title": "B안 · 원정 · PC", "expand": "fill", "page": "b"}, "MarketPCB.dc.html": {"x": 1360, "y": 5112, "w": 1280, "h": 900, "title": "B안 · 거래소 · PC", "expand": "fill", "page": "b"}, "BattlePCB.dc.html": {"x": 2720, "y": 5112, "w": 1280, "h": 900, "title": "B안 · 던전 중계 · PC", "expand": "fill", "page": "b", "is_interactive": true}, "IslandGuestsB.dc.html": {"x": 2820, "y": 0, "w": 390, "h": 844, "title": "B안 · 섬 초대와 함께 탐사", "page": "b"}, "RaidB.dc.html": {"x": 2350, "y": 1264, "w": 390, "h": 844, "title": "B안 · 큰 토벌 · 8인 매칭 (눌러 보기)", "page": "b", "is_interactive": true}}, "order": ["Main.dc.html", "GateArrived.dc.html", "HomePC.dc.html", "Gear.dc.html", "GearDetail.dc.html", "GearPC.dc.html", "HomeB.dc.html", "ReportB.dc.html", "StartB.dc.html", "PixelEditorB.dc.html", "ProfileB.dc.html", "SettingsB.dc.html", "ExpeditionB.dc.html", "GateB.dc.html", "PartyB.dc.html", "BattleB.dc.html", "ResultB.dc.html", "GearB.dc.html", "GearBDetail.dc.html", "ForgeB.dc.html", "SkillsB.dc.html", "MarketB.dc.html", "HomePCB.dc.html", "GearPCB.dc.html", "ExpeditionPCB.dc.html", "MarketPCB.dc.html", "BattlePCB.dc.html", "IslandGuestsB.dc.html"], "notes": {"title": {"x": 0, "y": -300, "text": "집 화면 시안", "kind": "title1", "maxW": 2220, "w": 240, "page": "old"}, "gearTitle": {"x": 0, "y": 964, "text": "장비 화면 시안", "kind": "title1", "maxW": 2220, "page": "old"}, "rowHome": {"x": 0, "y": -300, "text": "집 · 시작 · 꾸미기", "kind": "title1", "maxW": 3210, "page": "b"}, "rowExp": {"x": 0, "y": 964, "text": "원정 · 던전 · 파티", "kind": "title1", "maxW": 2270, "page": "b"}, "rowGear": {"x": 0, "y": 2228, "text": "장비 · 성장 · 거래", "kind": "title1", "maxW": 2270, "page": "b"}, "rowPC": {"x": 0, "y": 3492, "text": "PC 화면", "kind": "title1", "maxW": 2640, "page": "b"}}, "designSystems": []}
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "BattleB.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "b",
+      "title": "B안 · 던전 중계 재생 (재생됨)",
+      "w": 390,
+      "x": 1410,
+      "y": 1264
+    },
+    "BattlePCB.dc.html": {
+      "expand": "fill",
+      "h": 900,
+      "is_interactive": true,
+      "page": "b",
+      "title": "B안 · 던전 중계 · PC",
+      "w": 1280,
+      "x": 2720,
+      "y": 5112
+    },
+    "ExpeditionB.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "b",
+      "title": "B안 · 원정 탭 (탐사·던전 눌러 보기)",
+      "w": 390,
+      "x": 0,
+      "y": 1264
+    },
+    "ExpeditionPCB.dc.html": {
+      "expand": "fill",
+      "h": 900,
+      "page": "b",
+      "title": "B안 · 원정 · PC",
+      "w": 1280,
+      "x": 0,
+      "y": 5112
+    },
+    "ForgeB.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "b",
+      "title": "B안 · 강화·재련·제작 (눌러 보기)",
+      "w": 390,
+      "x": 940,
+      "y": 2528
+    },
+    "GateArrived.dc.html": {
+      "h": 844,
+      "page": "old",
+      "title": "집 화면 · 휴대폰 · 폭풍의 벽 도착",
+      "w": 390,
+      "x": 470,
+      "y": 0
+    },
+    "GateB.dc.html": {
+      "h": 844,
+      "page": "b",
+      "title": "B안 · 폭풍의 벽 도전",
+      "w": 390,
+      "x": 470,
+      "y": 1264
+    },
+    "Gear.dc.html": {
+      "h": 844,
+      "page": "old",
+      "title": "장비 · 휴대폰 · 착용",
+      "w": 390,
+      "x": 0,
+      "y": 1264
+    },
+    "GearB.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "b",
+      "title": "B안 · 장비 (눌러 보기)",
+      "w": 390,
+      "x": 0,
+      "y": 2528
+    },
+    "GearBDetail.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "b",
+      "title": "B안 · 장비 · 전설 장비를 누른 모습",
+      "w": 390,
+      "x": 470,
+      "y": 2528
+    },
+    "GearDetail.dc.html": {
+      "h": 844,
+      "page": "old",
+      "title": "장비 · 휴대폰 · 장비 비교",
+      "w": 390,
+      "x": 470,
+      "y": 1264
+    },
+    "GearPC.dc.html": {
+      "expand": "fill",
+      "h": 900,
+      "page": "old",
+      "title": "장비 · PC",
+      "w": 1280,
+      "x": 940,
+      "y": 1264
+    },
+    "GearPCB.dc.html": {
+      "expand": "fill",
+      "h": 900,
+      "is_interactive": true,
+      "page": "b",
+      "title": "B안 · 장비 · PC (올리면 설명, 누르면 고정)",
+      "w": 1280,
+      "x": 1360,
+      "y": 3792
+    },
+    "HomeB.dc.html": {
+      "h": 844,
+      "page": "b",
+      "title": "B안 · 집 화면",
+      "w": 390,
+      "x": 0,
+      "y": 0
+    },
+    "HomePC.dc.html": {
+      "expand": "fill",
+      "h": 844,
+      "page": "old",
+      "title": "집 화면 · PC",
+      "w": 1280,
+      "x": 940,
+      "y": 0
+    },
+    "HomePCB.dc.html": {
+      "expand": "fill",
+      "h": 900,
+      "page": "b",
+      "title": "B안 · 집 화면 · PC",
+      "w": 1280,
+      "x": 0,
+      "y": 3792
+    },
+    "IslandGuestsB.dc.html": {
+      "h": 844,
+      "page": "b",
+      "title": "B안 · 섬 초대와 함께 탐사",
+      "w": 390,
+      "x": 2820,
+      "y": 0
+    },
+    "Main.dc.html": {
+      "h": 844,
+      "page": "old",
+      "title": "집 화면 · 휴대폰 · 평소",
+      "w": 390,
+      "x": 0,
+      "y": 0
+    },
+    "MarketB.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "b",
+      "title": "B안 · 거래소 (눌러 보기)",
+      "w": 390,
+      "x": 1880,
+      "y": 2528
+    },
+    "MarketPCB.dc.html": {
+      "expand": "fill",
+      "h": 900,
+      "page": "b",
+      "title": "B안 · 거래소 · PC",
+      "w": 1280,
+      "x": 1360,
+      "y": 5112
+    },
+    "PartyB.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "b",
+      "title": "B안 · 파티 모집과 대기 (눌러 보기)",
+      "w": 390,
+      "x": 940,
+      "y": 1264
+    },
+    "PixelEditorB.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "b",
+      "title": "B안 · 도트 편집기 (눌러서 칠하기)",
+      "w": 390,
+      "x": 1410,
+      "y": 0
+    },
+    "ProfileB.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "b",
+      "title": "B안 · 다른 모험가 프로필",
+      "w": 390,
+      "x": 1880,
+      "y": 0
+    },
+    "RaidB.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "b",
+      "title": "B안 · 큰 토벌 · 하루 한 번 기록 (눌러 보기)",
+      "w": 390,
+      "x": 2350,
+      "y": 1264
+    },
+    "ReportB.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "b",
+      "title": "B안 · 자리 비운 동안 (성장 보고 상세)",
+      "w": 390,
+      "x": 470,
+      "y": 0
+    },
+    "ResultB.dc.html": {
+      "h": 844,
+      "page": "b",
+      "title": "B안 · 전투 결과",
+      "w": 390,
+      "x": 1880,
+      "y": 1264
+    },
+    "SettingsB.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "b",
+      "title": "B안 · 설정과 자동 관리",
+      "w": 390,
+      "x": 2350,
+      "y": 0
+    },
+    "SkillsB.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "b",
+      "title": "B안 · 기술 (눌러 보기)",
+      "w": 390,
+      "x": 1410,
+      "y": 2528
+    },
+    "StartB.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "b",
+      "title": "B안 · 처음 시작 (닉네임·직업 고르기)",
+      "w": 390,
+      "x": 940,
+      "y": 0
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-11-01T09:00:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "page": "b",
+    "view": "canvas"
+  },
+  "notes": {
+    "gearTitle": {
+      "kind": "title1",
+      "maxW": 2220,
+      "page": "old",
+      "text": "장비 화면 시안",
+      "x": 0,
+      "y": 964
+    },
+    "rowExp": {
+      "kind": "title1",
+      "maxW": 2270,
+      "page": "b",
+      "text": "원정 · 던전 · 파티",
+      "x": 0,
+      "y": 964
+    },
+    "rowGear": {
+      "kind": "title1",
+      "maxW": 2270,
+      "page": "b",
+      "text": "장비 · 성장 · 거래",
+      "x": 0,
+      "y": 2228
+    },
+    "rowHome": {
+      "kind": "title1",
+      "maxW": 3210,
+      "page": "b",
+      "text": "집 · 시작 · 꾸미기",
+      "x": 0,
+      "y": -300
+    },
+    "rowPC": {
+      "kind": "title1",
+      "maxW": 2640,
+      "page": "b",
+      "text": "PC 화면",
+      "x": 0,
+      "y": 3492
+    },
+    "title": {
+      "kind": "title1",
+      "maxW": 2220,
+      "page": "old",
+      "text": "집 화면 시안",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "GateArrived.dc.html",
+    "HomePC.dc.html",
+    "Gear.dc.html",
+    "GearDetail.dc.html",
+    "GearPC.dc.html",
+    "HomeB.dc.html",
+    "ReportB.dc.html",
+    "StartB.dc.html",
+    "PixelEditorB.dc.html",
+    "ProfileB.dc.html",
+    "SettingsB.dc.html",
+    "ExpeditionB.dc.html",
+    "GateB.dc.html",
+    "PartyB.dc.html",
+    "BattleB.dc.html",
+    "ResultB.dc.html",
+    "GearB.dc.html",
+    "GearBDetail.dc.html",
+    "ForgeB.dc.html",
+    "SkillsB.dc.html",
+    "MarketB.dc.html",
+    "HomePCB.dc.html",
+    "GearPCB.dc.html",
+    "ExpeditionPCB.dc.html",
+    "MarketPCB.dc.html",
+    "BattlePCB.dc.html",
+    "IslandGuestsB.dc.html",
+    "RaidB.dc.html"
+  ],
+  "pages": [
+    {
+      "id": "b",
+      "name": "최신 시안 (B안)"
+    },
+    {
+      "id": "old",
+      "name": "이전 시안"
+    }
+  ],
+  "title": "하늘 군도 화면 시안"
+}
